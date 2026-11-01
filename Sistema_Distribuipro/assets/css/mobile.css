@@ -1,0 +1,2977 @@
+/**
+ * =========================================================
+ * DISTRIBUIDORA ERP — Mobile Responsive CSS
+ * =========================================================
+ * Responsividade completa: mobile-first, tablet, desktop
+ * Complementa main.css sem quebrar o layout existente
+ * =========================================================
+ *
+ * Breakpoints:
+ *   xs  — até 360px   (celular pequeno)
+ *   sm  — até 480px   (celular médio)
+ *   md  — até 768px   (celular grande / landscape)
+ *   lg  — até 1024px  (tablet)
+ *   xl  — até 1280px  (tablet grande / laptop pequeno)
+ * =========================================================
+ */
+
+/* ─── BASE UNIVERSAL ──────────────────────────────────────
+   Garante que NADA ultrapasse a tela em nenhum cenário     */
+*, *::before, *::after {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+img, video, iframe, embed, object, canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ─── INLINE GRID HELPERS ─────────────────────────────────
+   Classes para substituir/sobrescrever grids inline nos HTMLs */
+.responsive-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.responsive-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+}
+
+.responsive-grid-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* ─── SCROLLBAR TOUCH FRIENDLY ───────────────────────────*/
+@media (pointer: coarse) {
+    ::-webkit-scrollbar { width: 3px; height: 3px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 10px; }
+}
+
+/* =========================================================
+   TABLET (≤ 1024px)
+   ========================================================= */
+@media (max-width: 1024px) {
+
+    /* ── Sidebar já coberta pelo main.css (transform) ── */
+
+    /* Header search menor */
+    .header-search { max-width: 200px; }
+
+    /* Grids inline: 2fr 1fr → 1fr */
+    /* Esses são sobrescritos por JS (ver script no final) */
+
+    /* Table overflow já funciona; garantir touch scroll */
+    .table-container {
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+    }
+
+    /* Toolbar wrap */
+    .toolbar { flex-wrap: wrap; }
+
+    /* Report grid menor */
+    .report-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+
+    /* Motoboy grid 2 cols */
+    .motoboy-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Config grid 2 cols */
+    .config-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Delivery grid 1 col */
+    .delivery-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   MOBILE GRANDE / LANDSCAPE (≤ 768px)
+   ========================================================= */
+@media (max-width: 768px) {
+
+    /* ── Variáveis ── */
+    :root {
+        --header-height: 56px;
+        --page-padding: 12px;
+    }
+
+    /* ── Layout ── */
+    .app-layout {
+        flex-direction: column;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    /* ── Header ── */
+    .header {
+        padding: 0 max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+        gap: 8px;
+        flex-wrap: nowrap;
+    }
+
+    .header-left {
+        flex: 1;
+        min-width: 0;
+        gap: 10px;
+    }
+
+    .header-left h2 {
+        font-size: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .header-breadcrumb { display: none; }
+    .header-search { display: none; }
+
+    .header-right { gap: 6px; flex-shrink: 0; }
+    .header-action { width: 36px; height: 36px; font-size: 14px; }
+    .header-avatar { width: 34px; height: 34px; font-size: 13px; margin-left: 4px; }
+
+    /* ── Mobile menu button ── */
+    .mobile-menu-btn {
+        display: inline-flex !important;
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        font-size: 15px;
+    }
+
+    /* ── Page Content ── */
+    .page-content {
+        padding: var(--page-padding, 12px);
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+        overflow-x: hidden;
+        overflow-x: clip; /* 35.33 · clip não vira caixa de rolagem (Android) */
+    }
+
+    /* ── Page Header inline (padrão em todas as páginas) ── */
+    .page-header,
+    [style*="display:flex"][style*="justify-content:space-between"][style*="margin-bottom"],
+    [style*="display: flex"][style*="justify-content: space-between"] {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* ── Stat Grid ── */
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .stat-card {
+        padding: 14px;
+    }
+
+    .stat-card .stat-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .stat-card .stat-value { font-size: 20px; }
+    .stat-card .stat-label { font-size: 11px; }
+    .stat-card .stat-change { font-size: 10px; }
+
+    /* ── Cards ── */
+    .card {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .card-header {
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+
+    .card-header .btn { font-size: 12px; padding: 7px 12px; }
+
+    /* ── Toolbar ── */
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+
+    .toolbar-left {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .toolbar-right {
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .toolbar-right .btn {
+        flex: 1;
+        min-width: 120px;
+        justify-content: center;
+    }
+
+    .toolbar-search,
+    .search-box {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .toolbar-select {
+        min-width: auto;
+        flex: 1;
+        width: 100%;
+    }
+
+    /* ── Tables ── */
+    .table-container {
+        border-radius: 12px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .data-table {
+        min-width: 560px;
+        font-size: 12px;
+    }
+
+    .data-table thead th {
+        padding: 10px 12px;
+        font-size: 10px;
+    }
+
+    .data-table thead th:first-child { padding-left: 14px; }
+    .data-table thead th:last-child { padding-right: 14px; }
+
+    .data-table tbody td {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+
+    .data-table tbody td:first-child { padding-left: 14px; }
+    .data-table tbody td:last-child { padding-right: 14px; }
+
+    /* ── Table Header ── */
+    .table-header {
+        padding: 14px 16px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+        padding: 9px 14px;
+        font-size: 12px;
+        gap: 6px;
+        min-height: 38px; /* touch target */
+    }
+
+    .btn-lg { padding: 12px 20px; font-size: 14px; }
+    .btn-sm { padding: 6px 10px; font-size: 11px; min-height: 30px; }
+    .btn-icon { width: 34px; height: 34px; min-height: 34px; font-size: 13px; }
+
+    /* ── Forms ── */
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .form-grid .form-group.full-width {
+        grid-column: 1;
+    }
+
+    .form-control {
+        font-size: 16px; /* evita zoom no iOS */
+        min-height: 42px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea,
+    .modal-body input,
+    .modal-body select,
+    .modal-body textarea {
+        font-size: 16px !important; /* previne zoom automático iOS */
+        min-height: 42px;
+    }
+
+    .form-group textarea,
+    .modal-body textarea {
+        min-height: 80px;
+    }
+
+    /* ── Pagination ── */
+    .pagination {
+        padding: 12px 14px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .pagination-info {
+        font-size: 11px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .pagination-buttons button,
+    .pagination-btn {
+        min-width: 34px;
+        height: 34px;
+        font-size: 12px;
+    }
+
+    /* ── Modal: regras movidas para bloco FIX DEFINITIVO abaixo ── */
+
+    /* ── Badges ── */
+    .badge-status { font-size: 10px; padding: 3px 8px; }
+
+    /* ── Toasts ── */
+    .toast-container {
+        top: auto;
+        bottom: max(16px, env(safe-area-inset-bottom));
+        right: 12px;
+        left: 12px;
+    }
+    /* 37.8 · com uma janela aberta (ela sobe de baixo), o aviso vai para o topo e não cobre os botões */
+    body:has(.modal-overlay.active) .toast-container {
+        top: max(12px, env(safe-area-inset-top));
+        bottom: auto;
+    }
+
+    .toast {
+        min-width: auto;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* ── Two col grid ── */
+    .two-col-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* ── Report grid ── */
+    .report-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 12px;
+    }
+
+    /* ── Config grid ── */
+    .config-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    /* ── Motoboy grid ── */
+    .motoboy-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    /* ── Categorias grid ── */
+    .categorias-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .categoria-card { padding: 18px 14px; }
+    .categoria-icon { width: 46px; height: 46px; font-size: 20px; }
+    .categoria-name { font-size: 13px; }
+
+    /* ── Fluxo de caixa ── */
+    .fluxo-summary {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .fluxo-chart-container { height: 220px; padding: 12px; }
+
+    /* ── Caixa ── */
+    .caixa-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .caixa-payment-card { padding: 14px; }
+    .caixa-payment-card .payment-value { font-size: 15px; }
+
+    .caixa-status-bar {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 14px 16px;
+    }
+
+    /* ── Delivery grid ── */
+    .delivery-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .delivery-card { padding: 18px; }
+
+    /* ── Kanban (Pedidos) ── */
+    .kanban-board {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
+        padding-bottom: 8px;
+        /* hide scrollbar */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .kanban-board::-webkit-scrollbar { display: none; }
+
+    .kanban-col {
+        min-width: 270px;
+        max-width: 290px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+    }
+
+    .kanban-card { padding: 14px; }
+    .kanban-card-client { font-size: 13px; }
+    .kanban-card-total { font-size: 14px; }
+
+    /* ── Actions cell ── */
+    .actions-cell { gap: 4px; }
+
+    /* ── Period buttons ── */
+    .period-buttons {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    /* ── Product cell ── */
+    .product-cell { gap: 8px; }
+    .product-thumb { width: 32px; height: 32px; }
+    .product-cell .product-name { font-size: 12px; }
+    .product-cell .product-sub { font-size: 10px; }
+
+    /* ── Chart container ── */
+    .chart-container { height: 220px; padding: 4px; }
+
+    /* ── Empty state ── */
+    .empty-state { padding: 32px 16px; }
+    .empty-state i { font-size: 36px; }
+    .empty-state h3 { font-size: 14px; }
+    .empty-state p { font-size: 12px; }
+
+    /* ── Safe areas PWA ── */
+    .header {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+    }
+
+    /* ── Touch feedback ── */
+    .btn, .btn-icon, .stat-card, .kanban-card, .menu-item,
+    .header-action, .mobile-menu-btn, .cat-btn, .period-btn,
+    .categoria-card, .report-card, .motoboy-card, .caixa-payment-card {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        user-select: none;
+    }
+
+    .btn:active, .btn-icon:active { transform: scale(0.96); }
+    .stat-card:active, .kanban-card:active,
+    .categoria-card:active, .report-card:active { transform: scale(0.98); }
+    .menu-item:active { background: rgba(99,102,241,0.12); }
+    .data-table tbody tr:active { background: rgba(99,102,241,0.05); }
+
+    /* ── Prevent overscroll ── */
+    /* 35.33 · sem overscroll "contain" no .page-content: no Android impedia a página de rolar */
+
+    /* ── Mobile Bottom Bar ── */
+    .mobile-bottom-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px 16px;
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        gap: 10px;
+        z-index: 800;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+
+    .mobile-bottom-bar .btn { flex: 1; justify-content: center; }
+
+    /* ── Smooth scroll ── */
+    .page-content,
+    .kanban-board,
+    .table-container,
+    .sidebar-menu,
+    .modal-body {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* ── Hide scrollbars on scroll containers ── */
+    .kanban-board::-webkit-scrollbar,
+    .sidebar-menu::-webkit-scrollbar {
+        display: none;
+    }
+    .kanban-board, .sidebar-menu {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+/* =========================================================
+   MOBILE PEQUENO (≤ 480px)
+   ========================================================= */
+@media (max-width: 480px) {
+
+    /* ── Page padding mínimo ── */
+    .page-content { padding: 8px; }
+
+    /* ── Stat grid: 1 coluna em vertical, 2 em horizontal ── */
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 12px;
+    }
+
+    .stat-card .stat-value { font-size: 18px; }
+    .stat-card .stat-label { font-size: 10px; }
+    .stat-card .stat-icon { width: 34px; height: 34px; font-size: 14px; }
+
+    /* ── Header mais compacto ── */
+    .header-left h2 { font-size: 14px; max-width: 140px; }
+    .header-right { gap: 4px; }
+    .header-action { width: 32px; height: 32px; font-size: 13px; }
+    .header-avatar { width: 30px; height: 30px; font-size: 12px; margin-left: 2px; }
+
+    /* ── Cards ── */
+    .card { padding: 12px; border-radius: 10px; }
+
+    /* ── Categorias: 2 colunas compactas ── */
+    .categorias-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .categoria-card { padding: 14px 10px; }
+    .categoria-icon { width: 40px; height: 40px; font-size: 18px; margin-bottom: 10px; }
+    .categoria-name { font-size: 12px; }
+    .categoria-count { font-size: 11px; }
+
+    /* ── Caixa: 1 coluna ── */
+    .caixa-grid { grid-template-columns: 1fr; }
+
+    /* ── Kanban: menor ── */
+    .kanban-col { min-width: 240px; max-width: 260px; }
+    .kanban-card { padding: 12px; }
+    .kanban-card-client { font-size: 12px; }
+
+    /* ── Toolbar botões full width ── */
+    .toolbar-right {
+        flex-direction: column;
+    }
+
+    .toolbar-right .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* ── Action buttons menores ── */
+    .btn-icon { width: 30px; height: 30px; font-size: 12px; }
+    .actions-cell { gap: 3px; }
+
+    /* ── Product thumb menor ── */
+    .product-thumb { width: 28px; height: 28px; font-size: 9px; }
+
+    /* ── Modal header handle maior ── */
+    .modal-header::before { width: 44px; height: 5px; }
+
+    /* ── Fluxo summary ── */
+    .fluxo-summary { grid-template-columns: 1fr; }
+
+    /* ── Table ajuste ── */
+    .data-table { min-width: 520px; }
+    .data-table tbody td { padding: 9px 10px; font-size: 11px; }
+    .data-table thead th { padding: 8px 10px; font-size: 10px; }
+
+    /* ── Period buttons: scroll horizontal ── */
+    .card-header {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* ── Motoboy card compacto ── */
+    .motoboy-stats { gap: 10px; }
+    .motoboy-stat-value { font-size: 13px; }
+    .motoboy-stat-label { font-size: 10px; }
+}
+
+/* =========================================================
+   CELULAR MUITO PEQUENO (≤ 360px)
+   ========================================================= */
+@media (max-width: 360px) {
+
+    html { font-size: 13px; }
+
+    .page-content { padding: 6px; }
+
+    .stat-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+    .stat-card { padding: 10px; }
+    .stat-card .stat-value { font-size: 16px; }
+
+    .header-left h2 { font-size: 13px; max-width: 110px; }
+
+    .btn { padding: 8px 10px; font-size: 11px; }
+    .btn-icon { width: 28px; height: 28px; }
+
+    .card { padding: 10px; }
+
+    .data-table { min-width: 480px; }
+
+    .kanban-col { min-width: 220px; }
+}
+
+/* =========================================================
+   DASHBOARD — Grids inline sobrescritos
+   ========================================================= */
+@media (max-width: 768px) {
+
+    /* Grids inline do index.html e outras páginas */
+    /* Selecionar por atributo estilo é inseguro; usamos script.
+       Aqui cobrimos padrões comuns com classes utilitárias */
+
+    .dash-grid-main {
+        grid-template-columns: 1fr !important;
+    }
+
+    .dash-grid-equal {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Configurações — grids de formulário */
+    .config-form-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Estoque / Relatório — grids de resumo */
+    .summary-grid-3 {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .summary-grid-3 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* =========================================================
+   PDV — Atenção especial (tem seu próprio CSS inline)
+   ========================================================= */
+
+/* PDV já tem media queries internas no HTML.
+   Aqui reforçamos alguns pontos críticos: */
+
+@media (max-width: 768px) {
+    /* FAB do carrinho maior e mais acessível */
+    .pdv-mobile-toggle {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 22px !important;
+        bottom: max(20px, env(safe-area-inset-bottom)) !important;
+        right: 16px !important;
+    }
+
+    /* Cart direito como bottom sheet */
+    .pdv-right {
+        border-radius: 20px 20px 0 0 !important;
+    }
+
+    /* Produto grid 2 colunas confortáveis */
+    .product-card {
+        width: calc(50% - 10px) !important;
+        padding: 12px !important;
+    }
+
+    .product-card .p-thumb {
+        height: 72px !important;
+    }
+
+    .product-card .p-name { font-size: 12px !important; }
+    .product-card .p-price { font-size: 14px !important; }
+}
+
+@media (max-width: 480px) {
+    .product-card {
+        width: calc(50% - 8px) !important;
+        margin: 4px !important;
+        padding: 10px !important;
+    }
+
+    .product-card .p-thumb { height: 60px !important; }
+
+    /* Botões de quantidade maiores para toque */
+    .ci-qty button {
+        width: 28px !important;
+        height: 28px !important;
+    }
+
+    /* Payment methods: 2 colunas */
+    .payment-methods {
+        grid-template-columns: 1fr 1fr !important;
+    }
+
+    /* Cart actions stack */
+    .cart-actions {
+        flex-wrap: wrap !important;
+    }
+}
+
+/* =========================================================
+   LOGIN — Premium mobile
+   ========================================================= */
+@media (max-width: 960px) {
+    .login-brand { display: none; }
+    .login-panel {
+        width: 100%;
+        border-left: none;
+        padding: 48px 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-panel { padding: 36px 20px; }
+
+    .login-header h2 { font-size: 22px; }
+    .login-header p { font-size: 13px; }
+
+    .form-input {
+        font-size: 16px; /* evita zoom iOS */
+        padding: 13px 14px 13px 44px;
+    }
+
+    .btn-login { padding: 13px; font-size: 14px; }
+}
+
+/* =========================================================
+   CONFIGURAÇÕES — Layout específico
+   ========================================================= */
+@media (max-width: 768px) {
+    .config-section { margin-bottom: 20px; }
+    .config-section-title { font-size: 14px; margin-bottom: 12px; }
+    .config-item { padding: 12px 14px; }
+    .config-item .config-label { font-size: 12px; }
+    .config-item .config-value { font-size: 12px; }
+}
+
+/* =========================================================
+   RELATÓRIOS — Report cards
+   ========================================================= */
+@media (max-width: 768px) {
+    .report-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .report-card .report-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .report-card .report-title { font-size: 13px; }
+    .report-card .report-desc { font-size: 11px; }
+}
+
+@media (max-width: 480px) {
+    .report-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   AUDITORIA — Tabela compacta
+   ========================================================= */
+@media (max-width: 768px) {
+    .audit-action { font-size: 10px; padding: 2px 8px; }
+}
+
+/* =========================================================
+   FLUXO DE CAIXA — Layout específico
+   ========================================================= */
+@media (max-width: 768px) {
+    .fluxo-summary-card {
+        padding: 14px;
+    }
+
+    .fluxo-summary-card .fluxo-value { font-size: 18px; }
+    .fluxo-summary-card .fluxo-label { font-size: 11px; }
+}
+
+/* =========================================================
+   CONTAS A PAGAR / RECEBER
+   ========================================================= */
+@media (max-width: 768px) {
+    .conta-status { font-size: 10px; padding: 2px 8px; }
+
+    /* Ocultar colunas menos importantes em mobile */
+    /* Implementado via CSS (sem remover do HTML) */
+}
+
+/* =========================================================
+   ENTREGAS — Delivery status trail
+   ========================================================= */
+@media (max-width: 480px) {
+    .delivery-status-trail {
+        gap: 0;
+    }
+
+    .trail-line { min-width: 12px; }
+}
+
+/* =========================================================
+   MOTOBOYS — Cards compactos
+   ========================================================= */
+@media (max-width: 768px) {
+    .motoboy-card { padding: 16px; }
+    .motoboy-avatar { width: 42px; height: 42px; font-size: 16px; }
+    .motoboy-name { font-size: 14px; }
+    .motoboy-stats { gap: 12px; margin-top: 12px; padding-top: 10px; }
+}
+
+/* =========================================================
+   PEDIDOS — Kanban
+   ========================================================= */
+@media (max-width: 768px) {
+    .kanban-col-header { padding: 10px 12px; }
+    .kanban-col-title { font-size: 12px; }
+    .kanban-count { font-size: 10px; padding: 2px 6px; }
+    .kanban-card-id { font-size: 11px; }
+    .kanban-card-time { font-size: 10px; }
+    .kanban-card-items { font-size: 11px; margin-bottom: 10px; }
+}
+
+/* =========================================================
+   USUÁRIOS — tabela com avatar
+   ========================================================= */
+@media (max-width: 768px) {
+    .user-avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+
+/* =========================================================
+   ESTOQUE — Barras de progresso
+   ========================================================= */
+@media (max-width: 768px) {
+    .stock-bar-wrap { min-width: 60px; }
+}
+
+/* =========================================================
+   CAIXA — Status bar e botões
+   ========================================================= */
+@media (max-width: 480px) {
+    .caixa-status-bar {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+    }
+}
+
+/* =========================================================
+   UTILITÁRIOS MOBILE EXCLUSIVOS
+   ========================================================= */
+
+/* Oculta em mobile */
+@media (max-width: 768px) {
+    .hide-mobile { display: none !important; }
+    .show-mobile { display: flex !important; }
+}
+
+/* Oculta em tablet */
+@media (max-width: 1024px) {
+    .hide-tablet { display: none !important; }
+    .show-tablet { display: flex !important; }
+}
+
+/* Sempre visível */
+.show-mobile { display: none; }
+.show-tablet { display: none; }
+
+/* ── Texto truncado ── */
+.text-truncate-mobile {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── Scroll horizontal elegante ── */
+.scroll-x {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.scroll-x::-webkit-scrollbar { display: none; }
+
+/* ── Stack em mobile ── */
+@media (max-width: 768px) {
+    .stack-mobile {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .stack-mobile > * {
+        width: 100% !important;
+    }
+}
+
+/* =========================================================
+   ACESSIBILIDADE — Focus visível em touch
+   ========================================================= */
+@media (pointer: coarse) {
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+}
+
+/* =========================================================
+   FIX: Elementos com min-width quebrando a tela
+   ========================================================= */
+@media (max-width: 768px) {
+    /* Qualquer tabela dentro de container não pode ser menor que 100% do pai */
+    .table-container {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* Cards com stat-info (horizontal) */
+    .stat-card:has(.stat-info) {
+        gap: 12px;
+    }
+
+    /* Modal: max-height controlado pelo JS via visualViewport */
+
+    /* Toast não sai da tela */
+    .toast {
+        min-width: unset;
+        max-width: calc(100vw - 24px);
+    }
+
+    /* Sidebar overlay garante full screen */
+    .mobile-overlay {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    /* Period buttons compactos */
+    .period-btn {
+        padding: 5px 12px;
+        font-size: 11px;
+    }
+
+    /* Badge menor */
+    .menu-item .badge {
+        padding: 1px 6px;
+        font-size: 9px;
+    }
+}
+
+/* =========================================================
+   FIX: Inline grids com overflow em mobile
+   Usado pelo script mobile-fix.js para adicionar classes
+   ========================================================= */
+@media (max-width: 768px) {
+
+    /* Classe adicionada pelo script ao inline grid "2fr 1fr" */
+    .ig-main-to-stack,
+    .ig-equal-to-stack,
+    .ig-three-to-stack {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Classe adicionada a grids de formulário */
+    .ig-form-to-stack {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .ig-main-to-stack,
+    .ig-equal-to-stack,
+    .ig-three-to-stack,
+    .ig-form-to-stack {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+}
+
+/* =========================================================
+   PATCHES ESPECÍFICOS POR PÁGINA — Continuação
+   ========================================================= */
+
+/* ─── STAT-GRID com colunas fixas ────────────────────────
+   Páginas usam style="grid-template-columns:repeat(4,1fr)"
+   ou repeat(6,1fr) diretamente no stat-grid               */
+
+@media (max-width: 1024px) {
+    /* 6 colunas → 3 colunas */
+    .stat-grid[style*="repeat(6"] {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    /* 4 colunas → 2 colunas */
+    .stat-grid[style*="repeat(4"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* 6 colunas → 2 colunas */
+    .stat-grid[style*="repeat(6"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+
+    /* 4 colunas → 2 colunas */
+    .stat-grid[style*="repeat(4"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+
+    /* 3 colunas → 1 coluna */
+    .stat-grid[style*="repeat(3"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Todas stat-grids fixas → 2 colunas compactas */
+    .stat-grid[style*="repeat(6"],
+    .stat-grid[style*="repeat(4"],
+    .stat-grid[style*="repeat(3"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px !important;
+    }
+
+    /* Stat card de caixa (valores de pagamento) */
+    .stat-grid[style*="repeat(6"] .stat-card {
+        padding: 10px 8px;
+    }
+
+    .stat-grid[style*="repeat(6"] .stat-value {
+        font-size: 14px !important;
+    }
+}
+
+/* ─── CAIXA — Layout específico ──────────────────────────*/
+@media (max-width: 768px) {
+    /* Card de status do caixa */
+    .page-content > .card:first-child [style*="display:flex;justify-content:space-between"] {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    /* Botões de ação do caixa */
+    #cashActions {
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+    }
+
+    #cashActions .btn {
+        flex: 1;
+        min-width: 120px;
+        justify-content: center;
+    }
+}
+
+/* ─── CONFIGURAÇÕES — Tabs horizontais ───────────────────*/
+@media (max-width: 768px) {
+    /* Container das tabs — scroll horizontal elegante */
+    .card > [style*="display:flex;gap:4px;margin-bottom"] {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        gap: 0 !important;
+        padding-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .card > [style*="display:flex;gap:4px;margin-bottom"]::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Tab buttons compactos */
+    .card > [style*="display:flex;gap:4px;margin-bottom"] .btn {
+        padding: 10px 14px !important;
+        font-size: 12px !important;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* Remove ícones dos tabs em mobile muito pequeno */
+}
+
+@media (max-width: 480px) {
+    .card > [style*="display:flex;gap:4px;margin-bottom"] .btn i {
+        display: none;
+    }
+
+    .card > [style*="display:flex;gap:4px;margin-bottom"] .btn {
+        padding: 10px 10px !important;
+        font-size: 11px !important;
+    }
+}
+
+/* ─── CONFIGURAÇÕES — Botões Salvar/Cancelar ─────────────*/
+@media (max-width: 768px) {
+    /* Botões de ação de salvar no final de cada aba */
+    [style*="display:flex;justify-content:flex-end;gap:10px"] {
+        flex-wrap: wrap;
+        gap: 8px !important;
+    }
+
+    [style*="display:flex;justify-content:flex-end;gap:10px"] .btn {
+        flex: 1;
+        min-width: 100px;
+        justify-content: center;
+    }
+}
+
+/* ─── CONFIGURAÇÕES — Itens de configuração ──────────────*/
+@media (max-width: 480px) {
+    /* Items com justify-content:space-between podem ficar apertados */
+    [style*="justify-content:space-between;align-items:center;padding:14px 16px"] {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px !important;
+    }
+
+    /* Toggle switch mantém posição */
+    .toggle-switch {
+        flex-shrink: 0;
+    }
+}
+
+/* ─── ESTOQUE — Grid de alertas ──────────────────────────*/
+@media (max-width: 768px) {
+    /* Grid de alertas de estoque */
+    [style*="grid-template-columns:repeat(auto-fill,minmax(250px"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    [style*="grid-template-columns:repeat(auto-fill,minmax(220px"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    [style*="grid-template-columns:repeat(auto-fill,minmax(220px"] {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ─── ENTREGAS — Grid de entregas ─────────────────────── */
+@media (max-width: 768px) {
+    /* Grid de entregas ativas */
+    #activeDeliveries,
+    [style*="grid-template-columns:repeat(auto-fill,minmax(360px"] {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    /* Grid de categorias de entrega */
+    [style*="grid-template-columns:repeat(auto-fill,minmax(280px"] {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+}
+
+/* ─── DASHBOARD — Period buttons ─────────────────────────*/
+@media (max-width: 768px) {
+    /* Toolbar do dashboard: período + data */
+    .toolbar[style*="margin-bottom:24px"] {
+        margin-bottom: 16px !important;
+    }
+
+    /* Botões de período */
+    .toolbar > [style*="display:flex;gap:6px"] {
+        flex-wrap: wrap;
+        gap: 6px !important;
+    }
+
+    .period-btn {
+        font-size: 11px;
+        padding: 5px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .toolbar > [style*="display:flex;gap:6px"] {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .period-btn {
+        flex: 1;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* ─── MODAIS — Formulários específicos ───────────────────*/
+@media (max-width: 768px) {
+    /* Grid de 1fr 1fr 1fr dentro de modal */
+    .modal-body [style*="grid-template-columns:1fr 1fr 1fr"],
+    .modal-body [style*="grid-template-columns: 1fr 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Grid de 1fr 1fr dentro de modal */
+    .modal-body [style*="grid-template-columns:1fr 1fr"],
+    .modal-body [style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Botões de ação em linha dentro de modal */
+    .modal-body [style*="display:grid;grid-template-columns:1fr 1fr;gap:8px"] {
+        grid-template-columns: 1fr 1fr !important; /* manter 2 cols para botões pequenos */
+    }
+}
+
+/* ─── TODOS OS INLINE-FLEX/FLEX ──────────────────────────
+   Containers flex com espaçamento entre que podem quebrar */
+@media (max-width: 768px) {
+    /* Qualquer flex container que possa estourar */
+    .card-header {
+        flex-wrap: wrap;
+    }
+
+    /* Evitar overflow em ações do header dos cards */
+    .card-header > *:last-child {
+        flex-shrink: 0;
+    }
+}
+
+/* ─── MOVIMENTAÇÕES — Tabela ─────────────────────────────*/
+@media (max-width: 768px) {
+    .mov-qty { font-size: 12px; }
+    .mov-type { font-size: 10px; padding: 2px 7px; }
+}
+
+/* ─── AUDITORIA — Tabela compacta ────────────────────────*/
+@media (max-width: 768px) {
+    /* Coluna de detalhes pode ser oculta */
+    .audit-details-col { 
+        max-width: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+/* ─── CLIENTES / FORNECEDORES — Linha de produto ─────────*/
+@media (max-width: 768px) {
+    .client-status { font-size: 10px; }
+}
+
+/* ─── COMPRAS — Status ────────────────────────────────────*/
+@media (max-width: 768px) {
+    .compra-status { font-size: 10px; padding: 2px 8px; }
+}
+
+/* ─── PRODUTOS — Imagens ─────────────────────────────────*/
+@media (max-width: 768px) {
+    .product-thumb {
+        border-radius: 6px;
+    }
+}
+
+/* ─── PEDIDOS — Kanban header sticky ─────────────────────*/
+@media (max-width: 768px) {
+    .kanban-col-header {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+}
+
+/* ─── RELATORIOS — Filtros de data ───────────────────────*/
+@media (max-width: 768px) {
+    /* Filtros de relatório lado a lado → coluna */
+    .report-filters,
+    .filter-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .report-filters .form-control,
+    .filter-row .form-control {
+        width: 100%;
+    }
+}
+
+/* ─── CONTAS PAGAR/RECEBER — Summary de valores ──────────*/
+@media (max-width: 768px) {
+    /* Cards de resumo financeiro */
+    .conta-summary {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .conta-summary {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ─── USUARIOS — Avatar e roles ──────────────────────────*/
+@media (max-width: 480px) {
+    .user-role {
+        font-size: 10px;
+        padding: 2px 7px;
+    }
+}
+
+/* ─── BRANDING / TEMA ────────────────────────────────────
+   Fix específico para preview de branding em configurações */
+@media (max-width: 768px) {
+    #brandingPreview,
+    .branding-preview {
+        transform: scale(0.85);
+        transform-origin: top left;
+        width: 117%; /* compensar scale */
+    }
+}
+
+/* ─── SIDEBAR ABERTA — Body sem overflow ─────────────────*/
+body.sidebar-open {
+    overflow: hidden;
+}
+
+/* ─── MOBILE MENU BUTTON — Garantia visual ───────────────*/
+@media (max-width: 1024px) {
+    .mobile-menu-btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Sidebar toggle do desktop oculto em mobile */
+    .sidebar-toggle {
+        display: none !important;
+    }
+}
+
+/* ─── OVERLAY — cobertura total ──────────────────────────*/
+.mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.mobile-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* ─── SIDEBAR MOBILE ABERTA ───────────────────────────────*/
+@media (max-width: 1024px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.3s ease;
+        z-index: 1000;
+    }
+
+    .sidebar.mobile-open {
+        transform: translateX(0);
+        box-shadow: 8px 0 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Sidebar sempre full height no mobile */
+    .sidebar {
+        height: 100%;
+        height: 100dvh;
+    }
+
+    /* Sidebar menu scrollável */
+    .sidebar-menu {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        /* Padding inferior para não cortar último item */
+        padding-bottom: 20px;
+    }
+}
+
+/* ─── HEADER — Mobile hamburger alinhado ─────────────────*/
+@media (max-width: 1024px) {
+    .header-left {
+        gap: 12px;
+    }
+
+    .mobile-menu-btn {
+        flex-shrink: 0;
+    }
+}
+
+/* ─── FIX: stat-card horizontal (com stat-info) mobile ───*/
+@media (max-width: 480px) {
+    /* Em telas muito pequenas, stat-card com stat-info fica compacto */
+    .stat-card:has(.stat-info) {
+        padding: 10px 12px;
+        gap: 10px;
+    }
+
+    .stat-card:has(.stat-info) .stat-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+
+    .stat-info .stat-value {
+        font-size: 16px !important;
+    }
+
+    .stat-info .stat-label {
+        font-size: 10px;
+    }
+}
+
+/* ─── FIX: Table actions sempre visíveis ─────────────────*/
+@media (max-width: 768px) {
+    /* Coluna de actions não deve ser colapsada */
+    .data-table td:last-child,
+    .data-table th:last-child {
+        position: sticky;
+        right: 0;
+        background: var(--bg-secondary);
+        z-index: 1;
+        box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+    }
+
+    /* Em hover, manter background consistente */
+    .data-table tbody tr:hover td:last-child {
+        background: var(--bg-card-hover);
+    }
+}
+
+/* ─── FIX: Inputs de busca do header ─────────────────────*/
+@media (max-width: 768px) {
+    /* Se alguma página mostrar header search, ela deve ser full */
+    .header-search:not([style*="display:none"]) {
+        max-width: 100%;
+        margin: 0;
+    }
+}
+
+/* ─── ANIMAÇÕES REDUZIDAS (prefers-reduced-motion) ───────*/
+@media (prefers-reduced-motion: reduce) {
+    .sidebar,
+    .modal,
+    .modal-overlay,
+    .mobile-overlay,
+    .btn,
+    .stat-card,
+    .kanban-card {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* ─── PRINT — Remove elementos de navegação ──────────────*/
+@media print {
+    .sidebar,
+    .header,
+    .mobile-menu-btn,
+    .mobile-overlay,
+    .mobile-bottom-bar,
+    .toolbar,
+    .pagination,
+    .btn-icon,
+    .actions-cell {
+        display: none !important;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+    }
+
+    .page-content {
+        padding: 0 !important;
+    }
+
+    .card {
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+    }
+}
+
+/* ─── STOCK ALERTS GRID — Estoque ────────────────────────*/
+@media (max-width: 768px) {
+    .stock-alerts-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+}
+
+/* ─── ENTREGAS — Categorias grid ─────────────────────────*/
+@media (max-width: 768px) {
+    .entregas-cat-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        padding: 0 0 12px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .entregas-cat-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ─── PERIOD BUTTONS WRAP — Dashboard ────────────────────*/
+@media (max-width: 768px) {
+    .period-buttons-wrap {
+        flex-wrap: wrap;
+        gap: 6px !important;
+        width: 100%;
+    }
+
+    .period-buttons-wrap .btn {
+        flex: 1;
+        justify-content: center;
+        min-width: 70px;
+    }
+}
+
+/* ─── FIX FINAL: Garantir que nada ultrapasse 100vw ───── */
+@media (max-width: 768px) {
+    .app-layout,
+    .main-content,
+    .page-content,
+    .header,
+    .card,
+    .stat-grid,
+    .toolbar,
+    .kanban-board,
+    .modal-overlay {
+        max-width: 100vw;
+    }
+
+    /* Texto muito longo não quebra layout */
+    .card-title,
+    .stat-label,
+    .menu-item .menu-text {
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    /* Badge do menu sempre pequeno */
+    .menu-item .badge {
+        min-width: 18px;
+        height: 18px;
+        padding: 0 5px;
+        font-size: 9px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* ─── SCROLL HINT — indicador tabela com scroll ──────────*/
+.scroll-hint {
+    animation: hint-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes hint-pulse {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.1); }
+}
+
+/* ─── INPUTS TOUCH TARGETS ───────────────────────────────
+   Todos os elementos interativos com área de toque adequada */
+@media (max-width: 768px) {
+    .btn,
+    .btn-icon,
+    .header-action,
+    .header-avatar,
+    .mobile-menu-btn,
+    .sidebar-toggle button,
+    .menu-item,
+    .cat-btn,
+    .period-btn,
+    .pay-method,
+    .pagination-btn,
+    .pagination-buttons button {
+        min-height: 36px;
+    }
+
+    /* Inputs e selects com boa área de toque */
+    .form-control,
+    .toolbar-select,
+    .toolbar-search input,
+    .search-box input {
+        min-height: 42px;
+        font-size: 16px; /* Previne zoom iOS */
+    }
+}
+
+/* =========================================================
+   PATCHES FINAIS — Grids específicos por página
+   ========================================================= */
+
+/* ─── MOTOBOYS — Cards grid ──────────────────────────────*/
+@media (max-width: 768px) {
+    .motoboys-cards-grid,
+    [style*="grid-template-columns:repeat(auto-fill,minmax(360px"] {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        margin-bottom: 16px !important;
+    }
+}
+
+/* ─── RELATÓRIOS — Grid de categorias ───────────────────*/
+@media (max-width: 768px) {
+    .relatorios-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        margin-bottom: 16px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .relatorios-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ─── USUÁRIOS — Grid de perfis ──────────────────────────*/
+@media (max-width: 768px) {
+    .perfis-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .perfis-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ─── USUÁRIOS — Modal permissões ────────────────────────*/
+@media (max-width: 768px) {
+    /* Grid de checkboxes lado a lado em modal */
+    .modal-body [style*="grid-template-columns:1fr 1fr;gap:8px"] {
+        grid-template-columns: 1fr 1fr !important; /* mantém 2 colunas: espaço suficiente */
+    }
+}
+
+/* ─── MOTOBOYS — Stats internos dos cards ─────────────── */
+@media (max-width: 480px) {
+    /* Stats em 3 colunas dos cards de motoboy ficam apertadas */
+    .ig-three-to-stack[style*="gap:10px;margin-bottom:14px"] {
+        grid-template-columns: repeat(3, 1fr) !important; /* mantém 3 — são curtos */
+        gap: 6px !important;
+    }
+
+    .ig-three-to-stack [style*="text-align:center;padding:10px"] {
+        padding: 8px 4px !important;
+    }
+
+    .ig-three-to-stack [style*="font-size:18px;font-weight:800"] {
+        font-size: 15px !important;
+    }
+
+    .ig-three-to-stack [style*="font-size:11px;color:var(--text-muted)"] {
+        font-size: 10px !important;
+    }
+}
+
+/* ─── REPORT CARD — hover e layout ──────────────────────*/
+@media (max-width: 768px) {
+    .report-card [style*="display:flex;align-items:center;gap:14px"] {
+        gap: 10px;
+    }
+
+    .report-card [style*="width:48px;height:48px"] {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px;
+        border-radius: 10px !important;
+    }
+
+    .report-card [style*="font-size:16px"] {
+        font-size: 14px !important;
+    }
+}
+
+/* ─── MOTOBOYS — Card header (avatar + nome) ─────────── */
+@media (max-width: 480px) {
+    /* Avatar dos motoboys */
+    .motoboys-cards-grid [style*="width:52px;height:52px"] {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px;
+        font-size: 16px !important;
+        border-radius: 10px !important;
+    }
+
+    .motoboys-cards-grid [style*="font-size:15px"] {
+        font-size: 14px !important;
+    }
+}
+
+/* ─── CAIXA — Botões de ação do caixa ────────────────── */
+@media (max-width: 480px) {
+    #cashActions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #cashActions .btn {
+        width: 100%;
+    }
+}
+
+/* ─── FLUXO DE CAIXA — Tabela de lançamentos ─────────── */
+@media (max-width: 768px) {
+    /* Ícone de tipo de lançamento */
+    .fluxo-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+}
+
+/* ─── COMPRAS — Tabela de itens ──────────────────────── */
+@media (max-width: 768px) {
+    .compra-status { font-size: 10px; padding: 2px 8px; }
+}
+
+/* ─── CONTAS — Valores destacados ───────────────────────*/
+@media (max-width: 768px) {
+    /* Valores monetários grandes */
+    [style*="font-size:22px;font-weight:800"] {
+        font-size: 18px !important;
+    }
+
+    [style*="font-size:24px;font-weight:800"] {
+        font-size: 20px !important;
+    }
+
+    [style*="font-size:28px;font-weight:800"],
+    [style*="font-size:30px;font-weight:800"] {
+        font-size: 22px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    [style*="font-size:22px;font-weight:800"] {
+        font-size: 16px !important;
+    }
+
+    [style*="font-size:24px;font-weight:800"] {
+        font-size: 17px !important;
+    }
+
+    [style*="font-size:28px;font-weight:800"],
+    [style*="font-size:30px;font-weight:800"] {
+        font-size: 19px !important;
+    }
+}
+
+/* ─── HEADER — Logo/título compacto ─────────────────────*/
+@media (max-width: 768px) {
+    .header-left h2 {
+        max-width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 360px) {
+    .header-left h2 {
+        max-width: 120px;
+        font-size: 13px;
+    }
+}
+
+/* ─── SIDEBAR — Brand menor em mobile ───────────────────*/
+@media (max-width: 1024px) {
+    .sidebar-brand {
+        padding: 16px;
+    }
+
+    .sidebar-brand .brand-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .sidebar-brand .brand-text h1 {
+        font-size: 14px;
+    }
+}
+
+/* ─── MENU ITEMS — Maior área de toque ──────────────────*/
+@media (max-width: 1024px) {
+    .menu-item {
+        padding: 12px 16px;
+        margin: 2px 6px;
+        border-radius: 10px;
+    }
+
+    .menu-item i {
+        font-size: 17px;
+        width: 22px;
+    }
+
+    .menu-item .menu-text {
+        font-size: 14px;
+    }
+}
+
+/* ─── EMPTY STATE — Centralizado e legível ───────────── */
+@media (max-width: 480px) {
+    .empty-state {
+        padding: 24px 12px;
+    }
+
+    .empty-state i {
+        font-size: 32px;
+    }
+
+    .empty-state h3 {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .empty-state p {
+        font-size: 12px;
+        margin-bottom: 14px;
+    }
+}
+
+/* ─── ALERT — Mobile compacto ────────────────────────── */
+@media (max-width: 480px) {
+    .alert {
+        padding: 10px 12px;
+        font-size: 12px;
+        gap: 8px;
+    }
+}
+
+/* ─── SKELETON — Mobile ──────────────────────────────── */
+@media (max-width: 480px) {
+    .skeleton-card { height: 80px; }
+    .skeleton-title { height: 18px; }
+}
+
+/* ─── CHART CONTAINER — responsivo ──────────────────────*/
+@media (max-width: 768px) {
+    .chart-container,
+    .fluxo-chart-container {
+        height: 200px !important;
+        padding: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .chart-container,
+    .fluxo-chart-container {
+        height: 170px !important;
+        padding: 4px !important;
+    }
+}
+
+/* ─── PDV — Menu categorias com sombra de scroll ────────*/
+@media (max-width: 768px) {
+    .pdv-categories {
+        padding: 8px 10px !important;
+    }
+
+    /* Sombra gradiente nos lados para indicar scroll */
+    .pdv-categories {
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0,
+            black 20px,
+            black calc(100% - 20px),
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to right,
+            transparent 0,
+            black 20px,
+            black calc(100% - 20px),
+            transparent 100%
+        );
+    }
+}
+
+/* ─── PDV — Cart summary legível ─────────────────────── */
+@media (max-width: 480px) {
+    .cart-summary .cs-row {
+        font-size: 11px !important;
+    }
+
+    .cart-summary .cs-row.total {
+        font-size: 18px !important;
+    }
+
+    .cart-actions .btn {
+        padding: 10px 8px !important;
+        font-size: 11px !important;
+    }
+}
+
+/* ─── ÚLTIMOS AJUSTES DE PRECISÃO ───────────────────────*/
+
+/* Evita que ícones do FontAwesome sejam cortados */
+@media (max-width: 768px) {
+    .fas, .far, .fab, .fa {
+        flex-shrink: 0;
+    }
+}
+
+/* Table — nth-child zebra mais visível no mobile */
+@media (max-width: 768px) {
+    .data-table tbody tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.015);
+    }
+}
+
+/* Garantia final: NADA ultrapassa a tela */
+@media (max-width: 768px) {
+    * {
+        max-width: 100%;
+    }
+
+    /* Mas tabelas podem ter min-width para scroll funcionar */
+    .data-table {
+        max-width: none;
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   PATCHES FINAIS — Terceira passagem
+   ========================================================= */
+
+/* ─── TOOLBAR — Selects com width:auto ───────────────────
+   Selects de filtro na toolbar precisam se adaptar em mobile */
+@media (max-width: 768px) {
+    .toolbar-left .toolbar-select,
+    .toolbar-left .form-control,
+    .toolbar-left select {
+        width: 100% !important;
+        min-width: 0 !important;
+        flex: 1;
+    }
+
+    .toolbar-left {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    /* Selects de filtro inline com form-input */
+    .toolbar-left .form-input[style*="width:auto"],
+    .toolbar-left select.form-input {
+        width: 100% !important;
+        min-width: 0 !important;
+        font-size: 16px;
+        min-height: 42px;
+    }
+
+    /* Inputs de data na toolbar */
+    input[type="date"].toolbar-select,
+    input[type="date"].form-control {
+        width: 100% !important;
+        min-height: 42px;
+    }
+}
+
+/* ─── FORM-GRID — Garantia de 1 coluna em mobile ─────────
+   form-grid sem estilo inline agora responde ao CSS         */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+}
+
+/* ─── RELATORIOS — Grid de cards de categoria ────────────*/
+@media (max-width: 768px) {
+    .relatorios-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        margin-bottom: 16px !important;
+    }
+
+    .relatorios-grid .card {
+        padding: 16px;
+    }
+
+    .relatorios-grid [style*="display:flex;align-items:center;gap:14px"] {
+        gap: 10px;
+    }
+
+    .relatorios-grid [style*="width:48px;height:48px"] {
+        width: 38px !important;
+        height: 38px !important;
+        border-radius: 10px !important;
+        flex-shrink: 0;
+    }
+
+    .relatorios-grid [style*="font-size:20px"] {
+        font-size: 16px !important;
+    }
+
+    .relatorios-grid [style*="font-weight:700;font-size:16px"] {
+        font-size: 14px !important;
+    }
+
+    .relatorios-grid [style*="font-size:12px;color:var(--text-secondary)"] {
+        display: none; /* Oculta descrição longa em mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .relatorios-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .relatorios-grid [style*="font-size:12px;color:var(--text-secondary)"] {
+        display: block; /* Mostra descrição em single column */
+        font-size: 11px !important;
+    }
+}
+
+/* ─── USUARIOS — Grid de perfis de acesso ─────────────── */
+@media (max-width: 768px) {
+    .perfis-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+
+    .perfis-grid > div {
+        padding: 12px !important;
+    }
+
+    .perfis-grid [style*="font-weight:700;font-size:14px"] {
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .perfis-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ─── COMPRAS — Tabela de itens de compra ────────────────
+   Tabela dentro do modal de nova compra                    */
+@media (max-width: 768px) {
+    /* Tabela de adição de produtos na compra */
+    .modal-body table {
+        min-width: 440px;
+        font-size: 12px;
+    }
+
+    .modal-body table th,
+    .modal-body table td {
+        padding: 8px 10px;
+    }
+
+    /* Inputs numéricos de quantidade/valor dentro de tabela */
+    .modal-body table input[type="number"],
+    .modal-body table input[type="text"] {
+        min-height: 36px;
+        width: 100%;
+        font-size: 13px !important; /* tabela pode ter tamanho menor */
+    }
+}
+
+/* ─── CLIENTES — Card de perfil do cliente ───────────────*/
+@media (max-width: 768px) {
+    /* Avatar do cliente no card de detalhe */
+    [style*="width:64px;height:64px;border-radius:16px"] {
+        width: 52px !important;
+        height: 52px !important;
+        border-radius: 12px !important;
+        font-size: 20px !important;
+    }
+
+    /* Stat-grid do perfil do cliente */
+    .stat-grid[style*="repeat(4,1fr);margin-bottom:20px"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+}
+
+/* ─── MOVIMENTAÇÕES — Filtro de datas ────────────────────*/
+@media (max-width: 768px) {
+    /* Inputs de data e select de tipo ficam em coluna */
+    .toolbar-left [type="date"] {
+        width: 100%;
+        min-height: 42px;
+    }
+}
+
+/* ─── CONTAS PAGAR/RECEBER — Totais resumo ───────────────*/
+@media (max-width: 768px) {
+    /* Cards de totais acima da tabela */
+    .conta-totais {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .conta-totais {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ─── PRODUTOS — Checkbox e ações de tabela ──────────────*/
+@media (max-width: 768px) {
+    /* Checkbox column sempre visível e acessível */
+    .data-table th input[type="checkbox"],
+    .data-table td input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    /* Preview de imagem de produto no modal */
+    #prodImagePreview {
+        width: 64px !important;
+        height: 64px !important;
+        font-size: 26px !important;
+    }
+}
+
+/* ─── AUDITORIA — Timeline de eventos ────────────────────*/
+@media (max-width: 768px) {
+    /* Linha de timeline */
+    .audit-timeline-item {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    /* Ocultar coluna IP em mobile (pouco útil) */
+    .data-table th:last-child:has(+ *),
+    .audit-ip-col {
+        display: none;
+    }
+}
+
+/* ─── MODAIS DE PERFIL DE USUÁRIO ─────────────────────── */
+@media (max-width: 768px) {
+    /* Grid de permissões (checkboxes em grade) */
+    .permissions-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .permissions-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ─── GLOBAL — Corrige selects em toolbar que usam form-input
+   Alguns usam .form-input e outros .form-control — cobrimos ambos */
+@media (max-width: 768px) {
+    .toolbar select,
+    .toolbar .form-input,
+    .toolbar .form-control,
+    .toolbar input[type="date"],
+    .toolbar input[type="text"],
+    .toolbar input[type="search"] {
+        font-size: 16px; /* Previne zoom iOS */
+        min-height: 40px;
+    }
+}
+
+/* ─── GLOBAL — Área de toque em ícones interativos ───────*/
+@media (max-width: 768px) {
+    .ci-remove {
+        padding: 8px !important;
+        font-size: 14px !important;
+    }
+
+    /* Botões de qty no carrinho PDV */
+    .ci-qty button {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 12px !important;
+    }
+}
+
+/* ─── GLOBAL — Estabilidade de layout na sidebar mobile ──*/
+@media (max-width: 1024px) {
+    /* Garante que sidebar nunca impacte o flow do conteúdo */
+    .sidebar {
+        will-change: transform;
+    }
+
+    /* Evita que sidebar colapso cause layout shift */
+    .app-layout {
+        position: relative;
+        overflow-x: hidden;
+    }
+}
+
+/* ─── GLOBAL — Textos que estouravam ─────────────────────*/
+@media (max-width: 768px) {
+    /* Valores monetários grandes em cards */
+    .stat-value,
+    .fluxo-value,
+    .payment-value,
+    .pdv-total,
+    .caixa-payment-card .payment-value {
+        word-break: break-all;
+        overflow-wrap: anywhere;
+    }
+
+    /* IDs e códigos na fonte mono */
+    .kanban-card-id,
+    .mov-qty,
+    .mono {
+        font-size: 11px;
+    }
+}
+
+/* ─── VISUAL POLISH MOBILE ───────────────────────────────
+   Pequenos detalhes visuais para melhorar aparência mobile */
+
+/* Sombra no header ao fazer scroll */
+@media (max-width: 768px) {
+    .header {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Cards com animação de entrada suave */
+@media (max-width: 768px) {
+    @keyframes card-in {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .stat-card {
+        animation: card-in 0.25s ease-out both;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.02s; }
+    .stat-card:nth-child(2) { animation-delay: 0.05s; }
+    .stat-card:nth-child(3) { animation-delay: 0.08s; }
+    .stat-card:nth-child(4) { animation-delay: 0.11s; }
+}
+
+/* Modal backdrop mais rápido em mobile */
+@media (max-width: 768px) {
+    .modal-overlay {
+        transition: opacity 0.2s ease;
+    }
+
+    .modal {
+        transition: transform 0.28s cubic-bezier(0.32, 0, 0.15, 1);
+    }
+}
+
+/* ─── LEGACY BROWSERS FALLBACK ───────────────────────────*/
+@supports not (dvh: 1dvh) {
+    /* modal max-height: gerenciado pelo visualViewport JS */
+    .pdv-right { height: 85vh; }
+    .sidebar { height: 100vh; }
+}
+
+/* ─── CATEGORIAS — Grid de produtos por categoria ────── */
+@media (max-width: 768px) {
+    .categorias-products-grid,
+    #categoriesGrid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        padding: 0 0 12px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .categorias-products-grid,
+    #categoriesGrid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* =========================================================
+   FIX CRÍTICO — Stat Cards: preço não pode quebrar linha
+   Problema: valor monetário longo quebrando em 2 colunas
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* Layout padrão do stat-card em mobile:
+       ícone em cima, valor embaixo — sem overflow */
+    .stat-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        overflow: hidden;
+        min-width: 0;
+    }
+
+    /* Valor: nunca quebra, escala se necessário */
+    .stat-card .stat-value {
+        font-size: 18px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        letter-spacing: -0.5px;
+        line-height: 1.2;
+    }
+
+    /* Label: pode quebrar mas de forma controlada */
+    .stat-card .stat-label {
+        font-size: 11px !important;
+        white-space: normal;
+        word-break: break-word;
+        color: var(--text-muted);
+        margin-top: 3px;
+        line-height: 1.3;
+    }
+
+    /* Ícone compacto */
+    .stat-card .stat-icon {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 15px !important;
+        margin-bottom: 10px;
+        flex-shrink: 0;
+    }
+
+    /* Change badge compacto */
+    .stat-card .stat-change {
+        font-size: 10px !important;
+        padding: 2px 6px;
+        margin-top: 6px;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .stat-card {
+        padding: 12px !important;
+    }
+
+    /* Valor monetário — fonte menor para caber */
+    .stat-card .stat-value {
+        font-size: 15px !important;
+        letter-spacing: -0.3px;
+    }
+
+    .stat-card .stat-label {
+        font-size: 10px !important;
+        margin-top: 2px;
+    }
+
+    .stat-card .stat-icon {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 13px !important;
+        margin-bottom: 8px;
+        border-radius: 8px !important;
+    }
+
+    .stat-card .stat-change {
+        font-size: 9px !important;
+        padding: 1px 5px;
+        margin-top: 4px;
+    }
+}
+
+@media (max-width: 360px) {
+    .stat-card .stat-value {
+        font-size: 13px !important;
+    }
+
+    .stat-card .stat-label {
+        font-size: 9px !important;
+    }
+}
+
+/* ─── FIX: Botão duplicado de hamburger ──────────────────
+   O mobile-menu-btn com display:none no HTML do index
+   era mostrado pelo CSS + criado pelo JS — duplo.
+   Garantia: nunca mostrar dois botões              */
+.header-left .mobile-menu-btn ~ .mobile-menu-btn {
+    display: none !important;
+}
+
+/* Só mostra UM botão hamburger */
+.header-left .mobile-menu-btn:not(:first-of-type) {
+    display: none !important;
+}
+
+/* Botão que estava hidden com style inline — normalizar */
+#mobileMenuBtn[style*="display:none"] {
+    display: none !important;
+}
+
+@media (max-width: 1024px) {
+    /* Garantir que o botão hamburger correto apareça */
+    .mobile-menu-btn {
+        display: inline-flex !important;
+    }
+}
+
+/* =========================================================
+   FIX DEFINITIVO — Modais mobile (bottom sheet)
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* 1. Overlay: fixed, cobre tudo, modal gruda na base */
+    .modal-overlay {
+        position: fixed !important;
+        inset: 0 !important;
+        display: flex !important;
+        align-items: flex-end !important;
+        justify-content: stretch !important;
+        overflow: hidden !important;
+    }
+
+    /* 2. Modal: bottom sheet com altura máxima de 90% da tela */
+    .modal {
+        width: 100% !important;
+        max-width: 100% !important;
+        /* Altura: deixa o conteúdo crescer até 90dvh */
+        height: auto !important;
+        max-height: 90dvh !important;
+        max-height: 90vh !important;
+        /* Remove overflow do main.css — o body vai rolar */
+        overflow: hidden !important;
+        /* Flex column: header / body(scroll) / footer */
+        display: flex !important;
+        flex-direction: column !important;
+        border-radius: 20px 20px 0 0 !important;
+        margin: 0 !important;
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1) !important;
+    }
+
+    .modal-overlay.active .modal {
+        transform: translateY(0) !important;
+    }
+
+    /* Handle visual no topo */
+    .modal-header::before {
+        /* 37.8 · fora do fluxo: antes era um item do flex e empurrava o título para o meio/direita */
+        content: '';
+        position: absolute;
+        top: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 4px;
+        background: var(--border-color);
+        border-radius: 4px;
+        margin: 0;
+    }
+
+    /* 3. Header: tamanho natural, não encolhe */
+    .modal-header {
+        flex-shrink: 0 !important;
+        padding: 14px 18px 16px !important;
+        border-radius: 20px 20px 0 0 !important;
+        border-bottom: 1px solid var(--border-color) !important;
+        background: var(--bg-modal) !important;
+        /* Remove sticky que conflita com flex */
+        position: relative !important;
+        top: auto !important;
+    }
+
+    .modal-header h3 { font-size: 15px !important; }
+
+    /* 4. Body: cresce para preencher, rola internamente
+          A chave é: flex-grow:1 + overflow-y:auto + min-height:0
+          Sem min-height:0, o flex item não encolhe abaixo
+          do tamanho do conteúdo e o scroll nunca ativa     */
+    .modal-body {
+        flex-grow: 1 !important;
+        flex-shrink: 1 !important;
+        flex-basis: auto !important;
+        min-height: 0 !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        overscroll-behavior-y: contain !important;
+        padding: 18px !important;
+        padding-bottom: 30px !important;
+    }
+
+    /* 5. Footer: tamanho natural, não encolhe, SEMPRE visível */
+    .modal-footer {
+        flex-shrink: 0 !important;
+        padding: 12px 18px !important;
+        padding-bottom: max(14px, env(safe-area-inset-bottom)) !important;
+        background: var(--bg-modal) !important;
+        border-top: 1px solid var(--border-color) !important;
+        display: flex !important;
+        flex-wrap: wrap;
+        gap: 8px;
+        /* Remove sticky */
+        position: relative !important;
+        bottom: auto !important;
+    }
+
+    .modal-footer .btn {
+        flex: 1 !important;
+        justify-content: center;
+        min-width: 110px;
+        min-height: 46px;
+    }
+
+    /* Inputs: 16px previne zoom automático iOS */
+    .modal-body input,
+    .modal-body select,
+    .modal-body textarea {
+        font-size: 16px !important;
+        min-height: 44px;
+    }
+
+    .modal-body textarea { min-height: 80px !important; }
+
+    /* Grids no modal: 1 coluna */
+    .modal-body .form-row,
+    .modal-body .form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal {
+        max-height: 95dvh !important;
+        max-height: 95vh !important;
+        border-radius: 16px 16px 0 0 !important;
+    }
+
+    .modal-header { padding: 12px 14px 14px !important; }
+    .modal-header h3 { font-size: 14px !important; }
+    .modal-body { padding: 14px !important; padding-bottom: 24px !important; }
+    .modal-footer {
+        padding: 10px 14px !important;
+        padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    }
+}
+
+/* ─── PDV — Proteção de grids internos ───────────────────
+   Garante que os grids do carrinho (tipo de venda,
+   pagamento, etc.) nunca sejam colapsados pelo mobile.css */
+.pdv-right [style*="display:grid"],
+.pdv-right [class*="ig-"],
+#pdvCart [style*="display:grid"],
+#pdvCart [class*="ig-"] {
+    grid-template-columns: revert !important;
+}
+
+/* Tipo de venda: sempre 3 colunas */
+.pdv-right [style*="grid-template-columns:1fr 1fr 1fr"] {
+    grid-template-columns: 1fr 1fr 1fr !important;
+}
+
+/* Payment methods: sempre 3 colunas no PDV */
+.pdv-right .payment-methods {
+    grid-template-columns: 1fr 1fr 1fr !important;
+}
+
+/* Endereço de entrega: 2 colunas no PDV */
+.pdv-right [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr 1fr !important;
+}
+
+/* =========================================================
+   DISTRIBUIPRO 16.2 — DESKTOP COMPACTO / 1366x768
+   Mantém o layout desktop, mas reduz espaçamentos e impede
+   quebra/overflow em notebooks 1280–1440 e pouca altura.
+   ========================================================= */
+@media (min-width: 1025px) and (max-width: 1440px),
+       (min-width: 1025px) and (max-height: 900px) {
+    :root {
+        --sidebar-width: 220px;
+        --sidebar-collapsed: 64px;
+        --header-height: 56px;
+    }
+
+    html { font-size: 13px; }
+    body { min-width: 0; }
+
+    .app-layout,
+    .main-content,
+    .page-content,
+    .card,
+    .stat-card,
+    .toolbar,
+    .toolbar-left,
+    .toolbar-right,
+    .table-container,
+    .form-grid,
+    .form-row,
+    .two-col-grid,
+    .report-grid,
+    .config-grid,
+    .motoboy-grid,
+    .delivery-grid,
+    .categorias-grid,
+    .caixa-grid,
+    .kanban-board,
+    .kanban-col {
+        min-width: 0;
+    }
+
+    /* Sidebar: mantém desktop, porém ocupa menos largura/altura. */
+    .sidebar { width: var(--sidebar-width); }
+    .sidebar.collapsed { width: var(--sidebar-collapsed); }
+    .sidebar-brand {
+        min-height: 56px;
+        padding: 12px 14px;
+        gap: 10px;
+    }
+    .sidebar-brand .brand-icon { width: 32px; height: 32px; }
+    .sidebar-brand .brand-text h1 { font-size: 14px; }
+    .sidebar-brand .brand-text span { font-size: 9px; }
+    .sidebar-menu {
+        padding: 8px 7px 10px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-gutter: stable;
+    }
+    .menu-section { margin: 8px 7px 3px; }
+    .menu-section-title { font-size: 8.5px; }
+    .menu-item {
+        min-height: 34px;
+        padding: 7px 9px;
+        gap: 9px;
+        margin-bottom: 2px;
+        font-size: 11.5px;
+    }
+    .menu-item i { width: 18px; font-size: 13px; }
+    .sidebar-toggle { padding: 7px 10px; }
+    .sidebar-toggle button { width: 32px; height: 32px; }
+
+    /* Conteúdo principal e cabeçalho. */
+    .main-content {
+        margin-left: var(--sidebar-width);
+        width: auto;
+        max-width: none;
+        min-width: 0;
+    }
+    .sidebar.collapsed ~ .main-content { margin-left: var(--sidebar-collapsed); }
+    .header {
+        min-height: var(--header-height);
+        height: var(--header-height);
+        padding: 0 16px;
+        gap: 10px;
+    }
+    .header-left,
+    .header-right { min-width: 0; }
+    .header-left { gap: 10px; }
+    .header-left h2 { font-size: 16px; white-space: nowrap; }
+    .header-breadcrumb { display: none; }
+    .header-search {
+        max-width: 260px;
+        min-width: 150px;
+        margin: 0 10px;
+    }
+    .header-action { width: 34px; height: 34px; font-size: 14px; }
+    .header-avatar { width: 34px; height: 34px; margin-left: 2px; }
+
+    .page-content {
+        padding: 14px 16px 18px;
+        overflow-x: hidden;
+        overflow-x: clip; /* 35.33 · clip não vira caixa de rolagem (Android) */
+    }
+
+    /* Cabeçalhos e toolbars podem quebrar linha sem desmontar a página. */
+    .page-header,
+    .card-header,
+    .toolbar,
+    .toolbar-left,
+    .toolbar-right,
+    [style*="display:flex"][style*="justify-content:space-between"],
+    [style*="display: flex"][style*="justify-content: space-between"] {
+        flex-wrap: wrap !important;
+        row-gap: 8px !important;
+    }
+    .toolbar { gap: 8px; margin-bottom: 12px; }
+    .toolbar-left,
+    .toolbar-right { gap: 7px; }
+    .toolbar-search { max-width: 260px; min-width: 180px; }
+    .toolbar-select { min-width: 120px; }
+
+    /* Cards e indicadores compactos para caber sem zoom. */
+    .card { padding: 16px; border-radius: 12px; }
+    .card-header { margin-bottom: 14px; }
+    .card-title { font-size: 14px; }
+    .stat-grid {
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+    .stat-card { padding: 13px 14px; }
+    .stat-card .stat-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    .stat-card .stat-value { font-size: 19px; line-height: 1.2; }
+    .stat-card .stat-label { font-size: 10.5px; }
+    .stat-card .stat-change { font-size: 9.5px; }
+
+    /* Grids inline antigos: permitir encolhimento real das colunas. */
+    [style*="grid-template-columns:repeat(6,1fr)"],
+    [style*="grid-template-columns: repeat(6,1fr)"] {
+        grid-template-columns: repeat(6, minmax(0,1fr)) !important;
+        gap: 8px !important;
+    }
+    [style*="grid-template-columns:repeat(4,1fr)"],
+    [style*="grid-template-columns: repeat(4,1fr)"] {
+        grid-template-columns: repeat(4, minmax(0,1fr)) !important;
+        gap: 9px !important;
+    }
+    [style*="grid-template-columns:1fr 1fr 1fr"],
+    [style*="grid-template-columns: 1fr 1fr 1fr"] {
+        grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+    }
+    [style*="grid-template-columns:1fr 1fr"],
+    [style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    }
+    [style*="grid-template-columns:2fr 1fr"],
+    [style*="grid-template-columns: 2fr 1fr"] {
+        grid-template-columns: minmax(0,2fr) minmax(0,1fr) !important;
+    }
+    [style*="grid-template-columns:1fr 2fr"],
+    [style*="grid-template-columns: 1fr 2fr"] {
+        grid-template-columns: minmax(0,1fr) minmax(0,2fr) !important;
+    }
+
+    .two-col-grid { gap: 12px; }
+    .form-grid,
+    .form-row { gap: 10px 12px; }
+    .form-group { min-width: 0; }
+    .form-control,
+    .form-input,
+    select,
+    textarea,
+    input { max-width: 100%; }
+
+    /* Tabelas: a página não estoura; somente a tabela ganha scroll se precisar. */
+    .table-container {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .data-table {
+        width: 100%;
+        min-width: 720px;
+        table-layout: auto;
+    }
+    .data-table thead th,
+    .data-table tbody td { padding-top: 9px; padding-bottom: 9px; }
+    .data-table thead th:first-child,
+    .data-table tbody td:first-child { padding-left: 14px; }
+    .data-table thead th:last-child,
+    .data-table tbody td:last-child { padding-right: 14px; }
+    .actions-cell { flex-wrap: nowrap; }
+    .btn-icon { width: 31px; height: 31px; }
+
+    /* Grids mais pesados das telas operacionais. */
+    .report-grid { grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 12px; }
+    .config-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .motoboy-grid { grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 12px; }
+    .delivery-grid { grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 12px; }
+    .categorias-grid { grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 12px; }
+    .caixa-grid { grid-template-columns: repeat(auto-fill, minmax(155px,1fr)); gap: 10px; }
+    .kanban-board {
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+    .kanban-col { min-width: 230px; max-width: 280px; }
+    .kanban-card { padding: 12px; }
+
+    .chart-container { height: 235px; }
+
+    /* Modais em 768px de altura: cabeçalho/rodapé fixos e corpo rolável. */
+    .modal {
+        max-height: calc(100vh - 32px);
+        max-height: calc(100dvh - 32px);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    .modal-header { padding: 14px 18px; flex-shrink: 0; }
+    .modal-body {
+        padding: 16px 18px;
+        overflow-y: auto;
+        min-height: 0;
+        flex: 1 1 auto;
+    }
+    .modal-footer { padding: 11px 18px; flex-shrink: 0; flex-wrap: wrap; }
+
+    /* Evita que min-width inline de filtros/cards force overflow. */
+    .page-content [style*="min-width:220px"],
+    .page-content [style*="min-width: 220px"],
+    .page-content [style*="min-width:240px"],
+    .page-content [style*="min-width: 240px"],
+    .page-content [style*="min-width:260px"],
+    .page-content [style*="min-width: 260px"] {
+        min-width: 180px !important;
+    }
+}
+
+/* Ajuste fino exatamente para o padrão 1366x768 / notebooks HD. */
+@media (min-width: 1280px) and (max-width: 1440px) and (max-height: 820px) {
+    .page-content { padding-top: 12px; padding-bottom: 14px; }
+    .stat-grid { margin-bottom: 12px; }
+    .card { padding: 14px; }
+    .card-header { margin-bottom: 12px; }
+    .report-card,
+    .delivery-card,
+    .motoboy-card,
+    .config-item { padding: 14px; }
+
+    /* PDV: carrinho ligeiramente menor para manter 5 produtos por linha. */
+    .pdv-right { width: 350px !important; }
+    .pdv-header { min-height: 46px !important; padding: 7px 12px !important; }
+    .pdv-categories { padding: 6px 12px !important; }
+    .pdv-products-area { padding: 6px 9px !important; }
+    .product-card {
+        width: calc(20% - 8px) !important;
+        margin: 4px !important;
+        padding: 8px !important;
+    }
+    .product-card .p-thumb { height: 70px !important; margin-bottom: 5px !important; }
+    .product-card .p-name { font-size: 11px !important; }
+    .product-card .p-code { margin-bottom: 3px !important; }
+    .product-card .p-price { font-size: 13px !important; }
+}
+
+/* Login/demonstração também precisa caber inteiro em 1366x768. */
+@media (min-width: 961px) and (max-width: 1440px) and (max-height: 900px) {
+    .login-brand { padding: 30px 36px !important; min-width: 0; }
+    .brand-content { max-width: 430px !important; width: 100%; }
+    .brand-logo {
+        width: 56px !important;
+        height: 56px !important;
+        border-radius: 14px !important;
+        font-size: 25px !important;
+        margin-bottom: 16px !important;
+    }
+    .brand-content h1 { font-size: 31px !important; margin-bottom: 7px !important; }
+    .brand-content p { font-size: 13px !important; line-height: 1.5 !important; margin-bottom: 22px !important; }
+    .brand-features { gap: 9px !important; }
+    .brand-feature { gap: 10px !important; padding: 10px 13px !important; }
+    .brand-feature i { width: 30px !important; height: 30px !important; font-size: 13px !important; }
+    .brand-feature span { font-size: 11.5px !important; }
+
+    .login-panel {
+        width: 430px !important;
+        padding: 28px 38px !important;
+        min-width: 390px;
+    }
+    .login-header { margin-bottom: 22px !important; }
+    .login-header h2 { font-size: 21px !important; }
+    .login-header p { font-size: 12px !important; }
+    .segment-grid { gap: 7px !important; margin: 12px 0 !important; }
+    .segment-card { min-height: 68px !important; padding: 9px 10px !important; gap: 8px !important; }
+    .segment-card .segment-icon { font-size: 20px !important; width: 25px !important; flex-basis: 25px !important; }
+    .segment-card strong { font-size: 10.5px !important; margin-bottom: 2px !important; }
+    .segment-card small { font-size: 9px !important; }
+    .other-segment { margin-top: 9px !important; padding-top: 10px !important; }
+    .selected-segment { margin: -8px 0 14px !important; padding: 9px 11px !important; }
+    .form-group { margin-bottom: 13px !important; }
+    .form-label { margin-bottom: 5px !important; }
+    .form-input { padding-top: 9px !important; padding-bottom: 9px !important; }
+    .btn-login { padding: 11px !important; }
+    .login-footer { margin-top: 18px !important; }
+}

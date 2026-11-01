@@ -1,0 +1,7 @@
+{
+    "require": {
+        "mercadopago/dx-php": "2.4.7",
+        "brunopazz/getnet-sdk": "@dev",
+        "edson-nascimento/getnet-php": "^1.0"
+    }
+}

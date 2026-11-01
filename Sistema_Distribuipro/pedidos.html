@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script>window.__stProduct=1;document.documentElement.setAttribute("data-st-product","")</script><script>/* Studio: aplica o tema escolhido (claro/escuro/automático) antes de desenhar a página */try{var p=localStorage.getItem("st_theme_pref");if(p){var t=p==="auto"?(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):p;if(t==="light"||t==="dark"){sessionStorage.setItem("erp_theme_session",t);document.documentElement.setAttribute("data-theme",t);}}}catch(e){}</script><link rel="icon" href="assets/brand/favicon-96.png?v=41.5-logo" type="image/png">
+    <script src="assets/js/branding.js?v=40.29-acessos"></script><script src="assets/js/papel-v1.js?v=40.49"></script><script src="assets/js/dp-icons-v1.js?v=37.6"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="theme-color" content="#0a0e1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Pedidos · DistribuiPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css?v=37.8">
+    <link rel="stylesheet" href="assets/css/mobile.css?v=37.8">
+    <style>
+        /* ── Kanban Pedidos ── */
+        .kanban-board {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .kanban-col {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            overflow: hidden;
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        .kanban-col-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        .kanban-col-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .kanban-col-body {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 120px;
+            max-height: calc(100vh - 280px);
+            overflow-y: auto;
+        }
+
+        .kanban-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .kanban-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .kanban-col-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 16px;
+            color: var(--text-muted);
+            font-size: 12px;
+            gap: 8px;
+            min-height: 120px;
+        }
+
+        .kanban-col-empty i {
+            font-size: 28px;
+            opacity: .25;
+        }
+
+        /* Cores por coluna */
+        .kanban-col.col-balcao  { border-top: 3px solid #6366f1; }
+        .kanban-col.col-delivery{ border-top: 3px solid #f59e0b; }
+        .kanban-col.col-done    { border-top: 3px solid #10b981; }
+
+        .k-id   { font-size: 11px; font-weight: 700; color: #818cf8; font-family: var(--font-mono); }
+        .k-time { font-size: 11px; color: var(--text-muted); }
+        .k-name { font-size: 13px; font-weight: 600; color: var(--text-heading); margin: 5px 0 3px; }
+        .k-items{ font-size: 11px; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .k-footer{ display: flex; align-items: center; justify-content: space-between; padding-top: 8px; border-top: 1px solid var(--border-color); }
+        .k-total { font-size: 14px; font-weight: 800; color: var(--text-heading); }
+        .k-type  { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 6px; }
+        .k-type.balcao  { background: rgba(99,102,241,.12); color: #818cf8; }
+        .k-type.delivery{ background: rgba(245,158,11,.12); color: #fbbf24; }
+        .k-type.pickup  { background: rgba(16,185,129,.12); color: #34d399; }
+        .k-type.done    { background: rgba(16,185,129,.12); color: #34d399; }
+        .k-type.cancelled{ background: rgba(239,68,68,.12); color: #f87171; }
+
+        @media (max-width: 768px) {
+            .kanban-board {
+                grid-template-columns: 1fr !important;
+                gap: 12px;
+            }
+            .kanban-col-body { max-height: none; }
+        }
+    </style>
+    <link rel="stylesheet" href="assets/css/studio-light-pages.css?v=1.3">
+    <link rel="stylesheet" href="assets/css/studio-v1.css?v=39.6-logo"><link rel="stylesheet" href="assets/css/studio-pro-v2.css?v=2.7"><link rel="stylesheet" href="assets/css/pedidos-pro-v1.css?v=37.6">
+<script defer src="assets/js/cache-818831d97b.js"></script></head>
+<body>
+    <div class="app-layout">
+        <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileSidebar()"></div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand"><div class="dp-default-logo" aria-label="DistribuiPro"><img src="assets/brand/distribuipro-logo-dark.png?v=41.5-logo" alt="DistribuiPro"></div><div class="brand-icon"><img src="assets/brand/distribuipro-mark.svg?v=41.5-logo" alt="DistribuiPro" style="width:100%;height:100%;display:block;object-fit:contain"></div><div class="brand-text"><h1>DistribuiPRO</h1><span>Sistema ERP</span></div></div>
+            <nav class="sidebar-menu">
+<div class="menu-section"><span class="menu-section-title">Principal</span></div>
+                <a href="index.html" class="menu-item"><i class="fas fa-chart-pie"></i><span class="menu-text">Dashboard</span></a>
+                <div class="menu-section"><span class="menu-section-title">Operações</span></div>
+                <a href="pdv.html" class="menu-item"><i class="fas fa-cash-register"></i><span class="menu-text">PDV / Vendas</span></a>
+        <a href="orcamentos.html" class="menu-item" data-page="orcamentos"><i class="fas fa-file-signature"></i><span class="menu-text">Orçamentos</span></a>
+                <a href="pedidos.html" class="menu-item active"><i class="fas fa-clipboard-list"></i><span class="menu-text">Pedidos</span></a>
+                <a href="entregas.html" class="menu-item"><i class="fas fa-truck-fast"></i><span class="menu-text">Entregas</span></a>
+                <a href="caixa.html" class="menu-item"><i class="fas fa-vault"></i><span class="menu-text">Caixa</span></a>
+                <a href="ordens-servico.html" class="menu-item"><i class="fas fa-screwdriver-wrench"></i><span class="menu-text">Ordens de Serviço</span></a>
+                <div class="menu-section"><span class="menu-section-title">Cadastros</span></div>
+                <a href="produtos.html" class="menu-item"><i class="fas fa-box"></i><span class="menu-text">Produtos</span></a>
+                <a href="categorias.html" class="menu-item"><i class="fas fa-tags"></i><span class="menu-text">Categorias</span></a>
+                <a href="clientes.html" class="menu-item"><i class="fas fa-users"></i><span class="menu-text">Clientes</span></a>
+                <a href="fornecedores.html" class="menu-item"><i class="fas fa-industry"></i><span class="menu-text">Fornecedores</span></a>
+                <div class="menu-section"><span class="menu-section-title">Estoque</span></div>
+                <a href="estoque.html" class="menu-item"><i class="fas fa-boxes-stacked"></i><span class="menu-text">Estoque</span></a>
+                <a href="movimentacoes.html" class="menu-item"><i class="fas fa-arrow-right-arrow-left"></i><span class="menu-text">Movimentações</span></a>
+                <a href="compras.html" class="menu-item"><i class="fas fa-cart-shopping"></i><span class="menu-text">Compras</span></a>
+                <div class="menu-section"><span class="menu-section-title">Financeiro</span></div>
+                <a href="contas-pagar.html" class="menu-item"><i class="fas fa-file-invoice-dollar"></i><span class="menu-text">Contas a Pagar</span></a>
+                <a href="contas-receber.html" class="menu-item"><i class="fas fa-hand-holding-dollar"></i><span class="menu-text">Contas a Receber</span></a>
+                <a href="fluxo-caixa.html" class="menu-item"><i class="fas fa-chart-line"></i><span class="menu-text">Fluxo de Caixa</span></a>
+                <div class="menu-section"><span class="menu-section-title">Gestão</span></div>
+                <a href="motoboys.html" class="menu-item"><i class="fas fa-motorcycle"></i><span class="menu-text">Motoboys</span></a>
+                <a href="relatorios.html" class="menu-item"><i class="fas fa-chart-bar"></i><span class="menu-text">Relatórios</span></a>
+                <a href="comissoes.html" class="menu-item"><i class="fas fa-percent"></i><span class="menu-text">Comissões</span></a>
+                <a href="usuarios.html" class="menu-item"><i class="fas fa-user-shield"></i><span class="menu-text">Usuários</span></a>
+                <a href="auditoria.html" class="menu-item"><i class="fas fa-clock-rotate-left"></i><span class="menu-text">Auditoria</span></a>
+                <a href="configuracoes.html" class="menu-item"><i class="fas fa-gear"></i><span class="menu-text">Configurações</span></a>
+            </nav>
+            <div class="sidebar-toggle"><button onclick="toggleSidebar()"><i class="fas fa-angles-left" id="sidebarToggleIcon"></i></button></div>
+        </div>
+
+        <div class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()"><i class="fas fa-bars"></i></button>
+                    <div><h2>Pedidos</h2><div class="header-breadcrumb"><i class="fas fa-home" style="font-size:10px"></i><span>/ Operações / Pedidos</span></div></div>
+                </div>
+                <div class="header-right">
+                    <button class="header-action" onclick="toggleTheme()" title="Alternar tema"><i class="fas fa-sun" id="themeIcon"></i></button>
+                    <button class="header-action" onclick="toggleNotifications()" title="Notificações"><i class="fas fa-bell"></i><span class="notif-dot"></span></button>
+                    <div class="header-avatar" id="userAvatar" onclick="toggleProfileMenu()" title="Meu perfil" style="cursor:pointer">A</div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <div class="stat-grid" style="grid-template-columns:repeat(4,1fr)">
+                    <div class="stat-card"><div class="stat-icon blue"><i class="fas fa-receipt"></i></div><div class="stat-value">—</div><div class="stat-label">Vendas hoje</div></div>
+                    <div class="stat-card"><div class="stat-icon yellow"><i class="fas fa-truck"></i></div><div class="stat-value">—</div><div class="stat-label">Delivery em aberto</div></div>
+                    <div class="stat-card"><div class="stat-icon green"><i class="fas fa-check-double"></i></div><div class="stat-value">—</div><div class="stat-label">Concluídos</div></div>
+                    <div class="stat-card"><div class="stat-icon red"><i class="fas fa-dollar-sign"></i></div><div class="stat-value">—</div><div class="stat-label">Faturamento hoje</div></div>
+                </div>
+
+                <!-- Kanban Board — preenchido pelo JS -->
+                <div class="kanban-board" id="kanbanBoard" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;align-items:start">
+                    <!-- Loading state -->
+                    <div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted)">
+                        <i class="fas fa-spinner fa-spin" style="font-size:28px;margin-bottom:12px;display:block;opacity:.4"></i>
+                        <span style="font-size:13px">Carregando vendas...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detalhes da Venda -->
+    <div class="modal-overlay" id="modalPedido">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalPedidoTitle"><i class="fas fa-receipt" style="color:var(--accent);margin-right:8px"></i>Detalhes da Venda</h3>
+                <button class="modal-close" onclick="closeModal('modalPedido')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalPedidoBody">
+                <div style="text-align:center;padding:40px;color:var(--text-muted)">
+                    <i class="fas fa-spinner fa-spin" style="font-size:24px;margin-bottom:8px;display:block"></i>
+                    Carregando...
+                </div>
+            </div>
+            <div class="modal-footer" id="modalPedidoFooter">
+                <button class="btn btn-secondary" onclick="closeModal('modalPedido')">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="config/firebase-config.js"></script>
+    <script src="services/core-services.js?v=39.14.5"></script>
+    <script src="assets/js/mobile-fix.js"></script>
+    <script src="assets/js/app.js?v=40.59"></script><script src="assets/js/comissao-itens-v1.js?v=37.9"></script>
+    <script src="assets/js/pages.js?v=40.74"></script>
+    <script>
+        let allSales = [];
+
+        // ─── COLUNAS: Balcão | Delivery | Concluídos ────────
+        // Balcão = type balcao ou pickup, status != cancelled
+        // Delivery = type delivery, status != completed/cancelled
+        // Concluídos = todos com status completed/delivered/cancelled
+
+        async function loadOrders() {
+            try {
+                let snap;
+                try { snap = await db.collection('sales').orderBy('createdAt','desc').limit(200).get(); }
+                catch { snap = await db.collection('sales').get(); }
+                allSales = snap.docs
+                    .map(d => ({id: d.id, ...d.data()}))
+                    .filter(s => !s.deleted)
+                    .sort((a,b) => (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
+            } catch (e) {
+                console.error(e);
+                Toast.error('Erro ao carregar vendas: ' + (window.dpErroHumano ? dpErroHumano(e) : (e && e.message)));
+            }
+            renderKanban();
+            updateStats();
+        }
+
+        function getColumn(s) {
+            const st = s.status || 'completed';
+            const tp = s.type || 'balcao';
+            if (st === 'cancelled') return 'concluidos';
+            if (st === 'completed' || st === 'delivered') return 'concluidos';
+            // Vendas em andamento (delivery ou pickup ainda não concluídas)
+            if (tp === 'delivery') return 'delivery';
+            return 'balcao'; // balcao e pickup já concluídos vão para concluídos acima
+        }
+
+        const COLS = [
+            { id: 'balcao',    label: 'Balcão / Retirada', color: '#6366f1', icon: 'fa-store',     desc: 'Vendas no caixa' },
+            { id: 'delivery',  label: 'Delivery',          color: '#f59e0b', icon: 'fa-truck',     desc: 'Pedidos em entrega' },
+            { id: 'concluidos',label: 'Concluídos',        color: '#10b981', icon: 'fa-check-double', desc: 'Todas as vendas finalizadas' }
+        ];
+
+        function renderKanban() {
+            const board = document.getElementById('kanbanBoard');
+            if (!board) return;
+
+            const balcao = allSales.filter(s => {
+                const tp = s.type || 'balcao';
+                const st = s.status || 'completed';
+                // Balcão/Retirada nunca vai para delivery
+                return (tp === 'balcao' || tp === 'pickup') && st !== 'cancelled';
+            });
+            const delivery = allSales.filter(s => {
+                const tp = s.type || 'balcao';
+                const st = s.status;
+                // Delivery em aberto: type=delivery E (status=new/preparing/waiting/delivering
+                // OU sem status definido — compatibilidade com pedidos antigos)
+                if (tp !== 'delivery') return false;
+                if (!st || st === 'new' || st === 'preparing' || st === 'waiting' || st === 'delivering') return true;
+                return false;
+            });
+            const concluidos = allSales.filter(s => {
+                const tp = s.type || 'balcao';
+                const st = s.status;
+                // Concluídos: status explicito de conclusão/cancelamento
+                // OU delivery com status completed/delivered
+                if (st === 'completed' || st === 'delivered' || st === 'cancelled') return true;
+                // Balcão sem status explícito → concluído
+                if (!st && (tp === 'balcao' || tp === 'pickup')) return true;
+                return false;
+            });
+
+            const cols = [
+                { id:'balcao',    cls:'col-balcao',   dot:'#6366f1', icon:'fa-store',        label:'Balcão / Retirada', items: balcao },
+                { id:'delivery',  cls:'col-delivery',  dot:'#f59e0b', icon:'fa-truck',        label:'Delivery em aberto', items: delivery },
+                { id:'concluidos',cls:'col-done',      dot:'#10b981', icon:'fa-check-double', label:'Concluídos', items: concluidos }
+            ];
+
+            board.style.cssText = 'display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start';
+            board.innerHTML = cols.map(col => `
+                <div class="kanban-col ${col.cls}">
+                    <div class="kanban-col-header">
+                        <div class="kanban-col-title">
+                            <span style="width:9px;height:9px;border-radius:50%;background:${col.dot};flex-shrink:0;display:inline-block"></span>
+                            ${col.label}
+                        </div>
+                        <span class="kanban-count">${col.items.length}</span>
+                    </div>
+                    <div class="kanban-col-body">
+                        ${col.items.length === 0
+                            ? `<div class="kanban-col-empty"><i class="fas ${col.icon}"></i><span>Nenhum registro</span></div>`
+                            : col.items.map(s => renderCard(s)).join('')}
+                    </div>
+                </div>`).join('');
+        }
+
+        function renderCard(s) {
+            const tp  = s.type || 'balcao';
+            const st  = s.status || 'completed';
+            const num = s.saleNumber || 0;
+            const pay = {dinheiro:'<i class="fas fa-money-bill-wave"></i> Dinheiro',pix:'<i class="fas fa-qrcode"></i> PIX',credito:'<i class="fas fa-credit-card"></i> Crédito',debito:'<i class="fas fa-credit-card"></i> Débito',fiado:'<i class="fas fa-handshake"></i> Fiado',multi:'<i class="fas fa-shuffle"></i> Múltiplo'}[s.payments?.[0]?.method] || '<i class="fas fa-money-bill-wave"></i>';
+            const typeLabel = {delivery:'<i class="fas fa-truck"></i> Delivery',pickup:'<i class="fas fa-bag-shopping"></i> Retirada',balcao:'<i class="fas fa-store"></i> Balcão'}[tp] || '<i class="fas fa-store"></i> Balcão';
+            const typeCls   = {delivery:'delivery',pickup:'pickup',balcao:'balcao'}[tp] || 'balcao';
+            const isCancelled = st === 'cancelled';
+            const time = s.createdAt?.toDate
+                ? s.createdAt.toDate().toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})
+                : '';
+            const itemsText = (s.items||[]).map(i=>`${i.quantity}x ${i.productName}`).join(', ');
+
+            return `<div class="kanban-card${isCancelled?' cancelled':''}" onclick="openDetail('${s.id}')"
+                style="${isCancelled?'opacity:.55':''};border-left:3px solid ${tp==='delivery'?'#f59e0b':tp==='pickup'?'#10b981':'#6366f1'}">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                    <span class="k-id">#V-${String(num).padStart(4,'0')}</span>
+                    <span class="k-time">${time}</span>
+                </div>
+                <div class="k-name">${s.customerName||'Consumidor Final'}</div>
+                <div class="k-items">${itemsText.substring(0,80)||'—'}</div>
+                ${s.address && tp==='delivery'?`<div style="font-size:11px;color:var(--info);margin-bottom:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><i class="fas fa-map-marker-alt"></i> ${s.address}</div>`:''}
+                <div class="k-footer">
+                    <span class="k-total">${Utils.currency(s.total)}</span>
+                    <div style="display:flex;align-items:center;gap:6px">
+                        <span style="font-size:11px;color:var(--text-muted)">${pay}</span>
+                        <span class="k-type ${isCancelled?'cancelled':typeCls}">${isCancelled?'<i class="fas fa-ban"></i> Cancelado':typeLabel}</span>
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        function updateStats() {
+            const today = new Date(); today.setHours(0,0,0,0);
+            const todayAll = allSales.filter(s => s.createdAt?.toDate && s.createdAt.toDate() >= today && s.status !== 'cancelled');
+            const inProgress = allSales.filter(s => {
+                if (s.type !== 'delivery') return false;
+                const st = s.status;
+                return !st || ['new','preparing','waiting','delivering'].includes(st);
+            });
+            const completed  = allSales.filter(s => ['completed','delivered'].includes(s.status||'completed'));
+            const stats = document.querySelectorAll('.stat-value');
+            if(stats[0]) stats[0].textContent = todayAll.length;
+            if(stats[1]) stats[1].textContent = inProgress.length;
+            if(stats[2]) stats[2].textContent = completed.length;
+            if(stats[3]) stats[3].textContent = Utils.currency(todayAll.reduce((s,o)=>s+(o.total||0),0));
+        }
+
+        function openDetail(id) {
+            const s = allSales.find(x => x.id === id); if(!s) return;
+            const tp = s.type || 'balcao';
+            const st = s.status || 'completed';
+            const typeMap   = {delivery:'<i class="fas fa-truck"></i> Delivery', pickup:'<i class="fas fa-bag-shopping"></i> Retirada', balcao:'<i class="fas fa-store"></i> Balcão'};
+            const payNames  = {dinheiro:'Dinheiro',pix:'PIX',credito:'Cartão Crédito',debito:'Cartão Débito',fiado:'Fiado',multi:'Múltiplo',sinal:'Sinal da OS'};
+            const payMethod = s.payments?.[0]?.method || '—';
+            const num = s.saleNumber || 0;
+            const statusBg  = st==='cancelled' ? 'var(--danger-bg)' : st==='completed'||st==='delivered' ? 'var(--success-bg)' : 'var(--warning-bg)';
+            const statusClr = st==='cancelled' ? 'var(--danger)'    : st==='completed'||st==='delivered' ? 'var(--success)'    : 'var(--warning)';
+            const statusLbl = {completed:'Concluído',delivered:'Entregue',cancelled:'Cancelado',new:'Novo',preparing:'Em Separação',waiting:'Aguardando',delivering:'Em Rota'}[st]||st;
+            const datetime  = s.createdAt?.toDate ? s.createdAt.toDate().toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}) : '—';
+
+            document.getElementById('modalPedidoTitle').innerHTML =
+                `<i class="fas fa-receipt" style="color:var(--accent);margin-right:8px"></i>Venda #V-${String(num).padStart(4,'0')}`;
+
+            document.getElementById('modalPedidoBody').innerHTML = `
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+                    <div>
+                        <div style="font-size:16px;font-weight:700;color:var(--text-heading)">${s.customerName||'Consumidor Final'}</div>
+                        <div style="font-size:12px;color:var(--text-muted);margin-top:2px">${datetime}</div>
+                    </div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <span style="padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;background:${statusBg};color:${statusClr}">${statusLbl}</span>
+                        <span style="padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;background:var(--bg-surface);color:var(--text-secondary)">${typeMap[tp]}</span>
+                    </div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+                    <div style="padding:10px 12px;border-radius:10px;background:var(--bg-surface);border:1px solid var(--border-color)">
+                        <div style="font-size:10px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px">Pagamento</div>
+                        <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-top:3px">${payNames[payMethod]||payMethod}</div>
+                    </div>
+                    <div style="padding:10px 12px;border-radius:10px;background:var(--bg-surface);border:1px solid var(--border-color)">
+                        <div style="font-size:10px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px">Operador</div>
+                        <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-top:3px">${s.operatorName||'—'}</div>
+                    </div>
+                </div>
+
+                ${s.address?`
+                <div style="padding:10px 12px;border-radius:10px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);margin-bottom:16px">
+                    <div style="font-size:11px;color:var(--info);font-weight:600;margin-bottom:4px"><i class="fas fa-map-marker-alt"></i> Endereço de Entrega</div>
+                    <div style="font-size:13px;color:var(--text-primary)">${s.address}</div>
+                    ${s.addressRef?`<div style="font-size:11px;color:var(--text-muted);margin-top:2px">Ref: ${s.addressRef}</div>`:''}
+                </div>`:''}
+
+                <div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Itens</div>
+                <div style="border:1px solid var(--border-color);border-radius:10px;overflow:hidden;margin-bottom:14px">
+                    ${(s.items||[]).length === 0
+                        ? '<div style="padding:16px;text-align:center;color:var(--text-muted);font-size:12px">Sem itens</div>'
+                        : (s.items||[]).map((item,i)=>`
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;${i>0?'border-top:1px solid var(--border-color)':''}">
+                            <div style="flex:1;min-width:0">
+                                <div style="font-size:13px;font-weight:600;color:var(--text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${item.productName}</div>
+                                <div style="font-size:11px;color:var(--text-muted)">${Utils.currency(item.unitPrice)} /un</div>${window.DPKitchenPrint && DPKitchenPrint.addonText(item) ? `<div style="font-size:11px;color:var(--text-secondary);white-space:normal">${DPKitchenPrint.addonText(item).replace(/[&<>]/g, '')}</div>` : ''}${item.notes ? `<div style="font-size:11px;color:var(--text-muted);white-space:normal">${window.DPTerm ? DPTerm('obs_item_print') : 'Obs.'}: ${String(item.notes).replace(/[&<>]/g, '')}</div>` : ''}
+                            </div>
+                            <div style="display:flex;align-items:center;gap:14px;margin-left:10px">
+                                <span style="font-size:13px;color:var(--text-muted)">${item.quantity}x</span>
+                                <span style="font-size:13px;font-weight:700;color:var(--text-heading);white-space:nowrap">${Utils.currency(item.total)}</span>
+                            </div>
+                        </div>`).join('')}
+                </div>
+
+                <div style="border:1px solid var(--border-color);border-radius:10px;padding:12px 14px">
+                    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);padding:3px 0"><span>Subtotal</span><span>${Utils.currency(s.subtotal||s.total)}</span></div>
+                    ${(s.discount||0)>0?`<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--warning);padding:3px 0"><span>Desconto</span><span>- ${Utils.currency(s.discount)}</span></div>`:''}
+                    ${(s.deliveryFee||0)>0?`<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);padding:3px 0"><span>Taxa de entrega</span><span>${Utils.currency(s.deliveryFee)}</span></div>`:''}
+                    <div style="display:flex;justify-content:space-between;font-size:20px;font-weight:800;color:var(--success);border-top:1px solid var(--border-color);margin-top:8px;padding-top:10px">
+                        <span>Total</span><span>${Utils.currency(s.total)}</span>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('modalPedidoFooter').innerHTML = `
+                <button class="btn btn-secondary" onclick="closeModal('modalPedido')">Fechar</button>
+                <button class="btn btn-outline" onclick="reprintSale('${s.id}')"><i class="fas fa-print"></i> Reimprimir</button>${window.DPKitchenPrint ? DPKitchenPrint.button(s) : ''}
+                ${tp==='delivery' && !['completed','delivered','cancelled'].includes(st)
+                    ? `<button class="btn btn-success" onclick="markDelivered('${s.id}')"><i class="fas fa-check"></i> Marcar Entregue</button>`
+                    : ''}
+                ${st!=='cancelled' && st!=='completed' && st!=='delivered'
+                    ? `<button class="btn btn-danger" onclick="cancelSale('${s.id}')"><i class="fas fa-times"></i> Cancelar</button>`
+                    : ''}
+                <button class="btn btn-outline" style="color:var(--danger);border-color:var(--danger)" onclick="deleteSale('${s.id}')">
+                    <i class="fas fa-trash"></i> Excluir
+                </button>
+            `;
+            document.getElementById('modalPedido').classList.add('active');
+        }
+
+        async function markDelivered(id) {
+            try {
+                await db.collection('sales').doc(id).update({status:'delivered', deliveredAt: firebase.firestore.FieldValue.serverTimestamp()});
+                Toast.success('Pedido marcado como entregue!');
+                closeModal('modalPedido');
+                await loadOrders();
+            } catch(e) { Toast.error('Erro: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message))); }
+        }
+
+        async function cancelSale(id) {
+            Confirm.show('Cancelar Venda','Deseja cancelar esta venda?', async()=>{
+                try {
+                    await db.collection('sales').doc(id).update({status:'cancelled', cancelledAt: firebase.firestore.FieldValue.serverTimestamp()});
+                    Toast.success('Venda cancelada');
+                    closeModal('modalPedido');
+                    await loadOrders();
+                } catch(e) { Toast.error('Erro: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message))); }
+            });
+        }
+
+        async function deleteSale(id) {
+            const s = allSales.find(x => x.id === id);
+            if (!s) return;
+            const num = String(s.saleNumber || 0).padStart(4,'0');
+
+            // Confirmação dupla — modal customizado
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay active';
+            overlay.id = 'deleteConfirmOverlay';
+            overlay.innerHTML = `
+                <div class="modal" style="max-width:380px">
+                    <div class="modal-header">
+                        <h3 style="color:var(--danger)"><i class="fas fa-trash" style="margin-right:8px"></i>Excluir Venda #V-${num}</h3>
+                        <button class="modal-close" onclick="document.getElementById('deleteConfirmOverlay').remove()"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body" style="text-align:center;padding:24px">
+                        <div style="width:56px;height:56px;border-radius:50%;background:rgba(239,68,68,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+                            <i class="fas fa-exclamation-triangle" style="font-size:24px;color:var(--danger)"></i>
+                        </div>
+                        <div style="font-size:15px;font-weight:700;color:var(--text-heading);margin-bottom:8px">Esta ação não pode ser desfeita!</div>
+                        <div style="font-size:13px;color:var(--text-muted);margin-bottom:16px">
+                            A venda <strong>#V-${num}</strong> de <strong>${s.customerName||'Consumidor Final'}</strong>
+                            (${Utils.currency(s.total)}) será permanentemente excluída.
+                        </div>
+                        <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--danger);margin-bottom:20px;text-align:left">
+                            <i class="fas fa-info-circle" style="margin-right:6px"></i>
+                            O estoque dos produtos <strong>será devolvido</strong> automaticamente.
+                        </div>
+                        <div style="display:flex;gap:10px">
+                            <button class="btn btn-secondary" style="flex:1" onclick="document.getElementById('deleteConfirmOverlay').remove()">
+                                Cancelar
+                            </button>
+                            <button class="btn btn-danger" style="flex:1" onclick="confirmDeleteSale('${id}')">
+                                <i class="fas fa-trash"></i> Sim, excluir
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            document.body.appendChild(overlay);
+        }
+
+        async function confirmDeleteSale(id) {
+            const overlay = document.getElementById('deleteConfirmOverlay');
+            if (overlay) {
+                const btn = overlay.querySelector('.btn-danger');
+                if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Excluindo...'; }
+            }
+            try {
+                const s = allSales.find(x => x.id === id);
+
+                // 1. Devolver estoque de cada item
+                if (s?.items?.length) {
+                    for (const item of s.items) {
+                        if (item.productId) {
+                            try {
+                                await StockService.entry(
+                                    item.productId,
+                                    item.quantity,
+                                    `Estorno venda #V-${String(s.saleNumber||0).padStart(4,'0')}`,
+                                    'cancel',
+                                    id
+                                );
+                            } catch(e) { console.warn('Estorno estoque falhou:', e.message); }
+                        }
+                    }
+                }
+
+                // 2. Excluir o documento da venda (soft delete)
+                await db.collection('sales').doc(id).update({
+                    deleted: true,
+                    deletedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    deletedReason: 'Excluído manualmente pelo operador'
+                });
+
+                document.getElementById('deleteConfirmOverlay')?.remove();
+                closeModal('modalPedido');
+                Toast.success('Venda excluída e estoque devolvido!');
+                await loadOrders();
+            } catch(e) {
+                Toast.error('Erro ao excluir: ' + (window.dpErroHumano ? dpErroHumano(e) : (e && e.message)));
+                const overlay = document.getElementById('deleteConfirmOverlay');
+                if (overlay) {
+                    const btn = overlay.querySelector('.btn-danger');
+                    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-trash"></i> Sim, excluir'; }
+                }
+            }
+        }
+
+        function openModal(id){document.getElementById(id).classList.add('active');}
+        function closeModal(id){document.getElementById(id).classList.remove('active');}
+
+        // ─── REIMPRIMIR CUPOM ─────────────────────────────
+        async function reprintSale(id) {
+            const s = allSales.find(x => x.id === id);
+            if (!s) { Toast.error('Venda não encontrada'); return; }
+
+            // Carrega a identidade visual e os dados cadastrados da empresa
+            let cfg = { cabecalho:'DistribuiPRO', rodape:'Obrigado pela preferência!', empresa:'', cnpj:'', telefone:'', whatsapp:'', email:'', endereco:'', logoUrl:'' };
+            try {
+                const doc = await db.collection('settings').doc('general').get();
+                const d = doc.exists ? (doc.data() || {}) : {};
+                const isDemo = window.DP_IS_DEMO === true; // 39.3 · fonte única (branding.js); antes: pasta "teste" na URL
+                const brand = (window.BrandingManager && typeof BrandingManager.getBrand === 'function') ? (BrandingManager.getBrand() || {}) : {};
+                const brandName = isDemo ? (brand.companyName || d.nomeFantasia || d.razaoSocial || 'DistribuiPRO') : (d.nomeFantasia || brand.companyName || d.razaoSocial || 'DistribuiPRO');
+                const customLogo = isDemo ? (brand.logoUrl || '') : (d.logoUrl || brand.logoUrl || '');
+                cfg.cabecalho = d.cabecalhoComprovante || brandName;
+                cfg.rodape    = d.rodapeComprovante || 'Obrigado pela preferência!';
+                cfg.empresa   = d.razaoSocial || '';
+                cfg.cnpj      = d.cnpj || '';
+                cfg.telefone  = d.telefone || '';
+                cfg.whatsapp  = d.whatsapp || '';
+                cfg.email     = d.email || '';
+                const rua = [d.logradouro, d.numero].filter(Boolean).join(', ');
+                const cidadeUf = [d.cidade, d.uf].filter(Boolean).join(' - ');
+                const local = [d.bairro, cidadeUf, d.cep ? ('CEP ' + d.cep) : ''].filter(Boolean).join(' · ');
+                cfg.endereco = [rua, local].filter(Boolean).join(' · ');
+                cfg.papel = d.impressoraPadrao || ''; // 39.0 · largura do papel (58 ou 80 mm)
+                try { cfg.logoUrl = customLogo || new URL('assets/brand/distribuipro-mark.svg?v=41.5-logo', window.location.href).href; } catch(_) { cfg.logoUrl = customLogo; }
+            } catch(e) {}
+            function receiptPaperCss(kind) { const p58 = /58/.test(String(kind || '')); const w = p58 ? '48mm' : '72mm', page = p58 ? '58mm' : '80mm'; return 'html{width:' + page + '!important;max-width:' + page + '!important;margin:0!important;padding:0!important}body{width:' + w + '!important;max-width:' + w + '!important;margin:0 auto!important;padding:1.5mm 0 3mm!important;font-family:Arial,Helvetica,sans-serif!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}body,body *{color:#000!important;font-weight:700!important}.line{border-top:1.5px dashed #000!important}' + (p58 ? 'body{font-size:11px!important}td,div,span{font-size:11px!important;letter-spacing:0!important}.total-row td{font-size:13px!important}.logo{font-size:13px!important}.receipt-logo{max-width:96px!important}' : '') + '@page{size:' + page + ' auto;margin:0}@media print{html{width:' + page + '!important;margin:0!important;padding:0!important}body{width:' + w + '!important;margin:0 auto!important;padding:0 0 3mm!important}}' + (window.DPPapel ? DPPapel.css(kind) : ''); } // 40.49 · + ajuste da impressora desta empresa (papel-v1.js). 39.14.13 · área útil (72/48 mm) no meio do papel (80/58 mm): encostada na esquerda, a TM-T20 cortava uns 4 mm
+            const recEsc = v => String(v ?? '').replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
+
+            const payNames = { dinheiro:'Dinheiro', pix:'PIX', credito:'Cartão Crédito', debito:'Cartão Débito', fiado:'Fiado', multi:'Múltiplo', sinal:'Sinal da OS' };
+            const cardNames = {visa:'Visa',mastercard:'Mastercard',elo:'Elo',amex:'Amex',hipercard:'Hipercard',outras:'Outras'};
+            const receiptPayments = Array.isArray(s.payments) && s.payments.length ? s.payments : [{method:s.paymentMethod||'dinheiro',amount:s.total||0}];
+            const paymentRowsHtml = receiptPayments.map(p=>{
+                let label=payNames[p.method]||p.method||'Pagamento';
+                if((p.method==='credito'||p.method==='debito')&&p.cardBrand) label+=' '+(cardNames[p.cardBrand]||p.cardBrand);
+                if(p.method==='credito'&&Number(p.installments||1)>1) label+=' '+Number(p.installments)+'x';
+                return `<tr><td style="font-size:12px;padding-top:4px">${recEsc(label)}</td><td class="right" style="font-size:12px;padding-top:4px">${Utils.currency(p.amount||0)}</td></tr>${p.method==='dinheiro'&&Number(p.changeValue||0)>0?`<tr><td style="font-size:11px">Troco</td><td class="right" style="font-size:11px">${Utils.currency(p.changeValue)}</td></tr>`:''}`;
+            }).join('');
+            const dt = s.createdAt?.toDate ? s.createdAt.toDate() : new Date();
+            const dateStr = dt.toLocaleDateString('pt-BR');
+            const timeStr = dt.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+            const num = String(s.saleNumber || 0).padStart(4,'0');
+
+            const itemsHtml = (s.items || []).map(item => {
+                const pname = (window.DPKitchenPrint ? DPKitchenPrint.title(item) : item.productName) || ''; // 38.4 · vários sabores: grupo e os sabores embaixo
+                const nmax = /58/.test(String(cfg.papel || '')) ? 16 : 22;
+                const name = pname.length > nmax ? pname.substring(0,nmax)+'…' : pname;
+                return `<tr>
+                    <td style="padding:3px 0;font-size:13px">${name}</td>
+                    <td style="text-align:right;white-space:nowrap;font-size:13px">${item.quantity}x ${Utils.currency(item.unitPrice)}</td>
+                </tr>
+                <tr><td colspan="2" style="text-align:right;font-size:13px;font-weight:700;padding-bottom:6px">${Utils.currency(item.total)}</td></tr>${window.DPKitchenPrint ? DPKitchenPrint.receiptRows(item) : ''}`;
+            }).join('');
+
+            const win = window.open('', '_blank', 'width=380,height=600');
+            win.document.write(`<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Cupom #V-${num}</title>
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Courier New',Courier,monospace;font-size:13px;font-weight:700;width:302px;margin:0 auto;padding:8px 4px;color:#000;background:#fff}body,body *{font-weight:700!important;color:#000!important}
+    .center{text-align:center}.right{text-align:right}.bold{font-weight:bold}
+    .receipt-logo{display:block;max-width:124px;max-height:58px;width:auto;height:auto;object-fit:contain;margin:0 auto 5px}.receipt-company{line-height:1.25}
+    .line{border-top:1px dashed #000;margin:6px 0}.dline{border-top:2px solid #000;margin:6px 0}
+    table{width:100%;border-collapse:collapse}td{vertical-align:top}
+    .total-row td{font-size:15px;font-weight:bold;padding-top:6px}
+    @media print{body{width:100%;padding:0}@page{margin:4mm;size:80mm auto}}
+    ${receiptPaperCss(cfg.papel)}
+</style></head><body>
+<div class="center receipt-company">
+    ${cfg.logoUrl ? `<img class="receipt-logo" src="${recEsc(cfg.logoUrl)}" alt="Logo da empresa">` : ''}
+    <div style="font-size:16px;font-weight:bold;letter-spacing:1px">${recEsc(cfg.cabecalho)}</div>
+    ${cfg.empresa && cfg.empresa !== cfg.cabecalho ? `<div style="font-size:11px">${recEsc(cfg.empresa)}</div>` : ''}
+    ${cfg.cnpj ? `<div style="font-size:11px">CNPJ: ${recEsc(cfg.cnpj)}</div>` : ''}
+    ${cfg.telefone ? `<div style="font-size:11px">Tel: ${recEsc(cfg.telefone)}</div>` : ''}
+    ${cfg.whatsapp && cfg.whatsapp !== cfg.telefone ? `<div style="font-size:11px">WhatsApp: ${recEsc(cfg.whatsapp)}</div>` : ''}
+    ${cfg.email ? `<div style="font-size:11px">${recEsc(cfg.email)}</div>` : ''}
+    ${cfg.endereco ? `<div style="font-size:11px">${recEsc(cfg.endereco)}</div>` : ''}
+</div>
+<div class="dline"></div>
+<div class="center bold" style="font-size:12px;letter-spacing:1px">COMPROVANTE DE PAGAMENTO</div>
+<div class="center" style="font-size:11px">Venda #V-${num}</div>
+<div class="center" style="font-size:11px">${dateStr} às ${timeStr}</div>
+<div class="line"></div>
+<div style="font-size:12px"><span class="bold">Cliente:</span> ${s.customerName||'Consumidor Final'}</div>
+<div class="line"></div>
+<div class="bold" style="font-size:11px;letter-spacing:.5px;margin-bottom:4px">ITENS</div>
+<table>${itemsHtml}</table>
+<div class="dline"></div>
+<table>
+    <tr><td style="font-size:12px">Subtotal</td><td class="right" style="font-size:12px">${Utils.currency(s.subtotal||s.total)}</td></tr>
+    ${(s.discount||0)>0?`<tr><td style="font-size:12px">Desconto</td><td class="right" style="font-size:12px">- ${Utils.currency(s.discount)}</td></tr>`:''}
+    ${(s.deliveryFee||0)>0?`<tr><td style="font-size:12px">Taxa Entrega</td><td class="right" style="font-size:12px">${Utils.currency(s.deliveryFee)}</td></tr>`:''}
+    <tr class="total-row"><td>TOTAL</td><td class="right">${Utils.currency(s.total)}</td></tr>
+    ${paymentRowsHtml}
+</table>
+${s.type==='delivery'?`
+<div class="line"></div>
+<div style="font-size:12px" class="bold">ENTREGA</div>
+<div style="font-size:11px;margin-top:2px">${s.address||''}</div>
+${s.addressRef?`<div style="font-size:11px">Ref: ${s.addressRef}</div>`:''}
+${s.motoboyName?`<div style="font-size:11px">Entregador: ${s.motoboyName}</div>`:''}
+${window.DPEntregas?DPEntregas.receiptHtml(s):''}
+`:''}
+<div class="dline"></div>
+<div class="center" style="font-size:11px">
+    <div style="font-size:13px;font-weight:bold;margin-bottom:4px">${cfg.rodape}</div>
+    <div>─────────────────────────</div>
+    <div style="margin-top:4px">Processado por DistribuiPRO ERP</div>
+    <div>${dateStr} ${timeStr}</div>
+</div>
+<div style="height:20px"></div>
+</body></html>`);
+            win.document.close();
+            win.onload = function() { win.print(); };
+        }
+
+        auth.onAuthStateChanged(u => { if(u) loadOrders(); });
+    </script>
+
+
+<script src="assets/js/pedidos-pro-v1.js?v=39.14.5-os"></script>
+<script src="assets/js/venda-a4-v1.js?v=39.0-endereco"></script>
+<script src="assets/js/vendas-editar-v1.js?v=38.6"></script>
+<script src="assets/js/trocas-v1.js?v=38.3"></script>
+<script defer src="assets/js/studio-v1.js?v=39.13"></script><script defer src="assets/js/studio-pro-v2.js?v=2.7-rolagem"></script>
+<script src="assets/js/mesas-v1.js?v=38.4"></script><script src="assets/js/cozinha-print-v1.js?v=40.49"></script>
+<script src="assets/js/edicao-v1.js?v=38.0"></script>
+<script src="assets/js/validade-v1.js?v=39.8-funil"></script>
+<script src="assets/js/seriais-v1.js?v=38.5"></script>
+<script src="assets/js/entregas-pro-v1.js?v=38.4"></script>
+<script src="assets/js/fiscal-v1.js?v=37.9"></script>
+<script src="assets/js/nfce-service.js?v=41.1-dp"></script>
+<script src="assets/js/notas-base-v1.js?v=39.10-base"></script>
+<script src="assets/js/notas-provedor-v1.js?v=41.1-dp"></script>
+<script src="assets/js/nota-propria-dp-v1.js?v=41.1"></script>
+</body>
+</html>

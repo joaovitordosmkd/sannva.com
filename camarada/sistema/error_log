@@ -1,0 +1,36 @@
+[11-Apr-2024 10:02:25 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$dominio' (T_VARIABLE) in /home/catalogo145/public_html/_core/_includes/fast_config.php on line 8
+[28-Oct-2024 20:11:33 America/Sao_Paulo] PHP Warning:  include(fast_config.php): failed to open stream: No such file or directory in /home/tecautov/public_html/_core/_includes/config.php on line 3
+[28-Oct-2024 20:11:33 America/Sao_Paulo] PHP Warning:  include(fast_config.php): failed to open stream: No such file or directory in /home/tecautov/public_html/_core/_includes/config.php on line 3
+[28-Oct-2024 20:11:33 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'fast_config.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/_core/_includes/config.php on line 3
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Undefined index: endereco_completo in /home/tecautov/public_html/app/estabelecimento/_layout/define.php on line 54
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Undefined index: local in /home/tecautov/public_html/app/estabelecimento/_layout/head.php on line 17
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  date_default_timezone_set(): Timezone ID 'Brazil/Brasilia' is invalid in /home/tecautov/public_html/_core/_includes/functions.php on line 34
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home/tecautov/public_html/_core/_includes/functions.php on line 38
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home/tecautov/public_html/_core/_includes/functions.php on line 43
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home/tecautov/public_html/_core/_includes/functions.php on line 45
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Undefined index: busca in /home/tecautov/public_html/app/estabelecimento/_layout/top.php on line 107
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Undefined index: sacola in /home/tecautov/public_html/app/estabelecimento/_layout/top.php on line 127
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home/tecautov/public_html/app/estabelecimento/_layout/top.php on line 127
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/tecautov/public_html/app/estabelecimento/_layout/top.php on line 127
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Undefined index: sacola in /home/tecautov/public_html/app/estabelecimento/_layout/top.php on line 176
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home/tecautov/public_html/app/estabelecimento/_layout/top.php on line 176
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/tecautov/public_html/app/estabelecimento/_layout/top.php on line 176
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Warning:  include(../../../_core/_includes/.php): failed to open stream: No such file or directory in /home/tecautov/public_html/app/estabelecimento/_layout/navigation.php on line 5
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Warning:  include(../../../_core/_includes/.php): failed to open stream: No such file or directory in /home/tecautov/public_html/app/estabelecimento/_layout/navigation.php on line 5
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Warning:  include(): Failed opening '../../../_core/_includes/.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/app/estabelecimento/_layout/navigation.php on line 5
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  date_default_timezone_set(): Timezone ID 'Brazil/Brasilia' is invalid in /home/tecautov/public_html/_core/_includes/functions.php on line 34
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home/tecautov/public_html/_core/_includes/functions.php on line 38
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home/tecautov/public_html/_core/_includes/functions.php on line 43
+[28-Oct-2024 21:37:07 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home/tecautov/public_html/_core/_includes/functions.php on line 45
+[01-Mar-2025 19:46:33 America/Sao_Paulo] {"message":"Header X-Idempotency-Key can’t be null","error":"bad_request","status":400,"cause":[{"code":4292,"description":"Header X-Idempotency-Key can’t be null","data":"01-03-2025T22:46:35UTC;78cc621b-6448-454c-83b0-222f5d385198"}]}
+[01-Mar-2025 19:46:55 America/Sao_Paulo] {"message":"Header X-Idempotency-Key can’t be null","error":"bad_request","status":400,"cause":[{"code":4292,"description":"Header X-Idempotency-Key can’t be null","data":"01-03-2025T22:46:57UTC;1a366559-9c82-4ee8-ab21-e75200ee04a4"}]}
+[01-Mar-2025 19:48:16 America/Sao_Paulo] {"message":"Header X-Idempotency-Key can’t be null","error":"bad_request","status":400,"cause":[{"code":4292,"description":"Header X-Idempotency-Key can’t be null","data":"01-03-2025T22:48:18UTC;ee225a2e-6006-4e16-adba-ef3e10616d57"}]}
+[01-Mar-2025 19:48:20 America/Sao_Paulo] {"message":"Header X-Idempotency-Key can’t be null","error":"bad_request","status":400,"cause":[{"code":4292,"description":"Header X-Idempotency-Key can’t be null","data":"01-03-2025T22:48:22UTC;f092105b-2a8b-4622-9a00-73ecba271087"}]}
+[01-Mar-2025 19:49:10 America/Sao_Paulo] {"message":"Header X-Idempotency-Key can’t be null","error":"bad_request","status":400,"cause":[{"code":4292,"description":"Header X-Idempotency-Key can’t be null","data":"01-03-2025T22:49:12UTC;43c54991-31ff-40f2-82e2-be4218a3e43a"}]}
+[01-Mar-2025 19:49:58 America/Sao_Paulo] {"message":"Header X-Idempotency-Key can’t be null","error":"bad_request","status":400,"cause":[{"code":4292,"description":"Header X-Idempotency-Key can’t be null","data":"01-03-2025T22:50:00UTC;27ec450d-75d7-4da1-b51d-ad7535dc557b"}]}
+[09-Mar-2025 13:11:01 America/Sao_Paulo] {"message":"unknown_error","error":"","status":400,"cause":[]}
+[09-Mar-2025 13:11:05 America/Sao_Paulo] {"message":"unknown_error","error":"","status":400,"cause":[]}
+[09-Mar-2025 13:13:40 America/Sao_Paulo] {"message":"unknown_error","error":"","status":400,"cause":[]}
+[09-Mar-2025 13:13:40 America/Sao_Paulo] Erro ao criar preferência de pagamento: Error required in attribute items
+[09-Mar-2025 13:13:47 America/Sao_Paulo] {"message":"unknown_error","error":"","status":400,"cause":[]}
+[09-Mar-2025 13:13:47 America/Sao_Paulo] Erro ao criar preferência de pagamento: Error required in attribute items

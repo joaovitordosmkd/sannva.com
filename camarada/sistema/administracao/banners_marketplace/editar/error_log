@@ -1,0 +1,15 @@
+[04-Oct-2022 18:20:18 America/Sao_Paulo] PHP Notice:  Undefined index: busca in /home1/veloximportscom/catalogorapido.com/administracao/_layout/sidebars.php on line 20
+[04-Oct-2022 18:20:18 America/Sao_Paulo] PHP Notice:  Undefined index: formdata in /home1/veloximportscom/catalogorapido.com/administracao/banners_marketplace/editar/index.php on line 30
+[04-Oct-2022 18:20:18 America/Sao_Paulo] PHP Notice:  Undefined variable: checkerrors in /home1/veloximportscom/catalogorapido.com/administracao/banners_marketplace/editar/index.php on line 137
+[04-Oct-2022 18:20:18 America/Sao_Paulo] PHP Notice:  Undefined index: msg in /home1/veloximportscom/catalogorapido.com/administracao/banners_marketplace/editar/index.php on line 139
+[04-Oct-2022 18:20:18 America/Sao_Paulo] PHP Notice:  Undefined index: msg in /home1/veloximportscom/catalogorapido.com/administracao/banners_marketplace/editar/index.php on line 145
+[04-Oct-2022 18:20:24 America/Sao_Paulo] PHP Notice:  Undefined index: busca in /home1/veloximportscom/catalogorapido.com/administracao/_layout/sidebars.php on line 20
+[04-Oct-2022 18:20:24 America/Sao_Paulo] PHP Notice:  Undefined index: estabelecimento_id in /home1/veloximportscom/catalogorapido.com/administracao/banners_marketplace/editar/index.php on line 38
+[04-Oct-2022 18:20:24 America/Sao_Paulo] PHP Notice:  Undefined variable: desktop in /home1/veloximportscom/catalogorapido.com/administracao/banners_marketplace/editar/index.php on line 82
+[04-Oct-2022 18:20:24 America/Sao_Paulo] PHP Notice:  Undefined variable: mobile in /home1/veloximportscom/catalogorapido.com/administracao/banners_marketplace/editar/index.php on line 82
+[04-Oct-2022 18:20:24 America/Sao_Paulo] PHP Notice:  Undefined variable: nome in /home1/veloximportscom/catalogorapido.com/_core/_includes/functions/data.php on line 3847
+[04-Oct-2022 18:20:24 America/Sao_Paulo] PHP Notice:  Undefined index: msg in /home1/veloximportscom/catalogorapido.com/administracao/banners_marketplace/editar/index.php on line 139
+[04-Oct-2022 18:20:24 America/Sao_Paulo] PHP Notice:  Undefined index: msg in /home1/veloximportscom/catalogorapido.com/administracao/banners_marketplace/editar/index.php on line 145
+[04-Oct-2022 18:20:24 America/Sao_Paulo] PHP Notice:  Undefined index: busca in /home1/veloximportscom/catalogorapido.com/administracao/_layout/sidebars.php on line 20
+[04-Oct-2022 18:20:24 America/Sao_Paulo] PHP Notice:  Undefined index: formdata in /home1/veloximportscom/catalogorapido.com/administracao/banners_marketplace/editar/index.php on line 30
+[04-Oct-2022 18:20:24 America/Sao_Paulo] PHP Notice:  Undefined variable: checkerrors in /home1/veloximportscom/catalogorapido.com/administracao/banners_marketplace/editar/index.php on line 137

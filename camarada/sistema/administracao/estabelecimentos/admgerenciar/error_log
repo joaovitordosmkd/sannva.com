@@ -1,0 +1,5 @@
+[22-Apr-2024 18:42:06 America/Sao_Paulo] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/catalogo151/public_html/administracao/estabelecimentos/admgerenciar/index.php on line 49
+[22-Apr-2024 18:42:06 America/Sao_Paulo] PHP Warning:  Invalid argument supplied for foreach() in /home/catalogo151/public_html/administracao/estabelecimentos/admgerenciar/index.php on line 20
+[22-Apr-2024 18:42:06 America/Sao_Paulo] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/catalogo151/public_html/administracao/estabelecimentos/admgerenciar/index.php on line 170
+[22-Apr-2024 18:42:06 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home/catalogo151/public_html/administracao/estabelecimentos/admgerenciar/index.php on line 172
+[22-Apr-2024 18:42:06 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home/catalogo151/public_html/administracao/estabelecimentos/admgerenciar/index.php on line 177

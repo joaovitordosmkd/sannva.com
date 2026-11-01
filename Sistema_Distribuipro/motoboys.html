@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script>window.__stProduct=1;document.documentElement.setAttribute("data-st-product","")</script><script>/* Studio: aplica o tema escolhido (claro/escuro/automático) antes de desenhar a página */try{var p=localStorage.getItem("st_theme_pref");if(p){var t=p==="auto"?(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):p;if(t==="light"||t==="dark"){sessionStorage.setItem("erp_theme_session",t);document.documentElement.setAttribute("data-theme",t);}}}catch(e){}</script><link rel="icon" href="assets/brand/favicon-96.png?v=41.5-logo" type="image/png">
+    <script src="assets/js/branding.js?v=40.29-acessos"></script><script src="assets/js/papel-v1.js?v=40.49"></script><script src="assets/js/dp-icons-v1.js?v=37.6"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="theme-color" content="#0a0e1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Motoboys · DistribuiPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css?v=37.8">
+    <link rel="stylesheet" href="assets/css/mobile.css?v=37.8">
+    <link rel="stylesheet" href="assets/css/studio-light-pages.css?v=1.3">
+    <link rel="stylesheet" href="assets/css/studio-v1.css?v=39.6-logo"><link rel="stylesheet" href="assets/css/studio-pro-v2.css?v=2.7">
+<script defer src="assets/js/cache-818831d97b.js"></script></head>
+<body>
+    <div class="app-layout">
+        <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileSidebar()"></div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand"><div class="dp-default-logo" aria-label="DistribuiPro"><img src="assets/brand/distribuipro-logo-dark.png?v=41.5-logo" alt="DistribuiPro"></div><div class="brand-icon"><img src="assets/brand/distribuipro-mark.svg?v=41.5-logo" alt="DistribuiPro" style="width:100%;height:100%;display:block;object-fit:contain"></div><div class="brand-text"><h1>DistribuiPRO</h1><span>Sistema ERP</span></div></div>
+            <nav class="sidebar-menu">
+<div class="menu-section"><span class="menu-section-title">Principal</span></div>
+                <a href="index.html" class="menu-item"><i class="fas fa-chart-pie"></i><span class="menu-text">Dashboard</span></a>
+                <div class="menu-section"><span class="menu-section-title">Operações</span></div>
+                <a href="pdv.html" class="menu-item"><i class="fas fa-cash-register"></i><span class="menu-text">PDV / Vendas</span></a>
+        <a href="orcamentos.html" class="menu-item" data-page="orcamentos"><i class="fas fa-file-signature"></i><span class="menu-text">Orçamentos</span></a>
+                <a href="pedidos.html" class="menu-item"><i class="fas fa-clipboard-list"></i><span class="menu-text">Pedidos</span></a>
+                <a href="entregas.html" class="menu-item"><i class="fas fa-truck-fast"></i><span class="menu-text">Entregas</span></a>
+                <a href="caixa.html" class="menu-item"><i class="fas fa-vault"></i><span class="menu-text">Caixa</span></a>
+                <a href="ordens-servico.html" class="menu-item"><i class="fas fa-screwdriver-wrench"></i><span class="menu-text">Ordens de Serviço</span></a>
+                <div class="menu-section"><span class="menu-section-title">Cadastros</span></div>
+                <a href="produtos.html" class="menu-item"><i class="fas fa-box"></i><span class="menu-text">Produtos</span></a>
+                <a href="categorias.html" class="menu-item"><i class="fas fa-tags"></i><span class="menu-text">Categorias</span></a>
+                <a href="clientes.html" class="menu-item"><i class="fas fa-users"></i><span class="menu-text">Clientes</span></a>
+                <a href="fornecedores.html" class="menu-item"><i class="fas fa-industry"></i><span class="menu-text">Fornecedores</span></a>
+                <div class="menu-section"><span class="menu-section-title">Estoque</span></div>
+                <a href="estoque.html" class="menu-item"><i class="fas fa-boxes-stacked"></i><span class="menu-text">Estoque</span></a>
+                <a href="movimentacoes.html" class="menu-item"><i class="fas fa-arrow-right-arrow-left"></i><span class="menu-text">Movimentações</span></a>
+                <a href="compras.html" class="menu-item"><i class="fas fa-cart-shopping"></i><span class="menu-text">Compras</span></a>
+                <div class="menu-section"><span class="menu-section-title">Financeiro</span></div>
+                <a href="contas-pagar.html" class="menu-item"><i class="fas fa-file-invoice-dollar"></i><span class="menu-text">Contas a Pagar</span></a>
+                <a href="contas-receber.html" class="menu-item"><i class="fas fa-hand-holding-dollar"></i><span class="menu-text">Contas a Receber</span></a>
+                <a href="fluxo-caixa.html" class="menu-item"><i class="fas fa-chart-line"></i><span class="menu-text">Fluxo de Caixa</span></a>
+                <div class="menu-section"><span class="menu-section-title">Gestão</span></div>
+                <a href="motoboys.html" class="menu-item active"><i class="fas fa-motorcycle"></i><span class="menu-text">Motoboys</span></a>
+                <a href="relatorios.html" class="menu-item"><i class="fas fa-chart-bar"></i><span class="menu-text">Relatórios</span></a>
+                <a href="comissoes.html" class="menu-item"><i class="fas fa-percent"></i><span class="menu-text">Comissões</span></a>
+                <a href="usuarios.html" class="menu-item"><i class="fas fa-user-shield"></i><span class="menu-text">Usuários</span></a>
+                <a href="auditoria.html" class="menu-item"><i class="fas fa-clock-rotate-left"></i><span class="menu-text">Auditoria</span></a>
+                <a href="configuracoes.html" class="menu-item"><i class="fas fa-gear"></i><span class="menu-text">Configurações</span></a>
+            </nav>
+            <div class="sidebar-toggle"><button onclick="toggleSidebar()"><i class="fas fa-angles-left" id="sidebarToggleIcon"></i></button></div>
+        </div>
+
+        <div class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()"><i class="fas fa-bars"></i></button>
+                    <div><h2>Motoboys / Entregadores</h2><div class="header-breadcrumb"><i class="fas fa-home" style="font-size:10px"></i><span>/ Gestão / Motoboys</span></div></div>
+                </div>
+                <div class="header-right">
+                    <button class="header-action" onclick="toggleTheme()" title="Alternar tema"><i class="fas fa-sun" id="themeIcon"></i></button>
+                    <button class="header-action" onclick="toggleNotifications()" title="Notificações"><i class="fas fa-bell"></i><span class="notif-dot"></span></button>
+                    <div class="header-avatar" id="userAvatar" onclick="toggleProfileMenu()" title="Meu perfil" style="cursor:pointer">A</div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <!-- Stat Cards -->
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(59,130,246,.12);color:#3b82f6"><i class="fas fa-motorcycle"></i></div>
+                        <div class="stat-info"><span class="stat-label">Total Motoboys</span><span class="stat-value">—</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(16,185,129,.12);color:#10b981"><i class="fas fa-circle-check"></i></div>
+                        <div class="stat-info"><span class="stat-label">Disponíveis</span><span class="stat-value" style="color:#10b981">—</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(245,158,11,.12);color:#f59e0b"><i class="fas fa-route"></i></div>
+                        <div class="stat-info"><span class="stat-label">Em Rota</span><span class="stat-value" style="color:#f59e0b">—</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(168,85,247,.12);color:#a855f7"><i class="fas fa-box-open"></i></div>
+                        <div class="stat-info"><span class="stat-label">Entregas Hoje</span><span class="stat-value">—</span></div>
+                    </div>
+                </div>
+
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <div class="toolbar-left">
+                        <div class="search-box"><i class="fas fa-search"></i><input type="text" placeholder="Buscar motoboy..."></div>
+                        <select class="form-input" style="width:auto;padding:8px 12px;font-size:13px"><option>Todos os Status</option><option>Disponível</option><option>Em Rota</option><option>Inativo</option></select>
+                    </div>
+                    <div class="toolbar-right">
+                        <button class="btn btn-primary" onclick="openModal('modalMotoboy')"><i class="fas fa-plus"></i> Novo Motoboy</button>
+                    </div>
+                </div>
+
+                <!-- Cards de Motoboys — preenchido pelo JS -->
+                <div id="motoboyGrid" class="motoboys-cards-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-bottom:24px">
+                    <div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted)">
+                        <i class="fas fa-spinner fa-spin" style="font-size:24px;opacity:.4;display:block;margin-bottom:10px"></i>
+                        <span style="font-size:13px">Carregando motoboys...</span>
+                    </div>
+                </div>
+
+                <!-- Ranking de Entregas -->
+                <div class="card">
+                    <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:16px" id="rankingTitle">
+                        <i class="fas fa-trophy" style="color:#f59e0b;margin-right:8px"></i>Ranking do Mês
+                    </h3>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead><tr><th>#</th><th>Motoboy</th><th>Entregas</th><th>Tempo Médio</th><th>Comissão</th></tr></thead>
+                            <tbody id="rankingBody">
+                                <tr><td colspan="5" style="text-align:center;padding:32px;color:var(--text-muted)">
+                                    <i class="fas fa-spinner fa-spin" style="margin-right:8px"></i>Carregando...
+                                </td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Novo / Editar Motoboy -->
+    <div class="modal-overlay" id="modalMotoboy">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalMotoboyTitle"><i class="fas fa-motorcycle" style="color:var(--accent);margin-right:8px"></i>Novo Motoboy</h3>
+                <button class="modal-close" onclick="closeModal('modalMotoboy')"><i class="fas fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="grid-column:1/-1">
+                    <label class="form-label">Nome Completo *</label>
+                    <input type="text" id="mbNome" class="form-input" placeholder="Nome do motoboy">
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:0">
+                    <div class="form-group">
+                        <label class="form-label">Telefone *</label>
+                        <input type="text" id="mbTelefone" class="form-input" placeholder="(00) 00000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">CPF</label>
+                        <input type="text" id="mbCPF" class="form-input" placeholder="000.000.000-00">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Veículo</label>
+                        <input type="text" id="mbVeiculo" class="form-input" placeholder="Ex: Honda CG 160">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Placa</label>
+                        <input type="text" id="mbPlaca" class="form-input" placeholder="ABC-1D23">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Comissão</label>
+                        <select id="mbComissaoTipo" class="form-input" onchange="toggleComissao()">
+                          <option value="none">Sem comissão</option>
+                          <option value="fixed">Valor fixo por entrega (R$)</option>
+                          <option value="percent">Percentual sobre venda (%)</option>
+                          <option value="deliveryfee">Fica com a taxa de entrega da venda</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="mbComissaoField" style="display:none">
+                        <label class="form-label" id="mbComissaoLabel">Valor (R$)</label>
+                        <input type="number" id="mbComissao" class="form-input" placeholder="0,00" min="0" step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">PIX</label>
+                        <input type="text" id="mbPix" class="form-input" placeholder="Chave PIX">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Status</label>
+                        <select id="mbStatus" class="form-input">
+                            <option value="active">Ativo / Disponível</option>
+                            <option value="inactive">Inativo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">CNH</label>
+                        <input type="text" id="mbCNH" class="form-input" placeholder="Nº da CNH">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top:0">
+                    <label class="form-label">Observações</label>
+                    <textarea id="mbObs" class="form-input" rows="2" placeholder="Observações..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modalMotoboy')">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveMotoboy()"><i class="fas fa-check"></i> Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="config/firebase-config.js"></script>
+    <script src="services/core-services.js?v=39.14.5"></script>
+    <script src="assets/js/mobile-fix.js"></script>
+    <script src="assets/js/app.js?v=40.59"></script>
+    <script src="assets/js/pages.js?v=40.74"></script>
+    <script>
+        let allMotoboys = [];
+        let allDeliveries = [];
+        let editingMotoboyId = null;
+        let searchQuery = '';
+        let filterStatus = '';
+
+        // ─── LOAD ─────────────────────────────────────────
+        async function loadPage() {
+            await Promise.all([loadMotoboys(), loadDeliveriesData()]);
+        }
+
+        async function loadMotoboys() {
+            try {
+                const snap = await db.collection('motoboys').get();
+                allMotoboys = snap.docs.map(d => ({id:d.id,...d.data()})).filter(m=>!m.deleted);
+                renderMotoboys();
+                updateStats();
+            } catch(e) { Toast.error('Erro ao carregar motoboys: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message))); }
+        }
+
+        async function loadDeliveriesData() {
+            try {
+                // Busca todos os pedidos/entregas — aceita type: delivery, pedido, ou que tenha motoboyId
+                const snap = await db.collection('sales').get();
+                allDeliveries = snap.docs
+                    .map(d => ({id:d.id,...d.data()}))
+                    .filter(d => !d.deleted && (
+                        d.type === 'delivery' ||
+                        d.type === 'pedido'   ||
+                        d.motoboyId           // qualquer venda com motoboy atribuído
+                    ));
+                renderMotoboys();
+                renderRanking();
+                updateStats();
+            } catch(e) {
+                console.error('Erro ao carregar entregas:', e);
+            }
+        }
+
+        // ─── RENDER CARDS ─────────────────────────────────
+        function renderMotoboys() {
+            const grid = document.getElementById('motoboyGrid');
+            if (!grid) return;
+
+            let list = allMotoboys;
+            if (searchQuery) {
+                const q = searchQuery.toLowerCase();
+                list = list.filter(m => (m.name||m.nome||'').toLowerCase().includes(q) ||
+                    (m.phone||m.telefone||'').includes(q));
+            }
+            if (filterStatus) {
+                list = list.filter(m => filterStatus === 'active'
+                    ? m.status !== 'inactive' : m.status === 'inactive');
+            }
+
+            if (list.length === 0) {
+                grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted)">
+                    <i class="fas fa-motorcycle" style="font-size:36px;opacity:.2;display:block;margin-bottom:12px"></i>
+                    <span style="font-size:13px">${allMotoboys.length===0?'Nenhum motoboy cadastrado. Clique em "+ Novo Motoboy"':'Nenhum resultado para a busca'}</span>
+                </div>`;
+                return;
+            }
+
+            // Calcula stats de entregas por motoboy
+            const today = new Date(); today.setHours(0,0,0,0);
+            const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+
+            grid.innerHTML = list.map(m => {
+                const name = m.name || m.nome || 'Motoboy';
+                const initials = name.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+                const phone = m.phone || m.telefone || '';
+                const vehicle = m.vehicle || m.veiculo || '';
+                const plate = m.plate || m.placa || '';
+                const commissionType  = m.commissionType || 'fixed';
+                const commission = parseFloat(m.commissionValue || m.comissao || 0);
+                const isActive = m.status !== 'inactive';
+                const isDelivering = m.currentStatus === 'delivering';
+
+                // Calcula entregas — inclui em_rota, delivered e completed
+                const myDeliveries = allDeliveries.filter(d => d.motoboyId === m.id || d.motoboyName === name);
+                const validStatus = ['delivered','completed','delivering','em_rota','pending']; // 38.4 · "delivering" é a entrega em rota
+                const todayStr = new Date().toDateString();
+                const nowDate  = new Date();
+                const todayDeliveries = myDeliveries.filter(d => {
+                    const dd = d.createdAt?.toDate?.() || new Date(d.date||d.createdAt||0);
+                    return dd.toDateString() === todayStr && validStatus.includes(d.status);
+                });
+                const monthDeliveries = myDeliveries.filter(d => {
+                    const dd = d.createdAt?.toDate?.() || new Date(d.date||d.createdAt||0);
+                    return dd.getMonth() === nowDate.getMonth() &&
+                           dd.getFullYear() === nowDate.getFullYear() &&
+                           validStatus.includes(d.status);
+                });
+
+                // Comissão do mês
+                let monthCommission = 0;
+                if (commissionType === 'percent') {
+                    monthCommission = monthDeliveries.reduce((s,d) => s + ((d.total||0) * commission / 100), 0);
+                } else if (commissionType === 'deliveryfee') { // 38.4 · fica com a taxa de entrega cobrada do cliente
+                    monthCommission = monthDeliveries.reduce((s,d) => s + Number(d.deliveryFee||0), 0);
+                } else {
+                    monthCommission = monthDeliveries.length * commission;
+                }
+                const commissionLabel = commissionType === 'percent'
+                    ? `${commission}% s/ venda`
+                    : commissionType === 'deliveryfee' ? 'Taxa de entrega da venda'
+                    : commission > 0 ? `R$ ${commission.toFixed(2).replace('.',',')} / entrega` : 'Sem comissão';
+
+                const colors = ['#3b82f6','#f59e0b','#10b981','#ef4444','#8b5cf6','#06b6d4'];
+                const color = colors[Math.abs(name.charCodeAt(0)) % colors.length];
+
+                const statusLabel = isDelivering ? 'Em Rota' : isActive ? 'Disponível' : 'Inativo';
+                const statusCls = isDelivering ? 'badge-warning' : isActive ? 'badge-success' : 'badge-inactive';
+
+                return `<div class="card" style="transition:all .2s;border-color:transparent" 
+                    onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='transparent'">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+                        <div style="display:flex;align-items:center;gap:12px">
+                            <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,${color},${color}cc);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;flex-shrink:0">${initials}</div>
+                            <div>
+                                <div style="font-weight:700;font-size:15px;color:var(--text-primary)">${name}</div>
+                                <div style="font-size:11px;color:var(--text-muted)">${vehicle}${plate?' · '+plate:''}</div>
+                            </div>
+                        </div>
+                        <span class="badge-status ${statusCls}">${statusLabel}</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
+                        <div style="text-align:center;padding:8px;border-radius:8px;background:var(--bg-surface)">
+                            <div style="font-size:10px;color:var(--text-muted)">Hoje</div>
+                            <div style="font-size:17px;font-weight:800;color:var(--text-primary)">${todayDeliveries.length}</div>
+                        </div>
+                        <div style="text-align:center;padding:8px;border-radius:8px;background:var(--bg-surface)">
+                            <div style="font-size:10px;color:var(--text-muted)">Mês</div>
+                            <div style="font-size:17px;font-weight:800;color:var(--text-primary)">${monthDeliveries.length}</div>
+                        </div>
+                        <div style="text-align:center;padding:8px;border-radius:8px;background:var(--bg-surface)">
+                            <div style="font-size:10px;color:var(--text-muted)">Comissão</div>
+                            <div style="font-size:13px;font-weight:800;color:#10b981">${Utils.currency(monthCommission)}</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between">
+                        <div style="display:flex;align-items:center;gap:6px">
+                            <i class="fas fa-phone" style="font-size:11px;color:var(--text-muted)"></i>
+                            <span style="font-size:12px;color:var(--text-muted)">${phone||'—'}</span>
+                        </div>
+                        <div style="display:flex;gap:6px">
+                            <button class="btn btn-outline btn-sm" onclick="editMotoboy('${m.id}')" title="Editar"><i class="fas fa-pen"></i> Editar</button>
+                            ${isActive
+                                ? `<button class="btn btn-sm" style="background:rgba(245,158,11,.12);color:#fbbf24;border:1px solid rgba(245,158,11,.2)" onclick="toggleStatus('${m.id}','inactive')" title="Pausar"><i class="fas fa-pause"></i> Pausar</button>`
+                                : `<button class="btn btn-sm" style="background:rgba(16,185,129,.12);color:#34d399;border:1px solid rgba(16,185,129,.2)" onclick="toggleStatus('${m.id}','active')" title="Ativar"><i class="fas fa-play"></i> Ativar</button>`}
+                            <button class="btn btn-sm" style="background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.15)" onclick="deleteMotoboy('${m.id}')" title="Excluir"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    ${phone?`<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border-color)">
+                        <a href="https://wa.me/55${phone.replace(/\D/g,'')}" target="_blank" class="btn btn-sm btn-whatsapp" style="width:100%;justify-content:center;background:#25d366;color:#fff;border:none">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>`:''}
+                </div>`;
+            }).join('');
+        }
+
+        // ─── STATS ────────────────────────────────────────
+        function updateStats() {
+            const today = new Date(); today.setHours(0,0,0,0);
+            const total = allMotoboys.length;
+            const available = allMotoboys.filter(m => m.status !== 'inactive' && m.currentStatus !== 'delivering').length;
+            const onRoute = allMotoboys.filter(m => m.currentStatus === 'delivering').length;
+            const todayDeliveries = allDeliveries.filter(d => {
+                const dd = d.createdAt?.toDate?.() || new Date(d.date||0);
+                return dd >= today && ['delivered','completed','em_rota'].includes(d.status);
+            }).length;
+
+            const vals = document.querySelectorAll('.stat-value');
+            if(vals[0]) vals[0].textContent = total;
+            if(vals[1]) vals[1].textContent = available;
+            if(vals[2]) vals[2].textContent = onRoute;
+            if(vals[3]) vals[3].textContent = todayDeliveries;
+        }
+
+        // ─── RANKING ──────────────────────────────────────
+        function renderRanking() {
+            const tbody = document.getElementById('rankingBody');
+            if (!tbody) return;
+
+            const now = new Date();
+            const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+            const monthName = now.toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+            const titleEl = document.getElementById('rankingTitle');
+            if (titleEl) titleEl.innerHTML = `<i class="fas fa-trophy" style="color:#f59e0b;margin-right:8px"></i>Ranking — ${monthName.charAt(0).toUpperCase()+monthName.slice(1)}`;
+
+            // Agrupar entregas do mês por motoboy (inclui todos os status ativos)
+            const monthDeliveries = allDeliveries.filter(d => {
+                const dd = d.createdAt?.toDate?.() || new Date(d.date||0);
+                return dd.getMonth() === now.getMonth() &&
+                    dd.getFullYear() === now.getFullYear() &&
+                    ['delivered','completed','delivering','em_rota','pending'].includes(d.status) && d.motoboyId;
+            });
+
+            if (monthDeliveries.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:32px;color:var(--text-muted)"><i class="fas fa-trophy" style="display:block;font-size:28px;opacity:.15;margin-bottom:8px"></i>Nenhuma entrega concluída este mês</td></tr>';
+                return;
+            }
+
+            // Agrupar por motoboyId
+            const grouped = {};
+            monthDeliveries.forEach(d => {
+                const key = d.motoboyId;
+                if (!grouped[key]) {
+                    grouped[key] = { id:key, name: d.motoboyName||'—', count:0, totalTime:0, timeCount:0, deliveries:[] };
+                }
+                grouped[key].count++;
+                grouped[key].deliveries.push(d); // 38.4 · a comissão em % e a taxa de entrega usam as vendas do motoboy
+                if (d.deliveryTime) { grouped[key].totalTime += d.deliveryTime; grouped[key].timeCount++; }
+            });
+
+            // Ordenar por entregas
+            const ranked = Object.values(grouped).sort((a,b) => b.count - a.count);
+
+            const medals = ['#f5b301','#94a3b8','#c27a3d'].map((c, n) => `<span title="${n + 1}º lugar" style="color:${c};font-size:16px;display:inline-flex"><i class="fas fa-medal"></i></span>`);
+            tbody.innerHTML = ranked.map((r, i) => {
+                const mb = allMotoboys.find(m => m.id === r.id);
+                const commission = parseFloat(mb?.commissionValue || mb?.comissao || 0);
+                const commType  = mb?.commissionType || 'fixed';
+                let totalCommission = 0;
+                if (commType === 'percent') {
+                    totalCommission = r.deliveries.reduce((s,d) => s + ((d.total||0)*commission/100), 0);
+                } else if (commType === 'deliveryfee') {
+                    totalCommission = r.deliveries.reduce((s,d) => s + Number(d.deliveryFee||0), 0);
+                } else {
+                    totalCommission = r.count * commission;
+                }
+                const avgTime = r.timeCount > 0 ? Math.round(r.totalTime / r.timeCount) + 'min' : '—';
+                return `<tr>
+                    <td style="font-size:18px">${medals[i] || (i+1)}</td>
+                    <td style="font-weight:600;color:var(--text-heading)">${r.name}</td>
+                    <td><strong>${r.count}</strong> entregas</td>
+                    <td>${avgTime}</td>
+                    <td style="color:#10b981;font-weight:700">${Utils.currency(totalCommission)}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        // ─── CRUD ──────────────────────────────────────────
+        function openNewModal() {
+            editingMotoboyId = null;
+            document.getElementById('modalMotoboyTitle').innerHTML = '<i class="fas fa-motorcycle" style="color:var(--accent);margin-right:8px"></i>Novo Motoboy';
+            ['mbNome','mbTelefone','mbCPF','mbVeiculo','mbPlaca','mbPix','mbCNH','mbObs'].forEach(id => {
+                const el = document.getElementById(id);
+                if(el) el.value = '';
+            });
+            const c = document.getElementById('mbComissao'); if(c) c.value='';
+            const s = document.getElementById('mbStatus'); if(s) s.value='active';
+            const t = document.getElementById('mbComissaoTipo'); if(t) t.value='none';
+            toggleComissao();
+            openModal('modalMotoboy');
+        }
+
+        function toggleComissao() {
+            const tipo  = document.getElementById('mbComissaoTipo')?.value;
+            const field = document.getElementById('mbComissaoField');
+            const label = document.getElementById('mbComissaoLabel');
+            if (!field) return;
+            if (tipo === 'none' || tipo === 'deliveryfee') {
+                field.style.display = 'none';
+            } else {
+                field.style.display = '';
+                label.textContent = tipo === 'percent' ? 'Percentual (%)' : 'Valor por entrega (R$)';
+                document.getElementById('mbComissao').placeholder = tipo === 'percent' ? 'Ex: 5' : '0,00';
+            }
+        }
+
+        function editMotoboy(id) {
+            const m = allMotoboys.find(x=>x.id===id); if(!m) return;
+            editingMotoboyId = id;
+            document.getElementById('modalMotoboyTitle').innerHTML = '<i class="fas fa-pen" style="color:var(--accent);margin-right:8px"></i>Editar Motoboy';
+            document.getElementById('mbNome').value     = m.name||m.nome||'';
+            document.getElementById('mbTelefone').value = m.phone||m.telefone||'';
+            document.getElementById('mbCPF').value      = m.cpf||m.document||'';
+            document.getElementById('mbVeiculo').value  = m.vehicle||m.veiculo||'';
+            document.getElementById('mbPlaca').value    = m.plate||m.placa||'';
+            document.getElementById('mbPix').value      = m.pix||'';
+            document.getElementById('mbCNH').value      = m.cnh||'';
+            document.getElementById('mbObs').value      = m.notes||m.obs||'';
+            document.getElementById('mbStatus').value   = m.status||'active';
+            // Tipo de comissão
+            const tipo = m.commissionType || (m.commissionValue > 0 ? 'fixed' : 'none');
+            const tipoEl = document.getElementById('mbComissaoTipo');
+            if (tipoEl) tipoEl.value = tipo;
+            toggleComissao();
+            document.getElementById('mbComissao').value = m.commissionValue||m.comissao||'';
+            openModal('modalMotoboy');
+        }
+
+        async function saveMotoboy() {
+            const name = document.getElementById('mbNome').value.trim();
+            if (!name) { Toast.warning('Informe o nome'); return; }
+            const commissionType  = document.getElementById('mbComissaoTipo')?.value || 'none';
+            const commissionValue = commissionType !== 'none' ? (parseFloat(document.getElementById('mbComissao').value)||0) : 0;
+            const data = {
+                name,
+                phone:           document.getElementById('mbTelefone').value,
+                cpf:             document.getElementById('mbCPF').value,
+                vehicle:         document.getElementById('mbVeiculo').value,
+                plate:           document.getElementById('mbPlaca').value,
+                commissionType,
+                commissionValue,
+                pix:             document.getElementById('mbPix').value,
+                cnh:             document.getElementById('mbCNH').value,
+                notes:           document.getElementById('mbObs').value,
+                status:          document.getElementById('mbStatus').value,
+            };
+            try {
+                if (editingMotoboyId) {
+                    await FirestoreService.update('motoboys', editingMotoboyId, data);
+                    Toast.success('Motoboy atualizado!');
+                } else {
+                    await FirestoreService.create('motoboys', data);
+                    Toast.success('Motoboy cadastrado!');
+                }
+                closeModal('modalMotoboy');
+                await loadMotoboys();
+            } catch(e) { Toast.error('Erro: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message))); }
+        }
+
+        async function toggleStatus(id, newStatus) {
+            try {
+                await FirestoreService.update('motoboys', id, {status: newStatus});
+                Toast.success(newStatus==='active' ? 'Motoboy ativado!' : 'Motoboy pausado!');
+                await loadMotoboys();
+            } catch(e) { Toast.error('Erro: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message))); }
+        }
+
+        async function deleteMotoboy(id) {
+            const m = allMotoboys.find(x=>x.id===id);
+            Confirm.show('Excluir Motoboy', `Excluir <strong>${m?.name||'este motoboy'}</strong>?`, async()=>{
+                try {
+                    await FirestoreService.softDelete('motoboys', id);
+                    Toast.success('Motoboy removido!');
+                    await loadMotoboys();
+                } catch(e) { Toast.error('Erro: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message))); }
+            });
+        }
+
+        // ─── BUSCA E FILTRO ────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.querySelector('.search-box input');
+            if (searchInput) {
+                searchInput.oninput = e => { searchQuery = e.target.value; renderMotoboys(); };
+            }
+            const statusFilter = document.querySelector('.toolbar-left select');
+            if (statusFilter) {
+                statusFilter.onchange = e => {
+                    const v = e.target.value;
+                    filterStatus = v.includes('Disponível')||v.includes('Ativo') ? 'active'
+                        : v.includes('Inativo') ? 'inactive' : '';
+                    renderMotoboys();
+                };
+            }
+            // Ajusta botão "Novo Motoboy" para usar openNewModal
+            document.querySelectorAll('button').forEach(function(btn) {
+                if (btn.getAttribute('onclick') === "openModal('modalMotoboy')") {
+                    btn.setAttribute('onclick', 'openNewModal()');
+                }
+            });
+        });
+
+        function openModal(id){ document.getElementById(id).classList.add('active'); }
+        function closeModal(id){ document.getElementById(id).classList.remove('active'); }
+
+        auth.onAuthStateChanged(u => { if(u) loadPage(); else window.location.href='login.html'; });
+    </script>
+<script defer src="assets/js/studio-v1.js?v=39.13"></script><script defer src="assets/js/studio-pro-v2.js?v=2.7-rolagem"></script>
+<script src="assets/js/mesas-v1.js?v=37.8"></script>
+<script src="assets/js/edicao-v1.js?v=38.0"></script>
+<script src="assets/js/os-pro-v1.js?v=39.14.5-os"></script>
+<script src="assets/js/entregas-pro-v1.js?v=38.4"></script>
+</body>
+</html>

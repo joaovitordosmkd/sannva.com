@@ -1,0 +1,14 @@
+[15-Dec-2022 11:04:41 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home1/veloximportscom/public_html/_core/_includes/functions/upload.php on line 619
+[15-Dec-2022 11:04:41 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home1/veloximportscom/public_html/_core/_includes/functions/upload.php on line 619
+[15-Dec-2022 11:04:41 America/Sao_Paulo] PHP Notice:  Undefined index: busca in /home1/veloximportscom/public_html/painel/_layout/sidebars.php on line 20
+[15-Dec-2022 11:04:41 America/Sao_Paulo] PHP Notice:  Trying to access array offset on value of type null in /home1/veloximportscom/public_html/_core/_includes/functions/upload.php on line 619
+[15-Dec-2022 11:04:41 America/Sao_Paulo] PHP Notice:  Undefined index: sun in /home1/veloximportscom/public_html/painel/horarios/adicionar/index.php on line 34
+[15-Dec-2022 11:04:41 America/Sao_Paulo] PHP Notice:  Undefined index: tue in /home1/veloximportscom/public_html/painel/horarios/adicionar/index.php on line 42
+[15-Dec-2022 11:04:41 America/Sao_Paulo] PHP Notice:  Undefined index: wed in /home1/veloximportscom/public_html/painel/horarios/adicionar/index.php on line 46
+[15-Dec-2022 11:04:41 America/Sao_Paulo] PHP Notice:  Undefined index: thu in /home1/veloximportscom/public_html/painel/horarios/adicionar/index.php on line 50
+[15-Dec-2022 11:04:41 America/Sao_Paulo] PHP Notice:  Undefined index: fri in /home1/veloximportscom/public_html/painel/horarios/adicionar/index.php on line 54
+[15-Dec-2022 11:04:41 America/Sao_Paulo] PHP Notice:  Undefined index: sat in /home1/veloximportscom/public_html/painel/horarios/adicionar/index.php on line 58
+[15-Dec-2022 11:04:41 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function new_agendamento() in /home1/veloximportscom/public_html/painel/horarios/adicionar/index.php:95
+Stack trace:
+#0 {main}
+  thrown in /home1/veloximportscom/public_html/painel/horarios/adicionar/index.php on line 95

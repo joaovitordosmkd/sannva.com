@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Conectar ao seu Firebase · DistribuiPro</title>
+<style>
+:root{--bg:#f3f6f9;--card:#fff;--ink:#0f1f33;--muted:#5b6b7f;--line:#dfe6ee;--accent:#0f8a6c;--accent-2:#0b6e56;--warn:#b45309;--warn-bg:#fff7e6;--bad:#b42318;--bad-bg:#fff1f0;--ok-bg:#e8f7f1;--code:#0d1b2a}
+*{box-sizing:border-box}
+/* 37.8 · mesma fonte do sistema (arquivos locais) e ícones em traço */
+@font-face{font-family:'Plus Jakarta Sans';src:url('assets/fonts/jakarta-0.woff') format('woff');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Plus Jakarta Sans';src:url('assets/fonts/jakarta-2.woff') format('woff');font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:'Plus Jakarta Sans';src:url('assets/fonts/jakarta-3.woff') format('woff');font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:'Plus Jakarta Sans';src:url('assets/fonts/jakarta-4.woff') format('woff');font-style:normal;font-weight:800;font-display:swap}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 'Plus Jakarta Sans',system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+svg.ic{flex:none;vertical-align:-.15em}
+.wrap{max-width:860px;margin:0 auto;padding:28px 16px 60px}
+.hero{background:var(--ink);color:#fff;border-radius:18px;padding:26px 24px;margin-bottom:18px}
+.hero small{color:#7ee0c3;font-weight:800;letter-spacing:.08em;font-size:12px}
+.hero h1{margin:6px 0 8px;font-size:26px;line-height:1.2}
+.hero p{margin:0;color:#c4d3e3}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:14px}
+.card h2{margin:0 0 10px;font-size:18px;display:flex;align-items:center;gap:10px}
+.n{display:inline-grid;place-items:center;min-width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:14px;font-weight:800}
+.card p{margin:6px 0}
+ol,ul{margin:6px 0 6px 20px;padding:0}
+li{margin:3px 0}
+a{color:var(--accent-2);font-weight:600}
+code{background:#eef3f7;border-radius:6px;padding:1px 6px;font-size:13px}
+textarea{width:100%;min-height:170px;border:1px solid var(--line);border-radius:12px;padding:12px;font:13px/1.5 ui-monospace,Consolas,monospace;resize:vertical;background:#fbfdff}
+textarea:focus{outline:2px solid #9fe0cc;border-color:var(--accent)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+button,.btn{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:10px 14px;font-family:inherit;font-size:14px;font-weight:600;line-height:1;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+button.primary,.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button:disabled{opacity:.5;cursor:not-allowed}
+.msg{border-radius:12px;padding:12px 14px;margin-top:12px;font-size:14px}
+.msg.ok{background:var(--ok-bg);color:#0b5c46}
+.msg.warn{background:var(--warn-bg);color:var(--warn)}
+.msg.bad{background:var(--bad-bg);color:var(--bad)}
+.msg b{display:block;margin-bottom:2px}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;margin-top:10px;font-size:14px}
+.kv span{color:var(--muted)}
+.kv code{word-break:break-all}
+pre{background:var(--code);color:#d8e6f3;border-radius:12px;padding:14px;overflow:auto;font-size:12.5px;max-height:320px;margin:10px 0 0}
+.tests{list-style:none;margin:10px 0 0;padding:0}
+.tests li{padding:8px 0;border-bottom:1px dashed var(--line)}
+.tests li:last-child{border:0}
+.status{display:flex;gap:12px;align-items:flex-start}
+.status .dot{width:12px;height:12px;border-radius:50%;margin-top:6px;flex:0 0 12px;background:#cbd5e1}
+.status.ok .dot{background:var(--accent)}
+.status.bad .dot{background:var(--bad)}
+.status>div>b:first-child{display:block;margin-bottom:2px}
+.foot{color:var(--muted);font-size:13px;text-align:center;margin-top:22px}
+@media (max-width:560px){.kv{grid-template-columns:1fr}.hero h1{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <small>DISTRIBUIPRO · PRIMEIRA CONFIGURAÇÃO</small>
+    <h1>Conecte o sistema ao Firebase da sua empresa</h1>
+    <p>Cada empresa usa o próprio projeto Firebase. Assim os seus produtos, clientes e vendas ficam só com você e nunca se misturam com os de outra empresa.</p>
+  </header>
+
+  <section class="card" id="current">
+    <div class="status" id="curStatus"><span class="dot"></span><div><b>Conferindo a configuração atual…</b></div></div>
+  </section>
+
+  <section class="card">
+    <h2><span class="n">1</span>Crie o projeto e o app Web</h2>
+    <ol>
+      <li>Abra o <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">console do Firebase</a> com a conta Google da empresa e clique em <b>Criar projeto</b> (ex.: “DistribuiPro - Minha Empresa”). O Google Analytics pode ficar desligado.</li>
+      <li>Dentro do projeto, clique no ícone <b>Web &lt;/&gt;</b> (Adicionar app), dê um apelido como “DistribuiPro Web” e clique em <b>Registrar app</b>.</li>
+      <li>Copie o bloco <code>const firebaseConfig = { … }</code> que aparece na tela. Se fechar, ele fica em <svg class="ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg> <b>Configurações do projeto › Geral › Seus apps</b>.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2><span class="n">2</span>Cole a configuração aqui</h2>
+    <textarea id="cfgIn" spellcheck="false" placeholder='const firebaseConfig = {
+  apiKey: "AIza...",
+  authDomain: "seu-projeto.firebaseapp.com",
+  projectId: "seu-projeto",
+  storageBucket: "seu-projeto.firebasestorage.app",
+  messagingSenderId: "123456789",
+  appId: "1:123456789:web:abc123"
+};'></textarea>
+    <div class="btns"><button type="button" class="primary" id="btnCheck">Conferir e gerar o arquivo</button></div>
+    <div id="parseOut"></div>
+  </section>
+
+  <section class="card" id="stepFile" hidden>
+    <h2><span class="n">3</span>Envie o arquivo para a hospedagem</h2>
+    <p>Baixe o arquivo abaixo e envie para a pasta <code>config</code> do sistema na sua hospedagem, <b>substituindo</b> o <code>firebase-config.js</code> que está lá (FileZilla, gerenciador de arquivos da hospedagem, Firebase Hosting ou Cloudflare Pages).</p>
+    <div class="btns">
+      <button type="button" class="primary" id="btnDownload"><svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Baixar firebase-config.js</button>
+      <button type="button" id="btnCopy">Copiar o código</button>
+      <button type="button" id="btnTest">Testar a conexão</button>
+    </div>
+    <ul class="tests" id="testOut" hidden></ul>
+    <details style="margin-top:12px"><summary>Ver o arquivo gerado</summary><pre id="filePreview"></pre></details>
+    <p style="margin-top:12px">Depois de enviar, recarregue esta página: o quadro do topo deve mostrar <b>“ligado ao projeto …”</b>.</p>
+  </section>
+
+  <section class="card">
+    <h2><span class="n" id="nFim">3</span>Termine no console do Firebase</h2>
+    <p>Siga o <b>Manual de instalação</b> (está na sua Minha conta) a partir destas páginas:</p>
+    <ul>
+      <li><b>Authentication</b> › Método de login › ative <b>E-mail/senha</b> (página 8).</li>
+      <li><b>Firestore Database</b> › Criar banco, edição Standard, no <b>modo de produção</b> (página 9).</li>
+      <li>Crie o <b>primeiro administrador</b> pelo console: usuário no Authentication e documento <code>users/UID</code> (página 10).</li>
+      <li>Publique as <b>regras</b> em Firestore › Regras (página 11). As regras completas do sistema estão no arquivo <code>config/firestore.rules</code>:
+        <div class="btns"><button type="button" id="btnRules">Copiar as regras do sistema</button></div>
+        <div id="rulesOut"></div></li>
+    </ul>
+    <div class="msg warn"><b>Nunca use o Firebase de outra empresa.</b> Se ao entrar no sistema aparecerem produtos, clientes ou o nome de outra empresa, pare e confira o projeto configurado.</div>
+  </section>
+
+  <p class="foot">DistribuiPro · esta página não envia seus dados para nenhum servidor: o arquivo é gerado no seu navegador.</p>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const SDK = 'https://www.gstatic.com/firebasejs/9.23.0/';
+  // Projetos de demonstração do DistribuiPro: nunca podem ser usados por um cliente.
+  const BLOCKED = ['teste-9882f'];
+  const KEYS = ['apiKey', 'authDomain', 'projectId', 'storageBucket', 'messagingSenderId', 'appId', 'measurementId'];
+  const $ = id => document.getElementById(id);
+  const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  let cfg = null, fileText = '';
+
+  function parse(text) {
+    const out = {};
+    for (const k of KEYS) {
+      const m = String(text).match(new RegExp('["\']?' + k + '["\']?\\s*:\\s*["\']([^"\'\\n]+)["\']'));
+      if (m) out[k] = m[1].trim();
+    }
+    return out;
+  }
+  function problems(c) {
+    const p = [];
+    if (!c.apiKey) p.push('Faltou o <code>apiKey</code>.'); else if (!/^AIza[0-9A-Za-z_-]{30,}$/.test(c.apiKey)) p.push('O <code>apiKey</code> não parece certo (começa com “AIza”).');
+    if (!c.projectId) p.push('Faltou o <code>projectId</code>.'); else if (!/^[a-z0-9-]{4,40}$/.test(c.projectId)) p.push('O <code>projectId</code> não parece certo.');
+    if (!c.appId) p.push('Faltou o <code>appId</code>.');
+    if (!c.authDomain) p.push('Faltou o <code>authDomain</code>.');
+    return p;
+  }
+  function build(c) {
+    const lines = KEYS.filter(k => c[k]).map(k => '    "' + k + '": ' + JSON.stringify(c[k]));
+    return [
+      '// DistribuiPro · Conexão com o SEU projeto Firebase (' + c.projectId + ').',
+      '// Gerado em ' + new Date().toLocaleString('pt-BR') + ' pela página configurar-firebase.html.',
+      'const firebaseConfig = {',
+      lines.join(',\n'),
+      '};',
+      '',
+      'if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {',
+      '    if (!/configurar-firebase\\.html$/i.test(location.pathname)) {',
+      "        document.documentElement.style.visibility = 'hidden';",
+      "        location.replace('configurar-firebase.html');",
+      '    }',
+      "    throw new Error('DistribuiPro: o Firebase da empresa ainda não foi configurado. Abra configurar-firebase.html.');",
+      '}',
+      '',
+      'firebase.initializeApp(firebaseConfig);',
+      'const db      = firebase.firestore();',
+      'const auth    = firebase.auth();',
+      'const storage = firebase.storage ? firebase.storage() : null;',
+      "console.log('🔥 Firebase inicializado: ' + firebaseConfig.projectId);",
+      '',
+      '// 39.1 · Produtos guardados no navegador (só baixa o que mudou: poupa as leituras do Firestore)',
+      '// e foto do produto gravada na hospedagem (api/upload-imagem.php). Os dois arquivos ficam em config/.',
+      "document.write('<script src=\"config/produtos-cache.js?v=39.1\"><\\/script><script src=\"config/foto-hospedagem.js?v=39.1\"><\\/script>');",
+      '',
+      '// Mantém a sessão mesmo após fechar o navegador',
+      'auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(() => {});',
+      '',
+      '// Cadastrar um funcionário em Usuários não troca a sessão do administrador: com alguém logado,',
+      '// o login novo é criado numa segunda conexão ("cadastro"), que sai logo em seguida.',
+      '(function () {',
+      '    var criar = auth.createUserWithEmailAndPassword.bind(auth);',
+      '    auth.createUserWithEmailAndPassword = async function (email, password) {',
+      '        if (!auth.currentUser) return criar(email, password);',
+      "        var app2 = firebase.apps.find(function (a) { return a.name === 'cadastro'; }) || firebase.initializeApp(firebaseConfig, 'cadastro');",
+      '        var auth2 = app2.auth();',
+      '        await auth2.setPersistence(firebase.auth.Auth.Persistence.NONE);',
+      '        var res = await auth2.createUserWithEmailAndPassword(email, password);',
+      '        try { await auth2.signOut(); } catch (_) { }',
+      '        return res;',
+      '    };',
+      '})();',
+      '',
+      '// Renova o token de acesso (expira a cada 1h) para o Firestore não falhar em silêncio',
+      '(function startTokenAutoRefresh() {',
+      '    var REFRESH_INTERVAL = 50 * 60 * 1000;',
+      '    var refreshTimer = null;',
+      '    function scheduleRefresh() {',
+      '        if (refreshTimer) clearInterval(refreshTimer);',
+      '        refreshTimer = setInterval(function() {',
+      '            var user = auth.currentUser;',
+      '            if (user) user.getIdToken(true).catch(function(e) { console.warn(\'Token refresh falhou:\', e); });',
+      '        }, REFRESH_INTERVAL);',
+      '    }',
+      '    auth.onAuthStateChanged(function(user) { if (user) scheduleRefresh(); else if (refreshTimer) clearInterval(refreshTimer); });',
+      "    document.addEventListener('visibilitychange', function() {",
+      "        if (document.visibilityState === 'visible' && auth.currentUser) { auth.currentUser.getIdToken(true).catch(function() {}); scheduleRefresh(); }",
+      '    });',
+      "    window.addEventListener('online', function() { if (auth.currentUser) auth.currentUser.getIdToken(true).catch(function() {}); });",
+      '})();',
+      ''
+    ].join('\n');
+  }
+
+  // Configuração atual do sistema
+  fetch('config/firebase-config.js', { cache: 'no-store' }).then(r => r.ok ? r.text() : '').then(t => {
+    const c = parse(t || ''), box = $('curStatus');
+    if (c.apiKey && c.projectId) {
+      const blocked = BLOCKED.includes(c.projectId);
+      box.className = 'status ' + (blocked ? 'bad' : 'ok');
+      box.innerHTML = blocked
+        ? `<span class="dot"></span><div><b>Este sistema está ligado ao projeto de demonstração <code>${esc(c.projectId)}</code>.</b>Ele não pode ser usado por uma empresa. Gere a configuração do seu projeto abaixo e substitua o arquivo.</div>`
+        : `<span class="dot"></span><div><b>Este sistema está ligado ao projeto <code>${esc(c.projectId)}</code>.</b>Se esse é o projeto da sua empresa, está tudo certo. <div class="btns"><a class="btn primary" href="login.html">Abrir o sistema</a></div></div>`;
+    } else {
+      box.className = 'status bad';
+      box.innerHTML = '<span class="dot"></span><div><b>O sistema ainda não está ligado a um Firebase.</b>Siga os passos abaixo. Leva uns 10 minutos.</div>';
+    }
+  }).catch(() => { $('curStatus').innerHTML = '<span class="dot"></span><div><b>Não consegui ler o arquivo config/firebase-config.js.</b>Siga os passos abaixo.</div>'; });
+
+  $('btnCheck').addEventListener('click', () => {
+    const c = parse($('cfgIn').value), p = problems(c), out = $('parseOut');
+    if (c.projectId && BLOCKED.includes(c.projectId)) p.unshift('Este é o projeto de <b>demonstração</b> do DistribuiPro. Crie um projeto da sua empresa no console do Firebase.');
+    if (p.length) { cfg = null; $('stepFile').hidden = true; $('nFim').textContent = '3'; out.innerHTML = `<div class="msg bad"><b>Confira a configuração colada:</b>${p.join('<br>')}</div>`; return; }
+    cfg = c; fileText = build(c);
+    out.innerHTML = `<div class="msg ok"><b>Configuração reconhecida.</b><div class="kv"><span>Projeto</span><code>${esc(c.projectId)}</code><span>Domínio de login</span><code>${esc(c.authDomain)}</code><span>App</span><code>${esc(c.appId)}</code></div></div>`;
+    $('filePreview').textContent = fileText; $('stepFile').hidden = false; $('nFim').textContent = '4'; $('testOut').hidden = true;
+    $('stepFile').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  $('btnDownload').addEventListener('click', () => {
+    if (!fileText) return;
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([fileText], { type: 'text/javascript;charset=utf-8' })); a.download = 'firebase-config.js';
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  });
+  $('btnCopy').addEventListener('click', async e => {
+    try { await navigator.clipboard.writeText(fileText); e.target.textContent = 'Copiado ✓'; } catch (_) { e.target.textContent = 'Selecione em “Ver o arquivo gerado”'; }
+    setTimeout(() => { e.target.textContent = 'Copiar o código'; }, 2500);
+  });
+
+  // Teste: chave válida, login por e-mail/senha ativo e Firestore criado e protegido
+  const load = src => new Promise((res, rej) => { if (document.querySelector('script[src="' + src + '"]')) return res(); const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = () => rej(new Error('sem internet')); document.head.appendChild(s); });
+  const withTimeout = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej({ code: 'timeout' }), ms))]);
+  $('btnTest').addEventListener('click', async e => {
+    if (!cfg) return; const b = e.target, list = $('testOut');
+    b.disabled = true; list.hidden = false; list.innerHTML = '<li>Testando…</li>';
+    const rows = [];
+    const row = (ok, title, text) => rows.push(`<li class="status ${ok === true ? 'ok' : ok === false ? 'bad' : ''}"><span class="dot"></span><div><b>${title}</b>${text ? '<br>' + text : ''}</div></li>`);
+    try {
+      await load(SDK + 'firebase-app-compat.js'); await load(SDK + 'firebase-auth-compat.js'); await load(SDK + 'firebase-firestore-compat.js');
+      const app = firebase.initializeApp(cfg, 'teste-' + Date.now());
+      try {
+        await withTimeout(app.auth().signInWithEmailAndPassword('teste-conexao@distribuipro.invalid', 'x' + Math.random().toString(36).slice(2)), 12000);
+        row(true, 'Login por e-mail e senha ativo.');
+      } catch (er) {
+        const c = String(er && er.code || '');
+        if (/api-key|invalid-api-key/.test(c)) row(false, 'A chave (apiKey) foi recusada.', 'Copie de novo a configuração do app Web do SEU projeto.');
+        else if (c === 'auth/operation-not-allowed') row(false, 'O login por e-mail e senha está desligado.', 'No console: Authentication › Método de login › E-mail/senha › Ativar.');
+        else if (/user-not-found|invalid-credential|invalid-login-credentials|wrong-password|too-many-requests|invalid-email/.test(c)) row(true, 'Projeto encontrado e login por e-mail e senha ativo.');
+        else if (/configuration-not-found/.test(c)) row(false, 'O Authentication ainda não foi iniciado.', 'No console: Authentication › Começar › E-mail/senha › Ativar.');
+        else if (/network|timeout/.test(c)) row(null, 'Não consegui falar com o Firebase.', 'Confira a internet e tente de novo.');
+        else row(null, 'Resposta inesperada do login: ' + esc(c || (er && er.message)), '');
+      }
+      try {
+        await withTimeout(app.firestore().collection('settings').doc('general').get(), 12000);
+        row(false, 'O banco Firestore está ABERTO para qualquer pessoa.', 'Publique as regras do sistema (Firestore › Regras) antes de usar.');
+      } catch (er) {
+        const c = String(er && er.code || ''), m = String(er && er.message || '');
+        if (c === 'permission-denied') row(true, 'Banco Firestore criado e protegido pelas regras.');
+        else if (c === 'not-found' || /does not exist|NOT_FOUND/i.test(m)) row(false, 'O banco Firestore ainda não foi criado.', 'No console: Firestore Database › Criar banco de dados (modo de produção).');
+        else if (c === 'timeout' || c === 'unavailable') row(null, 'O Firestore não respondeu.', 'Se você ainda não criou o banco, crie em Firestore Database › Criar banco de dados. Se já criou, aguarde 1 minuto e teste de novo.');
+        else row(null, 'Resposta inesperada do Firestore: ' + esc(c || m), '');
+      }
+      try { await app.delete(); } catch (_) { }
+    } catch (er) { row(false, 'Não foi possível carregar o Firebase para o teste.', esc(er && er.message)); }
+    list.innerHTML = rows.join(''); b.disabled = false;
+  });
+
+  $('btnRules').addEventListener('click', async e => {
+    const out = $('rulesOut');
+    try {
+      const t = await (await fetch('config/firestore.rules', { cache: 'no-store' })).text();
+      if (!/service cloud\.firestore/.test(t)) throw new Error('arquivo não encontrado');
+      try { await navigator.clipboard.writeText(t); e.target.textContent = 'Regras copiadas ✓'; } catch (_) { }
+      out.innerHTML = '<pre></pre>'; out.querySelector('pre').textContent = t;
+    } catch (_) { out.innerHTML = '<div class="msg warn">Não consegui abrir <code>config/firestore.rules</code> pela hospedagem. Abra esse arquivo na pasta do sistema no seu computador e copie o conteúdo.</div>'; }
+  });
+})();
+</script>
+</body>
+</html>

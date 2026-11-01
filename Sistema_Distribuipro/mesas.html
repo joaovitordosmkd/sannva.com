@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script>window.__stProduct=1;document.documentElement.setAttribute("data-st-product","")</script><script>/* Studio: aplica o tema escolhido (claro/escuro/automático) antes de desenhar a página */try{var p=localStorage.getItem("st_theme_pref");if(p){var t=p==="auto"?(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):p;if(t==="light"||t==="dark"){sessionStorage.setItem("erp_theme_session",t);document.documentElement.setAttribute("data-theme",t);}}}catch(e){}</script><link rel="icon" href="assets/brand/favicon-96.png?v=41.5-logo" type="image/png">
+    <script src="assets/js/branding.js?v=40.29-acessos"></script><script src="assets/js/papel-v1.js?v=40.49"></script><script src="assets/js/dp-icons-v1.js?v=37.6"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="theme-color" content="#0a0e1a">
+    <title>Mesas · DistribuiPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css?v=37.8">
+    <link rel="stylesheet" href="assets/css/mobile.css?v=37.8">
+
+
+    <link rel="stylesheet" href="assets/css/studio-light-pages.css?v=1.3">
+    <link rel="stylesheet" href="assets/css/studio-v1.css?v=39.6-logo"><link rel="stylesheet" href="assets/css/studio-pro-v2.css?v=2.7">
+<link rel="stylesheet" href="assets/css/mesas-v1.css?v=40.91">
+<script defer src="assets/js/cache-818831d97b.js"></script></head>
+<body>
+<div class="app-layout">
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileSidebar()"></div>
+    <!-- sidebar.html - Componente de navegação lateral -->
+<!-- Incluído via JavaScript em todas as páginas -->
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-brand" id="sidebarBrand"><div class="dp-default-logo" aria-label="DistribuiPro"><img src="assets/brand/distribuipro-logo-dark.png?v=41.5-logo" alt="DistribuiPro"></div>
+        <div class="brand-icon" id="brandIcon"><img src="assets/brand/distribuipro-mark.svg?v=41.5-logo" alt="DistribuiPro" style="width:100%;height:100%;display:block;object-fit:contain"></div>
+        <img class="brand-logo-img" id="brandLogoImg" src="" alt="Logo" onerror="this.style.display='none'">
+        <div class="brand-text" id="brandText">
+            <h1 id="brandName">DistribuiPRO</h1>
+            <span id="brandSub">Sistema ERP</span>
+        </div>
+    </div>
+
+    <nav class="sidebar-menu">
+        <!-- PRINCIPAL -->
+        <div class="menu-section">
+            <span class="menu-section-title">Principal</span>
+        </div>
+        <a href="index.html" class="menu-item" data-page="dashboard">
+            <i class="fas fa-chart-pie"></i>
+            <span class="menu-text">Dashboard</span>
+        </a>
+
+        <!-- OPERAÇÕES -->
+        <div class="menu-section">
+            <span class="menu-section-title">Operações</span>
+        </div>
+        <a href="pdv.html" class="menu-item" data-page="pdv">
+            <i class="fas fa-cash-register"></i>
+            <span class="menu-text">PDV / Vendas</span>
+        </a>
+        <a href="orcamentos.html" class="menu-item" data-page="orcamentos"><i class="fas fa-file-signature"></i><span class="menu-text">Orçamentos</span></a>
+        <a href="pedidos.html" class="menu-item" data-page="pedidos">
+            <i class="fas fa-clipboard-list"></i>
+            <span class="menu-text">Pedidos</span>
+            <span class="badge" id="badgePedidos" style="display:none">0</span>
+        </a>
+        <a href="entregas.html" class="menu-item" data-page="entregas">
+            <i class="fas fa-truck-fast"></i>
+            <span class="menu-text">Entregas</span>
+        </a>
+        <a href="caixa.html" class="menu-item" data-page="caixa">
+            <i class="fas fa-vault"></i>
+            <span class="menu-text">Caixa</span>
+        </a>
+        <a href="ordens-servico.html" class="menu-item" data-page="ordens-servico">
+            <i class="fas fa-screwdriver-wrench"></i>
+            <span class="menu-text">Ordens de Serviço</span>
+        </a>
+
+        <!-- CADASTROS -->
+        <div class="menu-section">
+            <span class="menu-section-title">Cadastros</span>
+        </div>
+        <a href="produtos.html" class="menu-item" data-page="produtos">
+            <i class="fas fa-box"></i>
+            <span class="menu-text">Produtos</span>
+        </a>
+        <a href="categorias.html" class="menu-item" data-page="categorias">
+            <i class="fas fa-tags"></i>
+            <span class="menu-text">Categorias</span>
+        </a>
+        <a href="clientes.html" class="menu-item" data-page="clientes">
+            <i class="fas fa-users"></i>
+            <span class="menu-text">Clientes</span>
+        </a>
+        <a href="fornecedores.html" class="menu-item" data-page="fornecedores">
+            <i class="fas fa-industry"></i>
+            <span class="menu-text">Fornecedores</span>
+        </a>
+
+        <!-- ESTOQUE -->
+        <div class="menu-section">
+            <span class="menu-section-title">Estoque</span>
+        </div>
+        <a href="estoque.html" class="menu-item" data-page="estoque">
+            <i class="fas fa-boxes-stacked"></i>
+            <span class="menu-text">Estoque Atual</span>
+        </a>
+        <a href="movimentacoes.html" class="menu-item" data-page="movimentacoes">
+            <i class="fas fa-arrow-right-arrow-left"></i>
+            <span class="menu-text">Movimentações</span>
+        </a>
+        <a href="compras.html" class="menu-item" data-page="compras">
+            <i class="fas fa-cart-shopping"></i>
+            <span class="menu-text">Compras</span>
+        </a>
+
+        <!-- FINANCEIRO -->
+        <div class="menu-section">
+            <span class="menu-section-title">Financeiro</span>
+        </div>
+        <a href="contas-pagar.html" class="menu-item" data-page="contas-pagar">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span class="menu-text">Contas a Pagar</span>
+        </a>
+        <a href="contas-receber.html" class="menu-item" data-page="contas-receber">
+            <i class="fas fa-hand-holding-dollar"></i>
+            <span class="menu-text">Contas a Receber</span>
+        </a>
+        <a href="fluxo-caixa.html" class="menu-item" data-page="fluxo-caixa">
+            <i class="fas fa-chart-line"></i>
+            <span class="menu-text">Fluxo de Caixa</span>
+        </a>
+
+        <!-- GESTÃO -->
+        <div class="menu-section">
+            <span class="menu-section-title">Gestão</span>
+        </div>
+        <a href="motoboys.html" class="menu-item" data-page="motoboys">
+            <i class="fas fa-motorcycle"></i>
+            <span class="menu-text">Motoboys</span>
+        </a>
+        <a href="relatorios.html" class="menu-item" data-page="relatorios">
+            <i class="fas fa-chart-bar"></i>
+            <span class="menu-text">Relatórios</span>
+        </a>
+        <a href="comissoes.html" class="menu-item" data-page="comissoes">
+            <i class="fas fa-percent"></i>
+            <span class="menu-text">Comissões</span>
+        </a>
+        <a href="usuarios.html" class="menu-item" data-page="usuarios">
+            <i class="fas fa-user-shield"></i>
+            <span class="menu-text">Usuários</span>
+        </a>
+        <a href="auditoria.html" class="menu-item" data-page="auditoria">
+            <i class="fas fa-clock-rotate-left"></i>
+            <span class="menu-text">Auditoria</span>
+        </a>
+        <a href="configuracoes.html" class="menu-item" data-page="configuracoes">
+            <i class="fas fa-gear"></i>
+            <span class="menu-text">Configurações</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-toggle">
+        <button onclick="toggleSidebar()" title="Recolher menu">
+            <i class="fas fa-angles-left" id="sidebarToggleIcon"></i>
+        </button>
+    </div>
+</div>
+    <div class="main-content">
+        <header class="header">
+            <div class="header-left"><button class="mobile-menu-btn" onclick="toggleMobileSidebar()"><i class="fas fa-bars"></i></button><div><h2>Mesas e comandas</h2><div class="header-breadcrumb"><i class="fas fa-home" style="font-size:10px"></i><span>/ Operações / Mesas</span></div></div></div>
+            <div class="header-right"><button class="header-action" onclick="toggleTheme()"><i class="fas fa-sun" id="themeIcon"></i></button><button class="header-action" onclick="toggleNotifications()"><i class="fas fa-bell"></i><span class="notif-dot"></span></button><div class="header-avatar" id="userAvatar" onclick="toggleProfileMenu()">A</div></div>
+        </header>
+        <div class="page-content" id="mesRoot"></div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="config/firebase-config.js"></script>
+    <script src="services/core-services.js?v=39.14.5"></script>
+    <script src="assets/js/mobile-fix.js"></script>
+    <script src="assets/js/app.js?v=40.59"></script>
+    <script src="assets/js/pages.js?v=40.74"></script>
+<script defer src="assets/js/studio-v1.js?v=39.13"></script><script defer src="assets/js/studio-pro-v2.js?v=2.7-rolagem"></script>
+<script src="assets/js/dp-catalog-v1.js?v=35.36"></script>
+<script src="assets/js/taxas-parcela-v1.js?v=35.36"></script>
+<script src="assets/js/mesas-v1.js?v=40.91"></script><script src="assets/js/cozinha-print-v1.js?v=40.49"></script><script src="assets/js/sabores-v1.js?v=38.4"></script><script src="assets/js/adicionais-v1.js?v=38.4"></script>
+<script src="assets/js/edicao-v1.js?v=38.0"></script>
+<script src="assets/js/os-pro-v1.js?v=39.14.5-os"></script>
+<script src="assets/js/validade-v1.js?v=39.8-funil"></script>
+</body></html>

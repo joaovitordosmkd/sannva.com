@@ -1,0 +1,17 @@
+// DistribuiPro · publicar o sistema num WORKER do Cloudflare (endereço *.workers.dev).
+// Quem usa é o PUBLICAR-NO-CLOUDFLARE.cmd:  wrangler deploy --config cloudflare/wrangler.jsonc --name NOME
+// (o --name troca o "name" abaixo pelo nome do Worker do cliente). Caminhos relativos a esta pasta: ".." é a
+// pasta do sistema. O .assetsignore da pasta do sistema diz o que NÃO sobe como arquivo público.
+{
+  "name": "distribuipro",
+  "main": "worker.mjs",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "..",
+    "binding": "ASSETS",
+    // o Worker roda antes dos arquivos nestes caminhos: sem isso o data/produtos-snapshot.json sairia sem login
+    "run_worker_first": ["/api/*", "/data", "/data/*"]
+  },
+  // não apaga as variáveis que o cliente criou no painel do Cloudflare
+  "keep_vars": true
+}

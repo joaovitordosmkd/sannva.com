@@ -1,0 +1,38 @@
+[28-Oct-2024 08:32:29 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 518
+[28-Oct-2024 08:32:33 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 518
+[28-Oct-2024 08:32:52 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 518
+[28-Oct-2024 08:33:23 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 518
+[28-Oct-2024 08:33:31 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 518
+[28-Oct-2024 08:33:48 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 518
+[28-Oct-2024 08:33:51 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 518
+[28-Oct-2024 08:34:38 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 518
+[28-Oct-2024 08:35:07 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 518
+[28-Oct-2024 08:40:11 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 520
+[28-Oct-2024 08:40:13 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 520
+[28-Oct-2024 08:40:14 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 520
+[28-Oct-2024 08:40:53 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 520
+[28-Oct-2024 08:40:54 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 520
+[28-Oct-2024 08:40:55 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 520
+[28-Oct-2024 08:40:55 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 520
+[28-Oct-2024 08:43:20 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 521
+[28-Oct-2024 08:43:23 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 521
+[28-Oct-2024 20:11:18 America/Sao_Paulo] PHP Warning:  include(fast_config.php): failed to open stream: No such file or directory in /home/tecautov/public_html/_core/_includes/config.php on line 3
+[28-Oct-2024 20:11:18 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'fast_config.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/_core/_includes/config.php on line 3
+[28-Oct-2024 20:11:28 America/Sao_Paulo] PHP Warning:  include(fast_config.php): failed to open stream: No such file or directory in /home/tecautov/public_html/_core/_includes/config.php on line 3
+[28-Oct-2024 20:11:28 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'fast_config.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/_core/_includes/config.php on line 3
+[10-Apr-2025 10:32:51 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '<', expecting end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 18
+[10-Apr-2025 10:32:53 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '<', expecting end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 18
+[10-Apr-2025 12:44:36 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 44
+[10-Apr-2025 14:00:32 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 44
+[10-Apr-2025 14:00:33 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 44
+[10-Apr-2025 14:00:47 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 44
+[10-Apr-2025 14:00:48 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 44
+[10-Apr-2025 14:00:48 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 44
+[10-Apr-2025 14:00:50 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 44
+[10-Apr-2025 14:00:50 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 44
+[10-Apr-2025 14:00:54 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/tecautov/public_html/administracao/inicio/index.php on line 44
+[12-Apr-2025 10:30:11 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) in /home/tecautov/public_html/administracao/inicio/index.php on line 360
+[12-Apr-2025 10:30:12 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) in /home/tecautov/public_html/administracao/inicio/index.php on line 360
+[12-Apr-2025 10:30:14 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) in /home/tecautov/public_html/administracao/inicio/index.php on line 360
+[12-Apr-2025 10:49:58 America/Sao_Paulo] PHP Fatal error:  Cannot redeclare criar_modal() (previously declared in /home/tecautov/public_html/administracao/inicio/index.php:103) in /home/tecautov/public_html/administracao/inicio/index.php on line 451
+[12-Apr-2025 10:54:59 America/Sao_Paulo] PHP Fatal error:  Cannot redeclare criar_modal() (previously declared in /home/tecautov/public_html/administracao/inicio/index.php:103) in /home/tecautov/public_html/administracao/inicio/index.php on line 451

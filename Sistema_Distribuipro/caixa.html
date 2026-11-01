@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script>window.__stProduct=1;document.documentElement.setAttribute("data-st-product","")</script><script>/* Studio: aplica o tema escolhido (claro/escuro/automático) antes de desenhar a página */try{var p=localStorage.getItem("st_theme_pref");if(p){var t=p==="auto"?(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):p;if(t==="light"||t==="dark"){sessionStorage.setItem("erp_theme_session",t);document.documentElement.setAttribute("data-theme",t);}}}catch(e){}</script><link rel="icon" href="assets/brand/favicon-96.png?v=41.5-logo" type="image/png">
+    <script src="assets/js/branding.js?v=40.29-acessos"></script><script src="assets/js/papel-v1.js?v=40.49"></script><script src="assets/js/dp-icons-v1.js?v=37.6"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="theme-color" content="#0a0e1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Caixa · DistribuiPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css?v=37.8">
+    <link rel="stylesheet" href="assets/css/mobile.css?v=37.8">
+
+    <link rel="stylesheet" href="assets/css/studio-light-pages.css?v=1.3">
+    <link rel="stylesheet" href="assets/css/studio-v1.css?v=39.6-logo"><link rel="stylesheet" href="assets/css/studio-pro-v2.css?v=2.7"><link rel="stylesheet" href="assets/css/caixa-pro-v1.css?v=1.6">
+<script defer src="assets/js/cache-818831d97b.js"></script></head>
+<body>
+    <div class="app-layout">
+        <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileSidebar()"></div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand"><div class="dp-default-logo" aria-label="DistribuiPro"><img src="assets/brand/distribuipro-logo-dark.png?v=41.5-logo" alt="DistribuiPro"></div><div class="brand-icon"><img src="assets/brand/distribuipro-mark.svg?v=41.5-logo" alt="DistribuiPro" style="width:100%;height:100%;display:block;object-fit:contain"></div><div class="brand-text"><h1>DistribuiPRO</h1><span>Sistema ERP</span></div></div>
+            <nav class="sidebar-menu">
+<div class="menu-section"><span class="menu-section-title">Principal</span></div>
+                <a href="index.html" class="menu-item"><i class="fas fa-chart-pie"></i><span class="menu-text">Dashboard</span></a>
+                <div class="menu-section"><span class="menu-section-title">Operações</span></div>
+                <a href="pdv.html" class="menu-item"><i class="fas fa-cash-register"></i><span class="menu-text">PDV / Vendas</span></a>
+        <a href="orcamentos.html" class="menu-item" data-page="orcamentos"><i class="fas fa-file-signature"></i><span class="menu-text">Orçamentos</span></a>
+                <a href="pedidos.html" class="menu-item"><i class="fas fa-clipboard-list"></i><span class="menu-text">Pedidos</span></a>
+                <a href="entregas.html" class="menu-item"><i class="fas fa-truck-fast"></i><span class="menu-text">Entregas</span></a>
+                <a href="caixa.html" class="menu-item active"><i class="fas fa-vault"></i><span class="menu-text">Caixa</span></a>
+                <a href="ordens-servico.html" class="menu-item"><i class="fas fa-screwdriver-wrench"></i><span class="menu-text">Ordens de Serviço</span></a>
+                <div class="menu-section"><span class="menu-section-title">Cadastros</span></div>
+                <a href="produtos.html" class="menu-item"><i class="fas fa-box"></i><span class="menu-text">Produtos</span></a>
+                <a href="categorias.html" class="menu-item"><i class="fas fa-tags"></i><span class="menu-text">Categorias</span></a>
+                <a href="clientes.html" class="menu-item"><i class="fas fa-users"></i><span class="menu-text">Clientes</span></a>
+                <a href="fornecedores.html" class="menu-item"><i class="fas fa-industry"></i><span class="menu-text">Fornecedores</span></a>
+                <div class="menu-section"><span class="menu-section-title">Estoque</span></div>
+                <a href="estoque.html" class="menu-item"><i class="fas fa-boxes-stacked"></i><span class="menu-text">Estoque</span></a>
+                <a href="movimentacoes.html" class="menu-item"><i class="fas fa-arrow-right-arrow-left"></i><span class="menu-text">Movimentações</span></a>
+                <a href="compras.html" class="menu-item"><i class="fas fa-cart-shopping"></i><span class="menu-text">Compras</span></a>
+                <div class="menu-section"><span class="menu-section-title">Financeiro</span></div>
+                <a href="contas-pagar.html" class="menu-item"><i class="fas fa-file-invoice-dollar"></i><span class="menu-text">Contas a Pagar</span></a>
+                <a href="contas-receber.html" class="menu-item"><i class="fas fa-hand-holding-dollar"></i><span class="menu-text">Contas a Receber</span></a>
+                <a href="fluxo-caixa.html" class="menu-item"><i class="fas fa-chart-line"></i><span class="menu-text">Fluxo de Caixa</span></a>
+                <div class="menu-section"><span class="menu-section-title">Gestão</span></div>
+                <a href="motoboys.html" class="menu-item"><i class="fas fa-motorcycle"></i><span class="menu-text">Motoboys</span></a>
+                <a href="relatorios.html" class="menu-item"><i class="fas fa-chart-bar"></i><span class="menu-text">Relatórios</span></a>
+                <a href="comissoes.html" class="menu-item"><i class="fas fa-percent"></i><span class="menu-text">Comissões</span></a>
+                <a href="usuarios.html" class="menu-item"><i class="fas fa-user-shield"></i><span class="menu-text">Usuários</span></a>
+                <a href="auditoria.html" class="menu-item"><i class="fas fa-clock-rotate-left"></i><span class="menu-text">Auditoria</span></a>
+                <a href="configuracoes.html" class="menu-item"><i class="fas fa-gear"></i><span class="menu-text">Configurações</span></a>
+            </nav>
+            <div class="sidebar-toggle"><button onclick="toggleSidebar()"><i class="fas fa-angles-left" id="sidebarToggleIcon"></i></button></div>
+        </div>
+
+        <div class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()"><i class="fas fa-bars"></i></button>
+                    <div><h2>Controle de Caixa</h2><div class="header-breadcrumb"><i class="fas fa-home" style="font-size:10px"></i><span>/ Operações / Caixa</span></div></div>
+                </div>
+                <div class="header-right">
+                    <button class="header-action" onclick="toggleTheme()" title="Alternar tema"><i class="fas fa-sun" id="themeIcon"></i></button>
+                    <button class="header-action" onclick="toggleNotifications()" title="Notificações"><i class="fas fa-bell"></i><span class="notif-dot"></span></button>
+                    <div class="header-avatar" id="userAvatar" onclick="toggleProfileMenu()" title="Meu perfil" style="cursor:pointer">A</div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <!-- Status do Caixa Atual -->
+                <div class="card" style="border:2px solid var(--accent);margin-bottom:20px">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+                        <div style="display:flex;align-items:center;gap:16px">
+                            <div style="width:56px;height:56px;border-radius:14px;background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center"><i class="fas fa-vault" style="font-size:24px;color:var(--accent)"></i></div>
+                            <div>
+                                <div style="font-size:13px;color:var(--text-muted)" id="cashOperator">Carregando...</div>
+                                <div style="font-size:22px;font-weight:800;color:var(--text-primary)" id="cashStatusLabel">—</div>
+                                <div style="font-size:12px;color:var(--text-muted)" id="cashOpenInfo"></div>
+                            </div>
+                        </div>
+                        <div style="display:flex;gap:10px" id="cashActions">
+                            <button class="btn btn-primary" onclick="openCash()" id="btnOpenCash"><i class="fas fa-lock-open"></i> Abrir Caixa</button>
+                            <button class="btn btn-outline" onclick="doSupply()" id="btnSupply" style="display:none"><i class="fas fa-plus-circle"></i> Suprimento</button>
+                            <button class="btn btn-outline" style="color:#ef4444;border-color:#ef4444;display:none" onclick="doWithdraw()" id="btnWithdraw"><i class="fas fa-minus-circle"></i> Sangria</button>
+                            <button class="btn btn-primary" onclick="closeCash()" id="btnCloseCash" style="display:none"><i class="fas fa-lock"></i> Fechar Caixa</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumo -->
+                <div class="stat-grid" style="grid-template-columns:repeat(6,1fr)">
+                    <div class="stat-card"><div class="stat-value" id="statDinheiro" style="font-size:16px;color:#10b981">—</div><div class="stat-label">Dinheiro</div></div>
+                    <div class="stat-card"><div class="stat-value" id="statPix" style="font-size:16px;color:#3b82f6">—</div><div class="stat-label">PIX</div></div>
+                    <div class="stat-card"><div class="stat-value" id="statCredito" style="font-size:16px;color:#8b5cf6">—</div><div class="stat-label">Crédito</div></div>
+                    <div class="stat-card"><div class="stat-value" id="statDebito" style="font-size:16px;color:#06b6d4">—</div><div class="stat-label">Débito</div></div>
+                    <div class="stat-card"><div class="stat-value" id="statFiado" style="font-size:16px;color:#f59e0b">—</div><div class="stat-label">Fiado</div></div>
+                    <div class="stat-card" style="border-color:var(--accent)"><div class="stat-value" id="statTotal" style="font-size:18px;color:var(--accent)">—</div><div class="stat-label"><strong>Total Geral</strong></div></div>
+                </div>
+
+                <div class="ig-equal-to-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+                    <!-- Movimentações do Caixa -->
+                    <div class="card">
+                        <h4 style="color:var(--text-primary);margin:0 0 16px;font-size:14px"><i class="fas fa-list" style="color:var(--accent);margin-right:6px"></i>Movimentações</h4>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead><tr><th>Hora</th><th>Tipo</th><th>Descrição</th><th>Valor</th></tr></thead>
+                                <tbody>
+                                <tr><td colspan="20" style="text-align:center;padding:40px;color:var(--text-muted)"><i class="fas fa-spinner fa-spin" style="margin-right:8px"></i>Carregando...</td></tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Histórico de caixas -->
+                    <div class="card">
+                        <h4 style="color:var(--text-primary);margin:0 0 16px;font-size:14px"><i class="fas fa-history" style="color:var(--accent);margin-right:6px"></i>Histórico de Caixas</h4>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead><tr><th>Data</th><th>Operador</th><th>Total</th><th>Diferença</th><th>Status</th></tr></thead>
+                                <tbody>
+                                <tr><td colspan="20" style="text-align:center;padding:40px;color:var(--text-muted)"><i class="fas fa-spinner fa-spin" style="margin-right:8px"></i>Carregando...</td></tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Suprimento -->
+    <div class="modal-overlay" id="modalSuprimento">
+        <div class="modal" style="max-width:420px">
+            <div class="modal-header"><h3><i class="fas fa-plus-circle" style="color:#10b981"></i> Suprimento de Caixa</h3><button class="modal-close" onclick="closeModal('modalSuprimento')"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body">
+                <div class="form-group"><label>Valor *</label><input type="text" inputmode="decimal" autocomplete="off" id="supplyAmount" placeholder="0,00"></div>
+                <div class="form-group"><label>Motivo</label><input type="text" id="supplyDesc" placeholder="Ex: Troco adicional..."></div>
+            </div>
+            <div class="modal-footer"><button class="btn btn-outline" onclick="closeModal('modalSuprimento')">Cancelar</button><button class="btn btn-primary" onclick="confirmSupply()"><i class="fas fa-check"></i> Confirmar</button></div>
+        </div>
+    </div>
+
+    <!-- Modal Sangria -->
+    <div class="modal-overlay" id="modalSangria">
+        <div class="modal" style="max-width:420px">
+            <div class="modal-header"><h3><i class="fas fa-minus-circle" style="color:#ef4444"></i> Sangria de Caixa</h3><button class="modal-close" onclick="closeModal('modalSangria')"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body">
+                <div class="form-group"><label>Valor *</label><input type="text" inputmode="decimal" autocomplete="off" id="withdrawAmount" placeholder="0,00"></div>
+                <div class="form-group"><label>Motivo *</label><input type="text" id="withdrawDesc" placeholder="Ex: Retirada para cofre..."></div>
+            </div>
+            <div class="modal-footer"><button class="btn btn-outline" onclick="closeModal('modalSangria')">Cancelar</button><button class="btn btn-primary" style="background:#ef4444" onclick="confirmWithdraw()"><i class="fas fa-check"></i> Confirmar Sangria</button></div>
+        </div>
+    </div>
+
+    <!-- Modal Fechamento -->
+    <div class="modal-overlay" id="modalFechamento">
+        <div class="modal" style="max-width:520px">
+            <div class="modal-header"><h3><i class="fas fa-lock"></i> Fechamento de Caixa</h3><button class="modal-close" onclick="closeModal('modalFechamento')"><i class="fas fa-times"></i></button></div>
+            <div class="modal-body">
+                <div id="cashSummaryBox" style="background:var(--bg-primary);border-radius:10px;padding:16px;margin-bottom:16px"></div>
+                <div class="form-group"><label>Valor contado em caixa (dinheiro) *</label><input type="text" inputmode="decimal" autocomplete="off" id="valorContado" placeholder="0,00"></div>
+                <div id="diferencaBox" style="padding:12px;border-radius:8px;margin-top:8px;font-size:14px;font-weight:600;text-align:center"></div>
+                <div class="form-group" style="margin-top:12px"><label>Observações</label><textarea id="closeNotes" rows="2" placeholder="Observações do fechamento..."></textarea></div>
+            </div>
+            <div class="modal-footer"><button class="btn btn-outline" onclick="closeModal('modalFechamento')">Cancelar</button><button class="btn btn-primary" onclick="confirmCloseCash()"><i class="fas fa-lock"></i> Fechar Caixa</button></div>
+        </div>
+    </div>
+
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="config/firebase-config.js"></script>
+    <script src="services/core-services.js?v=39.14.5"></script>
+    <script src="assets/js/mobile-fix.js"></script>
+    <script src="assets/js/app.js?v=40.59"></script>
+    <script src="assets/js/pages.js?v=40.74"></script>
+    <script>
+        let currentCash = null;
+        let cashMovements = [];
+
+        // 40.38 · Valores do caixa em campo de texto com teclado de valor: aceita "150,50", "1.234,56" e "150.50" (o botão
+        // "Usar o esperado" grava com ponto). Antes eram type="number": no iPhone em português o teclado só tem vírgula, o
+        // campo ficava vazio para o sistema e o fechamento parava em "Informe o valor contado" (o caixa continuava aberto).
+        function valorBR(v) {
+            let s = String(v == null ? '' : v).trim().replace(/[R$\s]/g, '');
+            if (!s) return NaN;
+            if (s.includes(',')) s = s.replace(/\./g, '').replace(',', '.');
+            const n = parseFloat(s);
+            return isFinite(n) ? Math.round(n * 100) / 100 : NaN;
+        }
+        function openModal(id){document.getElementById(id).classList.add('active');}
+        function closeModal(id){document.getElementById(id).classList.remove('active');}
+
+        // ─── LOAD CASH STATE ──────────────────────────────
+        async function loadCashState() {
+            try {
+                // Find open cash register
+                const snap = await db.collection('cash_registers').get();
+                const registers = snap.docs.map(d=>({id:d.id,...d.data()}));
+                currentCash = registers.find(r => r.status === 'open') || null;
+
+                if (currentCash) {
+                    // Load movements for this register
+                    const movSnap = await db.collection('cash_movements').get();
+                    cashMovements = movSnap.docs.map(d=>({id:d.id,...d.data()}))
+                        .filter(m => m.cashRegisterId === currentCash.id)
+                        .sort((a,b) => (a.createdAt?.seconds||0) - (b.createdAt?.seconds||0));
+                }
+
+                // Load history
+                const allRegisters = registers
+                    .filter(r => r.status === 'closed')
+                    .sort((a,b) => (b.closedAt?.seconds||0) - (a.closedAt?.seconds||0))
+                    .slice(0, 10);
+
+                renderCashState(allRegisters);
+            } catch(e) {
+                console.error('Erro caixa:', e);
+            }
+        }
+
+        function renderCashState(history) {
+            // Toggle buttons
+            const isOpen = !!currentCash;
+            document.getElementById('btnOpenCash').style.display = isOpen ? 'none' : 'inline-flex';
+            document.getElementById('btnSupply').style.display = isOpen ? 'inline-flex' : 'none';
+            document.getElementById('btnWithdraw').style.display = isOpen ? 'inline-flex' : 'none';
+            document.getElementById('btnCloseCash').style.display = isOpen ? 'inline-flex' : 'none';
+
+            // Status bar
+            if (isOpen) {
+                document.getElementById('cashStatusLabel').innerHTML = '<span style="color:var(--success)">Caixa Aberto</span>';
+                document.getElementById('cashOperator').textContent = `Operador: ${currentCash.operatorName || 'Admin'}`;
+                const openTime = currentCash.openedAt?.toDate ? currentCash.openedAt.toDate().toLocaleString('pt-BR') : '';
+                document.getElementById('cashOpenInfo').textContent = `Aberto em ${openTime} · Valor inicial: ${Utils.currency(currentCash.initialAmount||0)}`;
+            } else {
+                document.getElementById('cashStatusLabel').innerHTML = '<span style="color:var(--danger)">Caixa Fechado</span>';
+                document.getElementById('cashOperator').textContent = 'Sem operador no momento';
+                document.getElementById('cashOpenInfo').textContent = 'Clique em "Abrir Caixa" para começar';
+            }
+
+            // ── Stats por método de pagamento ─────────────────
+            const setS = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
+
+            if (currentCash) {
+                // Vendas agrupadas por método de pagamento
+                // cash_movements tem paymentMethod e amount
+                const sales = cashMovements.filter(m => m.type === 'sale' && m.reversed !== true);
+
+                const byMethod = (method) => sales
+                    .filter(m => m.paymentMethod === method)
+                    .reduce((s, m) => s + (m.amount || 0), 0);
+
+                const dinheiro = byMethod('dinheiro');
+                const pix      = byMethod('pix');
+                const credito  = byMethod('credito');
+                const debito   = byMethod('debito');
+                const fiado    = byMethod('fiado');
+                // multi: soma tudo que não se enquadra nos acima
+                const outros   = sales
+                    .filter(m => !['dinheiro','pix','credito','debito','fiado'].includes(m.paymentMethod))
+                    .reduce((s, m) => s + (m.amount || 0), 0);
+
+                const totalVendas = dinheiro + pix + credito + debito + fiado + outros;
+                const totalSupply  = cashMovements.filter(m=>m.type==='supply' && m.reversed!==true).reduce((s,m)=>s+(m.amount||0),0);
+                const totalWithdraw = cashMovements.filter(m=>m.type==='withdraw' && m.reversed!==true).reduce((s,m)=>s+Math.abs(m.amount||0),0);
+                const totalGeral = (currentCash.initialAmount||0) + totalVendas + totalSupply - totalWithdraw;
+
+                setS('statDinheiro', Utils.currency(dinheiro));
+                setS('statPix',      Utils.currency(pix));
+                setS('statCredito',  Utils.currency(credito));
+                setS('statDebito',   Utils.currency(debito));
+                setS('statFiado',    Utils.currency(fiado));
+                setS('statTotal',    Utils.currency(totalGeral));
+            } else {
+                ['statDinheiro','statPix','statCredito','statDebito','statFiado','statTotal']
+                    .forEach(id => setS(id, 'R$ 0,00'));
+            }
+
+            // Movements table
+            const movTbody = document.querySelectorAll('.data-table tbody')[0];
+            if (movTbody) {
+                if (!currentCash || cashMovements.length === 0) {
+                    movTbody.innerHTML = `<tr><td colspan="4" style="text-align:center;padding:20px;color:var(--text-muted)">${currentCash ? 'Nenhuma movimentação' : 'Abra o caixa para começar'}</td></tr>`;
+                } else {
+                    // Add opening as first movement
+                    let rows = `<tr><td>${currentCash.openedAt?.toDate ? currentCash.openedAt.toDate().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}) : '—'}</td><td>Abertura</td><td>Valor inicial</td><td style="color:var(--success);font-weight:600">+${Utils.currency(currentCash.initialAmount||0)}</td></tr>`;
+                    rows += cashMovements.map(m => {
+                        const time = m.createdAt?.toDate ? m.createdAt.toDate().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}) : '—';
+                        const typeLabel = m.type==='sale' ? (m.source==='service_order'||m.referenceType==='service_order' ? 'Ordem de Serviço' : 'Venda') : ({supply:'Suprimento',withdraw:'Sangria'}[m.type] || m.type);
+                        const isNeg = m.type === 'withdraw' || (m.amount||0) < 0;
+                        const reversed = m.reversed === true;
+                        return `<tr style="${reversed?'opacity:.55':''}"><td>${time}</td><td>${typeLabel}${reversed?' · Estornado':''}</td><td>${m.description||'—'}${reversed&&m.reverseReason?`<div style="font-size:10px;color:var(--danger)">${m.reverseReason}</div>`:''}</td><td style="color:${reversed?'var(--text-muted)':(isNeg?'var(--danger)':'var(--success)')};font-weight:600;text-decoration:${reversed?'line-through':'none'}">${isNeg?'':'+'} ${Utils.currency(m.amount||0)}</td></tr>`;
+                    }).join('');
+                    movTbody.innerHTML = rows;
+                }
+            }
+
+            // History table
+            const histTbody = document.querySelectorAll('.data-table tbody')[1];
+            if (histTbody) {
+                if (history.length === 0) {
+                    histTbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:20px;color:var(--text-muted)">Nenhum histórico</td></tr>';
+                } else {
+                    histTbody.innerHTML = history.map(r => {
+                        const diff = r.difference || 0;
+                        const diffColor = diff === 0 ? 'var(--success)' : diff > 0 ? 'var(--success)' : 'var(--danger)';
+                        const diffLabel = diff === 0 ? 'OK' : 'Diferença';
+                        return `<tr>
+                            <td>${r.closedAt?.toDate ? r.closedAt.toDate().toLocaleDateString('pt-BR') : '—'}</td>
+                            <td>${r.operatorName||'—'}</td>
+                            <td>${Utils.currency(r.actualAmount||0)}</td>
+                            <td style="color:${diffColor}">${Utils.currency(diff)}</td>
+                            <td><span class="badge ${diff===0?'badge-success':'badge-warning'}">${diffLabel}</span></td>
+                        </tr>`;
+                    }).join('');
+                }
+            }
+        }
+
+        // ─── OPEN CASH ────────────────────────────────────
+        async function openCash() {
+            if (currentCash) { Toast.warning('Caixa já está aberto'); return; }
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay active'; overlay.id = 'cxAbrirOverlay';
+            overlay.innerHTML = `<div class="modal" style="max-width:380px">
+                <div class="modal-header"><h3><i class="fas fa-cash-register"></i> Abrir Caixa</h3><button class="modal-close" onclick="this.closest('.modal-overlay').remove()"><i class="fas fa-times"></i></button></div>
+                <div class="modal-body">
+                    <div class="form-group"><label>Valor inicial (troco)</label><input type="text" inputmode="decimal" autocomplete="off" class="form-control" id="cashInitialAmount" placeholder="0,00" value="200"></div>
+                    <div class="form-group"><label>Turno</label><select class="form-control" id="cashShift"><option value="morning">Manhã</option><option value="afternoon">Tarde</option><option value="night">Noite</option></select></div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">Cancelar</button>
+                <button class="btn btn-primary" onclick="confirmOpenCash()"><i class="fas fa-lock-open"></i> Abrir Caixa</button></div></div>`;
+            document.body.appendChild(overlay);
+        }
+
+        async function confirmOpenCash() {
+            const amount = valorBR(document.getElementById('cashInitialAmount').value) || 0;
+            const shift = document.getElementById('cashShift').value;
+            try {
+                // 40.38 · Confere de novo antes de abrir: outro aparelho pode ter aberto o caixa enquanto esta tela estava aberta
+                // (dois caixas abertos = fechar um e o outro continuar "aberto")
+                await loadCashState();
+                if (currentCash) { document.getElementById('cxAbrirOverlay')?.remove(); Toast.warning(`Já existe um caixa aberto${currentCash.operatorName ? ' por ' + currentCash.operatorName : ''}. Use esse ou feche-o antes de abrir outro.`); return; }
+                const cashId = await CashService.open(amount, shift);
+                // 40.38 · fecha a janela de abrir (antes tirava a 1ª .modal-overlay da página: a do Suprimento)
+                document.getElementById('cxAbrirOverlay')?.remove();
+                Toast.success('Caixa aberto com sucesso!');
+                await loadCashState();
+            } catch(e) { Toast.error('Erro: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message))); }
+        }
+
+        // ─── SUPPLY (Suprimento) ──────────────────────────
+        async function doSupply() {
+            if (!currentCash) { Toast.warning('Abra o caixa primeiro'); return; }
+            openModal('modalSuprimento');
+        }
+
+        async function confirmSupply() {
+            const amount = valorBR(document.getElementById('supplyAmount')?.value) || 0;
+            const desc = document.getElementById('supplyDesc')?.value || 'Suprimento';
+            if (amount <= 0) { Toast.warning('Informe o valor'); return; }
+            try {
+                await CashService.supply(currentCash.id, amount, desc);
+                closeModal('modalSuprimento');
+                document.getElementById('supplyAmount').value = '';
+                document.getElementById('supplyDesc').value = '';
+                Toast.success(`Suprimento de ${Utils.currency(amount)} registrado`);
+                await loadCashState();
+            } catch(e) { Toast.error('Erro: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message))); }
+        }
+
+        // ─── WITHDRAW (Sangria) ───────────────────────────
+        async function doWithdraw() {
+            if (!currentCash) { Toast.warning('Abra o caixa primeiro'); return; }
+            openModal('modalSangria');
+        }
+
+        async function confirmWithdraw() {
+            const amount = valorBR(document.getElementById('withdrawAmount')?.value) || 0;
+            const desc = document.getElementById('withdrawDesc')?.value || 'Sangria';
+            if (amount <= 0) { Toast.warning('Informe o valor'); return; }
+            try {
+                await CashService.withdraw(currentCash.id, amount, desc);
+                closeModal('modalSangria');
+                document.getElementById('withdrawAmount').value = '';
+                document.getElementById('withdrawDesc').value = '';
+                Toast.success(`Sangria de ${Utils.currency(amount)} registrada`);
+                await loadCashState();
+            } catch(e) { Toast.error('Erro: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message))); }
+        }
+
+        // ─── CLOSE CASH ───────────────────────────────────
+        async function closeCash() {
+            if (!currentCash) { Toast.warning('Nenhum caixa aberto'); return; }
+
+            const sales = cashMovements.filter(m => m.type === 'sale' && m.reversed !== true);
+            const byMethod = (method) => sales.filter(m => m.paymentMethod === method).reduce((s,m)=>s+(m.amount||0),0);
+
+            const dinheiro  = byMethod('dinheiro');
+            const pix       = byMethod('pix');
+            const credito   = byMethod('credito');
+            const debito    = byMethod('debito');
+            const fiado     = byMethod('fiado');
+            const totalVendas = sales.reduce((s,m)=>s+(m.amount||0),0);
+            const totalSupply  = cashMovements.filter(m=>m.type==='supply' && m.reversed!==true).reduce((s,m)=>s+(m.amount||0),0);
+            const totalWithdraw = cashMovements.filter(m=>m.type==='withdraw' && m.reversed!==true).reduce((s,m)=>s+Math.abs(m.amount||0),0);
+            const expectedCash = (currentCash.initialAmount||0) + dinheiro + totalSupply - totalWithdraw;
+            const totalGeral = (currentCash.initialAmount||0) + totalVendas + totalSupply - totalWithdraw;
+
+            const summaryBox = document.getElementById('cashSummaryBox');
+            if (summaryBox) {
+                const row = (label, val, color='') =>
+                    `<div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px">
+                        <span style="color:var(--text-muted)">${label}</span>
+                        <strong${color?` style="color:${color}"`:''}>${val}</strong>
+                    </div>`;
+                summaryBox.innerHTML =
+                    row('Valor inicial:', Utils.currency(currentCash.initialAmount||0)) +
+                    '<div style="border-top:1px solid var(--border-color);margin:8px 0"></div>' +
+                    row('<i class="fas fa-money-bill-wave" style="width:18px"></i> Dinheiro:', Utils.currency(dinheiro), '#10b981') +
+                    row('<i class="fas fa-qrcode" style="width:18px"></i> PIX:', Utils.currency(pix), '#3b82f6') +
+                    row('<i class="fas fa-credit-card" style="width:18px"></i> Crédito:', Utils.currency(credito), '#8b5cf6') +
+                    row('<i class="fas fa-credit-card" style="width:18px"></i> Débito:', Utils.currency(debito), '#06b6d4') +
+                    (fiado>0 ? row('<i class="fas fa-handshake" style="width:18px"></i> Fiado:', Utils.currency(fiado), '#f59e0b') : '') +
+                    '<div style="border-top:1px solid var(--border-color);margin:8px 0"></div>' +
+                    (totalSupply>0 ? row('Suprimentos:', '+'+Utils.currency(totalSupply), '#10b981') : '') +
+                    (totalWithdraw>0 ? row('Sangrias:', '-'+Utils.currency(totalWithdraw), '#ef4444') : '') +
+                    `<div style="display:flex;justify-content:space-between;padding-top:8px;border-top:1px solid var(--border-color);font-size:14px;margin-top:4px">
+                        <span style="font-weight:600">Total vendas + OS (todas formas):</span>
+                        <strong style="color:var(--accent)">${Utils.currency(totalGeral)}</strong>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:13px;margin-top:4px">
+                        <span style="color:var(--text-muted)">Esperado em dinheiro físico:</span>
+                        <strong style="color:#10b981">${Utils.currency(expectedCash)}</strong>
+                    </div>`;
+            }
+
+            const valContado = document.getElementById('valorContado');
+            const diffBox = document.getElementById('diferencaBox');
+            if (valContado) {
+                valContado.value = '';
+                valContado.oninput = () => {
+                    const actual = valorBR(valContado.value) || 0;
+                    const diff = actual - expectedCash;
+                    if (diffBox) {
+                        diffBox.style.background = diff === 0 ? 'rgba(16,185,129,0.1)' : diff > 0 ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)';
+                        diffBox.innerHTML = `Diferença: <strong style="color:${diff===0?'var(--success)':diff>0?'var(--success)':'var(--danger)'}">${Utils.currency(diff)}</strong> ${diff===0?'<i class="fas fa-circle-check"></i> Fechou certinho':diff>0?'<i class="fas fa-arrow-trend-up"></i> Sobra':'<i class="fas fa-arrow-trend-down"></i> Falta'}`;
+                    }
+                };
+            }
+            openModal('modalFechamento');
+        }
+
+        async function confirmCloseCash() {
+            // 40.38 · Vale 0 (tudo no Pix/cartão e gaveta vazia); só o campo em branco ou inválido é recusado
+            const actual = valorBR(document.getElementById('valorContado')?.value);
+            if (!isFinite(actual) || actual < 0) { Toast.warning('Informe o valor contado na gaveta (pode ser 0,00).'); document.getElementById('valorContado')?.focus(); return; }
+            const notes = document.getElementById('closeNotes')?.value || '';
+            try {
+                const fechado = currentCash.id;
+                const result = await CashService.close(fechado, actual, notes);
+                closeModal('modalFechamento');
+                Toast.success(`Caixa fechado! Diferença: ${Utils.currency(result.difference)}`);
+                currentCash = null;
+                cashMovements = [];
+                await loadCashState();
+                // 40.38 · Havia outro caixa aberto (aberto em outro aparelho ao mesmo tempo): avisa em vez de parecer que não fechou
+                if (currentCash && currentCash.id !== fechado) {
+                    const q = currentCash.openedAt?.toDate ? currentCash.openedAt.toDate().toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '';
+                    Toast.warning(`Este caixa foi fechado, mas havia outro aberto (${currentCash.operatorName || 'operador'}${q ? ', desde ' + q : ''}). Feche-o também.`);
+                }
+            } catch(e) { Toast.error('Erro: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message))); }
+        }
+
+        auth.onAuthStateChanged(u => { if(u) loadCashState(); });
+    </script>
+<script src="assets/js/caixa-pro-v1.js?v=1.6"></script>
+<script src="assets/js/caixa-fechamento-v1.js?v=40.49"></script>
+<script defer src="assets/js/studio-v1.js?v=39.13"></script><script defer src="assets/js/studio-pro-v2.js?v=2.7-rolagem"></script>
+<script src="assets/js/mesas-v1.js?v=37.8"></script>
+<script src="assets/js/edicao-v1.js?v=38.0"></script>
+<script src="assets/js/os-pro-v1.js?v=39.14.5-os"></script>
+<script src="assets/js/formas-pagamento-v1.js?v=38.3"></script>
+</body>
+</html>

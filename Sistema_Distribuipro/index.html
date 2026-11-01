@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script>window.__stProduct=1;document.documentElement.setAttribute("data-st-product","")</script><script>/* Studio: aplica o tema escolhido (claro/escuro/automático) antes de desenhar a página */try{var p=localStorage.getItem("st_theme_pref");if(p){var t=p==="auto"?(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):p;if(t==="light"||t==="dark"){sessionStorage.setItem("erp_theme_session",t);document.documentElement.setAttribute("data-theme",t);}}}catch(e){}</script><link rel="icon" href="assets/brand/favicon-96.png?v=41.5-logo" type="image/png">
+    <script src="assets/js/branding.js?v=40.29-acessos"></script><script src="assets/js/papel-v1.js?v=40.49"></script><script src="assets/js/dp-icons-v1.js?v=37.6"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="theme-color" content="#0a0e1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Dashboard · DistribuiPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css?v=37.8">
+    <link rel="stylesheet" href="assets/css/mobile.css?v=37.8">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="assets/css/studio-light-pages.css?v=1.3">
+    <link rel="stylesheet" href="assets/css/studio-v1.css?v=39.16-banner"><link rel="stylesheet" href="assets/css/studio-pro-v2.css?v=2.7"><link rel="stylesheet" href="assets/css/dash-pro-v1.css?v=39.16-banner">
+<script defer src="assets/js/cache-818831d97b.js"></script></head>
+<body>
+    <div class="app-layout">
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileSidebar()"></div>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand"><div class="dp-default-logo" aria-label="DistribuiPro"><img src="assets/brand/distribuipro-logo-dark.png?v=41.5-logo" alt="DistribuiPro"></div>
+                <div class="brand-icon"><img src="assets/brand/distribuipro-mark.svg?v=41.5-logo" alt="DistribuiPro" style="width:100%;height:100%;display:block;object-fit:contain"></div>
+                <div class="brand-text">
+                    <h1>DistribuiPRO</h1>
+                    <span>Sistema ERP</span>
+                </div>
+            </div>
+            <nav class="sidebar-menu">
+<div class="menu-section"><span class="menu-section-title">Principal</span></div>
+                <a href="index.html" class="menu-item active"><i class="fas fa-chart-pie"></i><span class="menu-text">Dashboard</span></a>
+                <div class="menu-section"><span class="menu-section-title">Operações</span></div>
+                <a href="pdv.html" class="menu-item"><i class="fas fa-cash-register"></i><span class="menu-text">PDV / Vendas</span></a>
+        <a href="orcamentos.html" class="menu-item" data-page="orcamentos"><i class="fas fa-file-signature"></i><span class="menu-text">Orçamentos</span></a>
+                <a href="pedidos.html" class="menu-item"><i class="fas fa-clipboard-list"></i><span class="menu-text">Pedidos</span></a>
+                <a href="entregas.html" class="menu-item"><i class="fas fa-truck-fast"></i><span class="menu-text">Entregas</span></a>
+                <a href="caixa.html" class="menu-item"><i class="fas fa-vault"></i><span class="menu-text">Caixa</span></a>
+                <a href="ordens-servico.html" class="menu-item"><i class="fas fa-screwdriver-wrench"></i><span class="menu-text">Ordens de Serviço</span></a>
+                <div class="menu-section"><span class="menu-section-title">Cadastros</span></div>
+                <a href="produtos.html" class="menu-item"><i class="fas fa-box"></i><span class="menu-text">Produtos</span></a>
+                <a href="categorias.html" class="menu-item"><i class="fas fa-tags"></i><span class="menu-text">Categorias</span></a>
+                <a href="clientes.html" class="menu-item"><i class="fas fa-users"></i><span class="menu-text">Clientes</span></a>
+                <a href="fornecedores.html" class="menu-item"><i class="fas fa-industry"></i><span class="menu-text">Fornecedores</span></a>
+                <div class="menu-section"><span class="menu-section-title">Estoque</span></div>
+                <a href="estoque.html" class="menu-item"><i class="fas fa-boxes-stacked"></i><span class="menu-text">Estoque</span></a>
+                <a href="movimentacoes.html" class="menu-item"><i class="fas fa-arrow-right-arrow-left"></i><span class="menu-text">Movimentações</span></a>
+                <a href="compras.html" class="menu-item"><i class="fas fa-cart-shopping"></i><span class="menu-text">Compras</span></a>
+                <div class="menu-section"><span class="menu-section-title">Financeiro</span></div>
+                <a href="contas-pagar.html" class="menu-item"><i class="fas fa-file-invoice-dollar"></i><span class="menu-text">Contas a Pagar</span></a>
+                <a href="contas-receber.html" class="menu-item"><i class="fas fa-hand-holding-dollar"></i><span class="menu-text">Contas a Receber</span></a>
+                <a href="fluxo-caixa.html" class="menu-item"><i class="fas fa-chart-line"></i><span class="menu-text">Fluxo de Caixa</span></a>
+                <div class="menu-section"><span class="menu-section-title">Gestão</span></div>
+                <a href="motoboys.html" class="menu-item"><i class="fas fa-motorcycle"></i><span class="menu-text">Motoboys</span></a>
+                <a href="relatorios.html" class="menu-item"><i class="fas fa-chart-bar"></i><span class="menu-text">Relatórios</span></a>
+                <a href="comissoes.html" class="menu-item"><i class="fas fa-percent"></i><span class="menu-text">Comissões</span></a>
+                <a href="usuarios.html" class="menu-item"><i class="fas fa-user-shield"></i><span class="menu-text">Usuários</span></a>
+                <a href="auditoria.html" class="menu-item"><i class="fas fa-clock-rotate-left"></i><span class="menu-text">Auditoria</span></a>
+                <a href="configuracoes.html" class="menu-item"><i class="fas fa-gear"></i><span class="menu-text">Configurações</span></a>
+            </nav>
+            <div class="sidebar-toggle">
+                <button onclick="toggleSidebar()" title="Recolher menu">
+                    <i class="fas fa-angles-left" id="sidebarToggleIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div>
+                        <h2>Dashboard</h2>
+                        <div class="header-breadcrumb">
+                            <i class="fas fa-home" style="font-size:10px"></i>
+                            <span>/ Visão Geral</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-search">
+                    <input type="text" placeholder="Buscar produtos, clientes, pedidos..." id="globalSearch">
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <div class="header-right">
+                    <button class="header-action" onclick="toggleTheme()" title="Alternar tema">
+                        <i class="fas fa-sun" id="themeIcon"></i>
+                    </button>
+                    <button class="header-action" onclick="toggleNotifications()" title="Notificações">
+                        <i class="fas fa-bell"></i>
+                        <span class="notif-dot"></span>
+                    </button>
+                    <div class="header-avatar" id="userAvatar" onclick="toggleProfileMenu()" title="Meu perfil">A</div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Period Selector -->
+                <div class="toolbar" style="margin-bottom:24px">
+                    <div class="toolbar-left">
+                        <span style="font-size:13px;color:var(--text-muted)">
+                            <i class="fas fa-calendar-day"></i>&nbsp; Hoje: <strong style="color:var(--text-primary)" id="todayDate"></strong>
+                        </span>
+                    </div>
+                    <div class="period-buttons-wrap" style="display:flex;gap:6px">
+                        <button class="btn btn-sm btn-secondary period-btn active" data-period="today" onclick="changePeriod('today',this)">Hoje</button>
+                        <button class="btn btn-sm btn-secondary period-btn" data-period="week" onclick="changePeriod('week',this)">Semana</button>
+                        <button class="btn btn-sm btn-secondary period-btn" data-period="month" onclick="changePeriod('month',this)">Mês</button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stat-grid" id="statsGrid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="stat-value" id="statRevenue">—</div>
+                        <div class="stat-label">Faturamento</div>
+                        <span class="stat-change up"><i class="fas fa-arrow-up"></i> 12.5%</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-shopping-bag"></i></div>
+                        <div class="stat-value" id="statOrders">—</div>
+                        <div class="stat-label">Pedidos realizados</div>
+                        <span class="stat-change up"><i class="fas fa-arrow-up"></i> 8.3%</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple"><i class="fas fa-receipt"></i></div>
+                        <div class="stat-value" id="statTicket">—</div>
+                        <div class="stat-label">Ticket médio</div>
+                        <span class="stat-change up"><i class="fas fa-arrow-up"></i> 3.7%</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon yellow"><i class="fas fa-clock"></i></div>
+                        <div class="stat-value" id="statPending">—</div>
+                        <div class="stat-label">Pedidos em aberto</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-value" id="statDelivered">—</div>
+                        <div class="stat-label">Entregues</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div class="stat-value" id="statLowStock">—</div>
+                        <div class="stat-label">Estoque baixo</div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="ig-main-to-stack" style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px">
+                    <!-- Sales Chart -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Vendas por Período</div>
+                                <div class="card-subtitle">Faturamento dos últimos 7 dias</div>
+                            </div>
+                            <button class="btn btn-sm btn-secondary"><i class="fas fa-expand"></i></button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Formas de Pagamento</div>
+                                <div class="card-subtitle">Distribuição do período</div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="paymentChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="ig-equal-to-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                    <!-- Top Products -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Produtos Mais Vendidos</div>
+                                <div class="card-subtitle">Ranking do período</div>
+                            </div>
+                            <a href="relatorios.html" class="btn btn-sm btn-secondary">Ver todos</a>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Produto</th>
+                                        <th class="text-right">Qtd</th>
+                                        <th class="text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="topProductsBody">
+                                <tr><td colspan="20" style="text-align:center;padding:40px;color:var(--text-muted)"><i class="fas fa-spinner fa-spin" style="margin-right:8px"></i>Carregando...</td></tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Recent Sales -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Últimas Vendas</div>
+                                <div class="card-subtitle">Vendas recentes</div>
+                            </div>
+                            <a href="pdv.html" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Nova venda</a>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Venda</th>
+                                        <th>Cliente</th>
+                                        <th class="text-right">Valor</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentSalesBody">
+                                <tr><td colspan="20" style="text-align:center;padding:40px;color:var(--text-muted)"><i class="fas fa-spinner fa-spin" style="margin-right:8px"></i>Carregando...</td></tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Summary + Alerts -->
+                <div class="ig-equal-to-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px">
+                    <!-- Financial -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Resumo Financeiro</div>
+                                <div class="card-subtitle">Visão rápida do financeiro</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:12px">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--success-bg);border-radius:var(--radius-md)">
+                                <div style="display:flex;align-items:center;gap:10px">
+                                    <i class="fas fa-arrow-down" style="color:var(--success)"></i>
+                                    <span style="font-size:13px;color:var(--text-secondary)">Receitas do mês</span>
+                                </div>
+                                <span class="mono fw-bold text-success" id="finReceitas">R$ 48.750,00</span>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--danger-bg);border-radius:var(--radius-md)">
+                                <div style="display:flex;align-items:center;gap:10px">
+                                    <i class="fas fa-arrow-up" style="color:var(--danger)"></i>
+                                    <span style="font-size:13px;color:var(--text-secondary)">Despesas do mês</span>
+                                </div>
+                                <span class="mono fw-bold text-danger" id="finDespesas">R$ 32.400,00</span>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--accent-muted);border-radius:var(--radius-md)">
+                                <div style="display:flex;align-items:center;gap:10px">
+                                    <i class="fas fa-chart-line" style="color:var(--accent)"></i>
+                                    <span style="font-size:13px;color:var(--text-secondary)">Lucro estimado</span>
+                                </div>
+                                <span class="mono fw-bold" style="color:var(--accent)" id="finLucro">R$ 16.350,00</span>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--warning-bg);border-radius:var(--radius-md)">
+                                <div style="display:flex;align-items:center;gap:10px">
+                                    <i class="fas fa-clock" style="color:var(--warning)"></i>
+                                    <span style="font-size:13px;color:var(--text-secondary)">Contas a receber</span>
+                                </div>
+                                <span class="mono fw-bold text-warning" id="finAReceber">R$ 8.230,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alerts -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Alertas do Sistema</div>
+                                <div class="card-subtitle">Ações que precisam de atenção</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:10px" id="alertsContainer">
+<p style="color:var(--text-muted);font-size:12px;margin:0">Verificando alertas…</p>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="config/firebase-config.js"></script>
+    <script src="services/core-services.js?v=39.14.5"></script>
+    <script src="assets/js/mobile-fix.js"></script>
+    <script src="assets/js/app.js?v=40.59"></script>
+    <script src="assets/js/pages.js?v=40.74"></script>
+
+<script>
+        // ═══════════════════════════════════════════════════════
+        // DASHBOARD — Dados 100% do Firebase / Firestore
+        // ═══════════════════════════════════════════════════════
+
+        let salesChart = null;
+        let paymentChart = null;
+        let currentPeriod = 'today';
+        // ─── CORES DO TEMA — 17.7 claro/escuro ─────────────
+        function getChartColors177() {
+            const light = document.documentElement.getAttribute('data-theme') === 'light';
+            return {
+                accent:       getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#6366f1',
+                accentLight:  light ? 'rgba(37,99,235,0.10)' : 'rgba(99,102,241,0.12)',
+                green:        '#10b981',
+                yellow:       '#f59e0b',
+                red:          '#ef4444',
+                blue:         '#3b82f6',
+                purple:       '#8b5cf6',
+                textMuted:    light ? '#64748b' : '#94a3b8',
+                border:       light ? 'rgba(148,163,184,0.22)' : 'rgba(255,255,255,0.06)',
+                tooltipBg:    light ? '#ffffff' : '#1a1f35',
+                tooltipTitle: light ? '#0f172a' : '#f1f5f9',
+                tooltipBody:  light ? '#64748b' : '#94a3b8',
+                tooltipBorder:light ? 'rgba(148,163,184,0.28)' : 'rgba(255,255,255,0.1)',
+                canvasBorder: light ? '#ffffff' : '#1a1f35'
+            };
+        }
+        let CHART_COLORS = getChartColors177();
+
+        // ─── INICIALIZAÇÃO ───────────────────────────────────
+        function initPage() {
+            document.getElementById('todayDate').textContent = new Date().toLocaleDateString('pt-BR', {
+                weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+            });
+            // mobile-menu-btn é controlado pelo CSS (display via @media)
+            // Não forçar display via JS para evitar botão duplicado
+            loadDashboard('today');
+        }
+
+        // ─── HELPER: RANGE DE DATAS ──────────────────────────
+        function getDateRange(period) {
+            const now = new Date();
+            const start = new Date();
+            start.setHours(0, 0, 0, 0);
+
+            if (period === 'week') {
+                start.setDate(now.getDate() - 6);
+            } else if (period === 'month') {
+                start.setDate(1);
+            }
+            // 'today' = midnight hoje
+
+            return { start, end: now };
+        }
+
+        // ─── HELPER: BUSCA SIMPLES SEM ÍNDICE ────────────────
+        // 35.56 · O painel só usa as vendas dos últimos ~2 meses (comparações, gráfico de 30 dias, meta do mês).
+        function dashSalesOpts() {
+            const now = new Date(), a = new Date(now.getFullYear(), now.getMonth() - 1, 1), b = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 62);
+            return { newestBy: 'createdAt', since: a < b ? a : b };
+        }
+        // Produtos só para contar estoque: no Mensal vêm só estes campos (sem as fotos); nos outros, como antes.
+        window.DASH_PRODUCTS = { fields: ['name', 'currentStock', 'minStock', 'deleted', 'costPrice', 'productType'], fullLimit: 500 }; // 36.6 · custo para o lucro do painel
+        async function fetchAll(collection, limit = 1000, opt) {
+            try {
+                // opt: 'campo' (os mais recentes por esse campo) ou { newestBy, since, fields, fullLimit }.
+                // newestBy traz os mais recentes (sem ordem o limite pegava um pedaço qualquer, ex.: vendas importadas de 2008);
+                // since corta no período usado; fields (só no Mensal) não baixa o resto do documento, ex.: as fotos dos produtos.
+                const o = typeof opt === 'string' ? { newestBy: opt } : (opt || {});
+                const base = db.collection(collection);
+                const sel = !!(o.fields && typeof base.select === 'function');
+                const q = sel ? base.select(...o.fields) : base;
+                const max = sel || !o.fullLimit ? limit : o.fullLimit;
+                let snap = null;
+                if (o.newestBy && o.since) { try { snap = await q.where(o.newestBy, '>=', o.since).orderBy(o.newestBy, 'desc').limit(max).get(); } catch (_) { snap = null; } }
+                if (!snap && o.newestBy) { try { snap = await q.orderBy(o.newestBy, 'desc').limit(max).get(); } catch (_) { snap = null; } }
+                if (!snap) snap = await q.limit(max).get();
+                return snap.docs
+                    .map(d => ({ id: d.id, ...d.data() }))
+                    .filter(d => d.deleted !== true);
+            } catch (e) {
+                console.error(`fetchAll(${collection}):`, e);
+                return [];
+            }
+        }
+
+        // ─── CARREGAR TUDO ───────────────────────────────────
+        async function loadDashboard(period) {
+            currentPeriod = period;
+            const { start, end } = getDateRange(period);
+
+            // Mostrar loading nos stats
+            ['statRevenue','statOrders','statTicket','statPending','statDelivered','statLowStock']
+                .forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '...'; });
+
+            try {
+                // Busca em paralelo — sem filtros no Firestore para evitar índices compostos
+                const [sales, products, entries, motoboys] = await Promise.all([
+                    fetchAll('sales', 2000, dashSalesOpts()),
+                    fetchAll('products', 10000, window.DASH_PRODUCTS),
+                    fetchAll('financial_entries', 1000),
+                    fetchAll('motoboys', 100),
+                ]);
+                // Pedidos/entregas são registrados na coleção de vendas neste sistema.
+                const orders = sales.filter(s => ['delivery','pickup'].includes(s.type || s.deliveryType));
+
+                // Filtrar por período em memória
+                const inRange = (ts) => {
+                    const d = ts?.toDate ? ts.toDate() : new Date(ts || 0);
+                    return d >= start && d <= end;
+                };
+
+                const periodSales    = sales.filter(s => ['completed','delivered'].includes(s.status) && inRange(s.createdAt));
+                const periodOrders   = orders.filter(o => inRange(o.createdAt));
+                const allMonthStart  = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+                const monthSales     = sales.filter(s => ['completed','delivered'].includes(s.status) && (s.createdAt?.toDate?.() || new Date(s.createdAt || 0)) >= allMonthStart);
+
+                // ── STATS CARDS ────────────────────────────
+                const revenue = periodSales.reduce((s, x) => s + (x.total || 0), 0);
+                const ordersCount = periodSales.length;
+                const ticket = ordersCount > 0 ? revenue / ordersCount : 0;
+                const pending = orders.filter(o => ['waiting', 'preparing', 'ready'].includes(o.status)).length;
+                const delivered = orders.filter(o => o.status === 'delivered' && inRange(o.deliveredAt || o.updatedAt)).length;
+                const lowStock = products.filter(p => (p.currentStock || 0) <= (p.minStock || 5)).length;
+
+                setStatWithChange('statRevenue', Utils.currency(revenue));
+                setStatWithChange('statOrders', ordersCount);
+                setStatWithChange('statTicket', Utils.currency(ticket));
+                document.getElementById('statPending').textContent = pending;
+                document.getElementById('statDelivered').textContent = delivered;
+                document.getElementById('statLowStock').textContent = lowStock;
+
+                // ── GRÁFICO DE VENDAS (linha) ───────────────
+                updateSalesChart(period, sales);
+
+                // ── GRÁFICO DE PAGAMENTOS (rosca) ──────────
+                updatePaymentChart(periodSales);
+
+                // ── PRODUTOS MAIS VENDIDOS ──────────────────
+                renderTopProducts(periodSales);
+
+                // ── ÚLTIMAS VENDAS ──────────────────────────
+                renderRecentSales(sales);
+
+                // ── RESUMO FINANCEIRO ───────────────────────
+                const monthExpenses = entries.filter(e => e.type === 'expense' && e.status === 'paid' && (e.paidAt?.toDate?.() || new Date(e.paidAt || 0)) >= allMonthStart);
+                const monthIncomes  = entries.filter(e => e.type === 'income'  && e.status === 'received' && (e.paidAt?.toDate?.() || new Date(e.paidAt || 0)) >= allMonthStart);
+                const pendingReceive = entries.filter(e => e.type === 'income' && e.status === 'pending').reduce((s,e) => s + (e.amount||0), 0);
+                const monthRevenue  = monthSales.reduce((s,x) => s + (x.total||0), 0) + monthIncomes.reduce((s,e) => s + (e.amount||0), 0);
+                const monthExpTotal = monthExpenses.reduce((s,e) => s + (e.amount||0), 0);
+                renderFinancial(monthRevenue, monthExpTotal, pendingReceive);
+
+                // ── ALERTAS REAIS ───────────────────────────
+                renderAlerts(products, entries, orders, motoboys);
+
+            } catch (err) {
+                console.error('Erro no dashboard:', err);
+            }
+        }
+
+        // ─── HELPER: SETAR STAT ──────────────────────────────
+        function setStatWithChange(id, value) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
+        }
+
+        // ─── GRÁFICO DE VENDAS ───────────────────────────────
+        function updateSalesChart(period, allSales) {
+            const ctx = document.getElementById('salesChart');
+            if (!ctx) return;
+
+            const accent = CHART_COLORS.accent;
+
+            // Montar labels e dados por dia
+            const days = period === 'today' ? 1 : period === 'week' ? 7 : 30;
+            const labels = [];
+            const data   = [];
+
+            for (let i = days - 1; i >= 0; i--) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                const dStart = new Date(d); dStart.setHours(0, 0, 0, 0);
+                const dEnd   = new Date(d); dEnd.setHours(23, 59, 59, 999);
+
+                if (period === 'today') {
+                    // Para hoje: mostrar por hora (0h-23h)
+                    labels.length = 0; data.length = 0;
+                    for (let h = 0; h <= new Date().getHours(); h++) {
+                        const hStart = new Date(d); hStart.setHours(h, 0, 0, 0);
+                        const hEnd   = new Date(d); hEnd.setHours(h, 59, 59, 999);
+                        labels.push(`${String(h).padStart(2,'0')}h`);
+                        data.push(allSales.filter(s => {
+                            const dt = s.createdAt?.toDate?.() || new Date(s.createdAt || 0);
+                            return ['completed','delivered'].includes(s.status) && dt >= hStart && dt <= hEnd;
+                        }).reduce((sum, s) => sum + (s.total || 0), 0));
+                    }
+                    break;
+                }
+
+                const dayLabel = period === 'week'
+                    ? d.toLocaleDateString('pt-BR', { weekday: 'short' })
+                    : `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}`;
+                labels.push(dayLabel);
+                data.push(allSales.filter(s => {
+                    const dt = s.createdAt?.toDate?.() || new Date(s.createdAt || 0);
+                    return ['completed','delivered'].includes(s.status) && dt >= dStart && dt <= dEnd;
+                }).reduce((sum, s) => sum + (s.total || 0), 0));
+            }
+
+            const gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 280);
+            gradient.addColorStop(0, 'rgba(99,102,241,0.22)');
+            gradient.addColorStop(1, 'rgba(99,102,241,0)');
+
+            if (salesChart) salesChart.destroy();
+            salesChart = new Chart(ctx.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Faturamento',
+                        data,
+                        borderColor: accent,
+                        backgroundColor: gradient,
+                        borderWidth: 2.5,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: data.length > 15 ? 2 : 4,
+                        pointBackgroundColor: accent,
+                        pointBorderColor: CHART_COLORS.canvasBorder,
+                        pointBorderWidth: 2,
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: CHART_COLORS.tooltipBg,
+                            titleColor: CHART_COLORS.tooltipTitle,
+                            bodyColor: CHART_COLORS.tooltipBody,
+                            borderColor: CHART_COLORS.tooltipBorder,
+                            borderWidth: 1, padding: 12, cornerRadius: 8,
+                            displayColors: false,
+                            callbacks: { label: (ctx) => `Faturamento: ${Utils.currency(ctx.raw)}` }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { color: CHART_COLORS.border }, ticks: { padding: 8, maxTicksLimit: 10 } },
+                        y: {
+                            grid: { color: CHART_COLORS.border },
+                            ticks: { padding: 8, callback: v => v >= 1000 ? 'R$ '+(v/1000).toFixed(0)+'k' : 'R$ '+v }
+                        }
+                    }
+                }
+            });
+        }
+
+        // ─── GRÁFICO DE PAGAMENTOS ───────────────────────────
+        function updatePaymentChart(periodSales) {
+            const ctx = document.getElementById('paymentChart');
+            if (!ctx) return;
+
+            // Contar por forma de pagamento
+            const totals = { Dinheiro: 0, PIX: 0, Crédito: 0, Débito: 0, Fiado: 0, Outros: 0 };
+            const methodMap = { dinheiro:'Dinheiro', pix:'PIX', credito:'Crédito', debito:'Débito', fiado:'Fiado', credito_parcelado:'Crédito', multi:'Outros' };
+
+            periodSales.forEach(s => {
+                (s.payments || [{ method: s.paymentMethod || 'dinheiro', amount: s.total }]).forEach(p => {
+                    const key = methodMap[p.method] || 'Outros';
+                    totals[key] = (totals[key] || 0) + (p.amount || 0);
+                });
+            });
+
+            // Remover zerados
+            const labels = Object.keys(totals).filter(k => totals[k] > 0);
+            const values = labels.map(k => totals[k]);
+            const totalVal = values.reduce((s, v) => s + v, 0);
+            const percentages = values.map(v => totalVal > 0 ? Math.round(v / totalVal * 100) : 0);
+
+            const bgColors = {
+                Dinheiro: CHART_COLORS.green,
+                PIX:      CHART_COLORS.accent,
+                Crédito:  CHART_COLORS.yellow,
+                Débito:   CHART_COLORS.blue,
+                Fiado:    CHART_COLORS.red,
+                Outros:   CHART_COLORS.purple,
+            };
+
+            if (paymentChart) paymentChart.destroy();
+            paymentChart = new Chart(ctx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: labels.length ? labels : ['Sem dados'],
+                    datasets: [{
+                        data: percentages.length ? percentages : [100],
+                        backgroundColor: labels.length ? labels.map(l => bgColors[l]) : ['#334155'],
+                        borderColor: CHART_COLORS.canvasBorder,
+                        borderWidth: 3,
+                        hoverOffset: 6
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, cutout: '68%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { padding: 14, usePointStyle: true, pointStyleWidth: 8, font: { size: 11, weight: 500 } }
+                        },
+                        tooltip: {
+                            backgroundColor: CHART_COLORS.tooltipBg, titleColor: CHART_COLORS.tooltipTitle,
+                            bodyColor: CHART_COLORS.tooltipBody, borderColor: CHART_COLORS.tooltipBorder,
+                            borderWidth: 1, padding: 12, cornerRadius: 8,
+                            callbacks: { label: (ctx) => `${ctx.label}: ${ctx.raw}%` }
+                        }
+                    }
+                }
+            });
+        }
+
+        // ─── PRODUTOS MAIS VENDIDOS ──────────────────────────
+        function renderTopProducts(periodSales) {
+            const tbody = document.getElementById('topProductsBody');
+            if (!tbody) return;
+
+            // Agregar por produto
+            const productMap = {};
+            periodSales.forEach(sale => {
+                (sale.items || []).forEach(item => {
+                    const key = item.productId || item.productName || 'desconhecido';
+                    if (!productMap[key]) productMap[key] = { name: item.productName || '—', qty: 0, total: 0 };
+                    productMap[key].qty   += item.quantity || 0;
+                    // a venda do PDV grava total e unitPrice em cada item (subtotal/salePrice ficam para vendas antigas)
+                    productMap[key].total += Number(item.total ?? item.subtotal ?? ((item.quantity || 0) * (item.unitPrice ?? item.salePrice ?? 0))) || 0;
+                });
+            });
+
+            const ranked = Object.values(productMap).sort((a, b) => b.qty - a.qty).slice(0, 8);
+
+            if (!ranked.length) {
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;padding:30px;color:var(--text-muted)">
+                    <i class="fas fa-chart-bar" style="font-size:24px;margin-bottom:8px;display:block;opacity:0.3"></i>
+                    Nenhuma venda no período
+                </td></tr>`;
+                return;
+            }
+
+            const maxQty = ranked[0].qty;
+            const medals = ['#f5b301','#94a3b8','#c27a3d'].map((c, n) => `<span title="${n + 1}º lugar" style="color:${c};font-size:16px;display:inline-flex"><i class="fas fa-medal"></i></span>`);
+            tbody.innerHTML = ranked.map((p, i) => `
+                <tr>
+                    <td style="font-weight:700;color:var(--text-muted);width:32px">${medals[i] || `<span style="color:var(--text-muted)">${i+1}</span>`}</td>
+                    <td>
+                        <div style="font-weight:600;color:var(--text-primary);font-size:13px">${p.name}</div>
+                        <div style="height:3px;background:var(--bg-surface);border-radius:4px;margin-top:4px;width:100%">
+                            <div style="height:100%;width:${Math.round(p.qty/maxQty*100)}%;background:var(--accent);border-radius:4px;transition:width .5s"></div>
+                        </div>
+                    </td>
+                    <td class="text-right" style="font-weight:600;color:var(--text-primary)">${p.qty} un</td>
+                    <td class="text-right" style="font-weight:700;color:var(--success)">${Utils.currency(p.total)}</td>
+                </tr>
+            `).join('');
+        }
+
+        // ─── ÚLTIMAS VENDAS ──────────────────────────────────
+        function renderRecentSales(allSales) {
+            const tbody = document.getElementById('recentSalesBody');
+            if (!tbody) return;
+
+            const recent = [...allSales]
+                .sort((a, b) => (b.createdAt?.toDate?.() || new Date(b.createdAt || 0)) - (a.createdAt?.toDate?.() || new Date(a.createdAt || 0)))
+                .slice(0, 8);
+
+            if (!recent.length) {
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;padding:30px;color:var(--text-muted)">
+                    <i class="fas fa-receipt" style="font-size:24px;margin-bottom:8px;display:block;opacity:0.3"></i>
+                    Nenhuma venda registrada
+                </td></tr>`;
+                return;
+            }
+
+            const statusMap = {
+                completed: '<span class="badge badge-success" style="font-size:10px">Concluída</span>',
+                cancelled: '<span class="badge badge-danger"  style="font-size:10px">Cancelada</span>',
+                pending:   '<span class="badge badge-warning" style="font-size:10px">Pendente</span>',
+            };
+            const payIcons = { dinheiro:'<i class="fas fa-money-bill-wave"></i>', pix:'<i class="fas fa-qrcode"></i>', credito:'<i class="fas fa-credit-card"></i>', debito:'<i class="fas fa-credit-card"></i>', fiado:'<i class="fas fa-handshake"></i>', multi:'<i class="fas fa-shuffle"></i>' };
+
+            tbody.innerHTML = recent.map(s => {
+                const dt  = s.createdAt?.toDate?.() || new Date(s.createdAt || 0);
+                const ago = Utils.timeAgo(s.createdAt);
+                const pay = s.payments?.[0]?.method || s.paymentMethod || 'dinheiro';
+                return `<tr>
+                    <td>
+                        <span style="font-weight:700;color:var(--accent)">#${s.saleNumber || '—'}</span>
+                        <div style="font-size:10px;color:var(--text-muted)">${ago}</div>
+                    </td>
+                    <td>
+                        <span style="font-size:13px;color:var(--text-primary)">${s.customerName || 'Balcão'}</span>
+                        <div style="font-size:10px;color:var(--text-muted)">${payIcons[pay]||'<i class="fas fa-wallet"></i>'} ${pay}</div>
+                    </td>
+                    <td class="text-right" style="font-weight:700;color:var(--success)">${Utils.currency(s.total || 0)}</td>
+                    <td>${statusMap[s.status] || statusMap.completed}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        // ─── RESUMO FINANCEIRO ───────────────────────────────
+        function renderFinancial(receitas, despesas, aReceber) {
+            const lucro = receitas - despesas;
+
+            const rows = [
+                { id: 'finReceitas',  val: receitas,  color: 'var(--success)' },
+                { id: 'finDespesas',  val: despesas,  color: 'var(--danger)'  },
+                { id: 'finLucro',     val: lucro,     color: lucro >= 0 ? 'var(--accent)' : 'var(--danger)' },
+                { id: 'finAReceber',  val: aReceber,  color: 'var(--warning)' },
+            ];
+            rows.forEach(r => {
+                const el = document.getElementById(r.id);
+                if (el) { el.textContent = Utils.currency(r.val); el.style.color = r.color; }
+            });
+        }
+
+        // ─── ALERTAS REAIS ───────────────────────────────────
+        function renderAlerts(products, entries, orders, motoboys) {
+            const container = document.getElementById('alertsContainer');
+            if (!container) return;
+
+            const alerts = [];
+            const now = new Date(); now.setHours(0,0,0,0);
+            const todayEnd = new Date(); todayEnd.setHours(23,59,59,999);
+
+            // 1. Produtos sem estoque
+            const zeroStock = products.filter(p => (p.currentStock || 0) === 0);
+            if (zeroStock.length > 0) {
+                alerts.push({
+                    type: 'danger',
+                    icon: 'fas fa-ban',
+                    title: `${zeroStock.length} produto${zeroStock.length>1?'s':''} sem estoque`,
+                    detail: zeroStock.slice(0,3).map(p=>p.name).join(', ') + (zeroStock.length>3?` e mais ${zeroStock.length-3}`:''),
+                    link: 'estoque.html'
+                });
+            }
+
+            // 2. Produtos com estoque baixo
+            const lowStock = products.filter(p => (p.currentStock||0) > 0 && (p.currentStock||0) <= (p.minStock||5));
+            if (lowStock.length > 0) {
+                alerts.push({
+                    type: 'warning',
+                    icon: 'fas fa-box-open',
+                    title: `${lowStock.length} produto${lowStock.length>1?'s':''} com estoque baixo`,
+                    detail: lowStock.slice(0,3).map(p=>`${p.name} (${p.currentStock})`).join(', '),
+                    link: 'estoque.html'
+                });
+            }
+
+            // 3. Contas a pagar vencendo hoje
+            const billsToday = entries.filter(e => {
+                if (e.type !== 'expense' || e.status !== 'pending') return false;
+                const d = e.dueDate?.toDate?.() || new Date(e.dueDate || 0);
+                return d >= now && d <= todayEnd;
+            });
+            if (billsToday.length > 0) {
+                const totalBills = billsToday.reduce((s,e)=>s+(e.amount||0),0);
+                alerts.push({
+                    type: 'warning',
+                    icon: 'fas fa-file-invoice-dollar',
+                    title: `${billsToday.length} conta${billsToday.length>1?'s':''} a pagar vencem hoje`,
+                    detail: `Total: ${Utils.currency(totalBills)}`,
+                    link: 'contas-pagar.html'
+                });
+            }
+
+            // 4. Contas a pagar vencidas
+            const overdueExpenses = entries.filter(e => {
+                if (e.type !== 'expense' || e.status !== 'pending') return false;
+                const d = e.dueDate?.toDate?.() || new Date(e.dueDate || 0);
+                return d < now;
+            });
+            if (overdueExpenses.length > 0) {
+                const totalOver = overdueExpenses.reduce((s,e)=>s+(e.amount||0),0);
+                alerts.push({
+                    type: 'danger',
+                    icon: 'fas fa-exclamation-circle',
+                    title: `${overdueExpenses.length} conta${overdueExpenses.length>1?'s':''} vencida${overdueExpenses.length>1?'s':''}`,
+                    detail: `Total em atraso: ${Utils.currency(totalOver)}`,
+                    link: 'contas-pagar.html'
+                });
+            }
+
+            // 5. Contas a receber vencidas (inadimplência)
+            const overdueIncome = entries.filter(e => {
+                if (e.type !== 'income' || e.status !== 'pending') return false;
+                const d = e.dueDate?.toDate?.() || new Date(e.dueDate || 0);
+                return d < now;
+            });
+            if (overdueIncome.length > 0) {
+                const totalOI = overdueIncome.reduce((s,e)=>s+(e.amount||0),0);
+                alerts.push({
+                    type: 'warning',
+                    icon: 'fas fa-hand-holding-dollar',
+                    title: `${overdueIncome.length} conta${overdueIncome.length>1?'s':''} a receber vencida${overdueIncome.length>1?'s':''}`,
+                    detail: `Inadimplência: ${Utils.currency(totalOI)}`,
+                    link: 'contas-receber.html'
+                });
+            }
+
+            // 6. Entregas em andamento
+            const delivering = orders.filter(o => o.status === 'delivering' || o.deliveryType === 'delivery' && o.status === 'preparing');
+            if (delivering.length > 0) {
+                alerts.push({
+                    type: 'info',
+                    icon: 'fas fa-motorcycle',
+                    title: `${delivering.length} entrega${delivering.length>1?'s':''} em andamento`,
+                    detail: `Acompanhe em tempo real`,
+                    link: 'entregas.html'
+                });
+            }
+
+            // 7. Motoboys disponíveis
+            const availableMb = motoboys.filter(m => m.status === 'available').length;
+            const busyMb = motoboys.filter(m => m.status === 'delivering' || m.status === 'busy').length;
+            if (motoboys.length > 0) {
+                alerts.push({
+                    type: 'info',
+                    icon: 'fas fa-user-check',
+                    title: `${availableMb} motoboy${availableMb>1?'s':''} ${availableMb>1?'disponíveis':'disponível'}`,
+                    detail: `${busyMb} em rota · ${motoboys.length} total`,
+                    link: 'motoboys.html'
+                });
+            }
+
+            // Sem alertas
+            if (!alerts.length) {
+                container.innerHTML = `<div style="text-align:center;padding:32px;color:var(--text-muted)">
+                    <i class="fas fa-check-circle" style="font-size:32px;color:var(--success);margin-bottom:12px;display:block"></i>
+                    <strong style="color:var(--text-primary)">Tudo em dia!</strong>
+                    <div style="font-size:12px;margin-top:4px">Nenhum alerta no momento</div>
+                </div>`;
+                return;
+            }
+
+            const typeMap = {
+                danger:  { cls: 'alert-danger',  icon_color: 'var(--danger)' },
+                warning: { cls: 'alert-warning', icon_color: 'var(--warning)' },
+                info:    { cls: 'alert-info',    icon_color: 'var(--info)' },
+            };
+
+            container.innerHTML = alerts.map(a => {
+                const t = typeMap[a.type] || typeMap.info;
+                return `<a href="${a.link || '#'}" style="text-decoration:none">
+                    <div class="alert ${t.cls}" style="margin:0;cursor:pointer;transition:opacity .15s" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+                        <i class="${a.icon}" style="color:${t.icon_color};font-size:16px;flex-shrink:0"></i>
+                        <div>
+                            <strong>${a.title}</strong>
+                            ${a.detail ? `<div style="font-size:11px;opacity:.8;margin-top:2px">${a.detail}</div>` : ''}
+                        </div>
+                    </div>
+                </a>`;
+            }).join('');
+        }
+
+        // ─── IDs DOS VALORES FINANCEIROS ─────────────────────
+        // (adicionar IDs nos elementos HTML do resumo financeiro)
+        function patchFinancialIds() {
+            const spans = document.querySelectorAll('.mono.fw-bold');
+            const ids = ['finReceitas','finDespesas','finLucro','finAReceber'];
+            spans.forEach((el, i) => { if (ids[i]) el.id = ids[i]; });
+        }
+
+        // ─── MUDAR PERÍODO ────────────────────────────────────
+        function changePeriod(period, btn) {
+            document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadDashboard(period);
+        }
+
+        // ─── INIT ─────────────────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => { patchFinancialIds(); });
+
+    
+        // Redesenha os gráficos quando o usuário alterna o tema.
+        window.addEventListener('dp-theme-change', function(){
+            CHART_COLORS = getChartColors177();
+            try { if (typeof loadDashboard === 'function') loadDashboard(currentPeriod || 'today'); } catch (_) {}
+        });
+</script>
+<script src="assets/js/dash-pro-v1.js?v=39.16-banner"></script>
+<script defer src="assets/js/studio-v1.js?v=39.16-banner"></script><script defer src="assets/js/studio-pro-v2.js?v=2.7-rolagem"></script>
+<script src="assets/js/mesas-v1.js?v=37.8"></script>
+<script src="assets/js/edicao-v1.js?v=38.0"></script>
+<script src="assets/js/os-pro-v1.js?v=39.14.5-os"></script>
+<script src="assets/js/primeiros-passos-v1.js?v=38.1"></script>
+<script src="assets/js/validade-v1.js?v=39.8-funil"></script>
+<script src="assets/js/condicional-v1.js?v=38.6"></script>
+</body>
+</html>

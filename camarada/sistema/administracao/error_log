@@ -1,0 +1,28 @@
+[22-Apr-2024 07:35:58 America/Sao_Paulo] PHP Warning:  include(../../_core/_includes/config.php): failed to open stream: No such file or directory in /home/catalogo151/public_html/administracao/index.php on line 5
+[22-Apr-2024 07:35:58 America/Sao_Paulo] PHP Warning:  include(../../_core/_includes/config.php): failed to open stream: No such file or directory in /home/catalogo151/public_html/administracao/index.php on line 5
+[22-Apr-2024 07:35:58 America/Sao_Paulo] PHP Warning:  include(): Failed opening '../../_core/_includes/config.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/catalogo151/public_html/administracao/index.php on line 5
+[22-Apr-2024 07:35:58 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function restrict_estabelecimento() in /home/catalogo151/public_html/administracao/index.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/catalogo151/public_html/administracao/index.php on line 9
+[22-Apr-2024 07:36:00 America/Sao_Paulo] PHP Warning:  include(../../_core/_includes/config.php): failed to open stream: No such file or directory in /home/catalogo151/public_html/administracao/index.php on line 5
+[22-Apr-2024 07:36:00 America/Sao_Paulo] PHP Warning:  include(../../_core/_includes/config.php): failed to open stream: No such file or directory in /home/catalogo151/public_html/administracao/index.php on line 5
+[22-Apr-2024 07:36:00 America/Sao_Paulo] PHP Warning:  include(): Failed opening '../../_core/_includes/config.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/catalogo151/public_html/administracao/index.php on line 5
+[22-Apr-2024 07:36:00 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function restrict_estabelecimento() in /home/catalogo151/public_html/administracao/index.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/catalogo151/public_html/administracao/index.php on line 9
+[22-Apr-2024 07:36:01 America/Sao_Paulo] PHP Warning:  include(../../_core/_includes/config.php): failed to open stream: No such file or directory in /home/catalogo151/public_html/administracao/index.php on line 5
+[22-Apr-2024 07:36:01 America/Sao_Paulo] PHP Warning:  include(../../_core/_includes/config.php): failed to open stream: No such file or directory in /home/catalogo151/public_html/administracao/index.php on line 5
+[22-Apr-2024 07:36:01 America/Sao_Paulo] PHP Warning:  include(): Failed opening '../../_core/_includes/config.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/catalogo151/public_html/administracao/index.php on line 5
+[22-Apr-2024 07:36:01 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function restrict_estabelecimento() in /home/catalogo151/public_html/administracao/index.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/catalogo151/public_html/administracao/index.php on line 9
+[22-Apr-2024 07:36:01 America/Sao_Paulo] PHP Warning:  include(../../_core/_includes/config.php): failed to open stream: No such file or directory in /home/catalogo151/public_html/administracao/index.php on line 5
+[22-Apr-2024 07:36:01 America/Sao_Paulo] PHP Warning:  include(../../_core/_includes/config.php): failed to open stream: No such file or directory in /home/catalogo151/public_html/administracao/index.php on line 5
+[22-Apr-2024 07:36:01 America/Sao_Paulo] PHP Warning:  include(): Failed opening '../../_core/_includes/config.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/catalogo151/public_html/administracao/index.php on line 5
+[22-Apr-2024 07:36:01 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function restrict_estabelecimento() in /home/catalogo151/public_html/administracao/index.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/catalogo151/public_html/administracao/index.php on line 9

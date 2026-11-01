@@ -1,0 +1,76 @@
+/* DistribuiPRO Caixa Pro 1.0 */
+/* Cartão principal do caixa */
+.cxp .cx-hero { border: 1px solid var(--border-color) !important; border-radius: 20px !important; position: relative; overflow: hidden; padding: 20px 22px !important; }
+.cxp .cx-hero::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: linear-gradient(90deg, #10b981, transparent 75%); }
+.cxp .cx-hero.is-closed::before { background: linear-gradient(90deg, #ef4444, transparent 75%); }
+.cxp .cx-hero.is-open { background: linear-gradient(135deg, rgba(16, 185, 129, .07), transparent 55%), var(--bg-card) !important; }
+.cxp #cashStatusLabel { font-size: 20px !important; }
+.cx-pill { display: inline-flex; align-items: center; gap: 9px; }
+.cx-pill i { width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+.cx-pill.on { color: #34d399; }
+.cx-pill.on i { animation: cxPulse 2s infinite; box-shadow: 0 0 0 0 rgba(52, 211, 153, .6); }
+.cx-pill.off { color: #f87171; }
+@keyframes cxPulse { 70% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); } 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); } }
+.cxp #cashOpenInfo { font-size: 12.5px !important; margin-top: 3px; }
+.cxp #cashOpenInfo b { color: var(--text-primary); }
+.cxp #cashOperator { font-size: 12.5px !important; }
+.cxp #cashActions .btn { border-radius: 11px; min-height: 40px; }
+
+.cx-kpis { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 12px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border-color); }
+.cx-kpi { display: grid; gap: 4px; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--border-color); background: var(--bg-surface, rgba(255, 255, 255, .02)); min-width: 0; }
+.cx-kpi small { font-size: 12px; font-weight: 700; color: var(--text-muted); }
+.cx-kpi small i { margin-right: 4px; }
+.cx-kpi strong { font-size: 22px; font-weight: 850; letter-spacing: -.02em; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+.cx-kpi em { font-style: normal; font-size: 11.5px; color: var(--text-muted); overflow-wrap: anywhere; }
+.cx-kpi.main { border-color: rgba(16, 185, 129, .4); background: linear-gradient(135deg, rgba(16, 185, 129, .14), rgba(16, 185, 129, .03)); }
+.cx-kpi.main small, .cx-kpi.main strong { color: #34d399; }
+
+/* Formas de pagamento */
+.cxp .page-content > .stat-grid { display: none !important; }
+.cx-pay { margin-bottom: 20px; border-radius: 18px !important; }
+.cx-pay-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+.cx-pay-head h4 { margin: 0; font-size: 14px; color: var(--text-primary); }
+.cx-pay-head h4 i { color: var(--accent); margin-right: 6px; }
+.cx-pay-head span { font-size: 12px; color: var(--text-muted); }
+.cx-bars { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 22px; }
+.cx-bar { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.cx-bar-ic { flex: 0 0 auto; width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-size: 14px; }
+.cx-bar-main { flex: 1; min-width: 0; }
+.cx-bar-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 13px; color: var(--text-primary); }
+.cx-bar-top span { font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cx-bar-top em { font-style: normal; font-weight: 600; color: var(--text-muted); margin-left: 6px; font-size: 12px; }
+.cx-track { height: 7px; margin-top: 7px; border-radius: 99px; background: rgba(148, 163, 184, .14); overflow: hidden; }
+.cx-track i { display: block; height: 100%; border-radius: 99px; transition: width .8s cubic-bezier(.2, .8, .2, 1); }
+.cx-pay-foot { display: flex; justify-content: space-between; align-items: baseline; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border-color); font-size: 13px; color: var(--text-muted); }
+.cx-pay-foot b { font-size: 20px; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+
+/* Tabelas */
+.cxp .card h4 { font-size: 14.5px !important; }
+.cxp .data-table td { font-size: 13px; }
+.cxp .data-table td:first-child, .cxp .data-table td:last-child { white-space: nowrap; }
+.cx-chip { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
+.cx-chip.sale { color: #818cf8; background: rgba(99, 102, 241, .14); }
+.cx-chip.os { color: #c084fc; background: rgba(168, 85, 247, .14); }
+.cx-chip.supply, .cx-chip.open { color: #34d399; background: rgba(16, 185, 129, .13); }
+.cx-chip.withdraw { color: #f87171; background: rgba(239, 68, 68, .13); }
+.cxp .data-table td [style*="font-size:10px"] { font-size: 11.5px !important; }
+
+/* Valores rápidos e fechamento */
+.cx-quick { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.cx-quick button { height: 34px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--bg-surface, transparent); color: var(--text-primary); font-size: 13px; font-weight: 700; cursor: pointer; }
+.cx-quick button:hover { border-color: var(--accent); color: var(--accent); }
+.cx-fill { margin-top: 8px; width: 100%; min-height: 40px; border-radius: 10px; border: 1px dashed rgba(16, 185, 129, .5); background: rgba(16, 185, 129, .08); color: #34d399; font-size: 13px; font-weight: 700; cursor: pointer; }
+.cxp #cashSummaryBox { border: 1px solid var(--border-color); }
+.cxp #diferencaBox { font-size: 15px !important; }
+
+@media (max-width: 900px) { .cx-kpis { grid-template-columns: 1fr 1fr; } .cx-kpi.main { grid-column: 1 / -1; } }
+@media (max-width: 640px) {
+  .cxp .cx-hero { padding: 16px !important; }
+  .cx-kpi strong { font-size: 19px; }
+  .cx-kpi.main strong { font-size: 24px; }
+  .cx-bars { grid-template-columns: 1fr; }
+  .cxp #cashActions { width: 100%; display: grid !important; grid-template-columns: 1fr 1fr; gap: 8px !important; }
+  .cxp #cashActions #btnCloseCash, .cxp #cashActions #btnOpenCash { grid-column: 1 / -1; }
+  .cxp #cashActions .btn { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .cx-pill.on i { animation: none; } .cx-track i { transition: none; } }

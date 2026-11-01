@@ -1,0 +1,7 @@
+# DistribuiPro · cabeçalhos para Cloudflare Pages (em Apache este arquivo não faz nada; lá vale o .htaccess).
+/img/produtos/*
+  Cache-Control: public, max-age=2592000
+/data/*
+  Cache-Control: no-store
+/api/*
+  Cache-Control: no-store

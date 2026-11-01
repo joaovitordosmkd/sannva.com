@@ -1,0 +1,311 @@
+rules_version = '2';
+// DistribuiPro · Regras do Firestore (37.4).
+// Como usar: Console do Firebase › Firestore Database › Regras › apague tudo › cole este arquivo inteiro › Publicar.
+// Novidades desde a 35.35: Consignado, Metas, Contas bancárias, Depósitos (transferências de estoque),
+// pagamento parcial nas mesas e baixa de despesas com conta.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Usuário com cadastro em users/{uid}
+    function hasProfile() {
+      return isAuthenticated() && exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function activeProfile(u) {
+      return u.get('deleted', false) != true && (u.get('status', '') == 'active' || u.get('role', '') == 'admin');
+    }
+
+    // Usuário cadastrado, ativo e não excluído
+    function isActive() {
+      return hasProfile() && activeProfile(getUserData());
+    }
+
+    function isAdmin() {
+      return isActive() && getUserData().get('role', '') == 'admin';
+    }
+
+    function isManagerOrAbove() {
+      return isActive() && getUserData().get('role', '') in ['admin', 'manager'];
+    }
+
+    // Gerente, admin ou o perfil Financeiro (contas bancárias e transferências)
+    function isFinance() {
+      return isActive() && getUserData().get('role', '') in ['admin', 'manager', 'financial'];
+    }
+
+    // Banco novo: a empresa ainda não foi configurada (settings/general nasce no primeiro cadastro).
+    function isFirstSetup() {
+      return !exists(/databases/$(database)/documents/settings/general);
+    }
+
+    // ─── Usuários ───────────────────────────────────────
+    match /users/{userId} {
+      allow read: if (isAuthenticated() && request.auth.uid == userId) || isActive();
+      // O primeiro administrador se cadastra sozinho só enquanto o banco é novo; depois, só gerente/admin cria usuário.
+      allow create: if (isAuthenticated() && request.auth.uid == userId && isFirstSetup()) || isManagerOrAbove();
+      // Cada um atualiza o próprio cadastro (ex.: último login, foto, tema), mas não muda o próprio cargo,
+      // status, permissões, bloqueios ou comissões.
+      allow update: if isManagerOrAbove()
+        || (isAuthenticated() && request.auth.uid == userId
+            && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'roleName', 'status', 'permissions', 'deleted',
+                 'commissionType', 'commissionValue', 'commissionServiceType', 'commissionServiceValue']));
+      allow delete: if false;
+    }
+
+    // ─── Produtos e categorias ──────────────────────────
+    match /products/{productId} {
+      allow read, write: if isActive();
+    }
+    match /categories/{categoryId} {
+      allow read, write: if isActive();
+    }
+    // ─── Adicionais com preço (38.4): bacon, borda, ponto da carne… no PDV, nas Mesas e em Produtos ───
+    match /addon_groups/{id} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Estoque / Movimentações ────────────────────────
+    match /stock_movements/{movId} {
+      allow read, create: if isActive();
+      allow update: if isAdmin();   // só para restaurar backup
+      allow delete: if false;
+    }
+
+    // ─── Depósitos: transferências de estoque entre locais (37.1) ───
+    match /stock_transfers/{id} {
+      allow read, create: if isActive();
+      allow update: if isAdmin();   // só para restaurar backup
+      allow delete: if false;
+    }
+
+    // ─── Validade e lote (38.3): lotes e o que saiu/voltou de cada lote ───
+    match /stock_lots/{id} {
+      allow read, create, update: if isActive();
+      allow delete: if false;
+    }
+    match /stock_lot_moves/{id} {
+      allow read, create, update: if isActive();   // update: devolução ao lote (venda cancelada)
+      allow delete: if false;
+    }
+
+    // ─── IMEI / nº de série por unidade (38.5): cada aparelho, a venda e a garantia dele ───
+    match /product_serials/{id} {
+      allow read, create, update: if isActive();   // update: vendido, venda cancelada, devolução, número corrigido
+      allow delete: if false;
+    }
+
+    // ─── Fornecedores e clientes ────────────────────────
+    match /suppliers/{supplierId} {
+      allow read, write: if isActive();
+    }
+    match /customers/{customerId} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Compras ────────────────────────────────────────
+    match /purchases/{purchaseId} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Vendas ─────────────────────────────────────────
+    // Cancelar/editar venda só atualiza o documento (status cancelada, vendedor, cliente…); nunca apaga.
+    match /sales/{saleId} {
+      allow read, create, update: if isActive();
+      allow delete: if false;
+    }
+
+    // ─── Pedidos (sino de avisos e backup) ──────────────
+    match /orders/{orderId} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Orçamentos ─────────────────────────────────────
+    match /quotes/{quoteId} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Consignado (36.6) ──────────────────────────────
+    match /consignments/{id} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Vasilhames / cascos retornáveis (38.1) ─────────
+    // Tipos de casco (vazios no depósito, na rua) e o histórico de trocas, empréstimos e devoluções.
+    match /bottle_types/{id} {
+      allow read, write: if isActive();
+    }
+    match /bottle_moves/{id} {
+      allow read, create, update: if isActive();
+      allow delete: if isAdmin();
+    }
+
+    // ─── Metas da loja e dos vendedores (36.6) ──────────
+    // Todos veem a meta; só gerente/admin define.
+    match /goals/{monthId} {
+      allow read: if isActive();
+      allow write: if isManagerOrAbove();
+    }
+
+    // ─── Mesas e comandas (inclui pagamento parcial, 37.1) ───
+    match /dining_tabs/{tabId} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Ordens de Serviço ─────────────────────────────
+    match /service_orders/{orderId} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Fotos da OS (uma foto por documento) ──────────
+    match /service_order_photos/{photoId} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Fotos pelo celular (QR Code) ───────────────────
+    // A sessão do QR Code só pode ser lida por quem tem o código (get), nunca listada.
+    match /os_capture/{token} {
+      allow get: if true;
+      allow list: if false;
+      allow write: if isActive();
+    }
+    // O celular (sem login) só pode CRIAR fotos para um QR Code existente e dentro da validade.
+    match /os_photo_inbox/{photoId} {
+      allow create: if request.resource.data.token is string
+        && exists(/databases/$(database)/documents/os_capture/$(request.resource.data.token))
+        && get(/databases/$(database)/documents/os_capture/$(request.resource.data.token)).data.expiresAt > request.time.toMillis()
+        && request.resource.data.image is string
+        && request.resource.data.image.size() < 900000
+        && request.resource.data.keys().hasOnly(['token', 'image', 'preview', 'createdAt']);
+      allow read, delete: if isActive();
+      allow update: if false;
+    }
+
+    // ─── Acompanhamento online da OS ────────────────────
+    // O cliente lê só a página da própria OS (pelo código do link); ninguém consegue listar.
+    match /os_tracking/{token} {
+      allow get: if true;
+      allow list: if false;
+      allow write: if isActive();
+    }
+
+    // ─── Respostas do cliente pelo link da OS (aprovar/recusar orçamento, assinar checklist) ───
+    // O cliente (sem login) só CRIA a resposta, e só para uma OS com acompanhamento publicado.
+    match /os_client_inbox/{id} {
+      allow create: if request.resource.data.token is string
+        && exists(/databases/$(database)/documents/os_tracking/$(request.resource.data.token))
+        && request.resource.data.type in ['approve', 'reject', 'sign_in', 'sign_out']
+        && request.resource.data.keys().hasOnly(['token', 'type', 'name', 'note', 'signature', 'processed', 'createdAt'])
+        && request.resource.data.processed == false
+        && (!('signature' in request.resource.data) || (request.resource.data.signature is string && request.resource.data.signature.size() < 400000));
+      allow read, update, delete: if isActive();
+    }
+
+    // ─── Compra de aparelhos usados ─────────────────────
+    match /device_purchases/{id} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Vale-troca (crédito do cliente) e trocas/devoluções (38.3) ───
+    match /store_credits/{id} {
+      allow read, write: if isActive();
+    }
+    match /returns/{id} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Agenda de serviços: horários, encaixes e bloqueios (37.9) ───
+    match /appointments/{id} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Pets e veículos dos clientes, vacinas, revisões e serviços (38.2) ───
+    match /customer_items/{id} {
+      allow read, write: if isActive();
+    }
+    match /customer_item_events/{id} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Caixa ──────────────────────────────────────────
+    match /cash_registers/{cashId} {
+      allow read, write: if isActive();
+    }
+
+    match /cash_movements/{movId} {
+      allow read, create: if isActive();
+      // Estorno (venda/OS cancelada) só marca o lançamento como estornado; o valor não muda.
+      // O administrador também pode atualizar, para restaurar backup.
+      // 39.3 · Gerente também: ao editar os valores de uma venda (vendas-editar-v1.js) o lançamento do caixa é refeito;
+      // a regra antiga recusava e a venda ficava com o estoque mexido e o caixa errado.
+      allow update: if isManagerOrAbove()
+        || (isActive() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reversed', 'reversedAt', 'reversedBy', 'reverseReason']));
+      allow delete: if false;
+    }
+
+    // ─── Financeiro (contas a pagar/receber, fiado, despesas com conta de saída) ───
+    match /financial_entries/{entryId} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Contas bancárias (37.1) ────────────────────────
+    // Cadastro das contas: gerente, admin ou Financeiro. Saldo e extrato são lidos por quem usa o sistema.
+    match /bank_accounts/{id} {
+      allow read: if isActive();
+      allow create, update: if isFinance();
+      allow delete: if false;   // conta é desativada, não apagada
+    }
+    // Transferências e ajustes entre contas: gerente, admin ou Financeiro; "excluir" só marca deleted.
+    match /bank_moves/{id} {
+      allow read: if isActive();
+      allow create, update: if isFinance();
+      allow delete: if false;
+    }
+
+    // ─── Motoboys ───────────────────────────────────────
+    match /motoboys/{id} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Rotas de entrega, cargas (romaneio) e acerto do entregador (38.4) ───
+    match /routes/{id} {
+      allow read, write: if isActive();
+    }
+    match /delivery_runs/{id} {
+      allow read, create, update: if isActive();
+      allow delete: if false;   // carga desfeita só é marcada (deleted)
+    }
+
+    // ─── Configurações ──────────────────────────────────
+    match /settings/{settingId} {
+      allow read: if isActive();
+      // No primeiro cadastro o administrador cria settings/general logo depois do próprio usuário.
+      // Os contadores (número da venda, orçamento, consignado) ficam aqui e são atualizados por quem vende.
+      allow write: if isActive();
+    }
+
+    match /configuracoes/{docId} {
+      allow read, write: if isActive();
+    }
+
+    // ─── Auditoria ──────────────────────────────────────
+    match /audit_logs/{logId} {
+      allow read: if isManagerOrAbove();
+      allow create: if isAuthenticated();
+      allow update, delete: if false;
+    }
+
+    // ─── Notificações ───────────────────────────────────
+    match /notifications/{notifId} {
+      allow read, create, update: if isActive();
+      allow delete: if false;
+    }
+  }
+}

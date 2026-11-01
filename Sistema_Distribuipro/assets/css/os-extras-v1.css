@@ -1,0 +1,98 @@
+/* DistribuiPro 27.0 · Fotos da OS, captura pelo celular e acompanhamento online */
+.osx-section [hidden],.osx-modal [hidden]{display:none!important}
+.osx-section .osx-blocks{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.osx-block{border:1px solid var(--border-color);border-radius:14px;padding:14px;background:var(--bg-surface,transparent);min-width:0}
+.osx-block-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.osx-block-head strong{display:flex;align-items:center;gap:7px;font-size:13.5px;color:var(--text-primary)}
+.osx-block-head strong i{color:var(--accent)}
+.osx-block-head small{display:block;margin-top:2px;font-size:11.5px;color:var(--text-muted)}
+.osx-count{font-weight:600;color:var(--text-muted)}
+.osx-block-actions{display:flex;gap:6px;flex-wrap:wrap}
+.osx-block-actions .btn{border-radius:999px;padding:6px 12px;font-size:12px;cursor:pointer}
+.osx-add.is-busy{opacity:.6;pointer-events:none}
+.osx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:10px}
+.osx-empty{grid-column:1/-1;padding:18px;text-align:center;font-size:12px;color:var(--text-muted);border:1px dashed var(--border-color);border-radius:12px}
+.osx-thumb{position:relative;aspect-ratio:1;border-radius:12px;background:var(--bg-input,#eef1f6) center/cover no-repeat;border:2px solid color-mix(in srgb,var(--accent) 45%,transparent);cursor:zoom-in;overflow:hidden;transition:transform .15s}
+.osx-block[data-kind="saida"] .osx-thumb{border-color:color-mix(in srgb,var(--success,#10b981) 55%,transparent)}
+.osx-thumb:hover{transform:translateY(-2px)}
+.osx-thumb.is-loading{background-image:linear-gradient(90deg,transparent,rgba(127,127,127,.18),transparent)!important;background-size:200% 100%!important;animation:osxShimmer 1.2s linear infinite}
+@keyframes osxShimmer{to{background-position:-200% 0}}
+.osx-tag{position:absolute;left:6px;bottom:6px;padding:2px 7px;border-radius:6px;font-size:9.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--accent)}
+.osx-block[data-kind="saida"] .osx-tag{background:var(--success,#10b981)}
+.osx-del{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(15,23,42,.72);color:#fff;font-size:11px;cursor:pointer;display:grid;place-items:center}
+.osx-del:hover{background:var(--danger,#ef4444)}
+.osx-track{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;padding:12px 14px;border-radius:12px;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--border-color));background:color-mix(in srgb,var(--accent) 7%,transparent)}
+.osx-track strong{font-size:13px;color:var(--text-primary)}.osx-track strong i{color:var(--accent);margin-right:5px}
+.osx-track small{display:block;font-size:11.5px;color:var(--text-muted);margin-top:2px}
+.osx-track-actions{display:flex;gap:6px;flex-wrap:wrap}.osx-track-actions .btn{border-radius:999px;font-size:12px}
+/* Coluna de ações da lista de OS: uma linha só, botões do mesmo tamanho (27.1) */
+#osTbody td:last-child{white-space:nowrap;width:1%}
+#osTbody .os-actions{display:flex!important;flex-wrap:nowrap!important;gap:4px!important;justify-content:flex-end;align-items:center}
+#osTbody .os-actions>.btn-icon,#osTbody .os-actions>.os-action{height:32px;min-width:32px;padding:0 8px!important;margin:0!important;border-radius:9px!important;display:inline-flex!important;align-items:center;justify-content:center;gap:5px;flex:0 0 auto;font-size:12px}
+#osTbody .os-actions>.os-action span{display:none!important}
+#osTbody .os-actions>.os-action-success{padding:0 10px!important}
+#osTbody .osx-row-ph{gap:4px}
+#osTbody .osx-row-ph span{font-size:11px;font-weight:800}
+@media (min-width:1500px){#osTbody .os-actions>.os-action-success span{display:inline!important}}
+@media (min-width:761px){
+#osTbody td{white-space:normal!important;max-width:none!important;overflow:visible!important}
+#osTbody td:nth-child(2){min-width:170px}
+#osTbody td:nth-child(1),#osTbody td:nth-child(3),#osTbody td:nth-child(6),#osTbody td:nth-child(7),#osTbody td:last-child{white-space:nowrap!important}
+#osTbody td:nth-child(3) div{font-size:11px}
+}
+/* Telas menores: some primeiro o que se repete (a data já aparece embaixo do número da OS) */
+@media (min-width:761px) and (max-width:1400px){table:has(>#osTbody) th:nth-child(7),#osTbody td:nth-child(7){display:none}}
+@media (min-width:761px) and (max-width:1250px){table:has(>#osTbody) th:nth-child(4),#osTbody td:nth-child(4){display:none}}
+@media (min-width:761px) and (max-width:1150px){table:has(>#osTbody) th:nth-child(3),#osTbody td:nth-child(3){display:none}}
+@media (min-width:761px) and (max-width:1499px){
+#osTbody .os-actions>.btn-icon,#osTbody .os-actions>.os-action{height:30px;min-width:30px;padding:0 7px!important;font-size:11.5px}
+#osTbody .os-actions{gap:3px!important}
+.os-page-table th,.table-responsive .data-table th,.table-responsive .data-table td{padding-left:10px!important;padding-right:10px!important}
+}
+@media (max-width:760px){#osTbody .os-actions{flex-wrap:wrap!important;justify-content:flex-start}#osTbody td:last-child{width:auto}}
+/* 40.41 · Ações em até duas linhas (pedido do dono: "tenho que diminuir bastante o zoom para ver todos os botões"). Numa linha
+   só, os até 13 botões (fotos, link, garantia, WhatsApp, Faturar, imprimir, editar, reabrir, cancelar...) passavam da tela em
+   monitor comum. Agora quebram em até 7 por linha, alinhados à direita; nenhum botão some. */
+@media (min-width:761px){
+#osTbody td:last-child{white-space:normal!important;width:1%}
+#osTbody .os-actions{flex-wrap:wrap!important;width:max-content;max-width:258px;margin-left:auto;row-gap:5px!important}
+}
+@media (min-width:1500px){#osTbody .os-actions{max-width:300px}}
+/* 40.42 · Faturar: botão à vista para dividir o pagamento */
+.os-split-btn{display:inline-flex;align-items:center;gap:7px;margin-top:8px;padding:7px 12px;border-radius:10px;border:1px dashed var(--accent,#6366f1);background:transparent;color:var(--accent,#6366f1);font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;text-align:left;line-height:1.3}
+.os-split-btn:hover{background:rgba(99,102,241,.08)}.os-split-btn.on{border-style:solid;color:var(--text-muted);border-color:var(--border-color)}
+/* O que mais alargava a tabela: a forma de pagamento embaixo do valor ("Parcial / a receber · Dinheiro + Fiado / A receber +
+   ...") e o serial, numa linha só. Agora quebram linha (o valor em R$ continua inteiro: usa espaço que não quebra). */
+@media (min-width:761px){
+#osTbody td:nth-child(3){white-space:normal!important;max-width:150px;overflow-wrap:anywhere}
+#osTbody td:nth-child(6){white-space:normal!important;min-width:110px;max-width:190px}
+#osTbody td:nth-child(4){min-width:88px}
+}
+
+/* Modais */
+.osx-modal-bg{position:fixed;inset:0;z-index:10050;background:rgba(2,6,23,.55);backdrop-filter:blur(3px);display:grid;place-items:center;padding:16px}
+.osx-modal{position:relative;width:min(440px,100%);max-height:calc(100vh - 32px);overflow:auto;background:var(--bg-card,#fff);color:var(--text-primary);border:1px solid var(--border-color);border-radius:20px;padding:22px 20px 18px;box-shadow:0 24px 70px rgba(0,0,0,.35);text-align:center}
+.osx-modal h3{margin:0 0 4px;font-size:18px}.osx-modal h3 i{color:var(--accent);margin-right:6px}
+.osx-sub{margin:0 0 16px;font-size:12.5px;color:var(--text-muted)}
+.osx-x{position:absolute;top:10px;right:12px;width:32px;height:32px;border:0;background:transparent;color:var(--text-muted);font-size:24px;line-height:1;cursor:pointer;border-radius:8px}
+.osx-x:hover{background:var(--bg-surface)}
+.osx-cap-form{display:grid;gap:12px;text-align:left}
+.osx-cap-form label{display:grid;gap:6px;font-size:12px;font-weight:700;color:var(--text-secondary,var(--text-muted))}
+.osx-cap-form select{height:44px;border-radius:12px;border:1px solid var(--border-color);background:var(--bg-input,#fff);color:var(--text-primary);padding:0 12px;font:inherit;font-size:14px}
+.osx-wide{width:100%;justify-content:center;height:46px;border-radius:999px;font-size:15px}
+.osx-hint{margin:0;font-size:12px;color:var(--text-muted);text-align:center}
+.osx-qr{display:grid;place-items:center;margin:4px auto 10px;padding:14px;border-radius:16px;background:#fff;border:1px solid var(--border-color);width:min(280px,100%)}
+.osx-qr svg{width:100%;height:auto;display:block}
+.osx-qr-fallback{font-size:12px;color:#111;word-break:break-all}
+.osx-cap-info{margin:4px 0 8px;font-size:12.5px;color:var(--text-muted)}
+.osx-cap-status{margin:8px 0 14px;padding:10px;border-radius:12px;background:var(--bg-surface);font-size:13px;display:flex;gap:8px;align-items:center;justify-content:center}
+.osx-cap-status .fa-circle-check{color:var(--success,#10b981)}
+.osx-cap-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.osx-cap-actions .btn{border-radius:999px;flex:1 1 140px;justify-content:center}
+.osx-url{margin:6px 0 12px;text-align:center;font-size:12px}
+.osx-spin{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;display:inline-block;animation:osxSpin .7s linear infinite;vertical-align:-2px}
+@keyframes osxSpin{to{transform:rotate(360deg)}}
+.osx-viewer{position:fixed;inset:0;z-index:10060;background:rgba(0,0,0,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px}
+.osx-viewer img{max-width:100%;max-height:calc(100vh - 110px);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.osx-viewer-bar{display:flex;gap:8px}.osx-viewer-bar .btn{border-radius:999px}
+@media (max-width:760px){.osx-section .osx-blocks{grid-template-columns:1fr}.osx-grid{grid-template-columns:repeat(3,1fr)}}

@@ -1,0 +1,36 @@
+[11-Dec-2022 21:21:29 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[12-Dec-2022 12:11:59 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[12-Dec-2022 12:13:05 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[14-Dec-2022 11:00:20 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[14-Dec-2022 11:00:22 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[14-Dec-2022 11:01:05 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[14-Dec-2022 18:24:23 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[15-Dec-2022 21:18:55 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[16-Dec-2022 20:57:05 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[17-Dec-2022 22:54:49 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[20-Dec-2022 10:56:39 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[22-Dec-2022 09:44:02 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[13-Jan-2025 18:46:41 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[13-Jan-2025 18:46:47 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[13-Feb-2025 05:51:37 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[13-Feb-2025 05:51:40 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[13-Feb-2025 05:51:40 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[13-Feb-2025 05:51:43 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[25-Feb-2025 07:29:58 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[25-Feb-2025 07:30:02 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[25-Feb-2025 07:30:03 America/Sao_Paulo] {"message":"client.id unauthorized to create preferences","error":"unauthorized_client_id","status":401,"cause":null}
+[25-Feb-2025 07:30:22 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[25-Feb-2025 07:30:26 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[25-Feb-2025 07:30:26 America/Sao_Paulo] {"message":"client.id unauthorized to create preferences","error":"unauthorized_client_id","status":401,"cause":null}
+[02-Mar-2025 15:22:31 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[02-Mar-2025 15:22:38 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[02-Mar-2025 15:22:38 America/Sao_Paulo] {"message":"client.id unauthorized to create preferences","error":"unauthorized_client_id","status":401,"cause":null}
+[02-Mar-2025 15:22:47 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[02-Mar-2025 15:22:52 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[02-Mar-2025 15:22:52 America/Sao_Paulo] {"message":"client.id unauthorized to create preferences","error":"unauthorized_client_id","status":401,"cause":null}
+[28-Mar-2025 12:08:23 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[28-Mar-2025 12:08:31 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[28-Mar-2025 12:08:31 America/Sao_Paulo] {"message":"unit_price needed","error":"invalid_items","status":400,"cause":null}
+[09-Apr-2025 11:06:37 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[09-Apr-2025 11:07:01 America/Sao_Paulo] {"message":"The User ID must match the consultant's","error":"forbidden","status":403,"cause":[]}
+[09-Apr-2025 11:07:02 America/Sao_Paulo] {"message":"client.id unauthorized to create preferences","error":"unauthorized_client_id","status":401,"cause":null}

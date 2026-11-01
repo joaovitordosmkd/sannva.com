@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script>window.__stProduct=1;document.documentElement.setAttribute("data-st-product","")</script><script>/* Studio: aplica o tema escolhido (claro/escuro/automático) antes de desenhar a página */try{var p=localStorage.getItem("st_theme_pref");if(p){var t=p==="auto"?(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):p;if(t==="light"||t==="dark"){sessionStorage.setItem("erp_theme_session",t);document.documentElement.setAttribute("data-theme",t);}}}catch(e){}</script><link rel="icon" href="assets/brand/favicon-96.png?v=41.5-logo" type="image/png">
+    <script src="assets/js/branding.js?v=40.29-acessos"></script><script src="assets/js/papel-v1.js?v=40.49"></script><script src="assets/js/dp-icons-v1.js?v=37.6"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="theme-color" content="#0a0e1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Configurações · DistribuiPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css?v=37.8">
+    <link rel="stylesheet" href="assets/css/mobile.css?v=37.8">
+<style>
+        .cfg-toggle { position:relative;display:inline-block;width:48px;height:26px;flex-shrink:0 }
+        .cfg-toggle input { opacity:0;width:0;height:0 }
+        .cfg-toggle-slider { position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--bg-tertiary,#334155);border-radius:26px;transition:.3s }
+        .cfg-toggle-slider:before { position:absolute;content:"";height:20px;width:20px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s }
+        .cfg-toggle input:checked + .cfg-toggle-slider { background:#3b82f6 }
+        .cfg-toggle input:checked + .cfg-toggle-slider:before { transform:translateX(22px) }
+
+        /* ═══════════════════════════════════════════════════════
+           FORM-INPUT — base styles para esta página
+           A classe form-input não tem regras globais no main.css,
+           então definimos o tema dark aqui para inputs/selects/textarea.
+           ═══════════════════════════════════════════════════════ */
+        #pageConfiguracoes input.form-input,
+        #pageConfiguracoes select.form-input,
+        #pageConfiguracoes textarea.form-input,
+        .card input.form-input,
+        .card select.form-input,
+        .card textarea.form-input {
+            background: var(--bg-tertiary, #1e293b);
+            color: var(--text-primary, #e2e8f0);
+            border: 1px solid var(--border-color, #334155);
+            border-radius: 8px;
+            padding: 9px 12px;
+            font-size: 13px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color .15s, box-shadow .15s, background .15s;
+            box-sizing: border-box;
+        }
+        .card input.form-input:focus,
+        .card select.form-input:focus,
+        .card textarea.form-input:focus {
+            border-color: var(--accent, #6366f1);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent, #6366f1) 18%, transparent);
+        }
+        .card input.form-input:disabled,
+        .card select.form-input:disabled,
+        .card textarea.form-input:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+        .card input.form-input::placeholder,
+        .card textarea.form-input::placeholder {
+            color: var(--text-muted, #64748b);
+        }
+        /* Setinha do select */
+        .card select.form-input {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+        }
+        /* Inputs de número - centralizados quando explicitamente styled */
+        .card input.form-input[type="number"]::-webkit-inner-spin-button,
+        .card input.form-input[type="number"]::-webkit-outer-spin-button {
+            opacity: .5;
+            height: 22px;
+        }
+        /* Color picker */
+        .card input.form-input[type="color"] {
+            padding: 4px;
+            cursor: pointer;
+            min-height: 38px;
+        }
+        /* form-label (caso seja usado) */
+        .card .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted, #94a3b8);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* Badges de formas de pagamento ativas/inativas */
+        .cfg-pay-badge {
+            cursor:pointer;
+            user-select:none;
+            display:inline-flex;
+            align-items:center;
+            padding:6px 12px;
+            border-radius:20px;
+            font-size:12px;
+            font-weight:600;
+            transition:all .2s;
+            border:1.5px solid transparent;
+        }
+        .cfg-pay-badge.active {
+            background:rgba(16,185,129,.15);
+            color:#10b981;
+            border-color:rgba(16,185,129,.35);
+        }
+        .cfg-pay-badge:not(.active) {
+            background:var(--bg-tertiary,#334155);
+            color:var(--text-muted);
+            border-color:var(--border-color);
+            opacity:.65;
+            text-decoration:line-through;
+        }
+        .cfg-pay-badge.active::before { content:"✓ "; }
+        .cfg-pay-badge:not(.active)::before { content:"✕ "; }
+
+        /* Radio cards - Modo de emissão */
+        .modo-emissao-opt { transition: all .15s; }
+        .modo-emissao-opt:hover { background: var(--bg-tertiary, #1e293b) !important; }
+        .modo-emissao-opt input[type="radio"] { accent-color: var(--accent, #6366f1); width:16px; height:16px; cursor:pointer }
+        .modo-emissao-opt:has(input[type="radio"]:checked) {
+            border-color: var(--accent, #6366f1) !important;
+            background: color-mix(in srgb, var(--accent, #6366f1) 8%, var(--bg-secondary)) !important;
+        }
+    </style>
+    <link rel="stylesheet" href="assets/css/studio-light-pages.css?v=1.3">
+    <link rel="stylesheet" href="assets/css/studio-v1.css?v=39.6-logo"><link rel="stylesheet" href="assets/css/studio-pro-v2.css?v=2.7">
+<script defer src="assets/js/cache-818831d97b.js"></script></head>
+<body>
+    <div class="app-layout">
+        <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileSidebar()"></div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand"><div class="dp-default-logo" aria-label="DistribuiPro"><img src="assets/brand/distribuipro-logo-dark.png?v=41.5-logo" alt="DistribuiPro"></div><div class="brand-icon"><img src="assets/brand/distribuipro-mark.svg?v=41.5-logo" alt="DistribuiPro" style="width:100%;height:100%;display:block;object-fit:contain"></div><div class="brand-text"><h1>DistribuiPRO</h1><span>Sistema ERP</span></div></div>
+            <nav class="sidebar-menu">
+<div class="menu-section"><span class="menu-section-title">Principal</span></div>
+                <a href="index.html" class="menu-item"><i class="fas fa-chart-pie"></i><span class="menu-text">Dashboard</span></a>
+                <div class="menu-section"><span class="menu-section-title">Operações</span></div>
+                <a href="pdv.html" class="menu-item"><i class="fas fa-cash-register"></i><span class="menu-text">PDV / Vendas</span></a>
+        <a href="orcamentos.html" class="menu-item" data-page="orcamentos"><i class="fas fa-file-signature"></i><span class="menu-text">Orçamentos</span></a>
+                <a href="pedidos.html" class="menu-item"><i class="fas fa-clipboard-list"></i><span class="menu-text">Pedidos</span></a>
+                <a href="entregas.html" class="menu-item"><i class="fas fa-truck-fast"></i><span class="menu-text">Entregas</span></a>
+                <a href="caixa.html" class="menu-item"><i class="fas fa-vault"></i><span class="menu-text">Caixa</span></a>
+                <a href="ordens-servico.html" class="menu-item"><i class="fas fa-screwdriver-wrench"></i><span class="menu-text">Ordens de Serviço</span></a>
+                <div class="menu-section"><span class="menu-section-title">Cadastros</span></div>
+                <a href="produtos.html" class="menu-item"><i class="fas fa-box"></i><span class="menu-text">Produtos</span></a>
+                <a href="categorias.html" class="menu-item"><i class="fas fa-tags"></i><span class="menu-text">Categorias</span></a>
+                <a href="clientes.html" class="menu-item"><i class="fas fa-users"></i><span class="menu-text">Clientes</span></a>
+                <a href="fornecedores.html" class="menu-item"><i class="fas fa-industry"></i><span class="menu-text">Fornecedores</span></a>
+                <div class="menu-section"><span class="menu-section-title">Estoque</span></div>
+                <a href="estoque.html" class="menu-item"><i class="fas fa-boxes-stacked"></i><span class="menu-text">Estoque</span></a>
+                <a href="movimentacoes.html" class="menu-item"><i class="fas fa-arrow-right-arrow-left"></i><span class="menu-text">Movimentações</span></a>
+                <a href="compras.html" class="menu-item"><i class="fas fa-cart-shopping"></i><span class="menu-text">Compras</span></a>
+                <div class="menu-section"><span class="menu-section-title">Financeiro</span></div>
+                <a href="contas-pagar.html" class="menu-item"><i class="fas fa-file-invoice-dollar"></i><span class="menu-text">Contas a Pagar</span></a>
+                <a href="contas-receber.html" class="menu-item"><i class="fas fa-hand-holding-dollar"></i><span class="menu-text">Contas a Receber</span></a>
+                <a href="fluxo-caixa.html" class="menu-item"><i class="fas fa-chart-line"></i><span class="menu-text">Fluxo de Caixa</span></a>
+                <div class="menu-section"><span class="menu-section-title">Gestão</span></div>
+                <a href="motoboys.html" class="menu-item"><i class="fas fa-motorcycle"></i><span class="menu-text">Motoboys</span></a>
+                <a href="relatorios.html" class="menu-item"><i class="fas fa-chart-bar"></i><span class="menu-text">Relatórios</span></a>
+                <a href="comissoes.html" class="menu-item"><i class="fas fa-percent"></i><span class="menu-text">Comissões</span></a>
+                <a href="usuarios.html" class="menu-item"><i class="fas fa-user-shield"></i><span class="menu-text">Usuários</span></a>
+                <a href="auditoria.html" class="menu-item"><i class="fas fa-clock-rotate-left"></i><span class="menu-text">Auditoria</span></a>
+                <a href="configuracoes.html" class="menu-item active"><i class="fas fa-gear"></i><span class="menu-text">Configurações</span></a>
+            </nav>
+            <div class="sidebar-toggle"><button onclick="toggleSidebar()"><i class="fas fa-angles-left" id="sidebarToggleIcon"></i></button></div>
+        </div>
+
+        <div class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()"><i class="fas fa-bars"></i></button>
+                    <div><h2>Configurações</h2><div class="header-breadcrumb"><i class="fas fa-home" style="font-size:10px"></i><span>/ Sistema / Configurações</span></div></div>
+                </div>
+                <div class="header-right">
+                    <button class="header-action" onclick="toggleTheme()" title="Alternar tema"><i class="fas fa-sun" id="themeIcon"></i></button>
+                    <button class="header-action" onclick="toggleNotifications()" title="Notificações"><i class="fas fa-bell"></i><span class="notif-dot"></span></button>
+                    <div class="header-avatar" id="userAvatar" onclick="toggleProfileMenu()" title="Meu perfil" style="cursor:pointer">A</div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <!-- Tabs -->
+                <div style="display:flex;gap:4px;margin-bottom:24px;border-bottom:1px solid var(--border-color);overflow-x:auto">
+                    <button class="btn" style="border:none;border-bottom:2px solid var(--accent);border-radius:0;color:var(--accent);font-weight:600;font-size:13px;padding:12px 20px" onclick="showTab('empresa')"><i class="fas fa-building" style="margin-right:6px"></i>Empresa</button>
+                    <button class="btn" style="border:none;border-bottom:2px solid transparent;border-radius:0;color:var(--text-muted);font-weight:500;font-size:13px;padding:12px 20px" onclick="showTab('vendas')"><i class="fas fa-shopping-cart" style="margin-right:6px"></i>Vendas</button>
+                    <button class="btn" style="border:none;border-bottom:2px solid transparent;border-radius:0;color:var(--text-muted);font-weight:500;font-size:13px;padding:12px 20px" onclick="showTab('fiscal')"><i class="fas fa-file-invoice" style="margin-right:6px"></i>Fiscal <i class="fas fa-lock" style="font-size:10px;margin-left:4px;opacity:.6"></i></button>
+                    <button class="btn" style="border:none;border-bottom:2px solid transparent;border-radius:0;color:var(--text-muted);font-weight:500;font-size:13px;padding:12px 20px" onclick="showTab('impressao')"><i class="fas fa-print" style="margin-right:6px"></i>Impressão</button>
+                    <button class="btn" style="border:none;border-bottom:2px solid transparent;border-radius:0;color:var(--text-muted);font-weight:500;font-size:13px;padding:12px 20px" onclick="showTab('backup')"><i class="fas fa-database" style="margin-right:6px"></i>Backup</button>
+                    <button class="btn" style="border:none;border-bottom:2px solid transparent;border-radius:0;color:var(--text-muted);font-weight:500;font-size:13px;padding:12px 20px" onclick="showTab('notificacoes')"><i class="fas fa-bell" style="margin-right:6px"></i>Notificações</button>
+                </div>
+
+                <!-- Tab: Dados da Empresa -->
+                <div id="tabEmpresa">
+                    <div class="card" style="margin-bottom:20px">
+                        <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:20px"><i class="fas fa-building" style="color:var(--accent);margin-right:8px"></i>Dados da Empresa</h3>
+                        <div class="ig-equal-to-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                            <div class="form-group" style="grid-column:1/-1"><label class="form-label">Razão Social *</label><input type="text" class="form-input" id="cfg_razao_social" placeholder="Como está no cartão do CNPJ"></div>
+                            <div class="form-group"><label class="form-label">Nome Fantasia *</label><input type="text" class="form-input" id="cfg_nome_fantasia" placeholder="Nome da sua loja"></div>
+                            <div class="form-group"><label class="form-label">CNPJ *</label><input type="text" class="form-input" id="cfg_cnpj" placeholder="00.000.000/0000-00"></div>
+                            <div class="form-group"><label class="form-label">Inscrição Estadual</label><input type="text" class="form-input" id="cfg_ie" placeholder="Se tiver"></div>
+                            <div class="form-group"><label class="form-label">Inscrição Municipal</label><input type="text" class="form-input" id="cfg_im" placeholder="Se tiver"></div>
+                            <div class="form-group"><label class="form-label">Telefone</label><input type="text" class="form-input" id="cfg_telefone" placeholder="(00) 0000-0000"></div>
+                            <div class="form-group"><label class="form-label">WhatsApp</label><input type="text" class="form-input" id="cfg_whatsapp" placeholder="(00) 00000-0000"></div>
+                            <div class="form-group" style="grid-column:1/-1"><label class="form-label">E-mail</label><input type="email" class="form-input" id="cfg_email" placeholder="contato@sualoja.com.br"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-bottom:20px">
+                        <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:20px"><i class="fas fa-map-marker-alt" style="color:var(--accent);margin-right:8px"></i>Endereço</h3>
+                        <div class="ig-equal-to-stack" style="display:grid;grid-template-columns:1fr 2fr;gap:16px">
+                            <div class="form-group"><label class="form-label">CEP</label><input type="text" class="form-input" id="cfg_cep" placeholder="00000-000"></div>
+                            <div class="form-group"><label class="form-label">Logradouro</label><input type="text" class="form-input" id="cfg_logradouro" placeholder="Rua, avenida..."></div>
+                            <div class="form-group"><label class="form-label">Número</label><input type="text" class="form-input" id="cfg_numero" placeholder="Nº ou S/N"></div>
+                            <div class="form-group"><label class="form-label">Bairro</label><input type="text" class="form-input" id="cfg_bairro"></div>
+                            <div class="form-group"><label class="form-label">Cidade</label><input type="text" class="form-input" id="cfg_cidade"></div>
+                            <div class="form-group"><label class="form-label">UF</label><select class="form-input" id="cfg_uf"><option value="">—</option><option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option><option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option><option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option><option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option><option value="PR">PR</option><option value="PE">PE</option><option value="PI">PI</option><option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option><option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option><option value="SP">SP</option><option value="SE">SE</option><option value="TO">TO</option></select></div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-bottom:20px">
+                        <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:20px"><i class="fas fa-palette" style="color:var(--accent);margin-right:8px"></i>Identidade Visual</h3>
+                        <div class="ig-equal-to-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                            <div class="form-group">
+                                <label class="form-label">Nome exibido no sidebar *</label>
+                                <input type="text" id="cfg_sidebar_company" class="form-input" placeholder="Ex: DistribuiPRO" maxlength="30">
+                                <span style="font-size:11px;color:var(--text-muted);margin-top:4px;display:block">Nome principal em negrito no menu lateral</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Subtítulo do sistema *</label>
+                                <input type="text" id="cfg_sidebar_system" class="form-input" placeholder="Ex: Sistema ERP" maxlength="30">
+                                <span style="font-size:11px;color:var(--text-muted);margin-top:4px;display:block">Texto menor abaixo do nome (ex: "Sistema ERP")</span>
+                            </div>
+                            <div class="form-group" style="grid-column:1/-1">
+                                <label class="form-label" style="margin-bottom:8px;display:block">Pré-visualização do Sidebar</label>
+                                <div style="display:inline-flex;align-items:center;gap:12px;padding:14px 18px;background:var(--bg-secondary);border-radius:12px;border:1px solid var(--border-color)">
+                                    <div id="previewBrandIcon" style="width:36px;height:36px;background:var(--gradient-primary,linear-gradient(135deg,var(--accent),#7c3aed));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0"><img src="assets/brand/distribuipro-mark.svg?v=41.5-logo" alt="DistribuiPro" style="width:100%;height:100%;object-fit:contain;display:block"></div>
+                                    <div>
+                                        <div id="previewBrandName" style="font-size:15px;font-weight:700;color:var(--text-primary)">DistribuiPRO</div>
+                                        <div id="previewBrandSub" style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px">Sistema ERP</div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline btn-sm" style="margin-left:12px" onclick="applyBrandingPreview()">
+                                    <i class="fas fa-eye"></i> Visualizar no sidebar
+                                </button>
+                            </div>
+                            <div class="form-group" style="grid-column:1/-1">
+                                <label class="form-label">Logo da Empresa</label>
+                                <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap">
+                                    <!-- Área de upload -->
+                                    <div>
+                                        <div id="logoUploadArea" style="width:120px;height:120px;border-radius:16px;background:var(--bg-secondary);border:2px dashed var(--border-color);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;overflow:hidden;position:relative"
+                                             onclick="document.getElementById('logoFileInput').click()"
+                                             onmouseover="this.style.borderColor='var(--accent)';this.style.background='var(--bg-surface)'"
+                                             onmouseout="this.style.borderColor='var(--border-color)';this.style.background='var(--bg-secondary)'"
+                                             title="Clique para enviar a logo da empresa">
+                                            <i class="fas fa-cloud-upload-alt" style="font-size:24px;color:var(--text-muted);margin-bottom:6px"></i>
+                                            <span style="font-size:11px;color:var(--text-muted)">Clique para enviar</span>
+                                            <span style="font-size:10px;color:var(--text-muted);margin-top:2px">PNG, JPG, SVG</span>
+                                        </div>
+                                        <input type="file" id="logoFileInput" accept="image/*" data-camera-max="800" style="display:none" onchange="handleLogoUpload(event)">
+                                        <button onclick="removeLogo()" class="btn btn-outline btn-sm" style="width:120px;margin-top:6px;font-size:11px"><i class="fas fa-trash"></i> Remover Logo</button>
+                                    </div>
+
+                                    <!-- Opções da logo -->
+                                    <div style="display:flex;flex-direction:column;gap:14px;flex:1;min-width:220px">
+                                        <!-- Tamanho -->
+                                        <div class="form-group" style="margin:0">
+                                            <label class="form-label" style="font-size:12px">Tamanho da Logo no Sidebar</label>
+                                            <div style="display:flex;align-items:center;gap:10px;margin-top:4px">
+                                                <input type="range" id="cfg_logo_size" min="32" max="72" value="44" style="flex:1;accent-color:var(--accent)" oninput="previewLogoSize(this.value)">
+                                                <span id="logoSizeLabel" style="font-size:12px;color:var(--text-muted);min-width:32px">44px</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modo de exibição -->
+                                        <div class="form-group" style="margin:0">
+                                            <label class="form-label" style="font-size:12px">Modo de Exibição no Sidebar</label>
+                                            <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
+                                                <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+                                                    <input type="radio" name="logoMode" value="logo_and_text" id="modeLogoText" checked onchange="previewLogoMode(this.value)" style="accent-color:var(--accent)">
+                                                    <span style="font-size:13px;color:var(--text-primary)"><i class="fas fa-image" style="width:14px;color:var(--accent)"></i> Logo + Nome e Slogan</span>
+                                                </label>
+                                                <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+                                                    <input type="radio" name="logoMode" value="logo_only" id="modeLogoOnly" onchange="previewLogoMode(this.value)" style="accent-color:var(--accent)">
+                                                    <span style="font-size:13px;color:var(--text-primary)"><i class="fas fa-crop-simple" style="width:14px;color:var(--accent)"></i> Somente a Logo</span>
+                                                </label>
+                                                <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+                                                    <input type="radio" name="logoMode" value="text_only" id="modeTextOnly" onchange="previewLogoMode(this.value)" style="accent-color:var(--accent)">
+                                                    <span style="font-size:13px;color:var(--text-primary)"><i class="fas fa-font" style="width:14px;color:var(--accent)"></i> Somente Nome e Slogan</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Fundo da logo -->
+                                        <div class="form-group" style="margin:0">
+                                            <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+                                                <input type="checkbox" id="cfg_logo_no_bg" onchange="previewLogoBg(this.checked)" style="accent-color:var(--accent);width:16px;height:16px">
+                                                <div>
+                                                    <span style="font-size:13px;color:var(--text-primary);font-weight:600">Fundo Transparente</span>
+                                                    <div style="font-size:11px;color:var(--text-muted)">Remove o fundo colorido atrás da logo</div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="grid-column:1/-1">
+                                <label class="form-label">Tema padrão do sistema</label>
+                                <div style="display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:14px;align-items:center;margin-top:8px">
+                                    <select id="cfg_default_theme" class="form-input" aria-label="Tema padrão do sistema">
+                                        <option value="light">Claro</option>
+                                        <option value="dark">Escuro</option>
+                                    </select>
+                                    <div style="display:flex;gap:8px;min-width:0;flex-wrap:wrap">
+                                        <div style="display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--border-color);border-radius:10px;background:#f8fafc;color:#0f172a;font-size:11px;font-weight:700">
+                                            <i class="fas fa-sun" style="color:#f59e0b"></i> Claro
+                                        </div>
+                                        <div style="display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid #334155;border-radius:10px;background:#0f172a;color:#f8fafc;font-size:11px;font-weight:700">
+                                            <i class="fas fa-moon" style="color:#818cf8"></i> Escuro
+                                        </div>
+                                    </div>
+                                </div>
+                                <span style="font-size:11px;color:var(--text-muted);margin-top:7px;display:block">Todos os usuários entram com este tema. O botão de sol/lua no cabeçalho altera apenas a sessão atual; em um novo acesso o sistema volta ao padrão definido aqui.</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Cor Principal</label>
+                                <div style="display:flex;gap:10px;align-items:center;margin-top:8px">
+                                    <input type="color" value="#3b82f6" style="width:40px;height:40px;border:none;border-radius:8px;cursor:pointer">
+                                    <input type="text" class="form-input" value="#3b82f6" style="width:120px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;justify-content:flex-end;gap:10px">
+                        <button class="btn btn-outline" onclick="loadSettings()">Cancelar</button>
+                        <button class="btn btn-primary" onclick="saveTab('empresa')"><i class="fas fa-check"></i> Salvar Alterações</button>
+                    </div>
+                </div>
+
+                <!-- Tab: Vendas (hidden by default, toggled via JS) -->
+                <div id="tabVendas" style="display:none">
+                    <div class="card" style="margin-bottom:20px">
+                        <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:20px"><i class="fas fa-shopping-cart" style="color:var(--accent);margin-right:8px"></i>Configurações de Vendas</h3>
+                        <div style="display:flex;flex-direction:column;gap:16px">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Permitir venda sem estoque</div><div style="font-size:12px;color:var(--text-muted)">Produtos com estoque zero poderão ser vendidos no PDV; o estoque fica negativo até a próxima entrada</div></div>
+                                <label class="cfg-toggle"><input type="checkbox" id="cfg_venda_sem_estoque"><span class="cfg-toggle-slider"></span></label>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Desconto máximo (%)</div><div style="font-size:12px;color:var(--text-muted)">Limite de desconto para vendedores sem permissão</div></div>
+                                <input type="number" class="form-input" id="cfg_desconto_max" value="10" style="width:80px;text-align:center">
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Permitir venda fiado</div><div style="font-size:12px;color:var(--text-muted)">Habilita opção de fiado na tela de vendas</div></div>
+                                <label class="cfg-toggle"><input type="checkbox" id="cfg_venda_fiado" checked><span class="cfg-toggle-slider"></span></label>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Exigir cliente em vendas fiado</div><div style="font-size:12px;color:var(--text-muted)">Obrigatório vincular cliente na venda fiado</div></div>
+                                <label class="cfg-toggle"><input type="checkbox" id="cfg_exigir_cliente_fiado" checked><span class="cfg-toggle-slider"></span></label>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Taxa de entrega padrão (R$)</div><div style="font-size:12px;color:var(--text-muted)">Valor sugerido automaticamente nas entregas</div></div>
+                                <input type="text" class="form-input" id="cfg_taxa_entrega" value="5,00" style="width:100px;text-align:center">
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary);border:1px solid rgba(99,102,241,.2)">
+                                <div>
+                                    <div style="font-weight:600;font-size:14px;color:var(--text-primary)">Margem de lucro padrão (%)</div>
+                                    <div style="font-size:12px;color:var(--text-muted)">Ao cadastrar produto, o preço de venda será calculado automaticamente com base no custo + esta margem</div>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:8px">
+                                    <input type="number" class="form-input" id="cfg_margem_padrao" value="50" min="0" max="999" step="1" style="width:80px;text-align:center">
+                                    <span style="font-size:14px;color:var(--text-muted)">%</span>
+                                </div>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary);flex-wrap:wrap;gap:10px">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Formas de pagamento ativas</div><div style="font-size:12px;color:var(--text-muted)">Clique para ativar/desativar a forma no PDV</div></div>
+                                <div id="paymentMethodsBadges" style="display:flex;gap:6px;flex-wrap:wrap">
+                                    <span class="cfg-pay-badge active" data-method="dinheiro" onclick="togglePayMethod(this)">Dinheiro</span>
+                                    <span class="cfg-pay-badge active" data-method="pix" onclick="togglePayMethod(this)">PIX</span>
+                                    <span class="cfg-pay-badge active" data-method="debito" onclick="togglePayMethod(this)">Débito</span>
+                                    <span class="cfg-pay-badge active" data-method="credito" onclick="togglePayMethod(this)">Crédito</span>
+                                    <span class="cfg-pay-badge active" data-method="fiado" onclick="togglePayMethod(this)">Fiado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─────────── TAXAS DE PAGAMENTO ─────────── -->
+                    <div class="card" style="margin-bottom:20px">
+                        <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:6px"><i class="fas fa-percent" style="color:var(--accent);margin-right:8px"></i>Taxas de Pagamento</h3>
+                        <p style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Taxas cobradas pela operadora — descontadas do valor recebido em cada venda. Aparecem nos relatórios.</p>
+
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)"><i class="fas fa-qrcode" style="color:#10b981;margin-right:6px"></i>PIX (%)</div><div style="font-size:12px;color:var(--text-muted)">Taxa cobrada nas vendas via PIX</div></div>
+                                <div style="display:flex;align-items:center;gap:6px">
+                                    <input type="number" class="form-input" id="cfg_taxa_pix" value="0" min="0" max="100" step="0.01" style="width:90px;text-align:center">
+                                    <span style="font-size:14px;color:var(--text-muted)">%</span>
+                                </div>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)"><i class="fas fa-credit-card" style="color:#3b82f6;margin-right:6px"></i>Débito (%)</div><div style="font-size:12px;color:var(--text-muted)">Taxa do cartão de débito (qualquer bandeira)</div></div>
+                                <div style="display:flex;align-items:center;gap:6px">
+                                    <input type="number" class="form-input" id="cfg_taxa_debito" value="0" min="0" max="100" step="0.01" style="width:90px;text-align:center">
+                                    <span style="font-size:14px;color:var(--text-muted)">%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px"><i class="fas fa-credit-card" style="color:#f59e0b;margin-right:6px"></i>Crédito por bandeira (%)</h4>
+                        <p style="font-size:12px;color:var(--text-muted);margin-bottom:14px">Cadastre a taxa de cada bandeira. Caso a bandeira não seja informada na venda, será usada a taxa "Outras".</p>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;background:var(--bg-secondary)">
+                                <div style="font-weight:600;font-size:13px;color:var(--text-primary)">Visa</div>
+                                <div style="display:flex;align-items:center;gap:6px"><input type="number" class="form-input" id="cfg_taxa_credito_visa" value="0" min="0" max="100" step="0.01" style="width:80px;text-align:center"><span style="font-size:13px;color:var(--text-muted)">%</span></div>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;background:var(--bg-secondary)">
+                                <div style="font-weight:600;font-size:13px;color:var(--text-primary)">Mastercard</div>
+                                <div style="display:flex;align-items:center;gap:6px"><input type="number" class="form-input" id="cfg_taxa_credito_mastercard" value="0" min="0" max="100" step="0.01" style="width:80px;text-align:center"><span style="font-size:13px;color:var(--text-muted)">%</span></div>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;background:var(--bg-secondary)">
+                                <div style="font-weight:600;font-size:13px;color:var(--text-primary)">Elo</div>
+                                <div style="display:flex;align-items:center;gap:6px"><input type="number" class="form-input" id="cfg_taxa_credito_elo" value="0" min="0" max="100" step="0.01" style="width:80px;text-align:center"><span style="font-size:13px;color:var(--text-muted)">%</span></div>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;background:var(--bg-secondary)">
+                                <div style="font-weight:600;font-size:13px;color:var(--text-primary)">American Express</div>
+                                <div style="display:flex;align-items:center;gap:6px"><input type="number" class="form-input" id="cfg_taxa_credito_amex" value="0" min="0" max="100" step="0.01" style="width:80px;text-align:center"><span style="font-size:13px;color:var(--text-muted)">%</span></div>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;background:var(--bg-secondary)">
+                                <div style="font-weight:600;font-size:13px;color:var(--text-primary)">Hipercard</div>
+                                <div style="display:flex;align-items:center;gap:6px"><input type="number" class="form-input" id="cfg_taxa_credito_hipercard" value="0" min="0" max="100" step="0.01" style="width:80px;text-align:center"><span style="font-size:13px;color:var(--text-muted)">%</span></div>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;background:var(--bg-secondary);border:1px dashed var(--border-color)">
+                                <div style="font-weight:600;font-size:13px;color:var(--text-primary)">Outras</div>
+                                <div style="display:flex;align-items:center;gap:6px"><input type="number" class="form-input" id="cfg_taxa_credito_outras" value="0" min="0" max="100" step="0.01" style="width:80px;text-align:center"><span style="font-size:13px;color:var(--text-muted)">%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex;justify-content:flex-end;gap:10px"><button class="btn btn-outline" onclick="loadSettings()">Cancelar</button><button class="btn btn-primary" onclick="saveTab('vendas')"><i class="fas fa-check"></i> Salvar</button></div>
+                </div>
+
+                <!-- Tab: Impressão (hidden) -->
+                <div id="tabImpressao" style="display:none">
+                    <div class="card" style="margin-bottom:20px">
+                        <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:20px"><i class="fas fa-print" style="color:var(--accent);margin-right:8px"></i>Configurações de Impressão</h3>
+                        <div style="display:flex;flex-direction:column;gap:16px">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Impressora Padrão</div><div style="font-size:12px;color:var(--text-muted)">Impressora térmica para comprovantes</div></div>
+                                <select class="form-input" id="cfg_impressora" style="width:200px"><option value="termica_80">Impressora Térmica 80mm</option><option value="termica_58">Impressora Térmica 58mm</option><option value="a4">Impressora A4</option></select>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Imprimir automaticamente após venda</div><div style="font-size:12px;color:var(--text-muted)">Imprime comprovante ao finalizar cada venda</div></div>
+                                <label class="cfg-toggle"><input type="checkbox" id="cfg_imprimir_auto" checked><span class="cfg-toggle-slider"></span></label>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Foto do produto no orçamento</div><div style="font-size:12px;color:var(--text-muted)">Mostra a imagem de cada produto no orçamento em A4 / PDF (produtos sem foto ficam sem imagem)</div></div>
+                                <label class="cfg-toggle"><input type="checkbox" id="cfg_orcamento_fotos"><span class="cfg-toggle-slider"></span></label>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Comprovante da venda também em folha A4</div><div style="font-size:12px;color:var(--text-muted)">Além do cupom térmico, oferece imprimir o comprovante em A4 / PDF (mesmo modelo do orçamento) no fim da venda e em Pedidos</div></div>
+                                <label class="cfg-toggle"><input type="checkbox" id="cfg_venda_a4"><span class="cfg-toggle-slider"></span></label>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Cabeçalho do Comprovante</div><div style="font-size:12px;color:var(--text-muted)">Texto exibido no topo dos comprovantes</div></div>
+                                <input type="text" class="form-input" id="cfg_cabecalho" placeholder="Vazio = nome fantasia" style="width:200px">
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Rodapé do Comprovante</div><div style="font-size:12px;color:var(--text-muted)">Mensagem no final do comprovante</div></div>
+                                <input type="text" class="form-input" id="cfg_rodape" value="Obrigado pela preferência!" style="width:200px">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex;justify-content:flex-end;gap:10px"><button class="btn btn-outline" onclick="loadSettings()">Cancelar</button><button class="btn btn-primary" onclick="saveTab('impressao')"><i class="fas fa-check"></i> Salvar</button></div>
+                </div>
+
+                <!-- Tab: Backup (hidden) -->
+                <div id="tabBackup" style="display:none">
+                    <div class="card" style="margin-bottom:20px">
+                        <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:20px"><i class="fas fa-database" style="color:var(--accent);margin-right:8px"></i>Backup e Restauração</h3>
+                        <div style="display:flex;flex-direction:column;gap:16px">
+                            <div style="padding:20px;border-radius:12px;background:var(--bg-secondary);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                                <div style="flex:1;min-width:200px">
+                                    <div style="font-weight:700;font-size:15px;color:var(--text-primary)">Último Backup</div>
+                                    <div id="dpBackupLast" style="font-size:13px;color:var(--text-muted);margin-top:4px">Carregando...</div>
+                                    <div id="dpBackupLastOk" style="font-size:12px;color:#10b981;margin-top:2px"><i class="fas fa-circle-check" style="margin-right:4px"></i>Concluído com sucesso</div>
+                                </div>
+                                <button class="btn btn-primary" onclick="exportBackup()"><i class="fas fa-download"></i> Backup Manual</button>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div style="flex:1;min-width:220px"><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Planilhas para abrir no Excel</div><div style="font-size:12px;color:var(--text-muted)">Seus produtos e clientes em CSV. A planilha de produtos também volta pelo importador de Produtos.</div></div>
+                                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                                    <button type="button" class="btn btn-outline" data-dp-csv="products" onclick="exportCsvBackup('products')"><i class="fas fa-file-csv"></i> Produtos (CSV)</button>
+                                    <button type="button" class="btn btn-outline" data-dp-csv="customers" onclick="exportCsvBackup('customers')"><i class="fas fa-file-csv"></i> Clientes (CSV)</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Histórico de Backups -->
+                    <div class="card">
+                        <div style="padding:16px;border-radius:12px;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);margin-bottom:20px">
+                        <div style="display:flex;justify-content:space-between;align-items:center">
+                            <div>
+                                <div style="font-weight:700;font-size:14px;color:var(--text-primary)">
+                                    <i class="fas fa-palette" style="color:var(--accent);margin-right:8px"></i>Arquivo de Identidade Visual
+                                </div>
+                                <div style="font-size:12px;color:var(--text-muted);margin-top:4px">
+                                    Baixe o <strong>branding.json</strong> atualizado e substitua na hospedagem para que tema e logo carreguem instantaneamente, sem delay.
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" onclick="downloadBrandingJson()" style="flex-shrink:0;margin-left:16px">
+                                <i class="fas fa-download"></i> Baixar branding.json
+                            </button>
+                        </div>
+                    </div>
+                    <h3 style="font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:16px">Histórico de Backups</h3>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead><tr><th>Data</th><th>Tipo</th><th>Tamanho</th><th>Status</th><th>Ação</th></tr></thead>
+                                <tbody>
+                                <tr><td colspan="20" style="text-align:center;padding:40px;color:var(--text-muted)"><i class="fas fa-spinner fa-spin" style="margin-right:8px"></i>Carregando...</td></tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Fiscal (hidden) -->
+                <div id="tabFiscal" style="display:none">
+                    <!-- ─────────── INTEGRAÇÃO FOCUS NFE ─────────── -->
+                    <div class="card" style="margin-bottom:20px">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                            <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0"><i class="fas fa-cloud" style="color:var(--accent);margin-right:8px"></i>Integração Focus NFe</h3>
+                            <span id="focusStatusBadge" class="badge" style="display:none;background:rgba(100,116,139,.18);color:#94a3b8"></span>
+                        </div>
+                        <p style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Configure o proxy PHP que faz a ponte com a Focus NFe (resolve o bloqueio de CORS).</p>
+
+                        <div style="display:flex;flex-direction:column;gap:14px">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary);flex-wrap:wrap;gap:10px">
+                                <div style="flex:1;min-width:200px"><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Habilitar emissão fiscal</div><div style="font-size:12px;color:var(--text-muted)">Liga a integração com Focus NFe / SEFAZ</div></div>
+                                <label class="cfg-toggle"><input type="checkbox" id="cfg_emitir_nfe"><span class="cfg-toggle-slider"></span></label>
+                            </div>
+
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary);flex-wrap:wrap;gap:10px">
+                                <div style="flex:1;min-width:240px"><div style="font-weight:600;font-size:14px;color:var(--text-primary)">URL do proxy PHP</div><div style="font-size:12px;color:var(--text-muted)">Caminho ou URL completa do nfce-proxy.php</div></div>
+                                <input type="text" class="form-input" id="cfg_focus_proxy_url" value="/api/nfce-proxy.php" placeholder="/api/nfce-proxy.php" style="width:280px">
+                            </div>
+
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary);flex-wrap:wrap;gap:10px">
+                                <div style="flex:1;min-width:240px"><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Ambiente SEFAZ</div><div style="font-size:12px;color:var(--text-muted)">Use Homologação para testes (não tem validade fiscal)</div></div>
+                                <select class="form-input" id="cfg_ambiente_sefaz" style="width:200px"><option value="homologacao">Homologação (testes)</option><option value="producao">Produção</option></select>
+                            </div>
+
+                            <!-- Tokens da Focus NFe -->
+                            <div style="border-radius:12px;background:var(--bg-secondary);overflow:hidden">
+                                <div style="padding:12px 16px;border-bottom:1px solid var(--border-color);display:flex;align-items:center;gap:8px">
+                                    <i class="fas fa-key" style="color:#f59e0b"></i>
+                                    <div style="font-weight:600;font-size:14px;color:var(--text-primary)">Tokens da API Focus NFe</div>
+                                    <span style="font-size:11px;background:rgba(239,68,68,.12);color:#ef4444;padding:2px 8px;border-radius:20px;font-weight:600">RESTRITO</span>
+                                </div>
+                                <div style="padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+                                    <div style="font-size:12px;color:var(--text-muted)">
+                                        Copie os tokens em <a href="https://app.focusnfe.com.br" target="_blank" style="color:var(--accent)">app.focusnfe.com.br</a> → Configurações → Tokens de acesso.
+                                        São salvos de forma segura no banco e enviados ao proxy em cada requisição.
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+                                        <div style="min-width:200px">
+                                            <div style="font-weight:600;font-size:13px;color:var(--text-primary)"><i class="fas fa-flask" style="color:#f59e0b;margin-right:6px"></i>Token Homologação</div>
+                                            <div style="font-size:11px;color:var(--text-muted)">Para testes — sem validade fiscal</div>
+                                        </div>
+                                        <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:260px;max-width:400px">
+                                            <div style="position:relative;flex:1">
+                                                <input type="password" class="form-input" id="cfg_focus_token_homolog" placeholder="Ex: uLhgkvporFJ7wLUsL6ySwI2a..." style="width:100%;box-sizing:border-box;padding-right:36px;font-family:monospace;font-size:12px">
+                                                <button onclick="togglePassVis('cfg_focus_token_homolog',this)" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0"><i class="fas fa-eye"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+                                        <div style="min-width:200px">
+                                            <div style="font-weight:600;font-size:13px;color:var(--text-primary)"><i class="fas fa-circle-check" style="color:#10b981;margin-right:6px"></i>Token Produção</div>
+                                            <div style="font-size:11px;color:var(--text-muted)">Notas com validade fiscal real</div>
+                                        </div>
+                                        <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:260px;max-width:400px">
+                                            <div style="position:relative;flex:1">
+                                                <input type="password" class="form-input" id="cfg_focus_token_producao" placeholder="Ex: 0yY8raulUpmtm8KhPeAYk..." style="width:100%;box-sizing:border-box;padding-right:36px;font-family:monospace;font-size:12px">
+                                                <button onclick="togglePassVis('cfg_focus_token_producao',this)" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);padding:0"><i class="fas fa-eye"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap">
+                                <button class="btn btn-outline" onclick="testFocusConnection()" id="btnTestFocus"><i class="fas fa-plug"></i> Testar conexão</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─────────── EMISSÃO NO PDV ─────────── -->
+                    <div class="card" style="margin-bottom:20px">
+                        <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:6px"><i class="fas fa-cash-register" style="color:var(--accent);margin-right:8px"></i>Emissão no PDV</h3>
+                        <p style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Define como a NFC-e será emitida ao finalizar uma venda.</p>
+
+                        <div id="modoEmissaoOptions" style="display:flex;flex-direction:column;gap:10px">
+                            <label class="modo-emissao-opt" style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:12px;background:var(--bg-secondary);cursor:pointer;border:2px solid transparent">
+                                <input type="radio" name="cfg_modo_emissao" value="manual" style="margin-top:3px">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)"><i class="fas fa-hand-paper" style="color:#64748b;margin-right:6px"></i>Manual</div><div style="font-size:12px;color:var(--text-muted);margin-top:2px">A nota só é emitida se o operador clicar no botão. Padrão para vendas casuais.</div></div>
+                            </label>
+                            <label class="modo-emissao-opt" style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:12px;background:var(--bg-secondary);cursor:pointer;border:2px solid transparent">
+                                <input type="radio" name="cfg_modo_emissao" value="perguntar" checked style="margin-top:3px">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)"><i class="fas fa-question-circle" style="color:#3b82f6;margin-right:6px"></i>Perguntar a cada venda</div><div style="font-size:12px;color:var(--text-muted);margin-top:2px">Ao fechar a venda, o sistema pergunta se quer emitir a nota. Recomendado.</div></div>
+                            </label>
+                            <label class="modo-emissao-opt" style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:12px;background:var(--bg-secondary);cursor:pointer;border:2px solid transparent">
+                                <input type="radio" name="cfg_modo_emissao" value="automatico" style="margin-top:3px">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)"><i class="fas fa-bolt" style="color:#f59e0b;margin-right:6px"></i>Automático</div><div style="font-size:12px;color:var(--text-muted);margin-top:2px">Emite a NFC-e automaticamente em toda venda. Atenção: erros de SEFAZ podem travar o caixa.</div></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- ─────────── DADOS DA EMPRESA EMISSORA ─────────── -->
+                    <div class="card" style="margin-bottom:20px">
+                        <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:6px"><i class="fas fa-id-card" style="color:var(--accent);margin-right:8px"></i>Dados Fiscais da Empresa</h3>
+                        <p style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Esses dados aparecem no XML da NFC-e e devem bater com o CNPJ cadastrado na Focus NFe.</p>
+
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;background:var(--bg-secondary);flex-wrap:wrap;gap:8px">
+                                <div style="font-weight:600;font-size:13px;color:var(--text-primary);min-width:120px">Regime Tributário</div>
+                                <select class="form-input" id="cfg_regime" style="width:200px"><option value="1">Simples Nacional</option><option value="2">Simples Nac. - excesso sublimite</option><option value="3">Regime Normal (Lucro Presumido/Real)</option><option value="4">MEI (Simples Nacional)</option></select>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;background:var(--bg-secondary);flex-wrap:wrap;gap:8px">
+                                <div style="font-weight:600;font-size:13px;color:var(--text-primary);min-width:120px">Série NFC-e</div>
+                                <input type="number" class="form-input" id="cfg_serie_nfe" value="1" min="1" style="width:80px;text-align:center">
+                            </div>
+                        </div>
+
+                        <h4 style="font-size:12px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin:16px 0 10px"><i class="fas fa-percent" style="margin-right:4px"></i>Tributação Padrão (aplicada quando o produto não tem)</h4>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:8px;background:var(--bg-secondary)">
+                                <div style="font-size:12px;color:var(--text-muted)">CFOP</div>
+                                <input type="text" class="form-input" id="cfg_cfop_padrao" value="5102" maxlength="4" style="width:80px;text-align:center">
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:8px;background:var(--bg-secondary)">
+                                <div style="font-size:12px;color:var(--text-muted)">CSOSN/CST</div>
+                                <input type="text" class="form-input" id="cfg_csosn_padrao" value="102" maxlength="4" style="width:80px;text-align:center">
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:8px;background:var(--bg-secondary)">
+                                <div style="font-size:12px;color:var(--text-muted)">Origem</div>
+                                <select class="form-input" id="cfg_origem_padrao" style="width:80px"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:8px;background:var(--bg-secondary)">
+                                <div style="font-size:12px;color:var(--text-muted)">ICMS (%)</div>
+                                <input type="number" class="form-input" id="cfg_aliquota_icms" value="0" step="0.01" min="0" max="100" style="width:80px;text-align:center">
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:8px;background:var(--bg-secondary)" title="Usado no produto que não tem NCM no cadastro">
+                                <div style="font-size:12px;color:var(--text-muted)">NCM padrão</div>
+                                <input type="text" class="form-input" id="cfg_ncm_padrao" value="" maxlength="10" inputmode="numeric" placeholder="Opcional" style="width:110px;text-align:center">
+                            </div>
+                        </div>
+                        <div style="margin-top:10px;font-size:12px;color:var(--text-muted)"><i class="fas fa-circle-info" style="margin-right:6px"></i>O NCM de cada produto fica em Produtos › editar › Fiscal. Produto sem NCM usa o NCM padrão; sem nenhum dos dois, a nota não é emitida e o sistema diz qual produto falta.</div>
+
+                        <div style="margin-top:14px;padding:12px;border-radius:8px;background:rgba(59,130,246,.08);border-left:3px solid #3b82f6;font-size:12px;color:var(--text-muted)">
+                            <i class="fas fa-info-circle" style="color:#3b82f6;margin-right:6px"></i>
+                            <strong>CNPJ, IE, endereço e UF</strong> usados na nota são puxados da aba <strong>Empresa</strong>. Confira se estão preenchidos.
+                        </div>
+                    </div>
+                    <div style="display:flex;justify-content:flex-end;gap:10px">
+                        <button class="btn btn-outline" onclick="loadSettings()">Cancelar</button>
+                        <button class="btn btn-primary" onclick="saveTab('fiscal')"><i class="fas fa-check"></i> Salvar</button>
+                    </div>
+                </div>
+
+                <!-- Tab: Notificações (hidden) -->
+                <div id="tabNotificacoes" style="display:none">
+                    <div class="card" style="margin-bottom:20px">
+                        <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:20px"><i class="fas fa-bell" style="color:var(--accent);margin-right:8px"></i>Configurações de Notificações</h3>
+                        <div style="display:flex;flex-direction:column;gap:16px">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Alerta de estoque baixo</div><div style="font-size:12px;color:var(--text-muted)">Notificar quando produto atingir estoque mínimo</div></div>
+                                <label class="cfg-toggle"><input type="checkbox" id="cfg_notif_estoque" checked><span class="cfg-toggle-slider"></span></label>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Alerta de contas a vencer</div><div style="font-size:12px;color:var(--text-muted)">Aviso para contas que vencem nos próximos dias</div></div>
+                                <label class="cfg-toggle"><input type="checkbox" id="cfg_notif_contas" checked><span class="cfg-toggle-slider"></span></label>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Antecedência para contas (dias)</div><div style="font-size:12px;color:var(--text-muted)">Quantos dias antes avisar sobre vencimento</div></div>
+                                <input type="number" class="form-input" id="cfg_dias_aviso" value="3" style="width:80px;text-align:center">
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Notificar novas entregas</div><div style="font-size:12px;color:var(--text-muted)">Alerta quando novo pedido de entrega for criado</div></div>
+                                <label class="cfg-toggle"><input type="checkbox" id="cfg_notif_entregas" checked><span class="cfg-toggle-slider"></span></label>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Som de notificação</div><div style="font-size:12px;color:var(--text-muted)">Tocar som ao receber alertas</div></div>
+                                <label class="cfg-toggle"><input type="checkbox" id="cfg_notif_som"><span class="cfg-toggle-slider"></span></label>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">Notificações por e-mail</div><div style="font-size:12px;color:var(--text-muted)">Enviar resumo diário por e-mail</div></div>
+                                <label class="cfg-toggle"><input type="checkbox" id="cfg_notif_email"><span class="cfg-toggle-slider"></span></label>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:var(--bg-secondary)">
+                                <div><div style="font-weight:600;font-size:14px;color:var(--text-primary)">E-mail para notificações</div><div style="font-size:12px;color:var(--text-muted)">Endereço que receberá os alertas</div></div>
+                                <input type="email" class="form-input" id="cfg_email_notif" placeholder="email@empresa.com.br" style="width:240px">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex;justify-content:flex-end;gap:10px">
+                        <button class="btn btn-outline" onclick="loadSettings()">Cancelar</button>
+                        <button class="btn btn-primary" onclick="saveTab('notificacoes')"><i class="fas fa-check"></i> Salvar</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="config/firebase-config.js"></script>
+    <script src="services/core-services.js?v=39.14.5"></script>
+    <script src="assets/js/mobile-fix.js"></script>
+    <script src="assets/js/app.js?v=40.59"></script>
+    <script src="assets/js/pages.js?v=40.74"></script>
+    <script src="assets/js/nfce-service.js?v=41.1-dp"></script>
+    <script>
+        // ─── FORMAS DE PAGAMENTO ATIVAS ──────────────────────
+        // Toggle visual: ao clicar num badge, alterna ativo/inativo.
+        // O loadSettings/saveTab (em pages.js) cuida de persistir.
+        function togglePayMethod(el) {
+            el.classList.toggle('active');
+        }
+        // Helpers para pages.js coletar/restaurar o estado dos badges
+        window._getActivePayMethods = function() {
+            const arr = [];
+            document.querySelectorAll('.cfg-pay-badge').forEach(b => {
+                if (b.classList.contains('active')) arr.push(b.dataset.method);
+            });
+            return arr;
+        };
+        window._setActivePayMethods = function(arr) {
+            if (!Array.isArray(arr)) return;
+            document.querySelectorAll('.cfg-pay-badge').forEach(b => {
+                if (arr.includes(b.dataset.method)) b.classList.add('active');
+                else b.classList.remove('active');
+            });
+        };
+
+        window.togglePassVis = function(id, btn) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            if (el.type === 'password') {
+                el.type = 'text';
+                btn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                el.type = 'password';
+                btn.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        };
+
+        // ─── TESTAR CONEXÃO COM FOCUS NFE ────────────────────
+        async function testFocusConnection() {
+            const proxyUrl = (document.getElementById('cfg_focus_proxy_url')?.value || '').trim();
+            const ambiente = document.getElementById('cfg_ambiente_sefaz')?.value || 'homologacao';
+            const tokenField = ambiente === 'producao' ? 'cfg_focus_token_producao' : 'cfg_focus_token_homolog';
+            const token = (document.getElementById(tokenField)?.value || '').trim();
+            const badge = document.getElementById('focusStatusBadge');
+            const btn = document.getElementById('btnTestFocus');
+
+            if (!proxyUrl) { if (window.Toast) Toast.warning('Informe a URL do proxy PHP.'); return; }
+            if (!token)    { if (window.Toast) Toast.warning(`Informe o Token de ${ambiente === 'producao' ? 'Produção' : 'Homologação'}.`); return; }
+
+            const setBadge = (text, color, bg) => {
+                if (!badge) return;
+                badge.textContent = text; badge.style.color = color; badge.style.background = bg; badge.style.display = ''; // 39.9 · só aparece depois do teste
+            };
+            const oldHTML = btn?.innerHTML;
+            if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testando…'; }
+            setBadge('Testando…', '#f59e0b', 'rgba(245,158,11,.18)');
+
+            try {
+                // 1) Primeiro testa se o proxy responde (GET sem parâmetros)
+                const pingUrl = proxyUrl.startsWith('http') ? proxyUrl : (proxyUrl.startsWith('/') ? proxyUrl : (window.location.pathname.replace(/\/[^/]+$/, '/') + proxyUrl));
+                const pingResp = await fetch(`${pingUrl}?acao=consultar&ambiente=${ambiente}&ref=teste_ping_${Date.now()}`, {
+                    method: 'GET',
+                    headers: { 'X-Focus-Token': token }
+                });
+
+                // Se 404 = arquivo não encontrado
+                if (pingResp.status === 404) {
+                    const body = await pingResp.text();
+                    // Verifica se é 404 do servidor (sem JSON) ou da Focus NFe (com JSON)
+                    let parsed = null;
+                    try { parsed = JSON.parse(body); } catch(e) {}
+                    if (parsed && /nao_encontrad/.test(String(parsed.codigo || ''))) {
+                        // 404 da Focus = ref não existe = token válido, proxy ok! (39.7 · a NFC-e responde "nfce_nao_encontrada"; antes dava "Token inválido")
+                        setBadge('✓ Conectado', '#10b981', 'rgba(16,185,129,.18)');
+                        if (window.Toast) Toast.success('Token válido! Integração funcionando.');
+                    } else if (parsed && (parsed.erro || parsed.mensagem)) {
+                        // JSON de erro da Focus = proxy chegou mas token inválido
+                        setBadge('✗ Token inválido', '#ef4444', 'rgba(239,68,68,.18)');
+                        if (window.Toast) Toast.error('Token rejeitado: ' + (parsed.mensagem || parsed.erro));
+                    } else {
+                        // HTML ou texto simples = arquivo não encontrado no servidor
+                        setBadge('✗ Proxy não encontrado', '#ef4444', 'rgba(239,68,68,.18)');
+                        if (window.Toast) Toast.error('Arquivo não encontrado: ' + pingUrl + '\nVerifique o caminho.');
+                    }
+                    return;
+                }
+
+                const text = await pingResp.text();
+                let data = null;
+                try { data = JSON.parse(text); } catch(e) {}
+
+                if (pingResp.status === 401 || pingResp.status === 403 ||
+                    (data && (data.codigo === 'nao_autorizado' || data.status === 'erro_autenticacao'))) {
+                    setBadge('✗ Token inválido', '#ef4444', 'rgba(239,68,68,.18)');
+                    if (window.Toast) Toast.error('Token rejeitado pela Focus NFe. Verifique se copiou corretamente.');
+                } else if (pingResp.status === 400 || pingResp.status === 200 ||
+                           (data && (data.erro || data.status || data.codigo))) {
+                    // 400 = proxy funcionou e Focus respondeu (parâmetro inválido é esperado no teste)
+                    setBadge('✓ Conectado', '#10b981', 'rgba(16,185,129,.18)');
+                    if (window.Toast) Toast.success('Proxy e token funcionando! Integração pronta.');
+                } else {
+                    setBadge('⚠ Status ' + pingResp.status, '#f59e0b', 'rgba(245,158,11,.18)');
+                    if (window.Toast) Toast.warning('Resposta inesperada (' + pingResp.status + '). Verifique o servidor.');
+                }
+            } catch(e) {
+                setBadge('✗ Inacessível', '#ef4444', 'rgba(239,68,68,.18)');
+                if (window.Toast) Toast.error('Não foi possível alcançar o proxy: ' + (window.dpErroHumano ? dpErroHumano(e) : (e && e.message)));
+            } finally {
+                if (btn) { btn.disabled = false; btn.innerHTML = oldHTML; }
+            }
+        }
+        window.testFocusConnection = testFocusConnection;
+
+        // CEP auto-preenchimento (ViaCEP)
+        document.addEventListener('DOMContentLoaded', function() {
+            const cepInput = document.getElementById('cfg_cep');
+            if (!cepInput) return;
+            cepInput.addEventListener('input', function(e) {
+                // Máscara simples
+                let v = e.target.value.replace(/\D/g,'').slice(0,8);
+                if (v.length > 5) v = v.slice(0,5) + '-' + v.slice(5);
+                e.target.value = v;
+                if (v.replace(/\D/g,'').length === 8) buscarCEPConfig(v.replace(/\D/g,''));
+            });
+        });
+
+        async function buscarCEPConfig(cep) {
+            const input = document.getElementById('cfg_cep');
+            input.style.borderColor = 'var(--accent)';
+            input.style.opacity = '0.7';
+            try {
+                const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await res.json();
+                if (data.erro) { input.style.borderColor = 'var(--danger)'; return; }
+                const set = (id, val) => { const el = document.getElementById(id); if(el && val) el.value = val; };
+                set('cfg_logradouro', data.logradouro);
+                set('cfg_bairro',     data.bairro);
+                set('cfg_cidade',     data.localidade);
+                // UF se existir
+                const uf = document.getElementById('cfg_uf');
+                if(uf && data.uf) { for(let o of uf.options) if(o.value===data.uf){ o.selected=true; break; } }
+                input.style.borderColor = 'var(--success)';
+            } catch(e) {
+                input.style.borderColor = 'var(--danger)';
+            } finally {
+                input.style.opacity = '1';
+            }
+        }
+
+        // showTab gerenciada pelo pages.js (initPageConfiguracoes)
+        // O pages.js sobrescreve window.showTab com a versão real ao inicializar.
+
+        // ─── CÓDIGO DE DESBLOQUEIO — ABA FISCAL ─────────────
+        // Aqui fica só o SHA-256 (sal + código sem traços, em maiúsculas). O código fica com o técnico responsável.
+        // 39.14.6 · código novo (o anterior, v2, tinha se perdido); quem tem uma versão antiga instalada precisa desta atualização
+        const FISCAL_SAL = 'dp-fiscal-v3:711fe8bebd80d387ff69106eafd36878:';
+        const FISCAL_HASH = '95959dfe1061ae3c7f8f997a42be78cacb7cc5cbe11e1fc9973c033cc8483487';
+        // 39.15 · Código PRÓPRIO do cliente ([sal, SHA-256]): o pacote licenciado do site (licenses.php) troca esta linha pela
+        // do cliente; o código aparece no Admin › ficha do cliente › Licença. Aqui no build fica null: só o código do técnico.
+        const FISCAL_CLIENTE = ["dp-fiscal-c1:26e763001e8a3f1f4db70555bf1c890e:","430ff7252220ad1f0a43cf2e0d873df562a16569e03b203f7ba8b183be982ec4"];
+
+        async function sha256(str) {
+            const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+            return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        function openFiscalPasswordModal() {
+            document.querySelectorAll('#fiscalPassOverlay').forEach(e => e.remove());
+            const overlay = document.createElement('div');
+            overlay.id = 'fiscalPassOverlay';
+            overlay.className = 'modal-overlay active';
+            overlay.innerHTML = `
+                <div class="modal" style="max-width:360px">
+                    <div class="modal-header">
+                        <h3 style="display:flex;align-items:center;gap:10px">
+                            <span style="width:36px;height:36px;border-radius:10px;background:rgba(99,102,241,.15);display:flex;align-items:center;justify-content:center">
+                                <i class="fas fa-shield-alt" style="color:var(--accent)"></i>
+                            </span>
+                            Área Restrita — Fiscal
+                        </h3>
+                        <button class="modal-close" onclick="document.getElementById('fiscalPassOverlay').remove()"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">
+                            Esta área contém configurações de integração com a SEFAZ.<br>
+                            Acesso restrito ao técnico responsável.
+                        </p>
+                        <div style="position:relative">
+                            <i class="fas fa-key" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:14px"></i>
+                            <input type="password" id="fiscalPassInput" class="form-input"
+                                placeholder="Código de desbloqueio" autocomplete="off"
+                                style="width:100%;padding-left:38px;box-sizing:border-box"
+                                onkeydown="if(event.key==='Enter')verifyFiscalPass()">
+                        </div>
+                        <div id="fiscalPassError" style="color:#ef4444;font-size:12px;margin-top:8px;display:none">
+                            <i class="fas fa-exclamation-circle" style="margin-right:4px"></i>Código incorreto.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline" onclick="document.getElementById('fiscalPassOverlay').remove()">Cancelar</button>
+                        <button class="btn btn-primary" onclick="verifyFiscalPass()"><i class="fas fa-unlock"></i> Acessar</button>
+                    </div>
+                </div>`;
+            document.body.appendChild(overlay);
+            setTimeout(() => document.getElementById('fiscalPassInput')?.focus(), 80);
+        }
+
+        async function verifyFiscalPass() {
+            const input = document.getElementById('fiscalPassInput');
+            const errEl = document.getElementById('fiscalPassError');
+            // Aceita com ou sem traços/espaços e em minúsculas
+            const val = String(input?.value || '').toUpperCase().replace(/[\s-]+/g, '');
+            let ok = val !== '' && await sha256(FISCAL_SAL + val) === FISCAL_HASH;
+            if (!ok && val !== '' && Array.isArray(FISCAL_CLIENTE) && FISCAL_CLIENTE.length === 2) ok = await sha256(FISCAL_CLIENTE[0] + val) === FISCAL_CLIENTE[1];
+            if (ok) {
+                // Marca sessão liberada (dura enquanto a aba estiver aberta)
+                sessionStorage.setItem('fiscal_unlocked', '1');
+                document.getElementById('fiscalPassOverlay')?.remove();
+                // Chama showTab real
+                if (window._showTabReal) window._showTabReal('fiscal');
+            } else {
+                if (errEl) { errEl.style.display = 'block'; }
+                input?.select();
+                // Animação de shake
+                input?.animate([
+                    {transform:'translateX(0)'},{transform:'translateX(-6px)'},
+                    {transform:'translateX(6px)'},{transform:'translateX(0)'}
+                ], { duration:250, iterations:2 });
+            }
+        }
+        window.verifyFiscalPass = verifyFiscalPass;
+
+        // ── LOGO UPLOAD ────────────────────────────────────────────
+        async function handleLogoUpload(event) {
+            let file = event.target.files[0];
+            if (!file) return;
+            // 39.3 · A logo ia crua para settings/general (um PNG de 3 MB virava 4 MB de texto). No Firebase o registro
+            // passa de 1 MB e NENHUMA aba de Configurações salva mais; no Mensal o limite é 4 MB. Agora ela é reduzida
+            // (até 512 px, ~160 KB, fundo transparente preservado) antes de entrar na tela, e o aviso diz o tamanho.
+            let url = '';
+            try {
+                // 39.13 · navegador com o core-services antigo guardado (sem o DPImagem): pede para atualizar a página
+                if (typeof DPImagem === 'undefined') throw new Error('A página está desatualizada. Aperte Ctrl+F5 (ou feche e abra o navegador) e envie a logo de novo.');
+                url = await DPImagem.reduzir(file, { maxLado: 512, maxBytes: DPImagem.LIMITES.logo, transparencia: 'auto' });
+            } catch (e) {
+                Toast.error('Logo não carregada: ' + (window.dpErroHumano ? dpErroHumano(e) : ((e && e.message) || 'tente de novo.')));
+                event.target.value = '';
+                return;
+            }
+            // Atualiza área de preview
+            const area = document.getElementById('logoUploadArea');
+            area.innerHTML = '<img src="'+url+'" style="width:100%;height:100%;object-fit:contain;display:block">';
+            area.style.padding = '6px';
+            // Atualiza preview do sidebar
+            const prevIcon = document.getElementById('previewBrandIcon');
+            if (prevIcon) {
+                prevIcon.innerHTML = '<img src="'+url+'" style="width:100%;height:100%;object-fit:contain;display:block">';
+                prevIcon.style.background = document.getElementById('cfg_logo_no_bg')?.checked ? 'transparent' : '';
+            }
+            // Aplica no sidebar real diretamente (só nesta tela, até salvar)
+            _applyLogoDirect(url);
+            // Salva temporariamente para uso no saveTab
+            window._pendingLogoUrl = url;
+            Toast.info('Logo pronta (' + DPImagem.humano(DPImagem.bytes(url)) + '). Clique em "Salvar Alterações" para gravar.');
+        }
+
+        function removeLogo() {
+            const area = document.getElementById('logoUploadArea');
+            area.innerHTML = '<i class="fas fa-cloud-upload-alt" style="font-size:24px;color:var(--text-muted);margin-bottom:6px"></i><span style="font-size:11px;color:var(--text-muted)">Clique para enviar</span><span style="font-size:10px;color:var(--text-muted);margin-top:2px">PNG, JPG, SVG</span>';
+            area.style.padding = '';
+            const prevIcon = document.getElementById('previewBrandIcon');
+            if (prevIcon) { prevIcon.innerHTML = '<img src="assets/brand/distribuipro-mark.svg?v=41.5-logo" alt="DistribuiPro" style="width:100%;height:100%;object-fit:contain;display:block">'; prevIcon.style.background = ''; }
+            window._pendingLogoUrl = '';
+            _applyLogoDirect('');
+        }
+
+        // ── PREVIEW CONTROLES DE LOGO ──────────────────────────────
+        // ── Funções diretas de logo (background-image no sidebar-brand) ──
+        function _applyLogoDirect(url) {
+            const brand = document.querySelector('.sidebar-brand');
+            if (!brand) return;
+            if (url) {
+                brand.style.backgroundImage = 'url(' + url + ')';
+                const sz = parseInt(document.getElementById('cfg_logo_size')?.value || 64);
+                brand.style.height = sz + 'px';
+                brand.classList.add('has-logo');
+                const icon = brand.querySelector('.brand-icon');
+                if (icon) icon.style.display = 'none';
+                const text = brand.querySelector('.brand-text');
+                if (text) text.style.display = 'none';
+            } else {
+                brand.style.backgroundImage = '';
+                brand.style.height = '';
+                brand.classList.remove('has-logo','show-text');
+                const icon = brand.querySelector('.brand-icon');
+                if (icon) icon.style.display = '';
+                const text = brand.querySelector('.brand-text');
+                if (text) text.style.display = '';
+            }
+        }
+
+        function _applyLogoSizeDirect(px) {
+            document.documentElement.style.setProperty('--logo-size', px + 'px');
+            const brand = document.querySelector('.sidebar-brand');
+            if (brand && brand.classList.contains('has-logo') && !brand.classList.contains('show-text')) {
+                brand.style.height = px + 'px';
+            }
+        }
+
+        function _applyLogoModeDirect(mode) {
+            const brand = document.querySelector('.sidebar-brand');
+            if (!brand) return;
+            const text = brand.querySelector('.brand-text');
+            const icon = brand.querySelector('.brand-icon');
+            brand.classList.remove('show-text','text-only-mode');
+            const sz = parseInt(document.getElementById('cfg_logo_size')?.value || 64);
+            const hasLogo = !!window._pendingLogoUrl || !!window.BrandingManager?.getBrand()?.logoUrl;
+
+            if (mode === 'logo_only') {
+                if (text) text.style.display = 'none';
+                if (hasLogo) brand.style.height = sz + 'px';
+            } else if (mode === 'logo_and_text') {
+                brand.classList.add('show-text');
+                brand.style.height = '';
+                if (text) text.style.display = '';
+            } else if (mode === 'text_only') {
+                brand.classList.add('text-only-mode');
+                brand.style.backgroundImage = '';
+                brand.style.height = '';
+                brand.classList.remove('has-logo');
+                if (icon) icon.style.display = '';
+                if (text) text.style.display = '';
+            }
+        }
+
+        function _applyLogoBgDirect(noBg) {
+            const brand = document.querySelector('.sidebar-brand');
+            if (!brand) return;
+            if (noBg) {
+                brand.setAttribute('data-no-bg','1');
+                brand.style.backgroundSize = 'contain';
+                brand.style.backgroundPosition = 'left center';
+            } else {
+                brand.removeAttribute('data-no-bg');
+                brand.style.backgroundSize = '100% 100%';
+                brand.style.backgroundPosition = 'center';
+            }
+        }
+
+        function previewLogoSize(val) {
+            document.getElementById('logoSizeLabel').textContent = val + 'px';
+            _applyLogoSizeDirect(parseInt(val));
+            // Atualiza preview do mini-sidebar na config
+            const prevIcon = document.getElementById('previewBrandIcon');
+            if (prevIcon) {
+                // Se tem logo, ajusta a altura; senão ajusta como ícone
+                const img = prevIcon.querySelector('img');
+                if (img) {
+                    prevIcon.style.width  = '100%';
+                    prevIcon.style.height = val + 'px';
+                } else {
+                    prevIcon.style.width  = val + 'px';
+                    prevIcon.style.height = val + 'px';
+                }
+            }
+        }
+
+        function previewLogoMode(mode) {
+            _applyLogoModeDirect(mode);
+            // Atualiza preview do mini-sidebar na config
+            const prevIcon = document.getElementById('previewBrandIcon');
+            const prevName = document.getElementById('previewBrandName');
+            const prevSub  = document.getElementById('previewBrandSub');
+            if (!prevIcon || !prevName || !prevSub) return;
+            prevIcon.style.display = (mode === 'text_only') ? 'none' : 'flex';
+            const showText = mode !== 'logo_only';
+            prevName.style.display = showText ? '' : 'none';
+            prevSub.style.display  = showText ? '' : 'none';
+        }
+
+        function previewLogoBg(noBg) {
+            _applyLogoBgDirect(noBg);
+            const prevIcon = document.getElementById('previewBrandIcon');
+            if (prevIcon) {
+                prevIcon.style.background = noBg ? 'transparent' : '';
+                prevIcon.style.boxShadow  = noBg ? 'none' : '';
+            }
+        }
+
+        // ── CARREGAR CONFIGS SALVAS NA TELA ───────────────────────
+        function loadLogoSettings() {
+            if (!window.BrandingManager) return;
+            const b = window.BrandingManager.getBrand();
+
+            // Logo preview na área de upload
+            if (b.logoUrl) {
+                const area = document.getElementById('logoUploadArea');
+                if (area) {
+                    area.innerHTML = '<img src="'+b.logoUrl+'" style="width:100%;height:100%;object-fit:contain;display:block">';
+                    area.style.padding = '6px';
+                }
+                // Aplica no sidebar real
+                _applyLogoDirect(b.logoUrl);
+            }
+
+            // Tamanho
+            const sizeRange = document.getElementById('cfg_logo_size');
+            const sizeLabel = document.getElementById('logoSizeLabel');
+            if (b.logoSize && sizeRange) {
+                sizeRange.value = b.logoSize;
+                if (sizeLabel) sizeLabel.textContent = b.logoSize + 'px';
+            }
+
+            // Modo
+            if (b.logoMode) {
+                const radio = document.querySelector('input[name="logoMode"][value="'+b.logoMode+'"]');
+                if (radio) radio.checked = true;
+            }
+
+            // Fundo
+            const noBgCheck = document.getElementById('cfg_logo_no_bg');
+            if (noBgCheck && b.logoNoBg !== undefined) noBgCheck.checked = b.logoNoBg;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(loadLogoSettings, 300);
+        });
+
+        // ── SALVAR ABA EMPRESA (extende o existente) ──────────────
+        // saveTab gerenciado pelo pages.js
+    </script>
+<script defer src="assets/js/studio-v1.js?v=39.13"></script><script defer src="assets/js/studio-pro-v2.js?v=2.7-rolagem"></script>
+<script src="assets/js/taxas-parcela-v1.js?v=35.36"></script>
+<script src="assets/js/mesas-v1.js?v=38.4"></script><script src="assets/js/cozinha-print-v1.js?v=40.49"></script>
+<script src="assets/js/edicao-v1.js?v=38.0"></script>
+<script src="assets/js/os-pro-v1.js?v=39.14.5-os"></script>
+<script src="assets/js/foto-camera-v1.js?v=35.45"></script>
+<script src="assets/js/formas-pagamento-v1.js?v=38.3"></script>
+<script src="assets/js/pdv-visual-v1.js?v=37.1"></script>
+<script src="assets/js/fiscal-v1.js?v=37.9"></script>
+<script src="assets/js/notas-base-v1.js?v=39.10-base"></script>
+<script src="assets/js/notas-provedor-v1.js?v=41.1-dp"></script>
+<script src="assets/js/nota-propria-dp-v1.js?v=41.1"></script>
+<script src="assets/js/backup-v1.js?v=40.85"></script>
+<script src="assets/js/preco-atacado-v1.js?v=38.1"></script>
+<script src="assets/js/vasilhames-v1.js?v=38.1"></script>
+<script src="assets/js/entregas-pro-v1.js?v=38.4"></script>
+<script src="assets/js/grade-v1.js?v=38.6"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+PUBLICAR O SISTEMA NO CLOUDFLARE
+================================
+
+Leia isto só se o seu site fica no Cloudflare: endereço que termina em .pages.dev (Cloudflare Pages)
+ou em .workers.dev (Worker), ou um domínio seu ligado a um deles. Numa hospedagem comum, com PHP
+(cPanel, Hostinger, HostGator, Locaweb...), suba os arquivos pelo FileZilla ou pelo gerenciador de
+arquivos, como sempre, e ignore este texto.
+
+
+POR QUE NÃO ARRASTAR A PASTA NO PAINEL DO CLOUDFLARE
+----------------------------------------------------
+  O Cloudflare não roda PHP. No lugar do PHP, o sistema traz duas peças que só funcionam se forem
+  publicadas pelo PUBLICAR-NO-CLOUDFLARE.cmd:
+    - a pasta "functions" (para o Cloudflare Pages) e
+    - a pasta "cloudflare" (para o Worker).
+  Elas fazem duas coisas:
+    - entregam a lista de produtos guardada no site (o "retrato") só para quem fez login no sistema;
+    - fecham a pasta "data", onde fica esse retrato, que tem o PREÇO DE CUSTO dos produtos.
+  Arrastando a pasta no painel, nenhuma das duas funciona: no Pages a pasta functions dá erro, e no
+  Worker ela não roda. O painel também aceita no máximo 1.000 arquivos
+  (o PUBLICAR-NO-CLOUDFLARE.cmd aceita até 20.000).
+
+
+O JEITO CERTO: PUBLICAR-NO-CLOUDFLARE.cmd
+-----------------------------------------
+  1) Extraia o zip numa pasta do computador (botão direito no zip > Extrair tudo).
+     Não rode de dentro do zip.
+
+  2) Instale o Node.js, uma vez só: abra https://nodejs.org, baixe a versão LTS (botão verde) e
+     instale clicando em Avançar, com tudo padrão. Ele é de graça e é o que faz o envio.
+     Sem ele, o PUBLICAR-NO-CLOUDFLARE.cmd avisa e explica de novo.
+
+  3) Na pasta extraída, dê dois cliques em PUBLICAR-NO-CLOUDFLARE.cmd.
+
+  4) Na primeira vez ele pergunta:
+     - O TIPO do site. Olhe o endereço:
+         P = termina em .pages.dev    (Cloudflare Pages)
+         W = termina em .workers.dev  (Worker)
+       Usa domínio próprio? No painel do Cloudflare, em "Workers e Pages", abra o site: o endereço
+       .pages.dev ou .workers.dev aparece lá. Ainda não tem site no Cloudflare? Escolha W.
+     - O NOME:
+         Worker: é o começo do endereço. Em loja-abc.minhaconta.workers.dev o nome é loja-abc.
+                 Pode colar o endereço inteiro, que ele pega o nome sozinho.
+         Pages:  é o nome do projeto em "Workers e Pages", não o endereço: o site
+                 minhaloja-abc.pages.dev pode ter o nome "minhaloja".
+       Ainda não tem? Digite um nome novo (letras minúsculas, números e hífen) e ele cria.
+     Depois:
+     - O navegador abre para você entrar na sua conta do Cloudflare. Entre e clique em "Allow"
+       (Permitir) em até 2 minutos. Depois volte para a janela preta.
+     - Worker que já existe e foi mexido pelo painel: aparece "Would you like to continue?".
+       Responda y (sim). Se responder n, nada é publicado.
+     - Pages novo: aparece "Would you like to create it?". Aperte Enter em "Create a new project"
+       e Enter de novo em "production branch name". Se você JÁ TEM um projeto e apareceu essa
+       pergunta, o nome está errado: feche a janela e rode de novo com o nome certo.
+
+  5) No fim aparece PRONTO (deu certo) ou NAO DEU CERTO, com o motivo mais comum de cada erro.
+     Se der errado, o site que já estava no ar continua como estava.
+
+  Das próximas vezes (trocou a logo, o firebase-config.js, chegou atualização do sistema...), é só dar
+  dois cliques de novo: ele não pergunta mais nada e sobe só os arquivos que mudaram.
+  O tipo e o nome ficam guardados no arquivo cloudflare-projeto.txt. Para trocar, apague esse
+  arquivo. Para trocar de conta do Cloudflare, responda S quando ele perguntar, depois de um erro.
+
+
+RETRATO DOS PRODUTOS (data\produtos-snapshot.json)
+--------------------------------------------------
+  Só vale para quem tem esse arquivo (base grande importada de uma vez). Antes de cada envio, o
+  PUBLICAR-NO-CLOUDFLARE.cmd troca o nome dele por um nome secreto (data\retrato-....json, com 32
+  letras e números sorteados) que só o sistema conhece. Assim ninguém consegue baixar o retrato
+  pelo endereço do site, nem com endereço disfarçado.
+    - Não apague nem renomeie o data\retrato-....json.
+    - Recebeu um retrato novo (data\produtos-snapshot.json)? Ponha na pasta data e rode o .cmd: ele
+      troca o antigo pelo novo, com o mesmo nome secreto.
+    - Mudou para uma hospedagem com PHP? Pode subir a pasta como está: o sistema acha o retrato
+      pelo nome secreto também.
+
+
+SE PREFERIR ARRASTAR PELO PAINEL MESMO ASSIM
+--------------------------------------------
+  Antes de arrastar, TIRE da pasta (apague da cópia que vai subir):
+    - functions e cloudflare          no painel elas não funcionam;
+    - data                            sem a proteção, qualquer pessoa que souber o endereço baixa o
+                                      retrato dos produtos, com o preço de custo.
+  O sistema funciona sem elas. A diferença: a primeira abertura em cada computador lê a lista de
+  produtos do Firebase (gasta leituras da cota gratuita) em vez de pegar o retrato.
+  Mais de 1.000 arquivos na pasta (muitas fotos de produtos, por exemplo)? O painel recusa: use o
+  PUBLICAR-NO-CLOUDFLARE.cmd.
+
+
+O QUE NÃO FUNCIONA NO CLOUDFLARE (porque não tem PHP)
+-----------------------------------------------------
+  - Foto nova pelo cadastro do produto fica guardada dentro do produto (como era antes), e não como
+    arquivo no site.
+  - Nota fiscal (Focus NFe, Asaas, Base): passa pelo arquivo api/nfce-proxy.php, que precisa de
+    hospedagem com PHP.

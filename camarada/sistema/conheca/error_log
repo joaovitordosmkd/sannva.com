@@ -1,0 +1,19 @@
+[15-Apr-2024 17:50:53 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '?>' in /home/guiashopapp/public_html/conheca/index.php on line 321
+[15-Apr-2024 17:50:55 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '?>' in /home/guiashopapp/public_html/conheca/index.php on line 321
+[15-Apr-2024 17:52:04 America/Sao_Paulo] PHP Warning:  include(../../../_core/_includes/config.php): failed to open stream: No such file or directory in /home/guiashopapp/public_html/conheca/index.php on line 2
+[15-Apr-2024 17:52:04 America/Sao_Paulo] PHP Warning:  include(../../../_core/_includes/config.php): failed to open stream: No such file or directory in /home/guiashopapp/public_html/conheca/index.php on line 2
+[15-Apr-2024 17:52:04 America/Sao_Paulo] PHP Warning:  include(): Failed opening '../../../_core/_includes/config.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/guiashopapp/public_html/conheca/index.php on line 2
+[15-Apr-2024 17:52:04 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function restrict() in /home/guiashopapp/public_html/conheca/index.php:3
+Stack trace:
+#0 {main}
+  thrown in /home/guiashopapp/public_html/conheca/index.php on line 3
+[15-Apr-2024 17:52:32 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '?>' in /home/guiashopapp/public_html/conheca/index.php on line 328
+[15-Apr-2024 17:52:33 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '?>' in /home/guiashopapp/public_html/conheca/index.php on line 328
+[15-Apr-2024 17:54:37 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '?>' in /home/guiashopapp/public_html/conheca/index.php on line 328
+[15-Apr-2024 17:54:38 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '?>' in /home/guiashopapp/public_html/conheca/index.php on line 328
+[15-Apr-2024 17:55:09 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '?>' in /home/guiashopapp/public_html/conheca/index.php on line 328
+[15-Apr-2024 17:55:10 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '?>' in /home/guiashopapp/public_html/conheca/index.php on line 328
+[15-Apr-2024 17:56:29 America/Sao_Paulo] PHP Notice:  Undefined index: pagina in /home/guiashopapp/public_html/conheca/index.php on line 287
+[15-Apr-2024 17:56:29 America/Sao_Paulo] PHP Notice:  Undefined variable: query in /home/guiashopapp/public_html/conheca/index.php on line 291
+[15-Apr-2024 17:57:08 America/Sao_Paulo] PHP Notice:  Undefined index: pagina in /home/guiashopapp/public_html/conheca/index.php on line 287
+[15-Apr-2024 17:57:08 America/Sao_Paulo] PHP Notice:  Undefined variable: query in /home/guiashopapp/public_html/conheca/index.php on line 291

@@ -1,0 +1,292 @@
+[09-Mar-2025 14:25:25 America/Sao_Paulo] Consulta SQL: INSERT INTO produtos (
+            rel_estabelecimentos_id,
+            rel_categorias_id,
+            nome,
+            descricao,
+            valor,
+            variacao,
+            status,
+            created
+        ) VALUES (
+            '186',
+            '306',
+            'Nome não encontrado',
+            'Descrição não encontrada',
+            '0.00',
+            '[]',
+            '1',
+            '2025-03-09 14:25:25'
+        )
+[09-Mar-2025 14:39:49 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 14:39:49 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 14:39:49 America/Sao_Paulo] ID do estabelecimento: 186
+[09-Mar-2025 14:39:49 America/Sao_Paulo] Consulta SQL executada com sucesso. Número de categorias: 5
+[09-Mar-2025 14:39:57 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 14:39:57 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 14:39:57 America/Sao_Paulo] ID do estabelecimento: 186
+[09-Mar-2025 14:39:57 America/Sao_Paulo] Consulta SQL executada com sucesso. Número de categorias: 5
+[09-Mar-2025 14:39:58 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 14:39:58 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 14:39:58 America/Sao_Paulo] ID do estabelecimento: 186
+[09-Mar-2025 14:39:58 America/Sao_Paulo] Consulta SQL executada com sucesso. Número de categorias: 5
+[09-Mar-2025 14:39:58 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 14:39:58 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 14:39:58 America/Sao_Paulo] ID do estabelecimento: 186
+[09-Mar-2025 14:39:58 America/Sao_Paulo] Consulta SQL executada com sucesso. Número de categorias: 5
+[09-Mar-2025 14:39:58 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 14:39:58 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 14:39:58 America/Sao_Paulo] ID do estabelecimento: 186
+[09-Mar-2025 14:39:58 America/Sao_Paulo] Consulta SQL executada com sucesso. Número de categorias: 5
+[09-Mar-2025 14:40:14 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: Não definido
+[09-Mar-2025 14:40:14 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 14:40:37 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 14:40:37 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 14:40:37 America/Sao_Paulo] ID do estabelecimento: 186
+[09-Mar-2025 14:40:37 America/Sao_Paulo] Consulta SQL executada com sucesso. Número de categorias: 5
+[09-Mar-2025 14:45:32 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 14:45:32 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 14:45:32 America/Sao_Paulo] ID do estabelecimento: 186
+[09-Mar-2025 14:45:32 America/Sao_Paulo] Consulta SQL executada com sucesso. Número de categorias: 5
+[09-Mar-2025 14:51:56 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 14:51:56 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 14:51:56 America/Sao_Paulo] ID do estabelecimento: 186
+[09-Mar-2025 14:51:56 America/Sao_Paulo] Consulta SQL executada com sucesso. Número de categorias: 5
+[09-Mar-2025 14:52:33 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 14:52:33 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 14:52:33 America/Sao_Paulo] ID do estabelecimento: 186
+[09-Mar-2025 14:52:33 America/Sao_Paulo] Consulta SQL executada com sucesso. Número de categorias: 5
+[09-Mar-2025 14:53:10 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 14:53:10 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 14:53:10 America/Sao_Paulo] ID do estabelecimento: 186
+[09-Mar-2025 14:53:10 America/Sao_Paulo] Consulta SQL executada com sucesso. Número de categorias: 5
+[09-Mar-2025 14:56:06 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 14:56:06 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 14:56:12 America/Sao_Paulo] Consulta SQL: INSERT INTO produtos (
+            rel_estabelecimentos_id,
+            rel_categorias_id,
+            nome,
+            descricao,
+            valor,
+            variacao,
+            status,
+            created
+        ) VALUES (
+            '186',
+            '306',
+            'Nome não encontrado',
+            'Descrição não encontrada',
+            '0.00',
+            '[]',
+            '1',
+            '2025-03-09 14:56:12'
+        )
+[09-Mar-2025 15:02:31 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 15:02:31 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 15:02:34 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 15:02:34 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 15:04:49 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 15:04:49 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 15:04:54 America/Sao_Paulo] Erro ao carregar o HTML da página: https://produto.mercadolivre.com.br/MLB-5265791338-800mlgarrafa-termica-agua-squeeze-inox-academiaquente-e-frio-_JM#polycard_client=homes-korribanSearchPromotions&searchVariation=182801268962&position=42&search_layout=grid&type=item&tracking_id=f624000a-0476-4c22-8ebe-9934382088f0&c_id=/home/promotions-recommendations/element&c_uid=dfd52ee3-0593-4a8d-b7e7-330a5912ca7b
+[09-Mar-2025 15:05:17 America/Sao_Paulo] Consulta SQL: INSERT INTO produtos (
+            rel_estabelecimentos_id,
+            rel_categorias_id,
+            nome,
+            descricao,
+            valor,
+            variacao,
+            imagens,
+            status,
+            created
+        ) VALUES (
+            '186',
+            '306',
+            'Nome não encontrado',
+            'Descrição não encontrada',
+            '0.00',
+            '[]',
+            '[]',
+            '1',
+            '2025-03-09 15:05:17'
+        )
+[09-Mar-2025 15:05:17 America/Sao_Paulo] Erro ao salvar no banco de dados: Unknown column 'imagens' in 'INSERT INTO'
+[09-Mar-2025 15:06:11 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 15:06:11 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 15:06:18 America/Sao_Paulo] Erro ao carregar o HTML da página: https://produto.mercadolivre.com.br/MLB-5265791338-800mlgarrafa-termica-agua-squeeze-inox-academiaquente-e-frio-_JM#polycard_client=homes-korribanSearchPromotions&searchVariation=182801268962&position=42&search_layout=grid&type=item&tracking_id=f624000a-0476-4c22-8ebe-9934382088f0&c_id=/home/promotions-recommendations/element&c_uid=dfd52ee3-0593-4a8d-b7e7-330a5912ca7b
+[09-Mar-2025 15:18:27 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 15:18:27 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 15:18:34 America/Sao_Paulo] Consulta SQL: INSERT INTO produtos (
+            rel_estabelecimentos_id,
+            rel_categorias_id,
+            nome,
+            descricao,
+            valor,
+            variacao,
+            imagens,
+            status,
+            created
+        ) VALUES (
+            '186',
+            '306',
+            'Nome não encontrado',
+            'Descrição não encontrada',
+            '0.00',
+            '[]',
+            '[]',
+            '1',
+            '2025-03-09 15:18:34'
+        )
+[09-Mar-2025 15:18:51 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 15:18:51 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 15:18:57 America/Sao_Paulo] Erro ao carregar o HTML da página: https://produto.mercadolivre.com.br/MLB-5265791338-800mlgarrafa-termica-agua-squeeze-inox-academiaquente-e-frio-_JM#polycard_client=homes-korribanSearchPromotions&searchVariation=182801268962&position=42&search_layout=grid&type=item&tracking_id=f624000a-0476-4c22-8ebe-9934382088f0&c_id=/home/promotions-recommendations/element&c_uid=dfd52ee3-0593-4a8d-b7e7-330a5912ca7b
+[09-Mar-2025 15:24:39 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 15:24:39 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 15:24:45 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:45 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:45 America/Sao_Paulo] PHP Fatal error:  require(): Failed opening required 'simple_html_dom.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:49 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:49 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:49 America/Sao_Paulo] PHP Fatal error:  require(): Failed opening required 'simple_html_dom.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:49 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:49 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:49 America/Sao_Paulo] PHP Fatal error:  require(): Failed opening required 'simple_html_dom.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:49 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:49 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:49 America/Sao_Paulo] PHP Fatal error:  require(): Failed opening required 'simple_html_dom.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:53 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:53 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:24:53 America/Sao_Paulo] PHP Fatal error:  require(): Failed opening required 'simple_html_dom.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:25:01 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:25:01 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:25:01 America/Sao_Paulo] PHP Fatal error:  require(): Failed opening required 'simple_html_dom.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:25:02 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:25:02 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:25:02 America/Sao_Paulo] PHP Fatal error:  require(): Failed opening required 'simple_html_dom.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:25:02 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:25:02 America/Sao_Paulo] PHP Warning:  require(simple_html_dom.php): failed to open stream: No such file or directory in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:25:02 America/Sao_Paulo] PHP Fatal error:  require(): Failed opening required 'simple_html_dom.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/painel/produtos/adicionar/integracao.php on line 2
+[09-Mar-2025 15:25:18 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 15:25:18 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 15:29:33 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 15:29:33 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 15:29:51 America/Sao_Paulo] Erro ao carregar o HTML da página: https://produto.mercadolivre.com.br/MLB-5265791338-800mlgarrafa-termica-agua-squeeze-inox-academiaquente-e-frio-_JM#polycard_client=homes-korribanSearchPromotions&searchVariation=182801268962&position=42&search_layout=grid&type=item&tracking_id=f624000a-0476-4c22-8ebe-9934382088f0&c_id=/home/promotions-recommendations/element&c_uid=dfd52ee3-0593-4a8d-b7e7-330a5912ca7b
+[09-Mar-2025 15:33:51 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 15:33:51 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 15:33:58 America/Sao_Paulo] Erro ao carregar o HTML da página: https://produto.mercadolivre.com.br/MLB-5265791338-800mlgarrafa-termica-agua-squeeze-inox-academiaquente-e-frio-_JM#polycard_client=homes-korribanSearchPromotions&searchVariation=182801268962&position=42&search_layout=grid&type=item&tracking_id=f624000a-0476-4c22-8ebe-9934382088f0&c_id=/home/promotions-recommendations/element&c_uid=dfd52ee3-0593-4a8d-b7e7-330a5912ca7b
+[09-Mar-2025 15:40:15 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Mar-2025 15:40:15 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Mar-2025 15:40:20 America/Sao_Paulo] Erro ao carregar o HTML da página: https://produto.mercadolivre.com.br/MLB-5265791338-800mlgarrafa-termica-agua-squeeze-inox-academiaquente-e-frio-_JM#polycard_client=homes-korribanSearchPromotions&searchVariation=182801268962&position=42&search_layout=grid&type=item&tracking_id=f624000a-0476-4c22-8ebe-9934382088f0&c_id=/home/promotions-recommendations/element&c_uid=dfd52ee3-0593-4a8d-b7e7-330a5912ca7b
+[09-Mar-2025 15:40:48 America/Sao_Paulo] Nenhuma imagem encontrada para o produto: https://shopee.com.br/12-24-36-48-60-Cores-Caneta-Marcadora-Com-Ponta-Dupla-Pintura-De-Arte-Aquarela-Material-Escolar-Escrit%C3%B3rio-i.421446882.22697735980
+[09-Mar-2025 15:40:48 America/Sao_Paulo] Consulta SQL: INSERT INTO produtos (
+            rel_estabelecimentos_id,
+            rel_categorias_id,
+            nome,
+            descricao,
+            valor,
+            variacao,
+            imagens,
+            status,
+            created
+        ) VALUES (
+            '186',
+            '306',
+            'Nome não encontrado',
+            'Descrição não encontrada',
+            '0.00',
+            '[]',
+            '[]',
+            '1',
+            '2025-03-09 15:40:48'
+        )
+[21-Mar-2025 00:17:00 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[21-Mar-2025 00:17:00 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[21-Mar-2025 00:19:56 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[21-Mar-2025 00:19:56 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[25-Mar-2025 00:07:44 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 220
+[25-Mar-2025 00:07:44 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[30-Mar-2025 02:03:48 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 222
+[30-Mar-2025 02:03:48 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[30-Mar-2025 02:04:28 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 222
+[30-Mar-2025 02:04:28 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[31-Mar-2025 13:47:11 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 222
+[31-Mar-2025 13:47:11 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[01-Apr-2025 10:09:37 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 222
+[01-Apr-2025 10:09:37 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[01-Apr-2025 10:10:48 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 222
+[01-Apr-2025 10:10:48 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[01-Apr-2025 14:47:47 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 222
+[01-Apr-2025 14:47:47 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[01-Apr-2025 14:48:07 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 222
+[01-Apr-2025 14:48:07 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[02-Apr-2025 22:53:20 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 222
+[02-Apr-2025 22:53:20 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[02-Apr-2025 22:57:31 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 222
+[02-Apr-2025 22:57:31 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 00:11:15 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 223
+[04-Apr-2025 00:11:15 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 00:11:53 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 223
+[04-Apr-2025 00:11:53 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 00:12:50 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 223
+[04-Apr-2025 00:12:50 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 00:26:06 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 223
+[04-Apr-2025 00:26:06 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 00:28:04 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 223
+[04-Apr-2025 00:28:04 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 00:56:32 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 223
+[04-Apr-2025 00:56:32 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 14:15:10 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[04-Apr-2025 14:15:10 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 14:27:41 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[04-Apr-2025 14:27:41 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 14:28:00 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '{' in /home/tecautov/public_html/painel/produtos/adicionar/processar_link.php on line 14
+[04-Apr-2025 14:37:00 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[04-Apr-2025 14:37:00 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 14:37:16 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '{' in /home/tecautov/public_html/painel/produtos/adicionar/processar_link.php on line 14
+[04-Apr-2025 14:38:58 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[04-Apr-2025 14:38:58 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 14:39:06 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '{' in /home/tecautov/public_html/painel/produtos/adicionar/processar_link.php on line 14
+[04-Apr-2025 14:46:09 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[04-Apr-2025 14:46:09 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 14:47:19 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[04-Apr-2025 14:47:19 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 14:54:31 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[04-Apr-2025 14:54:31 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 14:57:57 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[04-Apr-2025 14:57:57 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[04-Apr-2025 15:03:51 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[04-Apr-2025 15:03:51 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[07-Apr-2025 10:43:44 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 223
+[07-Apr-2025 10:43:44 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[07-Apr-2025 10:43:52 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 223
+[07-Apr-2025 10:43:52 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[08-Apr-2025 17:19:55 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 223
+[08-Apr-2025 17:19:55 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[08-Apr-2025 17:21:12 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 223
+[08-Apr-2025 17:21:12 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Apr-2025 08:15:35 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Apr-2025 08:15:35 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Apr-2025 08:24:56 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Apr-2025 08:24:56 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Apr-2025 08:39:52 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Apr-2025 08:39:52 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Apr-2025 09:17:15 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Apr-2025 09:17:15 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Apr-2025 09:18:53 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Apr-2025 09:18:53 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Apr-2025 11:12:33 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Apr-2025 11:12:33 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Apr-2025 12:18:57 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Apr-2025 12:18:57 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Apr-2025 18:00:28 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Apr-2025 18:00:28 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Apr-2025 18:07:28 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Apr-2025 18:07:28 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[09-Apr-2025 18:14:42 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[09-Apr-2025 18:14:42 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[10-Apr-2025 09:14:52 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[10-Apr-2025 09:14:52 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[10-Apr-2025 09:24:06 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[10-Apr-2025 09:24:06 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[14-Apr-2025 16:25:45 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[14-Apr-2025 16:25:45 America/Sao_Paulo] Função restrict_estabelecimento() executada.
+[15-Apr-2025 14:18:31 America/Sao_Paulo] Sessão iniciada. ID do estabelecimento: 186
+[15-Apr-2025 14:18:31 America/Sao_Paulo] Função restrict_estabelecimento() executada.

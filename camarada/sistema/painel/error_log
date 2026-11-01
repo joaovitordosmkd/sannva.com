@@ -1,0 +1,1 @@
+[29-Oct-2024 16:23:35 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/tecautov/public_html/painel/formulario_credenciais.php:10) in /home/tecautov/public_html/painel/formulario_credenciais.php on line 41

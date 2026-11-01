@@ -1,0 +1,11 @@
+# DistribuiPro · o que NAO sobe como arquivo publico quando o sistema vai para um WORKER do Cloudflare
+# (PUBLICAR-NO-CLOUDFLARE.cmd, opcao W). No Cloudflare Pages e nas hospedagens com PHP este arquivo nao faz nada.
+/cloudflare
+/functions
+/.wrangler
+/PUBLICAR-NO-CLOUDFLARE.cmd
+/LEIA-ME-CLOUDFLARE.txt
+/cloudflare-projeto.txt
+# PHP nao roda no Cloudflare: sairia so como download do codigo
+/api/*.php
+.htaccess

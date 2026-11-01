@@ -1,0 +1,72 @@
+/* DistribuiPro Studio Pro 2.0 · correções gerais (todas as páginas)
+   1) Fonte única: botões, campos e listas usavam Arial / tamanho do navegador.
+   2) Modais no celular: sem desfoque pesado, rolagem só dentro do modal, altura que respeita o teclado.
+   3) Contraste de alguns botões no tema escuro. */
+
+/* 1) Tipografia */
+:where(button, input, select, textarea, optgroup) { font-family: inherit; }
+:where(select) { font-size: 13.5px; }
+input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] { font-family: inherit !important; }
+[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator,
+[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(.85); }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+.mono, .font-mono, kbd { font-variant-numeric: tabular-nums; }
+
+/* 2) Modais */
+.modal-overlay { overscroll-behavior: contain; }
+.modal, .modal-body { overscroll-behavior: contain; }
+html.dp-modal-open, html.dp-modal-open body { overflow: hidden !important; }
+@media (max-width: 768px), (pointer: coarse) {
+  /* O desfoque atrás do modal travava celulares Android mais simples */
+  .modal-overlay { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: rgba(3, 5, 10, .72) !important; }
+  .modal { max-height: 92vh !important; max-height: 92dvh !important; will-change: transform; }
+  .modal-body { -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+  .modal-header { touch-action: none; cursor: grab; }
+}
+
+/* 3) Contraste no tema escuro */
+.btn-whatsapp { background: #128c4a !important; border-color: #128c4a !important; color: #fff !important; }
+.btn-whatsapp:hover { background: #0f7a40 !important; }
+
+/* 4) Menu lateral recolhido que abre ao passar o mouse: títulos das seções e logo completo voltam.
+      (main.css deixava os títulos com opacidade 0 e escondia o logo com uma regra mais forte.) */
+@media (min-width: 1025px) {
+  html body .sidebar.collapsed:hover .menu-section-title { opacity: 1 !important; display: block !important; height: auto !important; width: auto !important; margin: 0 !important; overflow: visible !important; background: none !important; color: var(--text-muted) !important; }
+  html body .sidebar.collapsed:hover .menu-section { padding: 14px 18px 6px !important; text-align: left !important; }
+  html body .sidebar.collapsed:hover .sidebar-brand .dp-default-logo, html body .sidebar.collapsed:hover .sidebar-brand:not(.has-logo) .dp-default-logo { display: flex !important; }
+  html body .sidebar.collapsed:hover .sidebar-brand .brand-icon, html body .sidebar.collapsed:hover .sidebar-brand:not(.has-logo) .brand-icon { display: none !important; }
+  html body .sidebar.collapsed:hover .sidebar-brand, html body .sidebar.collapsed:hover .sidebar-brand:not(.has-logo) { justify-content: flex-start !important; padding: 12px 16px !important; }
+  /* Recolhido (sem o mouse): a linha que separa as seções fica visível */
+  html body .sidebar.collapsed:not(:hover) .menu-section-title { opacity: 1 !important; }
+}
+
+/* 5) Tabelas viradas em cartões no celular: versão compacta (todas as páginas).
+      Antes cada campo ocupava um bloco com o nome em cima e muito espaço vazio — com muitos itens a
+      lista ficava enorme. Agora: título no topo e cada campo em uma linha (nome à esquerda, valor à direita).
+      Só no celular (mesmo limite do studio-v1.css): no computador a tabela continua normal. */
+@media (max-width: 760px) {
+html body table.st-cards tbody { gap: 8px !important; }
+html body table.st-cards tr { grid-template-columns: minmax(0, 1fr) !important; gap: 0 !important; padding: 10px 12px !important; border-radius: 14px !important; min-height: 0 !important; height: auto !important; }
+html body table.st-cards td { display: flow-root !important; min-height: 0 !important; height: auto !important; padding: 2px 0 !important; margin: 0 !important; line-height: 1.35 !important; font-size: 13px !important; text-align: right !important; }
+html body table.st-cards td[data-label]:not([data-label=""])::before { float: left; display: block !important; margin: 0 12px 0 0 !important; font-size: 10.5px !important; font-weight: 700 !important; letter-spacing: .05em !important; line-height: 1.75 !important; text-align: left; }
+html body table.st-cards td:not([data-label]), html body table.st-cards td[data-label=""] { text-align: left !important; }
+html body table.st-cards td > * { max-width: 100%; }
+html body table.st-cards td div, html body table.st-cards td small { font-size: 12px; }
+html body table.st-cards td.st-title { display: block !important; text-align: left !important; font-size: 14px !important; font-weight: 700; padding: 0 34px 6px 0 !important; margin: 0 0 4px !important; border-bottom: 1px solid var(--st-line, var(--border-color)) !important; }
+html body table.st-cards td.st-title > div, html body table.st-cards td.st-title small { font-weight: 500; }
+html body table.st-cards td.st-check { position: absolute !important; top: 8px !important; right: 10px !important; padding: 0 !important; }
+html body table.st-cards td.st-actions { display: flex !important; justify-content: flex-end; gap: 6px !important; padding: 6px 0 0 !important; margin-top: 4px !important; }
+html body table.st-cards td.st-actions button, html body table.st-cards td.st-actions .btn-icon, html body table.st-cards td.st-actions .btn { min-width: 34px !important; min-height: 34px !important; height: 34px; padding: 0 10px !important; }
+html body table.st-cards td.st-full { display: block !important; text-align: center !important; padding: 14px 0 !important; }
+html body table.st-cards .badge, html body table.st-cards .cx-chip { font-size: 11px !important; padding: 2px 8px !important; }
+html body table.st-cards td.st-title, html body table.st-cards td.st-actions, html body table.st-cards td.st-full { grid-column: 1 / -1 !important; }
+/* Cartões com muitos campos (7 ou mais): dois campos por linha, nome pequeno em cima do valor */
+html body table.st-cards tr:has(> td:nth-child(7)) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; column-gap: 14px !important; row-gap: 5px !important; }
+html body table.st-cards tr:has(> td:nth-child(7)) > td:not(.st-title):not(.st-actions):not(.st-full):not(.st-check) { text-align: left !important; padding: 0 !important; }
+html body table.st-cards tr:has(> td:nth-child(7)) > td[data-label]:not([data-label=""]):not(.st-title)::before { float: none !important; margin: 0 0 1px !important; line-height: 1.3 !important; font-size: 10px !important; }
+html body table.st-cards tr:has(> td:nth-child(7)) > td.st-title { margin-bottom: 2px !important; }
+/* Campos vazios (só "—") não ocupam espaço no cartão */
+html body table.st-cards td.st-dash { display: none !important; }
+html body table.st-cards td.st-title * { white-space: normal !important; min-width: 0 !important; overflow-wrap: anywhere; }
+html body table.st-cards td.st-title > div { max-width: 100%; }
+}

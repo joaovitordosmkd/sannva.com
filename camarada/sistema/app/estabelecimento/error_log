@@ -1,0 +1,25 @@
+[29-Oct-2024 15:58:50 America/Sao_Paulo] PHP Warning:  include(/_layout/define.php): failed to open stream: No such file or directory in /home/tecautov/public_html/app/estabelecimento/pixmp.php on line 3
+[29-Oct-2024 15:58:50 America/Sao_Paulo] PHP Warning:  include(): Failed opening '/_layout/define.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/app/estabelecimento/pixmp.php on line 3
+[29-Oct-2024 15:58:50 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function is_active() in /home/tecautov/public_html/app/estabelecimento/pixmp.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/tecautov/public_html/app/estabelecimento/pixmp.php on line 5
+[29-Oct-2024 15:58:55 America/Sao_Paulo] PHP Warning:  include(/_layout/define.php): failed to open stream: No such file or directory in /home/tecautov/public_html/app/estabelecimento/pixmp.php on line 3
+[29-Oct-2024 15:58:55 America/Sao_Paulo] PHP Warning:  include(): Failed opening '/_layout/define.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/app/estabelecimento/pixmp.php on line 3
+[29-Oct-2024 15:58:55 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function is_active() in /home/tecautov/public_html/app/estabelecimento/pixmp.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/tecautov/public_html/app/estabelecimento/pixmp.php on line 5
+[29-Oct-2024 16:00:55 America/Sao_Paulo] PHP Warning:  include(/_layout/define.php): failed to open stream: No such file or directory in /home/tecautov/public_html/app/estabelecimento/pixmp.php on line 3
+[29-Oct-2024 16:00:55 America/Sao_Paulo] PHP Warning:  include(): Failed opening '/_layout/define.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/app/estabelecimento/pixmp.php on line 3
+[29-Oct-2024 16:00:55 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function is_active() in /home/tecautov/public_html/app/estabelecimento/pixmp.php:5
+Stack trace:
+#0 {main}
+  thrown in /home/tecautov/public_html/app/estabelecimento/pixmp.php on line 5
+[29-Oct-2024 16:09:12 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/tecautov/public_html/app/estabelecimento/formulario_credenciais.php:10) in /home/tecautov/public_html/app/estabelecimento/formulario_credenciais.php on line 41
+[15-Apr-2025 13:59:09 America/Sao_Paulo] PHP Warning:  include(/_layout/define.php): failed to open stream: No such file or directory in /home/tecautov/public_html/app/estabelecimento/pedido_mesa.php on line 3
+[15-Apr-2025 13:59:09 America/Sao_Paulo] PHP Warning:  include(): Failed opening '/_layout/define.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/tecautov/public_html/app/estabelecimento/pedido_mesa.php on line 3
+[15-Apr-2025 13:59:09 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function is_active() in /home/tecautov/public_html/app/estabelecimento/pedido_mesa.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/tecautov/public_html/app/estabelecimento/pedido_mesa.php on line 6

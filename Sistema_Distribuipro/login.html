@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script>window.__stProduct=1;document.documentElement.setAttribute("data-st-product","")</script><script>/* Studio: aplica o tema escolhido (claro/escuro/automático) antes de desenhar a página */try{var p=localStorage.getItem("st_theme_pref");if(p){var t=p==="auto"?(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):p;if(t==="light"||t==="dark"){sessionStorage.setItem("erp_theme_session",t);document.documentElement.setAttribute("data-theme",t);}}}catch(e){}</script><link rel="icon" href="assets/brand/favicon-96.png?v=41.5-logo" type="image/png">
+    <script src="assets/js/branding.js?v=40.29-acessos"></script><script src="assets/js/papel-v1.js?v=40.49"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+    <!-- 36.5 · sem theme-color: a barra do navegador fica na cor normal -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Entrar · DistribuiPro</title>
+    <link rel="stylesheet" href="assets/css/mobile.css?v=37.8">
+    <link rel="stylesheet" href="assets/css/studio-light-pages.css?v=1.3">
+    <link rel="stylesheet" href="assets/css/studio-v1.css?v=39.6-logo"><link rel="stylesheet" href="assets/css/studio-pro-v2.css?v=2.7">
+    <!-- 37.7 · login v5: fonte e ícones locais (sem Font Awesome e sem Google Fonts nesta tela).
+         data-st-font e data-st-ph avisam o studio-v1.js que esta tela já tem a fonte e os ícones: ele não busca nada na internet. -->
+    <link rel="stylesheet" href="assets/css/login-v5.css?v=39.5.3-iphone" data-st-font data-st-ph>
+<script defer src="assets/js/cache-818831d97b.js"></script></head>
+<body class="ln-body">
+    <main class="ln">
+        <!-- Painel da marca (só no computador). Texto neutro: serve para o funcionário do cliente, sem propaganda. -->
+        <section class="ln-art" aria-labelledby="lnArtTitle">
+            <div class="ln-art-txt">
+                <p class="ln-kicker"><i class="ln-ic ic-escudo" aria-hidden="true"></i>Sistema de gestão</p>
+                <h2 class="ln-art-h" id="lnArtTitle">Tudo do seu negócio <span>em um só lugar.</span></h2>
+                <p class="ln-art-sub">Vendas, caixa, estoque e financeiro, no computador ou no celular.</p>
+                <ul class="ln-chips" aria-label="O que tem no sistema">
+                    <li><i class="ln-ic ic-carrinho" aria-hidden="true"></i>PDV e caixa</li>
+                    <li><i class="ln-ic ic-pacote" aria-hidden="true"></i>Estoque</li>
+                    <li><i class="ln-ic ic-carteira" aria-hidden="true"></i>Financeiro</li>
+                    <li><i class="ln-ic ic-grafico" aria-hidden="true"></i>Relatórios</li>
+                </ul>
+            </div>
+            <!-- Vitrine com a marca: o montar.js da revenda apaga este bloco inteiro (precisa ficar sem div dentro) -->
+            <div class="ln-devs" aria-hidden="true"><img class="nb" src="assets/login/notebook.webp?v=40.0-logo" alt="" width="1240" height="908" loading="lazy" decoding="async"><img class="cel" src="assets/login/celular.webp" alt="" width="520" height="1023" loading="lazy" decoding="async"></div>
+        </section>
+
+        <!-- Formulários -->
+        <section class="ln-side">
+            <div class="ln-main"><div class="ln-box">
+                <div class="ln-cardlogo"><img class="ln-l-light" src="assets/brand/distribuipro-logo-light.png?v=41.5-logo" alt="DistribuiPro" width="1320" height="302"><img class="ln-l-dark" src="assets/brand/distribuipro-logo-dark.png?v=41.5-logo" alt="DistribuiPro" width="1320" height="302"></div>
+
+                <!-- Entrar -->
+                <div class="ln-view" id="loginForm">
+                    <h1>Acesse sua conta</h1>
+                    <p class="ln-sub">Entre com o e-mail e a senha do seu usuário.</p>
+                    <div class="ln-msg err" id="errorMsg" role="alert"><i class="ln-ic ic-alerta" aria-hidden="true"></i><span id="errorText"></span></div>
+                    <form onsubmit="handleLogin(event)" novalidate>
+                        <div class="ln-f">
+                            <label for="loginEmail">E-mail</label>
+                            <div class="ln-in"><i class="ln-ic ic-mail" aria-hidden="true"></i><input type="email" id="loginEmail" placeholder="seu@email.com" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" required></div>
+                        </div>
+                        <div class="ln-f">
+                            <div class="ln-f-top"><label for="loginPassword">Senha</label><a href="#" class="ln-link" onclick="showForgotForm(event)">Esqueci minha senha</a></div>
+                            <div class="ln-in pw"><i class="ln-ic ic-lock" aria-hidden="true"></i><input type="password" id="loginPassword" placeholder="Sua senha" autocomplete="current-password" required><button type="button" class="ln-eye" onclick="togglePassword()" aria-label="Mostrar ou esconder a senha" title="Mostrar ou esconder a senha"><i class="fas fa-eye" id="eyeIcon" aria-hidden="true"></i></button></div>
+                        </div>
+                        <div class="ln-row">
+                            <label class="ln-remember"><input type="checkbox" id="rememberEmail" checked> Lembrar meu e-mail</label>
+                        </div>
+                        <button type="submit" class="ln-btn" id="btnLogin"><span>Entrar</span><i class="ln-ic ic-seta ln-arrow" aria-hidden="true"></i><span class="ln-spin" id="loginSpinner" aria-hidden="true"></span></button>
+                    </form>
+                    <a href="#" class="ln-first" onclick="showRegisterForm(event)"><i class="ln-ic ic-usuario-mais" aria-hidden="true"></i><span>Primeira vez usando o sistema?<b>Criar conta de administrador</b></span><i class="ln-ic ic-seta ln-first-seta" aria-hidden="true"></i></a>
+                </div>
+
+                <!-- Primeiro acesso (criar o administrador) -->
+                <div class="ln-view hidden" id="registerForm">
+                    <button type="button" class="ln-back" onclick="showLoginForm()"><i class="ln-ic ic-voltar" aria-hidden="true"></i>Voltar</button>
+                    <h1>Primeiro acesso</h1>
+                    <p class="ln-sub">Crie o usuário administrador. Depois, ele cadastra os outros usuários do sistema.</p>
+                    <div class="ln-msg err" id="registerError" role="alert"><i class="ln-ic ic-alerta" aria-hidden="true"></i><span id="registerErrorText"></span></div>
+                    <div class="ln-msg ok" id="registerSuccess" role="status"><i class="ln-ic ic-ok" aria-hidden="true"></i><span>Conta criada! Abrindo o sistema…</span></div>
+                    <form onsubmit="handleRegister(event)">
+                        <div class="ln-f">
+                            <label for="registerName">Nome completo</label>
+                            <div class="ln-in"><i class="ln-ic ic-usuario" aria-hidden="true"></i><input type="text" id="registerName" placeholder="Seu nome e sobrenome" autocomplete="name" required></div>
+                        </div>
+                        <div class="ln-f">
+                            <label for="registerEmail">E-mail</label>
+                            <div class="ln-in"><i class="ln-ic ic-mail" aria-hidden="true"></i><input type="email" id="registerEmail" placeholder="seu@email.com" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" required></div>
+                        </div>
+                        <div class="ln-f">
+                            <label for="registerPassword">Senha</label>
+                            <div class="ln-in"><i class="ln-ic ic-lock" aria-hidden="true"></i><input type="password" id="registerPassword" placeholder="Crie uma senha" autocomplete="new-password" minlength="6" aria-describedby="registerPassHint" required></div>
+                            <small class="ln-dica" id="registerPassHint">Mínimo de 6 caracteres.</small>
+                        </div>
+                        <div class="ln-f">
+                            <label for="registerPasswordConfirm">Repita a senha</label>
+                            <div class="ln-in"><i class="ln-ic ic-lock" aria-hidden="true"></i><input type="password" id="registerPasswordConfirm" placeholder="Digite a senha de novo" autocomplete="new-password" minlength="6" required></div>
+                        </div>
+                        <button type="submit" class="ln-btn" id="btnRegister"><span>Criar conta e entrar</span><i class="ln-ic ic-seta ln-arrow" aria-hidden="true"></i><span class="ln-spin" id="registerSpinner" aria-hidden="true"></span></button>
+                    </form>
+                </div>
+
+                <!-- Esqueci a senha -->
+                <div class="ln-view hidden" id="forgotForm">
+                    <button type="button" class="ln-back" onclick="showLoginForm()"><i class="ln-ic ic-voltar" aria-hidden="true"></i>Voltar</button>
+                    <h1>Recuperar acesso</h1>
+                    <p class="ln-sub">Informe o e-mail da sua conta. Vamos mandar um link para você criar uma senha nova.</p>
+                    <div class="ln-msg err" id="forgotError" role="alert"><i class="ln-ic ic-alerta" aria-hidden="true"></i><span id="forgotErrorText"></span></div>
+                    <div class="ln-msg ok" id="forgotSuccess" role="status"><i class="ln-ic ic-ok" aria-hidden="true"></i><span>Pronto! Se o e-mail estiver cadastrado, o link chega em instantes. Confira também o spam.</span></div>
+                    <form onsubmit="handleForgot(event)">
+                        <div class="ln-f">
+                            <label for="forgotEmail">E-mail cadastrado</label>
+                            <div class="ln-in"><i class="ln-ic ic-mail" aria-hidden="true"></i><input type="email" id="forgotEmail" placeholder="seu@email.com" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" required></div>
+                        </div>
+                        <button type="submit" class="ln-btn" id="btnForgot"><span>Enviar link</span><i class="ln-ic ic-enviar ln-arrow" aria-hidden="true"></i><span class="ln-spin" id="forgotSpinner" aria-hidden="true"></span></button>
+                    </form>
+                </div>
+            </div></div>
+
+            <!-- Rodapé + aparência (discreta, no pé da página) -->
+            <footer class="ln-copy">
+                <div class="ln-copy-txt">
+                    <span id="lnCopy">© 2026 DistribuiPro</span>
+                    <span><i class="ln-ic ic-lock" aria-hidden="true"></i>Acesso protegido por senha</span>
+                </div>
+                <div class="ln-theme" role="group" aria-label="Aparência"><button type="button" data-theme-pref="light" title="Tema claro" aria-label="Tema claro"><i class="ln-ic ic-sol" aria-hidden="true"></i></button><button type="button" data-theme-pref="dark" title="Tema escuro" aria-label="Tema escuro"><i class="ln-ic ic-lua" aria-hidden="true"></i></button><button type="button" data-theme-pref="auto" title="Automático (segue o aparelho)" aria-label="Automático (segue o aparelho)"><i class="ln-ic ic-auto" aria-hidden="true"></i></button></div>
+            </footer>
+        </section>
+    </main>
+
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+        <script src="config/firebase-config.js"></script>
+    <script src="services/core-services.js?v=39.14.5"></script>
+
+    <script>
+        // Aparência: claro, escuro ou automático (a mesma escolha do sistema)
+        (function () {
+            const btns = document.querySelectorAll('[data-theme-pref]'), mq = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
+            const pref = () => { try { return localStorage.getItem('st_theme_pref') || ''; } catch (e) { return ''; } };
+            function mark() { const p = pref() || document.documentElement.getAttribute('data-theme') || 'light'; btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themePref === p))); }
+            function apply(p, save) {
+                if (save) { try { localStorage.setItem('st_theme_pref', p); localStorage.setItem('st_theme_asked', '1'); } catch (e) { } }
+                const t = p === 'auto' ? (mq && mq.matches ? 'dark' : 'light') : p;
+                document.documentElement.setAttribute('data-theme', t); try { sessionStorage.setItem('erp_theme_session', t); } catch (e) { } mark();
+            }
+            btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.themePref, true)));
+            if (mq && mq.addEventListener) mq.addEventListener('change', () => { if (pref() === 'auto') apply('auto', false); });
+            new MutationObserver(mark).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+            mark();
+        })();
+
+        // 36.5 · Lembrar o e-mail neste aparelho (só o e-mail; a senha nunca é guardada aqui)
+        const REMEMBER_KEY = 'dp_ultimo_email';
+        function rememberEmail(email) {
+            try { if (document.getElementById('rememberEmail')?.checked) localStorage.setItem(REMEMBER_KEY, email); else localStorage.removeItem(REMEMBER_KEY); } catch (e) { }
+        }
+        // 37.7 · O aviso "entrou" do banco (onAuthStateChanged) troca de página antes do handleLogin/handleRegister terminar:
+        // pendingEmail guarda o e-mail do login em andamento e registering segura a troca até o administrador ser gravado.
+        // 38.7 · loginTask: o login em andamento. O aviso "entrou" espera ele terminar (inclusive a gravação da auditoria)
+        // antes de trocar de página; antes a troca cortava o pedido ("Erro ao registrar auditoria: Failed to fetch").
+        let pendingEmail = '', registering = false, loginTask = null;
+        (function () {
+            let saved = ''; try { saved = localStorage.getItem(REMEMBER_KEY) || ''; } catch (e) { }
+            const input = document.getElementById('loginEmail');
+            if (saved && input && !input.value) input.value = saved;
+            if (matchMedia('(min-width: 1000px)').matches) (saved ? document.getElementById('loginPassword') : input)?.focus({ preventScroll: true });
+        })();
+
+        // Rodapé sempre com o ano atual
+        (function () { const c = document.getElementById('lnCopy'); if (c) c.textContent = c.textContent.replace(/\d{4}/, String(new Date().getFullYear())); })();
+
+        // Toggle password visibility
+        function togglePassword() {
+            const input = document.getElementById('loginPassword');
+            const icon = document.getElementById('eyeIcon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+
+        // Uma tela por vez (entrar, primeiro acesso, esqueci a senha)
+        function showView(id) {
+            ['loginForm', 'registerForm', 'forgotForm'].forEach(v => document.getElementById(v).classList.toggle('hidden', v !== id));
+            const first = document.querySelector('#' + id + ' input:not([type=hidden])');
+            if (first && first.offsetParent && matchMedia('(min-width: 1000px)').matches) first.focus({ preventScroll: true });
+        }
+        function showForgotForm(e) {
+            e.preventDefault();
+            const typed = document.getElementById('loginEmail').value.trim();
+            if (typed && !document.getElementById('forgotEmail').value) document.getElementById('forgotEmail').value = typed;
+            showView('forgotForm');
+        }
+        function showRegisterForm(e) { e.preventDefault(); showView('registerForm'); }
+        function showLoginForm() { showView('loginForm'); }
+
+        // Register handler
+        async function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
+            const btn = document.getElementById('btnRegister');
+            const spinner = document.getElementById('registerSpinner');
+            const errorDiv = document.getElementById('registerError');
+            const successDiv = document.getElementById('registerSuccess');
+
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+
+            if (password !== passwordConfirm) {
+                document.getElementById('registerErrorText').textContent = 'As senhas não coincidem.';
+                errorDiv.style.display = 'flex';
+                return;
+            }
+
+            if (password.length < 6) {
+                document.getElementById('registerErrorText').textContent = 'A senha deve ter no mínimo 6 caracteres.';
+                errorDiv.style.display = 'flex';
+                return;
+            }
+
+            btn.disabled = true;
+            spinner.style.display = 'block';
+
+            let novoLogin = null; // 39.14.15 · o login criado agora (apagado se o sistema já tiver administrador)
+            try {
+                // Create user in Firebase Auth
+                registering = true;
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                novoLogin = user;
+                // 39.14.15 · Regras antigas do Firestore (qualquer login lê e grava) deixariam um 2º "administrador" se cadastrar.
+                // A empresa já configurada (settings/general existe) = recusa aqui mesmo. Sem permissão para ler (regras novas)
+                // = segue: a regra do users só aceita o 1º administrador.
+                let empresaExiste = false;
+                try { empresaExiste = (await db.collection('settings').doc('general').get()).exists; } catch (_) { empresaExiste = false; }
+                if (empresaExiste) { const e = new Error('sistema já tem administrador'); e.code = 'permission-denied'; throw e; }
+
+                // Update display name
+                await user.updateProfile({ displayName: name });
+
+                // Create user document in Firestore
+                await db.collection('users').doc(user.uid).set({
+                    name: name,
+                    email: email,
+                    role: 'admin',
+                    status: 'active',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                // Create initial config document
+                // IMPORTANTE: salvamos em 'settings/general' (mesma coleção usada pela
+                // página de Configurações). Os campos seguem o padrão: nomeFantasia,
+                // razaoSocial — para que apareçam corretamente nos comprovantes,
+                // relatórios e outras páginas que leem o nome da empresa.
+                await db.collection('settings').doc('general').set({
+                    nomeFantasia: 'Minha Empresa',
+                    razaoSocial: 'Minha Empresa',
+                    systemName: 'Sistema de Gestão',
+                    defaultTheme: 'light',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+                if (window.dpMarcarInstalado) await window.dpMarcarInstalado(); // 39.2 · os outros computadores não oferecem mais criar administrador
+
+                successDiv.style.display = 'flex';
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+
+            } catch (error) {
+                registering = false;
+                let msg = 'Erro ao criar conta.';
+                if (error.code === 'auth/email-already-in-use') msg = 'Este e-mail já está cadastrado. Faça login.';
+                else if (error.code === 'auth/invalid-email') msg = 'E-mail inválido.';
+                else if (error.code === 'auth/weak-password') msg = 'Senha muito fraca. Use no mínimo 6 caracteres.';
+                // 39.14.15 · As regras do Firestore só deixam o 1º administrador se cadastrar (banco novo). Recusou = o sistema já
+                // tem dono: apaga o login que acabou de ser criado (não fica conta solta no Firebase) e esconde o link.
+                else if (error.code === 'permission-denied' && novoLogin) {
+                    msg = 'Este sistema já tem um administrador. Peça a ele para criar o seu usuário em Usuários.';
+                    try { await novoLogin.delete(); } catch (_) { }
+                    try { await auth.signOut(); } catch (_) { }
+                    try { localStorage.setItem('dp_admin_criado', '1'); } catch (_) { }
+                    document.querySelectorAll('.ln-first').forEach(a => { a.style.display = 'none'; });
+                }
+
+                document.getElementById('registerErrorText').textContent = msg;
+                errorDiv.style.display = 'flex';
+                btn.disabled = false;
+                spinner.style.display = 'none';
+            }
+        }
+
+        async function cacheDefaultThemeBeforeEnter() {
+            try {
+                // Novo acesso sempre começa no tema padrão definido pelo administrador.
+                sessionStorage.removeItem('erp_theme_session');
+                const doc = await db.collection('settings').doc('general').get();
+                const t = doc.exists ? doc.data()?.defaultTheme : null;
+                const theme = (t === 'dark' || t === 'light') ? t : 'light';
+                localStorage.setItem('erp_theme_default', theme);
+                localStorage.setItem('erp_theme', theme);
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (_) {
+                const theme = localStorage.getItem('erp_theme_default') || 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+            }
+        }
+
+        // Login handler
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const btn = document.getElementById('btnLogin');
+            const spinner = document.getElementById('loginSpinner');
+            const errorDiv = document.getElementById('errorMsg');
+
+            btn.disabled = true;
+            spinner.style.display = 'block';
+            errorDiv.style.display = 'none';
+
+            pendingEmail = email;
+            loginTask = AuthService.login(email, password);
+            const result = await loginTask;
+            loginTask = null;
+
+            if (result.success) {
+                rememberEmail(email);
+                if (window.dpMarcarInstalado) await window.dpMarcarInstalado(); // 39.14.15 · Firebase: login pelo formulário também esconde "Criar conta de administrador"
+                await cacheDefaultThemeBeforeEnter();
+                window.location.href = 'index.html';
+            } else {
+                pendingEmail = '';
+                document.getElementById('errorText').textContent = result.error;
+                errorDiv.style.display = 'flex';
+                btn.disabled = false;
+                spinner.style.display = 'none';
+            }
+        }
+
+        // Forgot password handler
+        async function handleForgot(e) {
+            e.preventDefault();
+            const email = document.getElementById('forgotEmail').value;
+            const btn = document.getElementById('btnForgot');
+            const spinner = document.getElementById('forgotSpinner');
+
+            btn.disabled = true;
+            spinner.style.display = 'block';
+
+            const result = await AuthService.resetPassword(email);
+
+            if (result.success) {
+                document.getElementById('forgotSuccess').style.display = 'flex';
+                document.getElementById('forgotError').style.display = 'none';
+            } else {
+                document.getElementById('forgotErrorText').textContent = result.error;
+                document.getElementById('forgotError').style.display = 'flex';
+            }
+
+            btn.disabled = false;
+            spinner.style.display = 'none';
+        }
+
+        // 39.2 · "Primeira vez? Criar conta de administrador" só enquanto ninguém criou o administrador.
+        // Antes de entrar as regras não deixam ler os usuários; então fica um aviso público "sistema-instalado" (só diz que
+        // já existe administrador) num lugar que as regras atuais já deixam ler sem login (os_tracking: leitura de 1 documento,
+        // nunca a lista). É gravado ao criar o administrador e no 1º login de qualquer usuário (sistemas que já existiam).
+        const marcaInstalado = () => db.collection('os_tracking').doc('sistema-instalado');
+        window.dpMarcarInstalado = async () => {
+            try { localStorage.setItem('dp_admin_criado', '1'); } catch (_) {}
+            try { const ref = marcaInstalado(); const d = await ref.get(); if (!d.exists) await ref.set({ instalado: true, em: firebase.firestore.FieldValue.serverTimestamp() }); } catch (_) {}
+        };
+        (function esconderPrimeiroAcesso() {
+            const esconder = () => {
+                document.querySelectorAll('.ln-first').forEach(a => { a.style.display = 'none'; });
+                const rf = document.getElementById('registerForm'); if (rf && !rf.classList.contains('hidden')) showView('loginForm');
+            };
+            try { if (localStorage.getItem('dp_admin_criado') === '1') esconder(); } catch (_) {}
+            try { marcaInstalado().get().then(d => { if (d.exists) { esconder(); try { localStorage.setItem('dp_admin_criado', '1'); } catch (_) {} } }).catch(() => {}); } catch (_) {}
+        })();
+        // Check if already logged in
+        auth.onAuthStateChanged(async user => {
+            // login pelo formulário em andamento: espera terminar; deu certo = o handleLogin já troca de página
+            if (user && loginTask) { const r = await loginTask; if (r && r.success) return; }
+            if (user) { if (registering) return; if (pendingEmail) rememberEmail(pendingEmail); if (window.dpMarcarInstalado) await window.dpMarcarInstalado(); await cacheDefaultThemeBeforeEnter(); window.location.href = 'index.html'; }
+        });
+    </script>
+
+    <script src="assets/js/mobile-fix.js"></script>
+<script defer src="assets/js/studio-v1.js?v=39.13"></script><script defer src="assets/js/studio-pro-v2.js?v=2.7-rolagem"></script>
+</body>
+</html>

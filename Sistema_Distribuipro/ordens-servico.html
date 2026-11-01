@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script>window.__stProduct=1;document.documentElement.setAttribute("data-st-product","")</script><script>/* Studio: aplica o tema escolhido (claro/escuro/automático) antes de desenhar a página */try{var p=localStorage.getItem("st_theme_pref");if(p){var t=p==="auto"?(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):p;if(t==="light"||t==="dark"){sessionStorage.setItem("erp_theme_session",t);document.documentElement.setAttribute("data-theme",t);}}}catch(e){}</script><link rel="icon" href="assets/brand/favicon-96.png?v=41.5-logo" type="image/png">
+    <script src="assets/js/branding.js?v=40.29-acessos"></script><script src="assets/js/papel-v1.js?v=40.49"></script><script src="assets/js/dp-icons-v1.js?v=37.6"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="theme-color" content="#0a0e1a">
+    <title>Ordens de Serviço · DistribuiPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css?v=37.8">
+    <link rel="stylesheet" href="assets/css/mobile.css?v=37.8">
+<style id="os-professional-ui">
+.os-modal{width:min(1120px,calc(100vw - 24px));max-width:1120px;max-height:94vh;display:flex;flex-direction:column;overflow:hidden}
+.os-modal-header{align-items:flex-start}.os-modal-header h3{margin:0}.os-modal-header p{margin:4px 0 0;font-size:12px;color:var(--text-muted)}.os-title-number{font-size:11px;padding:4px 8px;border-radius:999px;background:rgba(99,102,241,.13);color:var(--accent);vertical-align:middle;margin-left:6px}
+.os-modal-body{overflow-y:auto;padding:16px 18px 8px}.os-section{border:1px solid var(--border-color);background:var(--bg-secondary);border-radius:14px;padding:15px;margin-bottom:13px}.os-section-title{display:flex;align-items:center;gap:10px;margin-bottom:13px}.os-section-title strong{display:block;font-size:13px;color:var(--text-primary)}.os-section-title small{display:block;font-size:10px;color:var(--text-muted);margin-top:2px}.os-section-icon{width:34px;height:34px;border-radius:10px;background:rgba(99,102,241,.12);color:var(--accent);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.os-grid{display:grid;gap:12px}.os-grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.os-grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.os-span-2{grid-column:span 2}.os-span-3{grid-column:span 3}.os-span-4{grid-column:1/-1}.os-modal .form-group,.os-payment-modal .form-group{margin-bottom:0}.os-modal textarea{resize:vertical;min-height:62px}.os-total-input{font-weight:800!important;color:var(--success)!important;background:rgba(16,185,129,.07)!important}
+.os-modal-footer{position:sticky;bottom:0;z-index:3;background:var(--bg-card);border-top:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center;gap:12px}.os-footer-total{display:flex;flex-direction:column}.os-footer-total span{font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted)}.os-footer-total strong{font-size:20px;color:var(--success)}.os-footer-actions{display:flex;gap:8px}
+.os-alert{display:flex;gap:9px;align-items:flex-start;border:1px solid var(--border-color);border-radius:10px;padding:10px 12px;font-size:11px;line-height:1.5}.os-alert-lock{background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.25);color:#f59e0b;margin-bottom:12px}.os-alert-info{background:rgba(59,130,246,.07);border-color:rgba(59,130,246,.22);color:var(--text-secondary);margin-top:14px}.os-alert-danger{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.25);color:var(--text-secondary)}.os-alert-danger>i{color:#ef4444;margin-top:2px}
+.os-actions{display:flex;gap:5px;justify-content:flex-end;align-items:center;flex-wrap:wrap}.os-action{border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);border-radius:8px;padding:6px 8px;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap}.os-action:hover{border-color:var(--accent);color:var(--accent)}.os-action-success{background:rgba(16,185,129,.09);border-color:rgba(16,185,129,.25);color:#10b981}.os-action-neutral span{display:none}.os-row-cancelled{opacity:.62}.os-row-cancelled td{text-decoration:none}
+.os-payment-modal{width:min(650px,calc(100vw - 24px));max-width:650px}.os-payment-summary{padding:14px;border-radius:12px;background:var(--bg-secondary);border:1px solid var(--border-color);margin-bottom:14px}.os-pay-head{display:flex;justify-content:space-between;gap:20px;align-items:center}.os-pay-head>div:first-child{display:flex;flex-direction:column;gap:3px}.os-pay-head small{font-size:10px;color:var(--text-muted)}.os-pay-head strong{font-size:15px;color:var(--text-primary)}.os-pay-head span{font-size:11px;color:var(--text-muted)}.os-pay-total{text-align:right}.os-pay-total strong{display:block;font-size:24px;color:var(--success)}.os-field-help{font-size:10px;color:var(--text-muted);margin-top:4px;display:block}.os-history{display:grid;gap:8px}.os-history-item{display:flex;gap:9px;align-items:flex-start}.os-history-dot{width:8px;height:8px;margin-top:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(99,102,241,.12)}.os-history-item strong{font-size:11px;display:block;color:var(--text-primary)}.os-history-item small{font-size:10px;color:var(--text-muted);display:block;margin-top:2px}.os-history-empty{font-size:11px;color:var(--text-muted)}
+@media(min-width:1280px){.os-action-neutral span{display:inline}}
+@media(max-width:900px){.os-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}.os-span-3{grid-column:span 2}}
+@media(max-width:640px){.os-modal{width:100vw;max-width:none;height:100dvh;max-height:100dvh;border-radius:0}.os-grid-2,.os-grid-4{grid-template-columns:1fr}.os-span-2,.os-span-3,.os-span-4{grid-column:1}.os-modal-body{padding:12px}.os-section{padding:12px}.os-modal-footer{padding-bottom:max(12px,env(safe-area-inset-bottom));align-items:flex-end}.os-footer-actions{width:100%;justify-content:flex-end}.os-footer-total strong{font-size:16px}.os-pay-head{align-items:flex-start;flex-direction:column}.os-pay-total{text-align:left}}
+
+.os-multi-box{border:1px solid var(--border-color);border-radius:12px;padding:12px;background:var(--bg-surface);margin-top:2px}.os-multi-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.os-multi-head strong{font-size:13px;color:var(--text-heading)}.os-multi-row{border:1px solid var(--border-color);border-radius:10px;padding:10px;margin-bottom:8px;background:var(--bg-secondary)}.os-multi-main{display:grid;grid-template-columns:1.25fr 1fr auto;gap:8px;align-items:end}.os-multi-extra{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}.os-multi-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.os-multi-summary>div{padding:9px;border-radius:8px;background:var(--bg-input)}.os-multi-summary small{display:block;color:var(--text-muted);font-size:10px}.os-multi-summary strong{display:block;margin-top:2px}.os-multi-summary .ok{background:rgba(16,185,129,.1);color:var(--success)}.os-multi-summary .warn{background:rgba(245,158,11,.1);color:var(--warning)}@media(max-width:680px){.os-multi-main{grid-template-columns:1fr 1fr auto}.os-multi-extra,.os-multi-summary{grid-template-columns:1fr}.os-payment-modal{width:96vw}}
+
+</style>
+
+    <link rel="stylesheet" href="assets/css/studio-light-pages.css?v=1.3">
+    <link rel="stylesheet" href="assets/css/studio-v1.css?v=39.6-logo"><link rel="stylesheet" href="assets/css/studio-pro-v2.css?v=2.7">
+<link rel="stylesheet" href="assets/css/os-extras-v1.css?v=40.42">
+<script defer src="assets/js/cache-818831d97b.js"></script></head>
+<body>
+<div class="app-layout">
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileSidebar()"></div>
+    <!-- sidebar.html - Componente de navegação lateral -->
+<!-- Incluído via JavaScript em todas as páginas -->
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-brand" id="sidebarBrand"><div class="dp-default-logo" aria-label="DistribuiPro"><img src="assets/brand/distribuipro-logo-dark.png?v=41.5-logo" alt="DistribuiPro"></div>
+        <div class="brand-icon" id="brandIcon"><img src="assets/brand/distribuipro-mark.svg?v=41.5-logo" alt="DistribuiPro" style="width:100%;height:100%;display:block;object-fit:contain"></div>
+        <img class="brand-logo-img" id="brandLogoImg" src="" alt="Logo" onerror="this.style.display='none'">
+        <div class="brand-text" id="brandText">
+            <h1 id="brandName">DistribuiPRO</h1>
+            <span id="brandSub">Sistema ERP</span>
+        </div>
+    </div>
+
+    <nav class="sidebar-menu">
+        <!-- PRINCIPAL -->
+        <div class="menu-section">
+            <span class="menu-section-title">Principal</span>
+        </div>
+        <a href="index.html" class="menu-item active" data-page="dashboard">
+            <i class="fas fa-chart-pie"></i>
+            <span class="menu-text">Dashboard</span>
+        </a>
+
+        <!-- OPERAÇÕES -->
+        <div class="menu-section">
+            <span class="menu-section-title">Operações</span>
+        </div>
+        <a href="pdv.html" class="menu-item" data-page="pdv">
+            <i class="fas fa-cash-register"></i>
+            <span class="menu-text">PDV / Vendas</span>
+        </a>
+        <a href="orcamentos.html" class="menu-item" data-page="orcamentos"><i class="fas fa-file-signature"></i><span class="menu-text">Orçamentos</span></a>
+        <a href="pedidos.html" class="menu-item" data-page="pedidos">
+            <i class="fas fa-clipboard-list"></i>
+            <span class="menu-text">Pedidos</span>
+            <span class="badge" id="badgePedidos" style="display:none">0</span>
+        </a>
+        <a href="entregas.html" class="menu-item" data-page="entregas">
+            <i class="fas fa-truck-fast"></i>
+            <span class="menu-text">Entregas</span>
+        </a>
+        <a href="caixa.html" class="menu-item" data-page="caixa">
+            <i class="fas fa-vault"></i>
+            <span class="menu-text">Caixa</span>
+        </a>
+        <a href="ordens-servico.html" class="menu-item" data-page="ordens-servico">
+            <i class="fas fa-screwdriver-wrench"></i>
+            <span class="menu-text">Ordens de Serviço</span>
+        </a>
+
+        <!-- CADASTROS -->
+        <div class="menu-section">
+            <span class="menu-section-title">Cadastros</span>
+        </div>
+        <a href="produtos.html" class="menu-item" data-page="produtos">
+            <i class="fas fa-box"></i>
+            <span class="menu-text">Produtos</span>
+        </a>
+        <a href="categorias.html" class="menu-item" data-page="categorias">
+            <i class="fas fa-tags"></i>
+            <span class="menu-text">Categorias</span>
+        </a>
+        <a href="clientes.html" class="menu-item" data-page="clientes">
+            <i class="fas fa-users"></i>
+            <span class="menu-text">Clientes</span>
+        </a>
+        <a href="fornecedores.html" class="menu-item" data-page="fornecedores">
+            <i class="fas fa-industry"></i>
+            <span class="menu-text">Fornecedores</span>
+        </a>
+
+        <!-- ESTOQUE -->
+        <div class="menu-section">
+            <span class="menu-section-title">Estoque</span>
+        </div>
+        <a href="estoque.html" class="menu-item" data-page="estoque">
+            <i class="fas fa-boxes-stacked"></i>
+            <span class="menu-text">Estoque Atual</span>
+        </a>
+        <a href="movimentacoes.html" class="menu-item" data-page="movimentacoes">
+            <i class="fas fa-arrow-right-arrow-left"></i>
+            <span class="menu-text">Movimentações</span>
+        </a>
+        <a href="compras.html" class="menu-item" data-page="compras">
+            <i class="fas fa-cart-shopping"></i>
+            <span class="menu-text">Compras</span>
+        </a>
+
+        <!-- FINANCEIRO -->
+        <div class="menu-section">
+            <span class="menu-section-title">Financeiro</span>
+        </div>
+        <a href="contas-pagar.html" class="menu-item" data-page="contas-pagar">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span class="menu-text">Contas a Pagar</span>
+        </a>
+        <a href="contas-receber.html" class="menu-item" data-page="contas-receber">
+            <i class="fas fa-hand-holding-dollar"></i>
+            <span class="menu-text">Contas a Receber</span>
+        </a>
+        <a href="fluxo-caixa.html" class="menu-item" data-page="fluxo-caixa">
+            <i class="fas fa-chart-line"></i>
+            <span class="menu-text">Fluxo de Caixa</span>
+        </a>
+
+        <!-- GESTÃO -->
+        <div class="menu-section">
+            <span class="menu-section-title">Gestão</span>
+        </div>
+        <a href="motoboys.html" class="menu-item" data-page="motoboys">
+            <i class="fas fa-motorcycle"></i>
+            <span class="menu-text">Motoboys</span>
+        </a>
+        <a href="relatorios.html" class="menu-item" data-page="relatorios">
+            <i class="fas fa-chart-bar"></i>
+            <span class="menu-text">Relatórios</span>
+        </a>
+        <a href="comissoes.html" class="menu-item" data-page="comissoes">
+            <i class="fas fa-percent"></i>
+            <span class="menu-text">Comissões</span>
+        </a>
+        <a href="usuarios.html" class="menu-item" data-page="usuarios">
+            <i class="fas fa-user-shield"></i>
+            <span class="menu-text">Usuários</span>
+        </a>
+        <a href="auditoria.html" class="menu-item" data-page="auditoria">
+            <i class="fas fa-clock-rotate-left"></i>
+            <span class="menu-text">Auditoria</span>
+        </a>
+        <a href="configuracoes.html" class="menu-item" data-page="configuracoes">
+            <i class="fas fa-gear"></i>
+            <span class="menu-text">Configurações</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-toggle">
+        <button onclick="toggleSidebar()" title="Recolher menu">
+            <i class="fas fa-angles-left" id="sidebarToggleIcon"></i>
+        </button>
+    </div>
+</div>
+    <div class="main-content">
+        <header class="header">
+            <div class="header-left"><button class="mobile-menu-btn" onclick="toggleMobileSidebar()"><i class="fas fa-bars"></i></button><div><h2>Ordens de Serviço</h2><div class="header-breadcrumb"><i class="fas fa-home" style="font-size:10px"></i><span>/ Operações / Assistência Técnica</span></div></div></div>
+            <div class="header-right"><button class="header-action" onclick="toggleTheme()"><i class="fas fa-sun" id="themeIcon"></i></button><button class="header-action" onclick="toggleNotifications()"><i class="fas fa-bell"></i><span class="notif-dot"></span></button><div class="header-avatar" id="userAvatar" onclick="toggleProfileMenu()">A</div></div>
+        </header>
+        <div class="page-content">
+            <div class="stat-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:16px">
+                <div class="stat-card"><div class="stat-icon blue"><i class="fas fa-screwdriver-wrench"></i></div><div class="stat-value" id="osStatTotal">0</div><div class="stat-label">Ordens</div></div>
+                <div class="stat-card"><div class="stat-icon yellow"><i class="fas fa-magnifying-glass"></i></div><div class="stat-value" id="osStatAndamento">0</div><div class="stat-label">Em andamento</div></div>
+                <div class="stat-card"><div class="stat-icon green"><i class="fas fa-circle-check"></i></div><div class="stat-value" id="osStatProntas">0</div><div class="stat-label">Prontas</div></div>
+                <div class="stat-card"><div class="stat-icon purple"><i class="fas fa-coins"></i></div><div class="stat-value" id="osStatValor">R$ 0,00</div><div class="stat-label">Valor aberto</div></div>
+            </div>
+            <div class="card" style="padding:14px 16px;margin-bottom:16px">
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                    <div class="search-box" style="flex:1;min-width:220px"><i class="fas fa-search"></i><input id="osSearch" type="text" placeholder="Buscar cliente, aparelho, IMEI, serial..." oninput="renderServiceOrders()"></div>
+                    <select id="osStatusFilter" class="form-input" style="width:190px" onchange="renderServiceOrders()"><option value="">Todos os status</option><option value="received">Recebido</option><option value="analyzing">Em análise</option><option value="awaiting_approval">Aguardando aprovação</option><option value="approved">Orçamento aprovado</option><option value="in_progress">Em manutenção</option><option value="awaiting_parts">Aguardando peça</option><option value="ready">Pronto</option><option value="delivered">Entregue</option><option value="returned">Devolvido sem reparo</option><option value="cancelled">Cancelado</option></select>
+                    <button class="btn btn-primary" onclick="openServiceOrder()"><i class="fas fa-plus"></i> Nova OS</button>
+                </div>
+            </div>
+            <div class="card" style="padding:0;overflow:hidden"><div class="table-responsive"><table class="data-table"><thead><tr><th>OS</th><th>Cliente / Equipamento</th><th>IMEI / Serial</th><th>Técnico</th><th>Status</th><th>Valor</th><th>Entrada</th><th style="text-align:right">Ações</th></tr></thead><tbody id="osTbody"><tr><td colspan="8" style="text-align:center;padding:32px;color:var(--text-muted)"><i class="fas fa-spinner fa-spin"></i> Carregando...</td></tr></tbody></table></div></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="osModal">
+  <div class="modal os-modal">
+    <div class="modal-header os-modal-header">
+      <div><h3 id="osModalTitle"><i class="fas fa-screwdriver-wrench" style="color:var(--accent);margin-right:8px"></i>Nova Ordem de Serviço</h3><p>Cadastre entrada, diagnóstico, orçamento e execução em uma única OS.</p></div>
+      <button class="modal-close" onclick="closeModal('osModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body os-modal-body">
+      <div id="osLockedNote" class="os-alert os-alert-lock" style="display:none"></div>
+
+      <section class="os-section">
+        <div class="os-section-title"><span class="os-section-icon"><i class="fas fa-user-gear"></i></span><div><strong>Atendimento</strong><small>Cliente, responsável e andamento da OS</small></div></div>
+        <div class="os-grid os-grid-4">
+          <div class="form-group os-span-2"><label class="form-label">Cliente *</label><select id="osCustomer" class="form-control"></select></div>
+          <div class="form-group"><label class="form-label">Técnico responsável</label><select id="osTechnician" class="form-control"><option value="">Não definido</option></select></div>
+          <div class="form-group"><label class="form-label">Status</label><select id="osStatus" class="form-control"><option value="received">Recebido</option><option value="analyzing">Em análise</option><option value="awaiting_approval">Aguardando aprovação</option><option value="approved">Orçamento aprovado</option><option value="in_progress">Em manutenção</option><option value="awaiting_parts">Aguardando peça</option><option value="ready">Pronto para entrega</option><option value="delivered" disabled>Entregue — use Faturar</option><option value="returned" disabled>Devolvido sem reparo — use Devolver</option><option value="cancelled" disabled>Cancelado — use Cancelar OS</option></select></div>
+        </div>
+      </section>
+
+      <section class="os-section">
+        <div class="os-section-title"><span class="os-section-icon"><i class="fas fa-mobile-screen-button"></i></span><div><strong>Equipamento recebido</strong><small>Identificação e estado na entrada</small></div></div>
+        <div class="os-grid os-grid-4">
+          <div class="form-group"><label class="form-label">Tipo de equipamento *</label><input id="osDeviceType" class="form-control" placeholder="Celular, notebook, TV..."></div>
+          <div class="form-group"><label class="form-label">Marca</label><input id="osBrand" class="form-control" placeholder="Apple, Samsung..."></div>
+          <div class="form-group"><label class="form-label">Modelo</label><input id="osModel" class="form-control" placeholder="iPhone 17 Pro Max..."></div>
+          <div class="form-group"><label class="form-label">Previsão</label><input type="date" id="osEstimated" class="form-control"></div>
+          <div class="form-group"><label class="form-label">IMEI</label><input id="osImei" class="form-control" placeholder="IMEI do aparelho"></div>
+          <div class="form-group"><label class="form-label">Serial</label><input id="osSerial" class="form-control" placeholder="Número de série"></div>
+          <div class="form-group os-span-2"><label class="form-label">Acessórios recebidos</label><input id="osAccessories" class="form-control" placeholder="Ex.: capa, carregador, chip, caixa — ou Nenhum"></div>
+          <div class="form-group os-span-4"><label class="form-label">Condição visual na entrada</label><textarea id="osCondition" class="form-control" rows="2" placeholder="Ex.: tela trincada, riscos na carcaça, marcas de uso, aparelho não liga..."></textarea></div>
+        </div>
+      </section>
+
+      <section class="os-section">
+        <div class="os-section-title"><span class="os-section-icon"><i class="fas fa-stethoscope"></i></span><div><strong>Diagnóstico e serviço</strong><small>Registre o relato, avaliação técnica e o que será executado</small></div></div>
+        <div class="os-grid os-grid-2">
+          <div class="form-group"><label class="form-label">Problema relatado pelo cliente *</label><textarea id="osProblem" class="form-control" rows="4" placeholder="Descreva exatamente o defeito informado pelo cliente"></textarea></div>
+          <div class="form-group"><label class="form-label">Diagnóstico técnico</label><textarea id="osDiagnosis" class="form-control" rows="4" placeholder="Resultado da análise técnica"></textarea></div>
+          <div class="form-group"><label class="form-label">Serviço a executar / executado</label><textarea id="osService" class="form-control" rows="3" placeholder="Ex.: troca de tela, reparo de placa, limpeza..."></textarea></div>
+          <div class="form-group"><label class="form-label">Peças / itens utilizados</label><textarea id="osParts" class="form-control" rows="3" placeholder="Ex.: Tela OLED, conector, bateria..."></textarea></div>
+        </div>
+      </section>
+
+      <section class="os-section os-section-finance">
+        <div class="os-section-title"><span class="os-section-icon"><i class="fas fa-calculator"></i></span><div><strong>Orçamento</strong><small>Valores que serão faturados quando a OS for entregue</small></div></div>
+        <div class="os-grid os-grid-4">
+          <div class="form-group"><label class="form-label">Mão de obra (R$)</label><input type="number" id="osLabor" class="form-control" min="0" step="0.01" value="0" oninput="calcOsTotal()"></div>
+          <div class="form-group"><label class="form-label">Peças (R$)</label><input type="number" id="osPartsValue" class="form-control" min="0" step="0.01" value="0" oninput="calcOsTotal()"></div>
+          <div class="form-group"><label class="form-label">Desconto (R$)</label><input type="number" id="osDiscount" class="form-control" min="0" step="0.01" value="0" oninput="calcOsTotal()"></div>
+          <div class="form-group"><label class="form-label">Total da OS</label><input id="osTotal" class="form-control os-total-input" value="R$ 0,00" disabled></div>
+          <div class="form-group"><label class="form-label">Garantia do serviço (dias)</label><input type="number" id="osWarranty" class="form-control" min="0" step="1" value="90"></div>
+          <div class="form-group os-span-3"><label class="form-label">Observações internas / entrega</label><textarea id="osNotes" class="form-control" rows="2" placeholder="Observações gerais importantes da OS"></textarea></div>
+        </div>
+      </section>
+
+      <section class="os-section os-history-wrap" style="display:none">
+        <div class="os-section-title"><span class="os-section-icon"><i class="fas fa-clock-rotate-left"></i></span><div><strong>Histórico da OS</strong><small>Mudanças de status registradas nesta ordem</small></div></div>
+        <div id="osHistoryBox" class="os-history"></div>
+      </section>
+    </div>
+    <div class="modal-footer os-modal-footer"><div class="os-footer-total"><span>Total da OS</span><strong id="osFooterTotal">R$ 0,00</strong></div><div class="os-footer-actions"><button class="btn btn-secondary" onclick="closeModal('osModal')">Fechar</button><button class="btn btn-primary" id="osSaveBtn" onclick="saveServiceOrder()"><i class="fas fa-check"></i> Salvar OS</button></div></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="osPaymentModal">
+  <div class="modal os-payment-modal">
+    <div class="modal-header"><div><h3><i class="fas fa-cash-register" style="color:var(--success);margin-right:8px"></i>Faturar e entregar OS</h3><p style="font-size:12px;color:var(--text-muted);margin-top:3px">Registra a venda, o recebimento e marca a ordem como entregue.</p></div><button class="modal-close" onclick="closeModal('osPaymentModal')"><i class="fas fa-times"></i></button></div>
+    <div class="modal-body">
+      <div id="osPaymentInfo" class="os-payment-summary"></div>
+      <div class="os-grid os-grid-2">
+        <div class="form-group"><label class="form-label">Forma de pagamento *</label><select id="osPaymentMethod" class="form-control" onchange="updateOsPaymentFields()"><option value="pix">PIX</option><option value="dinheiro">Dinheiro</option><option value="credito">Cartão de Crédito</option><option value="debito">Cartão de Débito</option><option value="fiado">Fiado / A receber</option><option value="multi">Pagamento dividido (2 ou mais formas)</option></select><button type="button" class="os-split-btn" id="osSplitBtn" onclick="osToggleSplit()"><i class="fas fa-code-branch"></i><span>Dividir em 2 ou mais formas (ex.: débito + dinheiro)</span></button></div>
+        <div class="form-group" id="osCardFields" style="display:none"><label class="form-label">Bandeira do cartão</label><select id="osCardBrand" class="form-control"><option value="visa">Visa</option><option value="mastercard">Mastercard</option><option value="elo">Elo</option><option value="amex">American Express</option><option value="hipercard">Hipercard</option><option value="outras">Outras</option></select></div>
+        <div class="form-group" id="osInstallmentField" style="display:none"><label class="form-label">Parcelamento no crédito</label><select id="osInstallments" class="form-control"><option value="1">1x</option><option value="2">2x</option><option value="3">3x</option><option value="4">4x</option><option value="5">5x</option><option value="6">6x</option><option value="7">7x</option><option value="8">8x</option><option value="9">9x</option><option value="10">10x</option><option value="11">11x</option><option value="12">12x</option></select></div>
+        <div class="form-group" id="osCashFields" style="display:none"><label class="form-label">Valor recebido em dinheiro</label><input id="osCashReceived" class="form-control" type="text" inputmode="decimal" autocomplete="off" oninput="updateOsChange()"><small class="os-field-help">Troco: <b id="osCashChange">R$ 0,00</b></small></div>
+        <div class="form-group" id="osDueField" style="display:none"><label class="form-label">Vencimento</label><input id="osDueDate" class="form-control" type="date"><small class="os-field-help">Será lançado em Contas a Receber.</small></div>
+        <div class="form-group os-span-2" id="osMultiFields" style="display:none"><div class="os-multi-box"><div class="os-multi-head"><div><strong>Dividir pagamento</strong><div class="os-field-help">Ex.: R$ 1.000 no PIX + R$ 1.000 em dinheiro.</div></div><div style="display:flex;gap:6px"><button type="button" class="btn btn-outline btn-sm" onclick="osSplitEqual()"><i class="fas fa-scale-balanced"></i> Igual</button><button type="button" class="btn btn-outline btn-sm" onclick="osAddMulti()"><i class="fas fa-plus"></i> Forma</button></div></div><div id="osMultiRows"></div><div id="osMultiSummary"></div></div></div>
+        <div class="form-group os-span-2"><label class="form-label">Observação do pagamento</label><input id="osPaymentNotes" class="form-control" placeholder="Ex.: autorização, referência, observação do recebimento"></div>
+      </div>
+      <div class="os-alert os-alert-info"><i class="fas fa-circle-info"></i><span>PIX, dinheiro e cartões exigem caixa aberto. Fiado pode ser faturado sem caixa aberto e será lançado como valor a receber.</span></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('osPaymentModal')">Voltar</button><button class="btn btn-success" id="osPaymentBtn" onclick="confirmServiceOrderPayment()"><i class="fas fa-check"></i> Faturar e entregar</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="osCancelModal">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-header"><div><h3><i class="fas fa-ban" style="color:var(--danger);margin-right:8px"></i>Cancelar Ordem de Serviço</h3><p style="font-size:12px;color:var(--text-muted);margin-top:3px">A OS permanece no histórico e pode ser reaberta depois.</p></div><button class="modal-close" onclick="closeModal('osCancelModal')"><i class="fas fa-times"></i></button></div>
+    <div class="modal-body"><div id="osCancelWarning" class="os-alert os-alert-danger"></div><div class="form-group" style="margin-top:14px"><label class="form-label">Motivo do cancelamento *</label><textarea id="osCancelReason" class="form-control" rows="4" placeholder="Informe por que esta OS está sendo cancelada"></textarea></div></div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('osCancelModal')">Voltar</button><button class="btn btn-danger" id="osCancelBtn" onclick="confirmCancelServiceOrder()"><i class="fas fa-ban"></i> Confirmar cancelamento</button></div>
+  </div>
+</div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="config/firebase-config.js"></script>
+    <script src="services/core-services.js?v=39.14.5"></script>
+    <script src="assets/js/mobile-fix.js"></script>
+    <script src="assets/js/app.js?v=40.59"></script>
+    <script src="assets/js/pages.js?v=40.74"></script>
+<script>
+let serviceOrders=[], osCustomers=[], osUsers=[], editingOsId=null, receivingOsId=null, cancellingOsId=null;
+
+let osMultiPayments=[], osMultiPaymentSeq=1;
+// 40.40 · Valores do faturamento em texto com teclado de valor: "190,50", "1.234,56" e "190.50" (o type="number" deixava o
+// valor com vírgula vazio e a divisão não fechava: "não dá para faturar").
+function osNumBR(v){let s=String(v==null?'':v).trim().replace(/[R$\s]/g,'');if(!s)return 0;if(s.includes(','))s=s.replace(/\./g,'').replace(',','.');const n=parseFloat(s);return isFinite(n)?Math.round(n*100)/100:0}
+function osFmtBR(n){return (Math.round(Number(n||0)*100)/100).toFixed(2).replace('.',',')}
+// 40.42 · Botão à vista para dividir o pagamento (o "Pagamento dividido" ficava escondido no fim da lista e o cliente não achava)
+function osToggleSplit(){const s=document.getElementById('osPaymentMethod');if(!s)return;s.value=s.value==='multi'?'pix':'multi';updateOsPaymentFields();}
+function osPaintSplitBtn(){const b=document.getElementById('osSplitBtn'),s=document.getElementById('osPaymentMethod');if(!b||!s)return;const on=s.value==='multi';b.classList.toggle('on',on);b.querySelector('span').textContent=on?'Voltar para uma forma só':'Dividir em 2 ou mais formas (ex.: débito + dinheiro)';const i=b.querySelector('i');if(i)i.className=on?'fas fa-arrow-left':'fas fa-code-branch';}
+function osDefaultDue(){const d=new Date();d.setDate(d.getDate()+30);return d.toISOString().slice(0,10)}
+// 38.4 · Sinal já recebido (os-bancada-v1.js): o faturamento cobra só o saldo
+function osDue(o){return Math.max(0,Math.round((Number(o?.total||0)-Number(o?.depositTotal||0))*100)/100)}
+function osInitMultiPayments(total){const first=Math.round((Number(total||0)/2)*100)/100;const second=Math.round((Number(total||0)-first)*100)/100;osMultiPayments=[{id:osMultiPaymentSeq++,method:'pix',amount:first,cardBrand:'visa',installments:1,cashReceived:0,dueDate:''},{id:osMultiPaymentSeq++,method:'dinheiro',amount:second,cardBrand:'visa',installments:1,cashReceived:second,dueDate:''}];}
+function osChangeMultiMethod(id,method){const p=osMultiPayments.find(x=>x.id===id);if(!p)return;p.method=method;p.cardBrand='visa';p.installments=1;p.cashReceived=method==='dinheiro'?Number(p.amount||0):0;p.dueDate=method==='fiado'?osDefaultDue():'';renderOsMultiPayments();}
+function osSetMulti(id,field,value){const p=osMultiPayments.find(x=>x.id===id);if(!p)return;if(['amount','cashReceived'].includes(field))value=osNumBR(value);else if(field==='installments')value=Number(value||0);p[field]=value;if(field==='amount'&&p.method==='dinheiro'&&Number(p.cashReceived||0)<Number(p.amount||0))p.cashReceived=Number(p.amount||0);
+  // 40.40 · Com duas formas, a outra completa sozinha o que falta (débito R$ 300 de R$ 380 → dinheiro R$ 80)
+  if(field==='amount'&&osMultiPayments.length===2){const q=osMultiPayments.find(x=>x.id!==id);const o=serviceOrders.find(x=>x.id===receivingOsId);const resto=Math.max(0,Math.round((osDue(o)-Number(p.amount||0))*100)/100);q.amount=resto;if(q.method==='dinheiro')q.cashReceived=resto;const qa=document.getElementById('osMultiAmt-'+q.id);if(qa)qa.value=osFmtBR(resto);const qc=document.getElementById('osMultiCash-'+q.id);if(qc)qc.value=osFmtBR(q.cashReceived);const qch=document.getElementById('osMultiChange-'+q.id);if(qch)qch.textContent=osMoney(Math.max(0,Number(q.cashReceived||0)-Number(q.amount||0)));}
+  if(field==='amount'&&p.method==='dinheiro'){const pc=document.getElementById('osMultiCash-'+id);if(pc&&osNumBR(pc.value)<Number(p.amount||0))pc.value=osFmtBR(p.cashReceived);}
+  renderOsMultiSummary();const ch=document.getElementById('osMultiChange-'+id);if(ch)ch.textContent=osMoney(Math.max(0,Number(p.cashReceived||0)-Number(p.amount||0)));}
+function osAddMulti(){const o=serviceOrders.find(x=>x.id===receivingOsId);const total=osDue(o);const used=osMultiPayments.reduce((s,p)=>s+Number(p.amount||0),0);const remaining=Math.max(0,Math.round((total-used)*100)/100);const methods=['pix','dinheiro','credito','debito','fiado'];const usedMethods=new Set(osMultiPayments.map(p=>p.method));const method=methods.find(m=>!usedMethods.has(m))||'pix';osMultiPayments.push({id:osMultiPaymentSeq++,method,amount:remaining,cardBrand:'visa',installments:1,cashReceived:method==='dinheiro'?remaining:0,dueDate:method==='fiado'?osDefaultDue():''});renderOsMultiPayments();}
+function osRemoveMulti(id){if(osMultiPayments.length<=2)return;osMultiPayments=osMultiPayments.filter(p=>p.id!==id);renderOsMultiPayments();}
+function osSplitEqual(){const o=serviceOrders.find(x=>x.id===receivingOsId);const total=osDue(o);if(!osMultiPayments.length)return;const base=Math.floor(total/osMultiPayments.length*100)/100;let used=0;osMultiPayments.forEach((p,i)=>{p.amount=i===osMultiPayments.length-1?Math.round((total-used)*100)/100:base;used+=p.amount;if(p.method==='dinheiro')p.cashReceived=p.amount;});renderOsMultiPayments();}
+function renderOsMultiPayments(){const host=document.getElementById('osMultiRows');if(!host)return;host.innerHTML=osMultiPayments.map((p,i)=>{const methods=['pix','dinheiro','credito','debito','fiado'].map(m=>`<option value="${m}" ${p.method===m?'selected':''}>${OS_PAYMENT_LABEL[m]}</option>`).join('');let extra='';if(['credito','debito'].includes(p.method)){const brands=Object.entries(OS_BRAND_LABEL).map(([k,v])=>`<option value="${k}" ${p.cardBrand===k?'selected':''}>${v}</option>`).join('');const inst=p.method==='credito'?`<div><label class="form-label">Parcelas</label><select class="form-control" onchange="osSetMulti(${p.id},'installments',this.value)">${Array.from({length:12},(_,x)=>`<option value="${x+1}" ${Number(p.installments||1)===x+1?'selected':''}>${x+1}x</option>`).join('')}</select></div>`:'';extra=`<div class="os-multi-extra"><div><label class="form-label">Bandeira</label><select class="form-control" onchange="osSetMulti(${p.id},'cardBrand',this.value)">${brands}</select></div>${inst}</div>`;}else if(p.method==='dinheiro'){extra=`<div class="os-multi-extra"><div><label class="form-label">Valor entregue em dinheiro</label><input class="form-control" type="text" inputmode="decimal" autocomplete="off" id="osMultiCash-${p.id}" value="${osFmtBR(p.cashReceived||p.amount||0)}" oninput="osSetMulti(${p.id},'cashReceived',this.value)"><small class="os-field-help">Troco desta parte: <b id="osMultiChange-${p.id}">${osMoney(Math.max(0,Number(p.cashReceived||p.amount||0)-Number(p.amount||0)))}</b></small></div></div>`;}else if(p.method==='fiado'){extra=`<div class="os-multi-extra"><div><label class="form-label">Vencimento</label><input class="form-control" type="date" value="${p.dueDate||osDefaultDue()}" onchange="osSetMulti(${p.id},'dueDate',this.value)"><small class="os-field-help">Esta parte será lançada em Contas a Receber.</small></div></div>`;}return `<div class="os-multi-row"><div class="os-multi-main"><div><label class="form-label">Forma ${i+1}</label><select class="form-control" onchange="osChangeMultiMethod(${p.id},this.value)">${methods}</select></div><div><label class="form-label">Valor</label><input class="form-control" type="text" inputmode="decimal" autocomplete="off" id="osMultiAmt-${p.id}" value="${osFmtBR(p.amount)}" oninput="osSetMulti(${p.id},'amount',this.value)"></div><button class="btn-icon btn-danger" onclick="osRemoveMulti(${p.id})" ${osMultiPayments.length<=2?'disabled style="opacity:.35"':''}><i class="fas fa-trash"></i></button></div>${extra}</div>`;}).join('');renderOsMultiSummary();}
+function renderOsMultiSummary(){const el=document.getElementById('osMultiSummary');if(!el)return;const o=serviceOrders.find(x=>x.id===receivingOsId);const total=osDue(o);const used=Math.round(osMultiPayments.reduce((s,p)=>s+Number(p.amount||0),0)*100)/100;const diff=Math.round((total-used)*100)/100;const ok=Math.abs(diff)<=0.01;el.innerHTML=`<div class="os-multi-summary"><div><small>Total</small><strong>${osMoney(total)}</strong></div><div><small>Distribuído</small><strong>${osMoney(used)}</strong></div><div class="${ok?'ok':'warn'}"><small>Conferência</small><strong>${ok?'Fechado':(diff>0?'Falta '+osMoney(diff):'Excedeu '+osMoney(Math.abs(diff)))}</strong></div></div>`;}
+function osValidateMulti(total,show=true){const rows=osMultiPayments.filter(p=>Number(p.amount||0)>0).map(p=>({...p,amount:Math.round(Number(p.amount||0)*100)/100,installments:Math.max(1,Number(p.installments||1)),cashReceived:Number(p.cashReceived||0)}));if(rows.length<2){if(show)Toast.warning('Use pelo menos duas formas de pagamento');return null;}const sum=Math.round(rows.reduce((s,p)=>s+p.amount,0)*100)/100;if(Math.abs(sum-total)>0.01){if(show)Toast.warning(`A divisão precisa fechar em ${osMoney(total)}. Atualmente está em ${osMoney(sum)}.`);return null;}for(const p of rows){if(p.method==='dinheiro'){if(!p.cashReceived)p.cashReceived=p.amount;if(p.cashReceived+0.001<p.amount){if(show)Toast.warning('O valor entregue em dinheiro não pode ser menor que a parte em dinheiro');return null;}p.changeValue=Math.max(0,p.cashReceived-p.amount);}if(p.method==='fiado'&&!p.dueDate)p.dueDate=osDefaultDue();p.feePercent=Number(p.feePercent||0);p.feeValue=Number(p.feeValue||0);p.netAmount=p.amount-p.feeValue;}return rows;}
+function osPaymentPartsText(o,withAmounts=false){const ps=Array.isArray(o?.payments)&&o.payments.length?o.payments:null;if(!ps)return OS_PAYMENT_LABEL[o?.paymentMethod]||o?.paymentMethod||'';return ps.map(p=>{let label=OS_PAYMENT_LABEL[p.method]||p.method||'';if(['credito','debito'].includes(p.method)&&p.cardBrand)label+=' '+(OS_BRAND_LABEL[p.cardBrand]||p.cardBrand);if(p.method==='credito'&&Number(p.installments||1)>1)label+=' '+p.installments+'x';if(withAmounts)label+=' '+osMoney(p.amount);return label;}).join(' + ');}
+
+const OS_STATUS={
+  received:['Recebido','#3b82f6'],
+  analyzing:['Em análise','#f59e0b'],
+  awaiting_approval:['Aguardando aprovação','#a855f7'],
+  approved:['Orçamento aprovado','#22c55e'],
+  in_progress:['Em manutenção','#06b6d4'],
+  awaiting_parts:['Aguardando peça','#f97316'],
+  ready:['Pronto para entrega','#10b981'],
+  delivered:['Entregue','#16a34a'],
+  returned:['Devolvido sem reparo','#64748b'], // 39.14.5 · orçamento não aprovado ou sem conserto: sem cobrança
+  cancelled:['Cancelado','#ef4444']
+};
+const OS_FINAL=['delivered','cancelled','returned']; // 39.14.5 · OS encerrada
+const OS_STATUS_FLOW={received:'analyzing',analyzing:'awaiting_approval',awaiting_approval:'approved',approved:'in_progress',in_progress:'ready',awaiting_parts:'in_progress'};
+const OS_STATUS_ACTION={
+  received:['Iniciar análise','fa-magnifying-glass'],
+  analyzing:['Aguardar aprovação','fa-file-signature'],
+  awaiting_approval:['Aprovar orçamento','fa-thumbs-up'],
+  approved:['Iniciar reparo','fa-screwdriver-wrench'],
+  in_progress:['Marcar pronto','fa-circle-check'],
+  awaiting_parts:['Peça chegou','fa-box-open']
+};
+const OS_PAYMENT_LABEL={dinheiro:'Dinheiro',pix:'PIX',credito:'Crédito',debito:'Débito',fiado:'Fiado / A receber',multi:'Pagamento dividido',sinal:'Sinal'};
+const OS_BRAND_LABEL={visa:'Visa',mastercard:'Mastercard',elo:'Elo',amex:'American Express',hipercard:'Hipercard',outras:'Outras'};
+function osDate(v,withTime=false){if(!v)return '—';try{const d=v.toDate?v.toDate():new Date(v.__ts||v);if(isNaN(d))return '—';return withTime?d.toLocaleString('pt-BR'):d.toLocaleDateString('pt-BR')}catch(e){return '—'}}
+function osMoney(v){return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(v||0))}
+function osEscape(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function osNowIso(){return new Date().toISOString()}
+function osHistoryEntry(status,label){return {status,label:label||OS_STATUS[status]?.[0]||status,at:osNowIso(),by:auth.currentUser?.displayName||auth.currentUser?.email||'Operador',uid:auth.currentUser?.uid||''}}
+async function initServiceOrdersPage(){await loadServiceOrders();}
+async function loadServiceOrders(){
+  serviceOrders=await simpleList('service_orders','createdAt','desc',2000);
+  // 40.0 · "Ver só os orçamentos e as OS dele" (Usuários › Acesso às telas): só as que ele criou ou em que é o técnico
+  try{const eu=(typeof currentUser!=='undefined'&&currentUser)||{},uid=auth.currentUser?.uid||eu.uid||'';if(eu.role!=='admin'&&(eu.permissions||{}).soProprios&&uid)serviceOrders=serviceOrders.filter(o=>o.technicianId===uid||o.createdBy===uid);}catch(e){}
+  osCustomers=await simpleList('customers','name','asc',10000);
+  osUsers=await simpleList('users','name','asc',500);
+  const cs=document.getElementById('osCustomer'); if(cs) cs.innerHTML='<option value="">Selecione o cliente</option>'+osCustomers.map(c=>`<option value="${c.id}">${osEscape(c.name||c.nome||'Cliente')}</option>`).join('');
+  const us=document.getElementById('osTechnician'); if(us) us.innerHTML='<option value="">Não definido</option>'+osUsers.filter(u=>u.status!=='inactive' && ['technician','seller','manager','admin'].includes(u.role||'')).map(u=>`<option value="${u.id}">${osEscape(u.name||u.email||'Técnico')}</option>`).join('');
+  renderServiceOrders();
+}
+function renderServiceOrders(){
+  const q=(document.getElementById('osSearch')?.value||'').toLowerCase(); const st=document.getElementById('osStatusFilter')?.value||'';
+  let data=serviceOrders.filter(o=>o.deleted!==true); if(q)data=data.filter(o=>[o.customerName,o.deviceType,o.brand,o.model,o.imei,o.serial,o.plate,o.problemReported,String(o.orderNumber||'')].join(' ').toLowerCase().includes(q)||!!(window.DPItens&&DPItens.osMatch(o,q))); if(st)data=data.filter(o=>o.status===st);
+  const visible=serviceOrders.filter(o=>!o.deleted);
+  document.getElementById('osStatTotal').textContent=visible.length;
+  document.getElementById('osStatAndamento').textContent=visible.filter(o=>['received','analyzing','awaiting_approval','approved','in_progress','awaiting_parts'].includes(o.status)).length;
+  document.getElementById('osStatProntas').textContent=visible.filter(o=>o.status==='ready').length;
+  document.getElementById('osStatValor').textContent=osMoney(visible.filter(o=>!OS_FINAL.includes(o.status)).reduce((a,o)=>a+Number(o.total||0),0));
+  const tb=document.getElementById('osTbody'); if(!data.length){tb.innerHTML='<tr><td colspan="8" style="text-align:center;padding:36px;color:var(--text-muted)">Nenhuma ordem de serviço encontrada.</td></tr>';return;}
+  tb.innerHTML=data.map(o=>{
+    const stx=OS_STATUS[o.status]||[o.status||'—','#64748b'];
+    const flow=OS_STATUS_FLOW[o.status]; const flowAction=OS_STATUS_ACTION[o.status];
+    const payText=o.paymentStatus==='paid'?`Pago · ${osPaymentPartsText(o,false)}`:o.paymentStatus==='partial_receivable'?`Parcial / a receber · ${osPaymentPartsText(o,false)}`:o.paymentStatus==='receivable'?`A receber · ${osPaymentPartsText(o,false)}`:o.paymentStatus==='reversed'?'Estornado':o.paymentStatus==='no_charge'?'Sem cobrança':'Pendente';
+    const payColor=o.paymentStatus==='paid'?'#10b981':['receivable','partial_receivable'].includes(o.paymentStatus)?'#f59e0b':o.paymentStatus==='reversed'?'#ef4444':'#94a3b8';
+    let actions='';
+    if(flow && flowAction && !o.saleId){actions+=`<button class="os-action os-action-neutral" title="${flowAction[0]}" onclick="advanceServiceOrder('${o.id}','${flow}')"><i class="fas ${flowAction[1]}"></i><span>${flowAction[0]}</span></button>`;}
+    if(!o.saleId && !OS_FINAL.includes(o.status)){actions+=`<button class="os-action os-action-success" title="Faturar e entregar" onclick="receiveServiceOrder('${o.id}')"><i class="fas fa-cash-register"></i><span>Faturar</span></button>`;}
+    if(o.status==='cancelled'||o.status==='returned'){actions+=`<button class="os-action os-action-neutral" title="Reabrir OS" onclick="reopenServiceOrder('${o.id}')"><i class="fas fa-rotate-left"></i><span>Reabrir</span></button>`;}
+    actions+=`<button class="btn-icon" title="Imprimir OS" onclick="printServiceOrder('${o.id}')"><i class="fas fa-print"></i></button>`;
+    if(o.status!=='cancelled')actions+=`<button class="btn-icon" title="Editar / visualizar" onclick="openServiceOrder('${o.id}')"><i class="fas fa-pen"></i></button>`;
+    // 39.14.5 · Devolver ao cliente sem reparo (os-finalizar-v1.js › OSF.returnDialog): só OS aberta e sem faturamento
+    if(!o.saleId && !OS_FINAL.includes(o.status) && window.OSF && OSF.returnDialog)actions+=`<button class="btn-icon" title="Devolver ao cliente sem reparo" onclick="OSF.returnDialog('${o.id}')"><i class="fas fa-rotate-left"></i></button>`;
+    if(o.status!=='cancelled' && o.status!=='returned')actions+=`<button class="btn-icon btn-danger" title="Cancelar OS" onclick="cancelServiceOrder('${o.id}')"><i class="fas fa-ban"></i></button>`;
+    return `<tr class="${o.status==='cancelled'?'os-row-cancelled':''}"><td><strong>#OS-${String(o.orderNumber||0).padStart(4,'0')}</strong><div style="font-size:10px;color:var(--text-muted);margin-top:3px">${osDate(o.createdAt)}</div></td><td><div style="font-weight:700">${osEscape(o.customerName||'Cliente')}</div><div style="font-size:11px;color:var(--text-muted)">${osEscape([o.deviceType,o.brand,o.model].filter(Boolean).join(' · ')||'—')}</div></td><td><div style="font-size:11px">${o.imei?(window.DPTerm?DPTerm('IMEI',o):'IMEI')+': '+osEscape(o.imei):''}</div><div style="font-size:11px;color:var(--text-muted)">${o.serial?(window.DPTerm?DPTerm('Serial',o):'Serial')+': '+osEscape(o.serial):(!o.imei?'—':'')}</div></td><td>${osEscape(o.technicianName||'—')}</td><td><span style="background:${stx[1]}22;color:${stx[1]};padding:4px 9px;border-radius:12px;font-size:11px;font-weight:700;white-space:nowrap">${stx[0]}</span></td><td style="font-weight:700">${osMoney(o.total)}<div style="font-size:10px;margin-top:3px;color:${payColor}">${osEscape(payText)}</div></td><td>${osDate(o.createdAt)}</td><td style="text-align:right"><div class="os-actions">${actions}</div></td></tr>`;
+  }).join('');
+}
+function calcOsTotal(){const labor=Math.max(0,Number(document.getElementById('osLabor')?.value||0));const parts=Math.max(0,Number(document.getElementById('osPartsValue')?.value||0));const disc=Math.max(0,Number(document.getElementById('osDiscount')?.value||0));const total=Math.max(0,labor+parts-disc);document.getElementById('osTotal').value=osMoney(total);const sum=document.getElementById('osFooterTotal');if(sum)sum.textContent=osMoney(total);}
+function renderOsHistory(o){
+  const box=document.getElementById('osHistoryBox');if(!box)return;
+  const hist=Array.isArray(o?.statusHistory)?o.statusHistory:[];
+  if(!o){box.closest('.os-history-wrap').style.display='none';return;}
+  box.closest('.os-history-wrap').style.display='block';
+  if(!hist.length){box.innerHTML='<div class="os-history-empty">Sem histórico detalhado nesta OS.</div>';return;}
+  box.innerHTML=hist.slice().reverse().map(h=>`<div class="os-history-item"><span class="os-history-dot"></span><div><strong>${osEscape(h.label||OS_STATUS[h.status]?.[0]||h.status||'Atualização')}</strong><small>${osEscape(h.by||'Operador')} · ${osDate(h.at,true)}</small></div></div>`).join('');
+}
+function openServiceOrder(id=null){
+  editingOsId=id; const o=id?serviceOrders.find(x=>x.id===id):null; document.getElementById('osModalTitle').innerHTML=`<i class="fas fa-screwdriver-wrench" style="color:var(--accent);margin-right:8px"></i>${o?'Editar':'Nova'} Ordem de Serviço${o?` <span class="os-title-number">#OS-${String(o.orderNumber||0).padStart(4,'0')}</span>`:''}`;
+  const set=(id,v='')=>{const el=document.getElementById(id);if(el)el.value=v??''};
+  set('osCustomer',o?.customerId||'');set('osTechnician',o?.technicianId||'');set('osDeviceType',o?.deviceType||'');set('osBrand',o?.brand||'');set('osModel',o?.model||'');set('osImei',o?.imei||'');set('osSerial',o?.serial||'');set('osAccessories',o?.accessories||'');set('osCondition',o?.entryCondition||'');set('osProblem',o?.problemReported||'');set('osDiagnosis',o?.diagnosis||'');set('osService',o?.serviceDescription||'');set('osParts',o?.partsDescription||'');set('osLabor',Number(o?.laborValue||0));set('osPartsValue',Number(o?.partsValue||0));set('osDiscount',Number(o?.discount||0));set('osStatus',o?.status||'received');set('osWarranty',Number(o?.warrantyDays??90));set('osNotes',o?.notes||'');
+  let est='';if(o?.estimatedDate){try{est=(o.estimatedDate.toDate?o.estimatedDate.toDate():new Date(o.estimatedDate.__ts||o.estimatedDate)).toISOString().slice(0,10)}catch(e){}}set('osEstimated',est);calcOsTotal();renderOsHistory(o);
+  const locked=!!(o&&o.saleId);['osCustomer','osLabor','osPartsValue','osDiscount','osStatus'].forEach(id=>{const el=document.getElementById(id);if(el)el.disabled=locked;});
+  const note=document.getElementById('osLockedNote'); if(note){note.style.display=locked?'flex':'none';note.innerHTML=locked?'<i class="fas fa-lock"></i><span>Esta OS já foi faturada. Cliente, valores e status ficam bloqueados. Para desfazer, use <b>Cancelar/Estornar</b> na listagem.</span>':'';}
+  openModal('osModal');
+}
+async function saveServiceOrder(){
+  const customerId=document.getElementById('osCustomer').value;const deviceType=document.getElementById('osDeviceType').value.trim();const problem=document.getElementById('osProblem').value.trim();if(!customerId||!deviceType||!problem){Toast.warning('Informe cliente, equipamento e problema relatado.');return;}
+  const customer=osCustomers.find(c=>c.id===customerId);const technicianId=document.getElementById('osTechnician').value;const tech=osUsers.find(u=>u.id===technicianId);const labor=Math.max(0,Number(document.getElementById('osLabor').value||0));const partsValue=Math.max(0,Number(document.getElementById('osPartsValue').value||0));const discount=Math.max(0,Number(document.getElementById('osDiscount').value||0));const total=Math.max(0,labor+partsValue-discount);const est=document.getElementById('osEstimated').value;const newStatus=document.getElementById('osStatus').value;
+  const old=editingOsId?serviceOrders.find(x=>x.id===editingOsId):null;let statusHistory=Array.isArray(old?.statusHistory)?old.statusHistory.slice():[];if(!old)statusHistory.push(osHistoryEntry(newStatus,'OS aberta'));else if(old.status!==newStatus)statusHistory.push(osHistoryEntry(newStatus));
+  const data={customerId,customerName:customer?.name||customer?.nome||'Cliente',deviceType,brand:document.getElementById('osBrand').value.trim(),model:document.getElementById('osModel').value.trim(),imei:document.getElementById('osImei').value.trim(),serial:document.getElementById('osSerial').value.trim(),accessories:document.getElementById('osAccessories').value.trim(),entryCondition:document.getElementById('osCondition').value.trim(),problemReported:problem,diagnosis:document.getElementById('osDiagnosis').value.trim(),serviceDescription:document.getElementById('osService').value.trim(),partsDescription:document.getElementById('osParts').value.trim(),technicianId:technicianId||null,technicianName:tech?.name||'',laborValue:labor,partsValue,discount,total,status:newStatus,statusHistory,warrantyDays:Math.max(0,Number(document.getElementById('osWarranty').value||0)),estimatedDate:est?firebase.firestore.Timestamp.fromDate(new Date(est+'T12:00:00')):null,notes:document.getElementById('osNotes').value.trim(),updatedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedBy:auth.currentUser?.uid||''};
+  const btn=document.getElementById('osSaveBtn');btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Salvando...';
+  try{if(editingOsId){await db.collection('service_orders').doc(editingOsId).update(data);Toast.success('Ordem de serviço atualizada!');}else{const settings=await db.collection('settings').doc('general').get();const seq=(settings.exists?Number(settings.data().serviceOrderSequence||0):0)+1;await db.collection('settings').doc('general').set({serviceOrderSequence:seq},{merge:true});await db.collection('service_orders').add({...data,orderNumber:seq,deleted:false,paymentStatus:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp(),createdBy:auth.currentUser?.uid||''});Toast.success(`OS #${String(seq).padStart(4,'0')} criada!`);}closeModal('osModal');await loadServiceOrders();}catch(e){console.error(e);Toast.error('Erro ao salvar OS: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message)))}finally{btn.disabled=false;btn.innerHTML='<i class="fas fa-check"></i> Salvar OS';}
+}
+async function advanceServiceOrder(id,nextStatus){
+  const o=serviceOrders.find(x=>x.id===id);if(!o||o.saleId||o.status==='cancelled')return;
+  const nextLabel=OS_STATUS[nextStatus]?.[0]||nextStatus;try{const hist=Array.isArray(o.statusHistory)?o.statusHistory.slice():[];hist.push(osHistoryEntry(nextStatus));const patch={status:nextStatus,statusHistory:hist,updatedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedBy:auth.currentUser?.uid||''};if(nextStatus==='approved')patch.approvedAt=firebase.firestore.FieldValue.serverTimestamp();if(nextStatus==='ready')patch.readyAt=firebase.firestore.FieldValue.serverTimestamp();await db.collection('service_orders').doc(id).update(patch);Toast.success('OS atualizada para: '+nextLabel);await loadServiceOrders();}catch(e){Toast.error('Erro ao atualizar OS: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message)))}
+}
+function updateOsPaymentFields(){
+  const method=document.getElementById('osPaymentMethod').value;const card=document.getElementById('osCardFields');const installments=document.getElementById('osInstallmentField');const cash=document.getElementById('osCashFields');const due=document.getElementById('osDueField');const multi=document.getElementById('osMultiFields');
+  card.style.display=['credito','debito'].includes(method)?'block':'none';installments.style.display=method==='credito'?'block':'none';cash.style.display=method==='dinheiro'?'block':'none';due.style.display=method==='fiado'?'block':'none';multi.style.display=method==='multi'?'block':'none';osPaintSplitBtn();
+  if(method==='multi'){const o=serviceOrders.find(x=>x.id===receivingOsId);const total=osDue(o);const sum=osMultiPayments.reduce((s,p)=>s+Number(p.amount||0),0);if(!osMultiPayments.length||Math.abs(sum-total)>0.01)osInitMultiPayments(total);renderOsMultiPayments();}
+  updateOsChange();
+}
+function updateOsChange(){const o=serviceOrders.find(x=>x.id===receivingOsId);const total=osDue(o);const got=osNumBR(document.getElementById('osCashReceived')?.value);const el=document.getElementById('osCashChange');if(el)el.textContent=osMoney(Math.max(0,got-total));}
+async function receiveServiceOrder(id){
+  const o=serviceOrders.find(x=>x.id===id);if(!o)return;if(o.paymentStatus==='paid'||o.paymentStatus==='receivable'||o.saleId){Toast.info('Esta OS já foi faturada.');return;}if(o.status==='cancelled'){Toast.warning('Reabra a OS antes de faturar.');return;}if(Number(o.total||0)<=0){Toast.warning('Informe os valores da OS antes de faturar.');return;}
+  receivingOsId=id;osMultiPayments=[];document.getElementById('osPaymentInfo').innerHTML=`<div class="os-pay-head"><div><small>OS #${String(o.orderNumber||0).padStart(4,'0')}</small><strong>${osEscape(o.customerName||'Cliente')}</strong><span>${osEscape([o.deviceType,o.brand,o.model].filter(Boolean).join(' · ')||'Serviço')}</span></div><div class="os-pay-total"><small>${Number(o.depositTotal||0)>0?'Saldo a pagar':'Total a faturar'}</small><strong>${osMoney(osDue(o))}</strong>${Number(o.depositTotal||0)>0?`<span>Total ${osMoney(o.total)} · sinal pago ${osMoney(o.depositTotal)}</span>`:''}</div></div>`;
+  document.getElementById('osPaymentMethod').value='pix';document.getElementById('osCardBrand').value='visa';document.getElementById('osInstallments').value='1';document.getElementById('osPaymentNotes').value='';document.getElementById('osCashReceived').value=osFmtBR(osDue(o));const due=new Date();due.setDate(due.getDate()+30);document.getElementById('osDueDate').value=due.toISOString().slice(0,10);updateOsPaymentFields();openModal('osPaymentModal');
+}
+async function confirmServiceOrderPayment(){
+  if(!receivingOsId)return;const btn=document.getElementById('osPaymentBtn');btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Faturando...';
+  try{
+    const method=document.getElementById('osPaymentMethod').value;const o=serviceOrders.find(x=>x.id===receivingOsId);const total=osDue(o);let payments=null;
+    if(total<=0)payments=[];
+    else if(method==='multi'){payments=osValidateMulti(total,true);if(!payments)throw new Error('Confira a divisão do pagamento');}
+    else {payments=[{method,amount:total,installments:method==='credito'?Math.max(1,Number(document.getElementById('osInstallments').value||1)):1,cardBrand:['credito','debito'].includes(method)?document.getElementById('osCardBrand').value:'',cashReceived:method==='dinheiro'?osNumBR(document.getElementById('osCashReceived').value):0,changeValue:method==='dinheiro'?Math.max(0,osNumBR(document.getElementById('osCashReceived').value)-total):0,dueDate:method==='fiado'?document.getElementById('osDueDate').value:'',feePercent:0,feeValue:0,netAmount:total}];if(method==='dinheiro'&&payments[0].cashReceived<total)throw new Error('O valor recebido em dinheiro é menor que o total da OS');}
+    let open=null;if(payments.some(p=>p.method!=='fiado')){const snap=await db.collection('cash_registers').get();open=snap.docs.map(d=>({id:d.id,...d.data()})).find(c=>c.status==='open');if(!open)throw new Error('Abra o caixa antes de receber PIX, dinheiro ou cartão');}
+    const opts={method:payments.length>1?'multi':(payments[0]?.method||'sinal'),payments,notes:document.getElementById('osPaymentNotes').value.trim()};
+    const result=await ServiceOrderService.receivePayment(receivingOsId,opts,open?.id||null);closeModal('osPaymentModal');receivingOsId=null;osMultiPayments=[];Toast.success(`OS faturada e entregue! Venda #V-${String(result.saleNumber).padStart(4,'0')} · ${osMoney(result.total)}`);await loadServiceOrders();
+  }catch(e){console.error(e);if(e.message!=='Confira a divisão do pagamento')Toast.error('Erro ao faturar OS: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message)))}finally{btn.disabled=false;btn.innerHTML='<i class="fas fa-check"></i> Faturar e entregar';}
+}
+function cancelServiceOrder(id){
+  const o=serviceOrders.find(x=>x.id===id);if(!o)return;cancellingOsId=id;document.getElementById('osCancelReason').value='';const warning=document.getElementById('osCancelWarning');warning.innerHTML=o.saleId?'<i class="fas fa-triangle-exclamation"></i><div><b>Esta OS já foi faturada.</b><br>Ao cancelar, a venda vinculada será estornada e deixará de contar no Caixa/Relatórios.</div>':'<i class="fas fa-circle-info"></i><div>A OS ficará no histórico como <b>Cancelada</b>. Ela não será apagada.</div>';openModal('osCancelModal');
+}
+async function confirmCancelServiceOrder(){
+  const reason=document.getElementById('osCancelReason').value.trim();if(!reason){Toast.warning('Informe o motivo do cancelamento.');return;}const btn=document.getElementById('osCancelBtn');btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Cancelando...';
+  try{await ServiceOrderService.cancelOrder(cancellingOsId,reason);closeModal('osCancelModal');cancellingOsId=null;Toast.success('Ordem de serviço cancelada.');await loadServiceOrders();}catch(e){console.error(e);Toast.error('Erro ao cancelar OS: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message)))}finally{btn.disabled=false;btn.innerHTML='<i class="fas fa-ban"></i> Confirmar cancelamento';}
+}
+function reopenServiceOrder(id){Confirm.show('Reabrir Ordem de Serviço','Deseja reabrir esta OS? Ela voltará para o status Recebido.',async()=>{try{await ServiceOrderService.reopenOrder(id);Toast.success('OS reaberta.');await loadServiceOrders();}catch(e){Toast.error('Erro ao reabrir OS: '+(window.dpErroHumano ? dpErroHumano(e) : (e && e.message)))}})}
+async function printServiceOrder(id){
+  const o=serviceOrders.find(x=>x.id===id);if(!o)return;
+  const st=OS_STATUS[o.status]?.[0]||o.status||'—';
+  const pay=o.paymentStatus==='paid'?osPaymentPartsText(o,true):o.paymentStatus==='partial_receivable'?'Parcial / a receber · '+osPaymentPartsText(o,true):o.paymentStatus==='receivable'?'A receber · '+osPaymentPartsText(o,true):o.paymentStatus==='reversed'?'Estornado':o.paymentStatus==='no_charge'?'Sem cobrança (devolvido sem reparo)':'Pendente';
+  const ret=o.status==='returned'; // 39.14.5 · devolvido sem reparo: serviço só orçado, sem garantia e sem cobrança
+  const svcLabel=ret?'Serviço orçado (não executado):':'Serviço a realizar:';
+  const customer=osCustomers.find(c=>c.id===o.customerId)||{};
+  const customerPhone=customer.phone||customer.telefone||customer.whatsapp||customer.celular||'';
+  const customerEmail=customer.email||'';
+  let company={name:'DistribuiPRO',legalName:'',cnpj:'',phone:'',whatsapp:'',email:'',address:'',logoUrl:''};
+  try{
+    const snap=await db.collection('settings').doc('general').get();const d=snap.exists?(snap.data()||{}):{};
+    const isDemo=window.DP_IS_DEMO===true; // 39.3 · fonte única (branding.js); antes: pasta "teste" na URL
+    const brand=(window.BrandingManager&&typeof BrandingManager.getBrand==='function')?(BrandingManager.getBrand()||{}):{};
+    company.name=isDemo?(brand.companyName||d.nomeFantasia||d.razaoSocial||'DistribuiPRO'):(d.nomeFantasia||brand.companyName||d.razaoSocial||'DistribuiPRO');
+    company.legalName=d.razaoSocial||'';company.cnpj=d.cnpj||'';company.phone=d.telefone||'';company.whatsapp=d.whatsapp||'';company.email=d.email||'';
+    const rua=[d.logradouro,d.numero].filter(Boolean).join(', ');const cidadeUf=[d.cidade,d.uf].filter(Boolean).join(' - ');const local=[d.bairro,cidadeUf,d.cep?('CEP '+d.cep):''].filter(Boolean).join(' · ');company.address=[rua,local].filter(Boolean).join(' · ');
+    const customLogo=isDemo?(brand.logoUrl||''):(d.logoUrl||brand.logoUrl||'');try{company.logoUrl=customLogo||new URL('assets/brand/distribuipro-mark.svg?v=41.5-logo',window.location.href).href}catch(_){company.logoUrl=customLogo}
+  }catch(e){try{company.logoUrl=new URL('assets/brand/distribuipro-mark.svg?v=41.5-logo',window.location.href).href}catch(_){}}
+  const logoHtml=company.logoUrl?`<img class="company-logo" src="${osEscape(company.logoUrl)}" alt="Logo da empresa">`:'';
+  const contact=[company.cnpj&&('CNPJ: '+company.cnpj),company.phone&&('Tel: '+company.phone),company.whatsapp&&company.whatsapp!==company.phone&&('WhatsApp: '+company.whatsapp),company.email].filter(Boolean).map(osEscape).join(' · ');
+  const device=[o.deviceType,o.brand,o.model].filter(Boolean).join(' · ')||'—';
+  const T=k=>window.DPTerm?DPTerm(k,o):k; // 38.1 · OS de veículo: Veículo, Chassi, Placa
+  const serial=[o.imei&&(T('IMEI')+': '+o.imei),o.serial&&(T('Série')+': '+o.serial)].filter(Boolean).join(' · ');
+  const row=(label,value)=>value?`<div class="row"><span class="key">${osEscape(label)}</span><span class="value">${osEscape(String(value))}</span></div>`:'';
+  const section=(label,value)=>value&&String(value).trim()?`<div class="section"><div class="section-title">${osEscape(label)}</div><div class="section-value">${osEscape(String(value))}</div></div>`:'';
+  const w=window.open('','_blank','width=430,height=900');
+  w.document.write(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OS #${o.orderNumber}</title><style>
+  @page{size:80mm auto;margin:2mm}
+  *{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff}body{width:72mm;max-width:72mm;margin:0 auto;padding:2mm 1.5mm 3mm;font-family:"Courier New",Courier,monospace;color:#000;font-size:10.5px;line-height:1.20;font-weight:700}body,body *{font-weight:700!important;color:#000!important}.receipt{width:100%}.company{text-align:center}.company-logo{display:block;max-width:45mm;max-height:15mm;width:auto;height:auto;object-fit:contain;margin:0 auto 1.5mm}.company-name{font-size:13px;line-height:1.1;margin:0 0 1mm}.company-meta{font-size:8.7px;line-height:1.18;overflow-wrap:anywhere}.sep{border-top:1px dashed #000;margin:2.3mm 0}.title{text-align:center;font-size:14px;line-height:1.05;letter-spacing:.4px;margin:0}.order-number{text-align:center;font-size:13px;margin-top:1mm}.opening{text-align:center;font-size:9.5px;margin-top:.8mm}.row{display:flex;align-items:flex-start;gap:2mm;padding:.55mm 0}.key{flex:0 0 27mm;text-align:left}.value{flex:1;text-align:right;overflow-wrap:anywhere;white-space:normal}.section{padding:1.3mm 0}.section-title{font-size:9.4px;text-transform:uppercase;margin-bottom:.7mm}.section-value{font-size:10.5px;line-height:1.22;white-space:pre-wrap;overflow-wrap:anywhere}.money-row{display:flex;justify-content:space-between;gap:2mm;padding:.4mm 0}.total{display:flex;justify-content:space-between;align-items:flex-end;gap:2mm;font-size:15px;border-top:1px dashed #000;border-bottom:1px dashed #000;padding:1.5mm 0;margin-top:1.2mm}.payment{text-align:center;font-size:9.5px;padding-top:1.2mm;overflow-wrap:anywhere}.cancel{border:1px dashed #000;padding:1.5mm;margin-top:1.8mm}.signature{margin:10mm 5mm 0;border-top:1px solid #000;text-align:center;padding-top:1mm;font-size:9px}.footer{text-align:center;font-size:8.3px;line-height:1.2;margin-top:3mm;overflow-wrap:anywhere}.screen-actions{text-align:center;margin-top:4mm}.screen-actions button{font:700 13px Arial,sans-serif;padding:9px 16px;border:1px solid #111;border-radius:6px;background:#fff;color:#111;cursor:pointer}@media print{body{width:72mm;max-width:72mm;margin:0;padding:0}.screen-actions{display:none}.receipt{break-inside:avoid}}
+  ${window.DPPapel?DPPapel.css():''}
+  </style></head><body><div class="receipt">
+  <div class="company">${logoHtml}<div class="company-name">${osEscape(company.name)}</div>${company.legalName&&company.legalName!==company.name?`<div class="company-meta">${osEscape(company.legalName)}</div>`:''}${contact?`<div class="company-meta">${contact}</div>`:''}${company.address?`<div class="company-meta">${osEscape(company.address)}</div>`:''}</div>
+  <div class="sep"></div><div class="title">ORDEM DE SERVIÇO</div><div class="order-number">#${String(o.orderNumber||0).padStart(4,'0')}</div><div class="opening">Abertura: ${osDate(o.createdAt)}</div><div class="sep"></div>
+  ${row('Cliente:',o.customerName||'Cliente')}${row('Contato:',customerPhone)}${row('E-mail:',customerEmail)}${row(T('Equipamento')+':',device)}${serial?row('Identificação:',serial):''}${o.technicianName?row('Técnico:',o.technicianName):''}${row('Status:',st)}
+  <div class="sep"></div>
+  ${section('Problema relatado:',o.problemReported)}${section(svcLabel,o.serviceDescription)}${section('Diagnóstico:',o.diagnosis)}${section('Peças / itens:',o.partsDescription)}${section('Acessórios recebidos:',o.accessories)}${section('Condição na entrada:',o.entryCondition)}${section('Observações:',o.notes)}
+  <div class="sep"></div>${o.estimatedDate&&!ret?row('Previsão:',osDate(o.estimatedDate)):''}${Number(o.warrantyDays||0)>0&&!ret?row('Garantia:',Number(o.warrantyDays||0)+' dias'):''}
+  <div class="sep"></div>${(()=>{/* 39.14.4 · itens lançados na OS (o "+") também saem na térmica, com quantidade e valor */const it=(Array.isArray(o.items)?o.items:[]).filter(i=>i&&String(i.name||'').trim());return it.length?`<div class="section"><div class="section-title">Itens:</div>${it.map(i=>{const q=Number(i.qty)||1;return `<div class="money-row"><span>${q.toLocaleString('pt-BR',{maximumFractionDigits:3})}x ${osEscape(i.name)}</span><span>${osMoney(q*(Number(i.price)||0))}</span></div>`;}).join('')}</div>`:'';})()}${Number(o.partsValue||0)>0?`<div class="money-row"><span>Peças</span><span>${osMoney(o.partsValue)}</span></div>`:''}${Number(o.laborValue||0)>0?`<div class="money-row"><span>Mão de obra</span><span>${osMoney(o.laborValue)}</span></div>`:''}${Number(o.discount||0)>0?`<div class="money-row"><span>Desconto</span><span>- ${osMoney(o.discount)}</span></div>`:''}<div class="total"><span>${ret?'ORÇADO':'TOTAL'}</span><span>${osMoney(o.total)}</span></div><div class="payment">Pagamento: ${osEscape(pay)}</div>
+  ${o.status==='cancelled'?`<div class="cancel">CANCELADA — ${osEscape(o.cancelReason||'Sem motivo informado')}</div>`:''}
+  ${ret?`<div class="cancel">DEVOLVIDO AO CLIENTE SEM REPARO${o.returnReasonText?' — '+osEscape(o.returnReasonText):''}${o.returnNotes?'<br>'+osEscape(o.returnNotes):''}${o.returnedAt?'<br>Em '+osEscape(osDate(o.returnedAt,true)):''}</div>`:''}
+  <div class="signature">Assinatura do cliente</div>
+  <div class="footer">${osEscape(company.name)}${company.phone?` · ${osEscape(company.phone)}`:''}${company.address?`<br>${osEscape(company.address)}`:''}<br>Agradecemos a preferência.</div>
+  </div><div class="screen-actions"><button onclick="window.print()">Imprimir</button></div></body></html>`);w.document.close();w.focus();
+}
+function initPage(){return initServiceOrdersPage();}
+
+</script>
+<script defer src="assets/js/os-extras-v1.js?v=39.14.5-os"></script>
+<script defer src="assets/js/studio-v1.js?v=39.13"></script><script defer src="assets/js/studio-pro-v2.js?v=2.7-rolagem"></script>
+<script src="assets/js/os-print-v1.js?v=39.14.5-os"></script>
+<script src="assets/js/taxas-parcela-v1.js?v=35.36"></script>
+<script src="assets/js/os-itens-v1.js?v=38.6"></script>
+<script src="assets/js/mesas-v1.js?v=37.8"></script>
+<script src="assets/js/edicao-v1.js?v=38.0"></script>
+<script src="assets/js/os-pro-v1.js?v=39.14.5-os"></script>
+<script src="assets/js/os-finalizar-v1.js?v=39.14.5-os"></script>
+<script src="assets/js/foto-camera-v1.js?v=35.45"></script>
+<script src="assets/js/validade-v1.js?v=39.8-funil"></script>
+<script src="assets/js/nfce-service.js?v=41.1-dp"></script>
+<script src="assets/js/notas-base-v1.js?v=39.10-base"></script>
+<script src="assets/js/notas-provedor-v1.js?v=41.1-dp"></script>
+<script src="assets/js/nota-propria-dp-v1.js?v=41.1"></script>
+</body></html>

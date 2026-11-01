@@ -1,0 +1,68 @@
+/* DistribuiPRO Pedidos Pro 1.0 */
+.pdk .stat-card { position: relative; overflow: hidden; }
+.pdk .stat-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent 70%); opacity: .55; }
+.pdk-sub { margin-top: 8px; font-size: 12px; color: var(--text-muted); }
+.pdk-sub .up { color: #34d399; font-weight: 700; }
+.pdk-sub .down { color: #f87171; font-weight: 700; }
+.pdk-sub .flat { color: var(--text-muted); }
+.pdk-sub b { color: var(--text-primary); }
+
+/* Barra de busca e período */
+.pdk-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 16px; }
+.pdk-search { flex: 1 1 280px; position: relative; display: flex; align-items: center; }
+.pdk-search i { position: absolute; left: 14px; color: var(--text-muted); font-size: 13px; pointer-events: none; }
+.pdk-search input { width: 100%; height: 42px; padding: 0 14px 0 38px; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-input, var(--bg-card)); color: var(--text-primary); font-size: 14px; }
+.pdk-search input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-muted, rgba(99, 102, 241, .2)); }
+.pdk-seg { display: inline-flex; padding: 4px; gap: 2px; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-card); }
+.pdk-seg button { height: 34px; padding: 0 14px; border: 0; border-radius: 9px; background: transparent; color: var(--text-muted); font-size: 13px; font-weight: 700; cursor: pointer; transition: background .2s, color .2s; }
+.pdk-seg button.on { background: var(--accent); color: #fff; box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 40%, transparent); }
+.pdk-refresh { width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-muted); cursor: pointer; }
+.pdk-refresh:hover { color: var(--text-primary); border-color: var(--accent); }
+
+/* Colunas */
+.pdk .kanban-col { border-radius: 16px !important; }
+.pdk .kanban-col-header { padding: 13px 14px !important; }
+.pdk .kanban-col-title { font-size: 13.5px !important; }
+.pdk-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 0%, transparent); }
+.pdk-head-r { display: flex; align-items: center; gap: 8px; }
+.pdk-sum { font-size: 12px; font-weight: 700; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.pdk .kanban-card { border-radius: 12px !important; transition: transform .18s, border-color .18s, box-shadow .18s !important; }
+.pdk .kanban-card:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0, 0, 0, .22); }
+.pdk .kanban-card .k-name { font-size: 14px; }
+.pdk .kanban-card .k-items { font-size: 12.5px; }
+.pdk .kanban-card .k-total { font-size: 16px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.pdk .kanban-card .k-time { font-size: 12px; }
+.pdk .kanban-card [style*="font-size:11px"] { font-size: 12px !important; }
+.pdk-act { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border-color); }
+.pdk-wait { font-size: 12px; font-weight: 700; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pdk-wait.warn { color: #fbbf24; }
+.pdk-wait.late { color: #f87171; }
+.pdk-done { flex: 0 0 auto; height: 34px; padding: 0 14px; border: 0; border-radius: 10px; background: #10b981; color: #fff; font-size: 13px; font-weight: 800; cursor: pointer; box-shadow: 0 6px 16px rgba(16, 185, 129, .3); }
+.pdk-done:hover { background: #0ea371; }
+.pdk-done:disabled { opacity: .7; }
+
+/* Abas (só no celular) */
+.pdk-tabs { display: none; }
+@media (max-width: 768px) {
+  .pdk-bar { gap: 8px; }
+  .pdk-search { flex-basis: 100%; }
+  .pdk-seg { flex: 1; }
+  .pdk-seg button { flex: 1; padding: 0 6px; }
+  .pdk-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 0 0 12px; position: sticky; top: 70px; z-index: 5; padding: 6px; border-radius: 14px; background: color-mix(in srgb, var(--bg-card) 88%, transparent); backdrop-filter: blur(10px); border: 1px solid var(--border-color); }
+  .pdk-tabs button { display: flex; align-items: center; justify-content: center; gap: 6px; height: 40px; border: 0; border-radius: 10px; background: transparent; color: var(--text-muted); font-size: 13px; font-weight: 700; cursor: pointer; }
+  .pdk-tabs button i { width: 8px; height: 8px; border-radius: 50%; }
+  .pdk-tabs button b { min-width: 22px; height: 20px; padding: 0 6px; border-radius: 999px; display: grid; place-items: center; font-size: 11.5px; background: rgba(148, 163, 184, .16); color: var(--text-primary); }
+  .pdk-tabs button.on { background: var(--bg-surface, rgba(255, 255, 255, .06)); color: var(--text-primary); box-shadow: inset 0 0 0 1px var(--border-color); }
+  .pdk .kanban-col { display: none !important; }
+  .pdk .kanban-col.pdk-on { display: block !important; }
+  .pdk .kanban-col-header { position: static !important; }
+}
+
+/* 30.2.1 · Computador: uma rolagem só (a da página). Antes cada coluna rolava por dentro e os
+   cartões ficavam cortados embaixo do cabeçalho fixo. O título da coluna gruda logo abaixo do cabeçalho. */
+@media (min-width: 769px) {
+  .pdk .page-content, .pdk .kanban-board, .pdk .kanban-col { overflow: clip !important; overflow-clip-margin: 0; }
+  .pdk .kanban-col-body { max-height: none !important; overflow: visible !important; }
+  .pdk .kanban-col-header { position: sticky !important; top: var(--pdk-top, 88px) !important; z-index: 6 !important; background: color-mix(in srgb, var(--bg-secondary) 94%, transparent) !important; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px 16px 0 0; }
+  .pdk-bar { position: relative; z-index: 7; }
+}

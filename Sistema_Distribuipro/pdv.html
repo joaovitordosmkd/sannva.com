@@ -1,0 +1,2475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script>window.__stProduct=1;document.documentElement.setAttribute("data-st-product","")</script><script>/* Studio: aplica o tema escolhido (claro/escuro/automático) antes de desenhar a página */try{var p=localStorage.getItem("st_theme_pref");if(p){var t=p==="auto"?(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):p;if(t==="light"||t==="dark"){sessionStorage.setItem("erp_theme_session",t);document.documentElement.setAttribute("data-theme",t);}}}catch(e){}</script><link rel="icon" href="assets/brand/favicon-96.png?v=41.5-logo" type="image/png">
+    <script src="assets/js/branding.js?v=40.29-acessos"></script><script src="assets/js/papel-v1.js?v=40.49"></script><script src="assets/js/dp-icons-v1.js?v=37.6"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="theme-color" content="#0a0e1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>PDV · DistribuiPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css?v=37.8">
+    <link rel="stylesheet" href="assets/css/mobile.css?v=37.8">
+    <style>
+        body { overflow: hidden; }
+        .pdv-wrapper { display: flex; height: 100vh; height: 100dvh; }
+        .pdv-wrapper .sidebar { width: var(--sidebar-collapsed); }
+        .pdv-wrapper .sidebar .menu-text,.pdv-wrapper .sidebar .menu-section-title,.pdv-wrapper .sidebar .brand-text { opacity:0; width:0; overflow:hidden; }
+        .pdv-wrapper .sidebar .badge { display:none; }
+        .pdv-wrapper .sidebar:hover { width: var(--sidebar-width); }
+        .pdv-wrapper .sidebar:hover .menu-text,.pdv-wrapper .sidebar:hover .menu-section-title,.pdv-wrapper .sidebar:hover .brand-text { opacity:1; width:auto; }
+        .pdv-wrapper .sidebar:hover .badge { display:inline-flex; }
+        .pdv-wrapper .sidebar-toggle { display:none; }
+        .pdv-content { flex:1; display:flex; margin-left:var(--sidebar-collapsed); overflow:hidden; transition:var(--transition-slow); height:100vh; height:100dvh; }
+        .pdv-left { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+        .pdv-header { padding:12px 20px; border-bottom:1px solid var(--border-color); display:flex; align-items:center; gap:12px; background:var(--bg-secondary); min-height:56px; }
+        .pdv-header .pdv-title { font-size:15px; font-weight:700; color:var(--text-heading); white-space:nowrap; }
+        .pdv-header .pdv-title i { color:var(--accent); margin-right:6px; }
+        .pdv-search-bar { flex:1; max-width:480px; position:relative; }
+        .pdv-search-bar input { width:100%; padding:10px 14px 10px 40px; background:var(--bg-input); border:1px solid var(--border-color); border-radius:var(--radius-md); color:var(--text-primary); font-size:13px; font-family:var(--font-body); }
+        .pdv-search-bar input:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-muted); }
+        .pdv-search-bar input::placeholder { color:var(--text-muted); }
+        .pdv-search-bar i { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--text-muted); }
+        .pdv-categories { padding:10px 20px; display:flex; gap:8px; overflow-x:auto; border-bottom:1px solid var(--border-color); -webkit-overflow-scrolling:touch; }
+        .pdv-categories::-webkit-scrollbar { display:none; }
+        .cat-btn { padding:6px 16px; border-radius:20px; border:1px solid var(--border-color); background:transparent; color:var(--text-secondary); font-family:var(--font-body); font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap; transition:var(--transition); -webkit-tap-highlight-color:transparent; }
+        .cat-btn:hover { border-color:var(--border-hover); background:var(--bg-surface); }
+        .cat-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+        .pdv-products-area { flex:1; padding:12px 16px; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+        .product-card { display:inline-flex; flex-direction:column; width:calc(20% - 10px); margin:5px; padding:14px; background:var(--gradient-card); border:1px solid var(--border-color); border-radius:var(--radius-md); cursor:pointer; transition:var(--transition); vertical-align:top; -webkit-tap-highlight-color:transparent; }
+        .product-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+        .product-card:active { transform:scale(0.97); }
+        .product-card .p-icon { display:none; } /* desativado — tudo usa .p-thumb */
+        .product-card .p-thumb { width:100%; height:clamp(96px,8vw,126px); border-radius:10px; margin-bottom:8px; background:linear-gradient(145deg,var(--bg-surface) 0%,var(--bg-secondary) 100%); border:1px solid var(--border-color); display:flex; align-items:center; justify-content:center; font-size:36px; flex-shrink:0; overflow:hidden; position:relative; transition:box-shadow .22s ease, transform .22s ease; }
+        .product-card .p-thumb img { width:100%; height:100%; object-fit:contain; object-position:center; padding:0; display:block; transition:transform .22s ease, filter .22s ease; transform-origin:center center; }
+        .product-card .p-name { font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:4px; line-height:1.3; }
+        .product-card .p-code { font-size:10px; color:var(--text-muted); font-family:var(--font-mono); margin-bottom:8px; }
+        .product-card .p-price { font-size:16px; font-weight:700; color:var(--success); }
+        .product-card .p-stock { font-size:10px; color:var(--text-muted); margin-top:4px; }
+        .product-card .p-stock.low { color:var(--danger); }
+        .pdv-right { width:380px; display:flex; flex-direction:column; border-left:1px solid var(--border-color); background:var(--bg-secondary); height:100vh; height:100dvh; overflow:hidden; }
+        .cart-scroll { flex:1; overflow-y:auto; overflow-x:hidden; -webkit-overflow-scrolling:touch; min-height:0; }
+        .cart-header { padding:12px 20px; border-bottom:1px solid var(--border-color); display:flex; align-items:center; justify-content:space-between; min-height:56px; }
+        .cart-header h2 { font-size:14px; font-weight:700; color:var(--text-heading); display:flex; align-items:center; gap:8px; }
+        .cart-count { padding:2px 10px; background:var(--accent-muted); color:var(--accent); border-radius:12px; font-size:12px; font-weight:600; }
+        .cart-customer { padding:8px 16px; border-bottom:1px solid var(--border-color); }
+        .cart-customer select { width:100%; padding:8px 12px; background:var(--bg-input); border:1px solid var(--border-color); border-radius:var(--radius-md); color:var(--text-primary); font-family:var(--font-body); font-size:12px; }
+        .cart-items { flex-shrink:0; }
+        .cart-item { display:flex; align-items:center; gap:10px; padding:10px 16px; border-bottom:1px solid var(--border-color); }
+        .ci-info { flex:1; min-width:0; }
+        .ci-name { font-size:12px; font-weight:600; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .ci-price { font-size:10px; color:var(--text-muted); }
+        .ci-qty { display:flex; align-items:center; gap:6px; }
+        .ci-qty button { width:24px; height:24px; border:1px solid var(--border-color); background:transparent; border-radius:6px; color:var(--text-secondary); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:10px; }
+        .ci-qty button:active { background:var(--accent-muted); }
+        .ci-qty span { font-size:13px; font-weight:700; color:var(--text-primary); min-width:20px; text-align:center; }
+        .ci-total { font-size:13px; font-weight:700; color:var(--success); white-space:nowrap; min-width:70px; text-align:right; }
+        .ci-remove { color:var(--text-muted); cursor:pointer; font-size:12px; padding:4px; }
+        .ci-remove:hover { color:var(--danger); }
+        .cart-summary { padding:10px 16px; border-top:1px solid var(--border-color); }
+        .cart-summary .cs-row { display:flex; justify-content:space-between; font-size:12px; color:var(--text-muted); padding:3px 0; }
+        .cart-summary .cs-row.total { font-size:20px; font-weight:800; color:var(--text-heading); padding-top:8px; border-top:1px solid var(--border-color); margin-top:4px; }
+        .cart-actions { display:flex; gap:8px; padding:8px 16px; }
+        .cart-actions .btn { flex:1; justify-content:center; padding:12px; }
+        .cart-payment { padding:8px 16px; border-top:1px solid var(--border-color); }
+        .payment-methods { display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; }
+        .pay-method { padding:8px; border:1px solid var(--border-color); border-radius:var(--radius-md); background:transparent; color:var(--text-secondary); font-family:var(--font-body); font-size:11px; font-weight:600; cursor:pointer; text-align:center; transition:var(--transition); }
+        .pay-method.selected { background:var(--accent-muted); border-color:var(--accent); color:var(--accent); }
+        .pay-method i { display:block; font-size:16px; margin-bottom:4px; }
+        .pdv-shortcuts { padding:6px 16px; border-top:1px solid var(--border-color); display:flex; gap:12px; font-size:10px; color:var(--text-muted); }
+        .pdv-shortcuts kbd { padding:1px 6px; background:var(--bg-surface); border:1px solid var(--border-color); border-radius:4px; font-family:var(--font-mono); font-size:10px; }
+        .pdv-mobile-toggle { display:none; position:fixed; bottom:16px; right:16px; width:56px; height:56px; border-radius:50%; background:var(--accent); color:#fff; border:none; font-size:20px; cursor:pointer; box-shadow:0 4px 16px rgba(99,102,241,0.4); z-index:800; align-items:center; justify-content:center; }
+        .pdv-mobile-toggle .toggle-badge { position:absolute; top:-4px; right:-4px; background:var(--danger); color:#fff; font-size:10px; font-weight:700; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+        .pdv-menu-btn { display:none; }
+        .cart-handle { display:none; }
+        .sale-type-btn { padding:7px 4px; border:1px solid var(--border-color); border-radius:var(--radius-md); background:transparent; color:var(--text-muted); font-family:var(--font-body); font-size:11px; font-weight:600; cursor:pointer; text-align:center; transition:var(--transition); display:flex; flex-direction:column; align-items:center; gap:3px; }
+        .sale-type-btn i { font-size:14px; }
+        .sale-type-btn:hover { border-color:var(--border-hover); background:var(--bg-surface); color:var(--text-primary); }
+        .sale-type-btn.active { background:var(--accent-muted); border-color:var(--accent); color:var(--accent); }
+        .sale-type-btn.active[data-type="delivery"] { background:rgba(16,185,129,0.12); border-color:var(--success); color:var(--success); }
+        #deliveryAddress, #deliveryRef, #deliveryFeeInput { transition:var(--transition); }
+        #deliveryAddress:focus, #deliveryRef:focus, #deliveryFeeInput:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-muted); }
+
+        /* 16.6 — imagem maior + fundo integrado ao tema + hover discreto */
+        .product-card:hover .p-thumb { border-color:rgba(124,110,255,.38); box-shadow:0 8px 20px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.035); }
+        .product-card:hover .p-thumb img { transform:scale(1.035); filter:brightness(1.025) saturate(1.02); }
+        @media (max-width:768px) {
+            .product-card .p-thumb { height:112px; }
+        }
+        @media (max-width:480px) {
+            .product-card .p-thumb { height:102px; }
+        }
+        @media (max-width:1200px) { .product-card { width:calc(25% - 10px); } }
+        @media (max-width:900px) { .product-card { width:calc(33.33% - 10px); } }
+        @media (max-width:1024px) {
+            .pdv-wrapper .sidebar { transform:translateX(-100%); }
+            .pdv-wrapper .sidebar.mobile-open { transform:translateX(0); width:var(--sidebar-width); }
+            .pdv-wrapper .sidebar.mobile-open .menu-text,.pdv-wrapper .sidebar.mobile-open .menu-section-title,.pdv-wrapper .sidebar.mobile-open .brand-text { opacity:1; width:auto; }
+            .pdv-content { margin-left:0; }
+        }
+        @media (max-width:768px) {
+            .pdv-content { flex-direction:column; }
+            .pdv-right { position:fixed; bottom:0; left:0; right:0; width:100%; height:85vh; height:85dvh; border-left:none; border-top:1px solid var(--border-color); border-radius:16px 16px 0 0; transform:translateY(100%); transition:transform 0.3s ease; z-index:700; box-shadow:0 -8px 32px rgba(0,0,0,0.3); }
+            .pdv-right.open { transform:translateY(0); }
+            .pdv-left { height:100vh; height:100dvh; }
+            .product-card { width:calc(50% - 10px); padding:10px; }
+            .product-card .p-name { font-size:12px; }
+            .product-card .p-price { font-size:14px; }
+            .pdv-header { padding:10px 12px; gap:8px; }
+            .pdv-search-bar input { font-size:12px; padding:8px 12px 8px 36px; }
+            .pdv-categories { padding:8px 12px; gap:6px; }
+            .cat-btn { padding:5px 12px; font-size:11px; }
+            .pdv-products-area { padding:8px; }
+            .pdv-mobile-toggle { display:flex; }
+            .pdv-shortcuts { display:none; }
+            .pdv-menu-btn { display:flex; width:36px; height:36px; border:1px solid var(--border-color); background:var(--bg-surface); border-radius:var(--radius-md); color:var(--text-secondary); cursor:pointer; align-items:center; justify-content:center; flex-shrink:0; font-size:14px; }
+            .cart-handle { display:flex; justify-content:center; padding:8px; cursor:pointer; }
+            .cart-handle span { width:40px; height:4px; background:var(--border-color); border-radius:4px; }
+        }
+        @media (max-width:480px) { .product-card { width:calc(50% - 8px); margin:4px; padding:10px; } .pdv-products-area { padding:4px; } }
+
+        /* 14.1 — PDV responsivo para telas desktop de menor altura (ex.: 1366x768) */
+        .pdv-party-row { display:block; }
+        @media (min-width:769px) and (max-height:820px) {
+            .pdv-right { width:370px; }
+            .cart-header { min-height:42px; padding:7px 12px; }
+            .cart-header h2 { font-size:13px; }
+            .cart-count { font-size:10px; padding:2px 8px; }
+
+            /* Cliente e vendedor lado a lado para liberar altura para os itens */
+            .pdv-party-row { display:grid; grid-template-columns:1fr 1fr; align-items:start; border-bottom:1px solid var(--border-color); background:rgba(99,102,241,.035); }
+            .pdv-party-row .cart-customer,
+            .pdv-party-row .cart-seller { padding:6px 8px !important; border-bottom:0 !important; background:transparent !important; min-width:0; }
+            .pdv-party-row .cart-customer { border-right:1px solid var(--border-color); }
+            .pdv-party-row label { font-size:9px !important; margin-bottom:3px !important; letter-spacing:.25px !important; }
+            #customerSearch, #sellerSelect { height:32px; padding:5px 7px !important; font-size:10.5px !important; }
+            #selectedCustomerBadge { margin-top:3px !important; padding:3px 6px !important; min-height:24px; }
+            #selectedCustomerName { font-size:10px !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+            #btnNewCustomerPDV { margin-top:3px !important; padding:4px !important; font-size:9px !important; }
+            #sellerCommissionHint { margin-top:2px !important; font-size:8.5px !important; }
+
+            /* Tipo da venda compacto */
+            .sale-type-btn { padding:4px 3px; font-size:9.5px; min-height:30px; flex-direction:row; justify-content:center; gap:4px; }
+            .sale-type-btn i { font-size:10px; }
+
+            /* Carrinho ganha área própria e rolagem independente */
+            .cart-items { min-height:112px; max-height:27vh; overflow-y:auto; overscroll-behavior:contain; border-bottom:1px solid var(--border-color); }
+            .cart-item { padding:7px 10px; gap:6px; }
+            .ci-name { font-size:11px; }
+            .ci-price { font-size:9px; }
+            .ci-qty button { width:22px; height:22px; }
+            .ci-total { font-size:11px; min-width:62px; }
+
+            /* Observação continua disponível, mas não ocupa metade da tela */
+            #saleNotes { min-height:36px !important; height:36px; resize:none !important; padding:6px 8px !important; }
+            #saleNotes:focus { min-height:62px !important; height:62px; }
+
+            .cart-payment { padding:5px 10px; }
+            .cart-payment > label { font-size:9px !important; margin-bottom:4px !important; }
+            .payment-methods { gap:4px; }
+            .pay-method { padding:5px 3px; font-size:9px; display:flex; align-items:center; justify-content:center; gap:4px; min-height:28px; }
+            .pay-method i { display:inline-block; font-size:10px; margin:0; }
+
+            .cart-summary { padding:5px 10px; }
+            .cart-summary .cs-row { font-size:10px; padding:1px 0; }
+            .cart-summary .cs-row.total { font-size:16px; padding-top:4px; margin-top:2px; }
+            .cart-actions { padding:5px 10px; gap:5px; }
+            .cart-actions .btn { padding:8px 5px; font-size:10px; }
+            .pdv-shortcuts { padding:3px 10px; gap:7px; font-size:8px; }
+            .pdv-shortcuts kbd { font-size:8px; padding:1px 4px; }
+
+            /* Mais produtos visíveis também na grade principal */
+            .pdv-header { min-height:48px; padding:8px 14px; }
+            .pdv-categories { padding:7px 14px; }
+            .pdv-products-area { padding:7px 10px; }
+            .product-card { padding:9px; margin:4px; width:calc(20% - 8px); }
+            .product-card .p-thumb { height:108px; margin-bottom:6px; }
+            .product-card .p-name { font-size:11.5px; margin-bottom:2px; }
+            .product-card .p-code { font-size:9px; margin-bottom:4px; }
+            .product-card .p-price { font-size:14px; }
+            .product-card .p-stock { font-size:9px; margin-top:2px; }
+        }
+        @media (min-width:769px) and (max-height:700px) {
+            .cart-items { min-height:90px; max-height:22vh; }
+            .product-card .p-thumb { height:92px; }
+            #selectedCustomerBadge { margin-top:3px !important; padding:3px 6px !important; min-height:22px; }
+        }
+    
+        /* 16.9 — card visual: foto dominante + informacoes compactas */
+        .product-card {
+            padding:7px !important;
+            overflow:hidden;
+        }
+        .product-card .p-thumb {
+            width:100% !important;
+            height:clamp(150px,12.5vw,190px) !important;
+            margin:0 !important;
+            border-radius:11px !important;
+            background:linear-gradient(145deg,var(--bg-surface) 0%,var(--bg-secondary) 100%) !important;
+            border:1px solid rgba(255,255,255,.075) !important;
+            display:flex !important;
+            align-items:center !important;
+            justify-content:center !important;
+            overflow:hidden !important;
+            position:relative !important;
+        }
+        .product-card .p-thumb img {
+            width:100% !important;
+            height:100% !important;
+            max-width:100% !important;
+            max-height:100% !important;
+            object-fit:contain !important;
+            object-position:center center !important;
+            padding:4px !important;
+            box-sizing:border-box !important;
+            display:block !important;
+            transform-origin:center center;
+            transition:transform .2s ease,filter .2s ease;
+        }
+        .product-card .p-thumb > span { font-size:46px; line-height:1; }
+        .product-card .p-info {
+            min-height:74px;
+            padding:9px 3px 3px;
+            display:flex;
+            flex-direction:column;
+        }
+        .product-card .p-name {
+            margin:0 0 7px !important;
+            font-size:13px !important;
+            font-weight:700 !important;
+            line-height:1.22 !important;
+            min-height:31px;
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+            -webkit-line-clamp:2;
+            overflow:hidden;
+        }
+        .product-card .p-code { display:none !important; }
+        .product-card .p-meta-row {
+            margin-top:auto;
+            display:flex;
+            align-items:flex-end;
+            justify-content:space-between;
+            gap:8px;
+            min-width:0;
+        }
+        .product-card .p-stock {
+            margin:0 !important;
+            font-size:10px !important;
+            line-height:1.2;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            flex:1 1 auto;
+        }
+        .product-card .p-price {
+            margin-left:auto;
+            font-size:17px !important;
+            line-height:1;
+            font-weight:800 !important;
+            white-space:nowrap;
+            flex:0 0 auto;
+        }
+        .product-card:hover .p-thumb img { transform:scale(1.025) !important; filter:brightness(1.03) saturate(1.03); }
+        @media (min-width:1200px) and (max-width:1400px) {
+            .product-card .p-thumb { height:158px !important; }
+            .product-card .p-info { min-height:70px; padding-top:8px; }
+            .product-card .p-name { font-size:12px !important; min-height:29px; }
+            .product-card .p-price { font-size:16px !important; }
+        }
+        @media (min-width:769px) and (max-height:700px) {
+            .product-card .p-thumb { height:145px !important; }
+        }
+        @media (max-width:768px) {
+            .product-card { padding:6px !important; }
+            .product-card .p-thumb { height:132px !important; }
+            .product-card .p-info { min-height:66px; padding:7px 2px 2px; }
+            .product-card .p-name { font-size:11.5px !important; min-height:28px; margin-bottom:6px !important; }
+            .product-card .p-price { font-size:14px !important; }
+            .product-card .p-stock { font-size:9px !important; }
+        }
+        @media (max-width:480px) {
+            .product-card .p-thumb { height:120px !important; }
+        }
+
+    </style>
+    <link rel="stylesheet" href="assets/css/studio-light-pages.css?v=1.3">
+    <link rel="stylesheet" href="assets/css/studio-v1.css?v=39.6-logo"><link rel="stylesheet" href="assets/css/studio-pro-v2.css?v=2.7"><link rel="stylesheet" href="assets/css/pdv-pro-v1.css?v=38.7">
+<script defer src="assets/js/cache-818831d97b.js"></script></head>
+<body>
+    <div class="pdv-wrapper">
+        <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileSidebar()"></div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand"><div class="dp-default-logo" aria-label="DistribuiPro"><img src="assets/brand/distribuipro-logo-dark.png?v=41.5-logo" alt="DistribuiPro"></div><div class="brand-icon"><img src="assets/brand/distribuipro-mark.svg?v=41.5-logo" alt="DistribuiPro" style="width:100%;height:100%;display:block;object-fit:contain"></div><div class="brand-text"><h1>DistribuiPRO</h1><span>Sistema ERP</span></div></div>
+            <nav class="sidebar-menu">
+                <div class="menu-section"><span class="menu-section-title">Principal</span></div>
+                <a href="index.html" class="menu-item"><i class="fas fa-chart-pie"></i><span class="menu-text">Dashboard</span></a>
+                <div class="menu-section"><span class="menu-section-title">Operações</span></div>
+                <a href="pdv.html" class="menu-item active"><i class="fas fa-cash-register"></i><span class="menu-text">PDV / Vendas</span></a>
+        <a href="orcamentos.html" class="menu-item" data-page="orcamentos"><i class="fas fa-file-signature"></i><span class="menu-text">Orçamentos</span></a>
+                <a href="pedidos.html" class="menu-item"><i class="fas fa-clipboard-list"></i><span class="menu-text">Pedidos</span></a>
+                <a href="entregas.html" class="menu-item"><i class="fas fa-truck-fast"></i><span class="menu-text">Entregas</span></a>
+                <a href="caixa.html" class="menu-item"><i class="fas fa-vault"></i><span class="menu-text">Caixa</span></a>
+                <a href="ordens-servico.html" class="menu-item"><i class="fas fa-screwdriver-wrench"></i><span class="menu-text">Ordens de Serviço</span></a>
+                <div class="menu-section"><span class="menu-section-title">Cadastros</span></div>
+                <a href="produtos.html" class="menu-item"><i class="fas fa-box"></i><span class="menu-text">Produtos</span></a>
+                <a href="categorias.html" class="menu-item"><i class="fas fa-tags"></i><span class="menu-text">Categorias</span></a>
+                <a href="clientes.html" class="menu-item"><i class="fas fa-users"></i><span class="menu-text">Clientes</span></a>
+                <a href="fornecedores.html" class="menu-item"><i class="fas fa-industry"></i><span class="menu-text">Fornecedores</span></a>
+                <div class="menu-section"><span class="menu-section-title">Estoque</span></div>
+                <a href="estoque.html" class="menu-item"><i class="fas fa-boxes-stacked"></i><span class="menu-text">Estoque</span></a>
+                <a href="movimentacoes.html" class="menu-item"><i class="fas fa-arrow-right-arrow-left"></i><span class="menu-text">Movimentações</span></a>
+                <a href="compras.html" class="menu-item"><i class="fas fa-cart-shopping"></i><span class="menu-text">Compras</span></a>
+                <div class="menu-section"><span class="menu-section-title">Financeiro</span></div>
+                <a href="contas-pagar.html" class="menu-item"><i class="fas fa-file-invoice-dollar"></i><span class="menu-text">Contas a Pagar</span></a>
+                <a href="contas-receber.html" class="menu-item"><i class="fas fa-hand-holding-dollar"></i><span class="menu-text">Contas a Receber</span></a>
+                <a href="fluxo-caixa.html" class="menu-item"><i class="fas fa-chart-line"></i><span class="menu-text">Fluxo de Caixa</span></a>
+                <div class="menu-section"><span class="menu-section-title">Gestão</span></div>
+                <a href="motoboys.html" class="menu-item"><i class="fas fa-motorcycle"></i><span class="menu-text">Motoboys</span></a>
+                <a href="relatorios.html" class="menu-item"><i class="fas fa-chart-bar"></i><span class="menu-text">Relatórios</span></a>
+                <a href="comissoes.html" class="menu-item"><i class="fas fa-percent"></i><span class="menu-text">Comissões</span></a>
+                <a href="usuarios.html" class="menu-item"><i class="fas fa-user-shield"></i><span class="menu-text">Usuários</span></a>
+                <a href="configuracoes.html" class="menu-item"><i class="fas fa-gear"></i><span class="menu-text">Configurações</span></a>
+            </nav>
+        </div>
+        <div class="pdv-content">
+            <div class="pdv-left">
+                <div class="pdv-header">
+                    <button class="pdv-menu-btn" onclick="toggleMobileSidebar()"><i class="fas fa-bars"></i></button>
+                    <span class="pdv-title"><i class="fas fa-cash-register"></i> PDV</span>
+                    <div class="pdv-search-bar"><input type="text" placeholder="Buscar produto..." id="pdvSearch" autofocus><i class="fas fa-search"></i></div>
+                </div>
+                <div class="pdv-categories" id="pdvCategories">
+                    <button class="cat-btn active" onclick="filterCategory('all',this)">Todos</button>
+                </div>
+                <div class="pdv-products-area" id="productsGrid"></div>
+            </div>
+            <div class="pdv-right" id="pdvCart">
+                <div class="cart-handle" onclick="toggleCart()"><span></span></div>
+                <!-- HEADER fixo -->
+                <div class="cart-header"><h2><i class="fas fa-shopping-cart"></i> Carrinho</h2><span class="cart-count" id="cartCount">0 itens</span></div>
+
+                <!-- ÁREA CENTRAL SCROLLÁVEL — tudo que pode crescer fica aqui -->
+                <div class="cart-scroll" id="cartScroll">
+
+                    <div class="pdv-party-row">
+                    <!-- Cliente da venda -->
+                    <div class="cart-customer" style="padding:10px 12px;border-bottom:1px solid var(--border-color);background:rgba(99,102,241,.035)">
+                        <label for="customerSearch" style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;display:flex;align-items:center;gap:6px">
+                            <i class="fas fa-user" style="color:var(--accent)"></i> Cliente da venda
+                        </label>
+                        <div style="position:relative">
+                            <input type="text" id="customerSearch" placeholder="Buscar cliente por nome ou telefone..."
+                                autocomplete="off"
+                                style="width:100%;padding:8px 12px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-family:var(--font-body);font-size:13px"
+                                oninput="searchCustomers(this.value)">
+                            <div id="customerDropdown" style="display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-md);z-index:100;max-height:200px;overflow-y:auto;box-shadow:var(--shadow-lg)"></div>
+                        </div>
+                        <div id="selectedCustomerBadge" style="display:flex;margin-top:6px;padding:6px 10px;background:var(--accent-muted);border-radius:var(--radius-md);align-items:center;justify-content:space-between">
+                            <span style="font-size:12px;font-weight:600;color:var(--accent)" id="selectedCustomerName">Consumidor Final</span>
+                            <button onclick="clearCustomer()" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:12px;padding:0 2px">✕</button>
+                        </div>
+                        <button id="btnNewCustomerPDV" onclick="openQuickClientModal()" style="display:none;margin-top:6px;width:100%;padding:7px;background:transparent;border:1px dashed var(--border-color);border-radius:var(--radius-md);color:var(--text-muted);font-family:var(--font-body);font-size:12px;cursor:pointer;transition:var(--transition)">
+                            <i class="fas fa-user-plus" style="margin-right:4px"></i> Cadastrar novo cliente
+                        </button>
+                    </div>
+
+
+                    <!-- Vendedor / responsável pela venda -->
+                    <div class="cart-seller" style="padding:10px 12px;border-bottom:1px solid var(--border-color);background:rgba(99,102,241,.035)">
+                        <label for="sellerSelect" style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;display:flex;align-items:center;gap:6px">
+                            <i class="fas fa-user-tie" style="color:var(--accent)"></i> Vendedor / Responsável
+                        </label>
+                        <select id="sellerSelect" onchange="selectSellerFromDropdown(this.value)"
+                            style="width:100%;padding:9px 10px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-family:var(--font-body);font-size:13px">
+                            <option value="">Carregando vendedores...</option>
+                        </select>
+                        <div id="sellerCommissionHint" style="font-size:10px;color:var(--text-muted);margin-top:5px;display:none"></div>
+                    </div>
+
+                    </div><!-- fim cliente + vendedor -->
+
+                    <!-- Tipo de venda -->
+                    <div style="padding:6px 16px;border-bottom:1px solid var(--border-color)">
+                        <label style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;display:block">Tipo de Venda</label>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+                            <button class="sale-type-btn active" data-type="balcao" onclick="setSaleType('balcao',this)"><i class="fas fa-store"></i><span>Balcão</span></button>
+                            <button class="sale-type-btn" data-type="pickup" onclick="setSaleType('pickup',this)"><i class="fas fa-bag-shopping"></i><span>Retirada</span></button>
+                            <button class="sale-type-btn" data-type="delivery" onclick="setSaleType('delivery',this)"><i class="fas fa-truck"></i><span>Entrega</span></button>
+                        </div>
+                    </div>
+
+                    <!-- Endereço de entrega -->
+                    <div id="deliveryAddressBox" style="display:none;padding:6px 16px;border-bottom:1px solid var(--border-color)">
+                        <label style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;display:block"><i class="fas fa-map-marker-alt" style="color:var(--accent)"></i> Endereço de Entrega</label>
+                        <input type="text" id="deliveryAddress" placeholder="Rua, número, bairro..." style="width:100%;padding:8px 10px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:13px;font-family:var(--font-body)">
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">
+                            <input type="text" id="deliveryRef" placeholder="Ponto de referência" style="padding:7px 10px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:12px;font-family:var(--font-body)">
+                            <input type="number" id="deliveryFeeInput" placeholder="Taxa R$" min="0" step="0.50" style="padding:7px 10px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:12px;font-family:var(--font-body)" oninput="updateDeliveryFee(this.value)">
+                        </div>
+                        <div style="margin-top:6px" id="motoboySelector">
+                            <label style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;display:block"><i class="fas fa-motorcycle" style="color:var(--accent)"></i> Motoboy</label>
+                            <select id="deliveryMotoboy" style="width:100%;padding:8px 10px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:13px;font-family:var(--font-body);cursor:pointer">
+                                <option value="">Carregando...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Itens do carrinho -->
+                    <div class="cart-items" id="cartItems">
+                        <div class="empty-state" style="padding:32px 16px">
+                            <i class="fas fa-shopping-cart" style="font-size:32px;opacity:0.2"></i>
+                            <h3 style="font-size:14px;margin-top:12px">Carrinho vazio</h3>
+                            <p style="font-size:12px">Clique em um produto</p>
+                        </div>
+                    </div>
+
+                    <!-- Observações da venda -->
+                    <div style="padding:8px 16px;border-top:1px solid var(--border-color)">
+                        <label style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;display:block"><i class="fas fa-note-sticky" style="color:var(--accent);margin-right:4px"></i>Observações da venda</label>
+                        <textarea id="saleNotes" rows="2" maxlength="500" placeholder="" style="width:100%;resize:vertical;min-height:52px;padding:8px 10px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:12px;font-family:var(--font-body)"></textarea>
+                    </div>
+
+                    <!-- Pagamento -->
+                    <div class="cart-payment"><label style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;display:block">Pagamento</label><div class="payment-methods"><button class="pay-method selected" onclick="selectPayment('dinheiro',this)"><i class="fas fa-money-bill-wave"></i>Dinheiro</button><button class="pay-method" onclick="selectPayment('pix',this)"><i class="fas fa-qrcode"></i>PIX</button><button class="pay-method" onclick="selectPayment('credito',this)"><i class="fas fa-credit-card"></i>Crédito</button><button class="pay-method" onclick="selectPayment('debito',this)"><i class="fas fa-credit-card"></i>Débito</button><button class="pay-method" onclick="selectPayment('fiado',this)"><i class="fas fa-handshake"></i>Fiado</button><button class="pay-method" onclick="selectPayment('multi',this)"><i class="fas fa-layer-group"></i>Múltiplo</button></div></div>
+
+                    <!-- Resumo de valores -->
+                    <div class="cart-summary"><div class="cs-row"><span>Subtotal</span><span class="mono" id="cartSubtotal">R$ 0,00</span></div><div class="cs-row"><span>Desconto</span><span class="mono text-success" id="cartDiscount">- R$ 0,00</span></div><div class="cs-row total"><span>Total</span><span id="cartTotal">R$ 0,00</span></div></div>
+
+                </div><!-- fim cart-scroll -->
+
+                <!-- FOOTER fixo — botões sempre visíveis -->
+                <div class="cart-actions"><button class="btn btn-secondary" onclick="clearCart()"><i class="fas fa-trash"></i> Limpar</button><button class="btn btn-outline" onclick="applyDiscount()" style="flex:1"><i class="fas fa-tag"></i> Desconto</button><button class="btn btn-primary" onclick="finalizeSale()" id="btnFinalize" style="flex:2"><i class="fas fa-check-circle"></i> Finalizar</button></div>
+                <div class="pdv-shortcuts"><span><kbd>F2</kbd> Buscar</span><span><kbd>F4</kbd> Desconto</span><span><kbd>F9</kbd> Finalizar</span><span><kbd>F12</kbd> Limpar</span></div>
+            </div>
+        </div>
+        <button class="pdv-mobile-toggle" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i><span class="toggle-badge" id="cartBadge" style="display:none">0</span></button>
+
+    <!-- Modal Cadastro Rápido de Cliente (PDV) -->
+    <div class="modal-overlay" id="modalQuickClient">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-plus" style="color:var(--accent);margin-right:8px"></i>Novo Cliente</h3>
+                <button class="modal-close" onclick="closeModal('modalQuickClient')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nome completo / Razão Social *</label>
+                    <input type="text" id="qcNome" placeholder="Nome do cliente">
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                    <div class="form-group">
+                        <label>Telefone *</label>
+                        <input type="text" id="qcTelefone" placeholder="(00) 00000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp</label>
+                        <input type="text" id="qcWhatsApp" placeholder="(00) 00000-0000">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>CPF / CNPJ</label>
+                    <input type="text" id="qcDoc" placeholder="000.000.000-00">
+                </div>
+                <div class="form-group">
+                    <label>Endereço completo</label>
+                    <input type="text" id="qcEndereco" placeholder="Rua, número, bairro, cidade">
+                </div>
+                <div class="form-group">
+                    <label>Ponto de referência</label>
+                    <input type="text" id="qcReferencia" placeholder="Referência para entrega">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modalQuickClient')">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveQuickClient()"><i class="fas fa-check"></i> Salvar e Selecionar</button>
+            </div>
+        </div>
+    </div>
+    </div><!-- fim pdv-wrapper -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="config/firebase-config.js"></script>
+    <script src="services/core-services.js?v=39.14.5"></script>
+    <script src="assets/js/mobile-fix.js"></script>
+    <script src="assets/js/app.js?v=40.59"></script><script src="assets/js/comissao-itens-v1.js?v=37.9"></script>
+    <script src="assets/js/pages.js?v=40.74"></script>
+    <script src="assets/js/fiscal-v1.js?v=37.9"></script>
+    <script src="assets/js/nfce-service.js?v=41.1-dp"></script>
+    <script>
+        // ─── PDV STATE ────────────────────────────────────
+        let cart = [];
+        let products = [];
+        let customers = [];
+        let categories = [];
+        let selectedPayment = 'dinheiro';
+        let selectedCardBrand = ''; // bandeira selecionada (visa/mastercard/elo/amex/hipercard/outras/'')
+
+        // ─── PAGAMENTO MÚLTIPLO / DIVIDIDO ─────────────────
+        let multiPayments = [];
+        let multiPaymentSeq = 1;
+        let multiPaymentConfirmed = false;
+
+        function splitMethodLabel(method) {
+            return {dinheiro:'Dinheiro',pix:'PIX',credito:'Crédito',debito:'Débito',fiado:'Fiado / A receber'}[method] || method;
+        }
+
+        function getCurrentSaleTotal() {
+            const subtotal = cart.reduce((sum, item) => sum + Number(item.total || 0), 0);
+            const base = Math.max(0, subtotal - Number(discount || 0) + Number(deliveryFee || 0));
+            // 35.32 · taxa do cartão repassada ao cliente (Configurações › Taxas)
+            return base + (window.dpCardSurcharge ? window.dpCardSurcharge(base) : 0);
+        }
+
+        function getActiveSplitMethods() {
+            const active = Array.isArray(paymentFees.formasPagamentoAtivas) && paymentFees.formasPagamentoAtivas.length
+                ? paymentFees.formasPagamentoAtivas.filter(m => ['dinheiro','pix','credito','debito','fiado'].includes(m))
+                : ['dinheiro','pix','debito','credito','fiado'];
+            return active.length ? active : ['dinheiro','pix'];
+        }
+
+        function defaultSplitDueDate() {
+            const d = new Date(); d.setDate(d.getDate() + 30); return d.toISOString().slice(0,10);
+        }
+
+        function calcPaymentFeeFor(method, amount, brand='') {
+            let pct = 0;
+            if (method === 'pix') pct = parseFloat(paymentFees.taxaPix) || 0;
+            if (method === 'debito') pct = parseFloat(paymentFees.taxaDebito) || 0;
+            if (method === 'credito') {
+                const b = brand || 'outras';
+                const key = 'taxaCredito' + b.charAt(0).toUpperCase() + b.slice(1);
+                pct = parseFloat(paymentFees[key]) || 0;
+            }
+            const value = Number(amount || 0) * pct / 100;
+            return { pct, value };
+        }
+
+        function initMultiPayments(total) {
+            const methods = getActiveSplitMethods();
+            const m1 = methods.includes('pix') ? 'pix' : methods[0];
+            const m2 = methods.includes('dinheiro') && m1 !== 'dinheiro' ? 'dinheiro' : (methods.find(m => m !== m1) || methods[0]);
+            const first = Math.round((Number(total || 0) / 2) * 100) / 100;
+            const second = Math.round((Number(total || 0) - first) * 100) / 100;
+            multiPayments = [
+                {id:multiPaymentSeq++,method:m1,amount:first,cardBrand:'visa',installments:1,cashReceived:m1==='dinheiro'?first:0,dueDate:m1==='fiado'?defaultSplitDueDate():''},
+                {id:multiPaymentSeq++,method:m2,amount:second,cardBrand:'visa',installments:1,cashReceived:m2==='dinheiro'?second:0,dueDate:m2==='fiado'?defaultSplitDueDate():''}
+            ];
+        }
+
+        function openMultiPaymentModal() {
+            const total = getCurrentSaleTotal();
+            if (total <= 0) { Toast.warning('Adicione produtos antes de dividir o pagamento'); return; }
+            const sum = multiPayments.reduce((s,p)=>s+Number(p.amount||0),0);
+            if (!multiPayments.length || Math.abs(sum-total) > 0.01) { initMultiPayments(total); multiPaymentConfirmed = false; }
+            document.getElementById('multiPaymentOverlay')?.remove();
+            const overlay = document.createElement('div');
+            overlay.id = 'multiPaymentOverlay'; overlay.className = 'modal-overlay active';
+            overlay.innerHTML = `
+                <div class="modal" style="max-width:760px;width:min(94vw,760px)">
+                    <div class="modal-header">
+                        <div><h3><i class="fas fa-layer-group" style="color:var(--accent);margin-right:8px"></i>Pagamento dividido</h3><p style="font-size:12px;color:var(--text-muted);margin-top:3px">Combine PIX, dinheiro, cartões e fiado na mesma venda.</p></div>
+                        <button class="modal-close" onclick="document.getElementById('multiPaymentOverlay')?.remove()"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body" style="max-height:70vh;overflow:auto">
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;background:var(--bg-surface);border:1px solid var(--border-color);border-radius:10px;margin-bottom:12px">
+                            <div><small style="color:var(--text-muted)">Total da venda</small><div style="font-size:24px;font-weight:800;color:var(--success)">${Utils.currency(total)}</div></div>
+                            <button class="btn btn-outline btn-sm" onclick="splitPaymentsEqually()"><i class="fas fa-scale-balanced"></i> Dividir igualmente</button>
+                        </div>
+                        <div id="multiPaymentRows"></div>
+                        <button class="btn btn-outline" style="width:100%;margin-top:8px" onclick="addMultiPaymentRow()"><i class="fas fa-plus"></i> Adicionar outra forma</button>
+                        <div id="multiPaymentSummary" style="margin-top:12px"></div>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-secondary" onclick="document.getElementById('multiPaymentOverlay')?.remove()">Cancelar</button><button class="btn btn-primary" onclick="confirmMultiPayment()"><i class="fas fa-check"></i> Usar pagamento dividido</button></div>
+                </div>`;
+            document.body.appendChild(overlay);
+            renderMultiPaymentRows();
+        }
+
+        function renderMultiPaymentRows() {
+            const host = document.getElementById('multiPaymentRows'); if (!host) return;
+            const methods = getActiveSplitMethods();
+            host.innerHTML = multiPayments.map((p,idx) => {
+                const options = methods.map(m=>`<option value="${m}" ${p.method===m?'selected':''}>${splitMethodLabel(m)}</option>`).join('');
+                let extra='';
+                if (p.method==='credito' || p.method==='debito') {
+                    const brands = CARD_BRANDS.map(b=>`<option value="${b.id}" ${p.cardBrand===b.id?'selected':''}>${b.name}</option>`).join('');
+                    const inst = p.method==='credito' ? `<div><label style="font-size:11px;color:var(--text-muted)">Parcelas</label><select class="form-input" onchange="setMultiPaymentField(${p.id},'installments',this.value)">${Array.from({length:12},(_,i)=>`<option value="${i+1}" ${Number(p.installments||1)===i+1?'selected':''}>${i+1}x</option>`).join('')}</select></div>` : '';
+                    extra = `<div style="display:grid;grid-template-columns:1fr ${p.method==='credito'?'1fr':''};gap:8px;margin-top:8px"><div><label style="font-size:11px;color:var(--text-muted)">Bandeira</label><select class="form-input" onchange="setMultiPaymentField(${p.id},'cardBrand',this.value)">${brands}</select></div>${inst}</div>`;
+                } else if (p.method==='dinheiro') {
+                    extra = `<div style="margin-top:8px"><label style="font-size:11px;color:var(--text-muted)">Valor entregue em dinheiro</label><input class="form-input" type="number" min="0" step="0.01" value="${Number(p.cashReceived||p.amount||0).toFixed(2)}" oninput="setMultiPaymentField(${p.id},'cashReceived',this.value)"><small style="display:block;margin-top:4px;color:var(--text-muted)">Troco desta parte: <b id="multiChange-${p.id}" style="color:var(--success)">${Utils.currency(Math.max(0,Number(p.cashReceived||p.amount||0)-Number(p.amount||0)))}</b></small></div>`;
+                } else if (p.method==='fiado') {
+                    extra = `<div style="margin-top:8px"><label style="font-size:11px;color:var(--text-muted)">Vencimento</label><input class="form-input" type="date" value="${p.dueDate||defaultSplitDueDate()}" onchange="setMultiPaymentField(${p.id},'dueDate',this.value)"><small style="display:block;margin-top:4px;color:var(--text-muted)">Esta parte será lançada em Contas a Receber.</small></div>`;
+                }
+                return `<div style="padding:12px;border:1px solid var(--border-color);border-radius:10px;background:var(--bg-surface);margin-bottom:8px">
+                    <div style="display:grid;grid-template-columns:minmax(150px,1.2fr) minmax(120px,1fr) auto;gap:8px;align-items:end">
+                        <div><label style="font-size:11px;color:var(--text-muted)">Forma ${idx+1}</label><select class="form-input" onchange="changeMultiPaymentMethod(${p.id},this.value)">${options}</select></div>
+                        <div><label style="font-size:11px;color:var(--text-muted)">Valor</label><input class="form-input" type="number" min="0.01" step="0.01" value="${Number(p.amount||0).toFixed(2)}" oninput="setMultiPaymentField(${p.id},'amount',this.value)"></div>
+                        <button class="btn-icon btn-danger" title="Remover" onclick="removeMultiPaymentRow(${p.id})" ${multiPayments.length<=2?'disabled style="opacity:.35;cursor:not-allowed"':''}><i class="fas fa-trash"></i></button>
+                    </div>${extra}</div>`;
+            }).join('');
+            updateMultiPaymentSummary();
+        }
+
+        function setMultiPaymentField(id, field, value) {
+            const p = multiPayments.find(x=>x.id===id); if (!p) return;
+            if (['amount','cashReceived','installments'].includes(field)) value = Number(value||0);
+            p[field] = value;
+            if (field==='amount' && p.method==='dinheiro' && Number(p.cashReceived||0) < Number(p.amount||0)) p.cashReceived = Number(p.amount||0);
+            const ch = document.getElementById('multiChange-'+id); if (ch) ch.textContent = Utils.currency(Math.max(0,Number(p.cashReceived||0)-Number(p.amount||0)));
+            updateMultiPaymentSummary();
+        }
+
+        function changeMultiPaymentMethod(id, method) {
+            const p = multiPayments.find(x=>x.id===id); if (!p) return;
+            p.method = method; p.cardBrand='visa'; p.installments=1;
+            p.cashReceived = method==='dinheiro' ? Number(p.amount||0) : 0;
+            p.dueDate = method==='fiado' ? defaultSplitDueDate() : '';
+            renderMultiPaymentRows();
+        }
+
+        function addMultiPaymentRow() {
+            const total=getCurrentSaleTotal(); const used=multiPayments.reduce((s,p)=>s+Number(p.amount||0),0); const remaining=Math.max(0,Math.round((total-used)*100)/100);
+            const methods=getActiveSplitMethods(); const usedMethods=new Set(multiPayments.map(p=>p.method)); const method=methods.find(m=>!usedMethods.has(m))||methods[0]||'pix';
+            multiPayments.push({id:multiPaymentSeq++,method,amount:remaining,cardBrand:'visa',installments:1,cashReceived:method==='dinheiro'?remaining:0,dueDate:method==='fiado'?defaultSplitDueDate():''});
+            renderMultiPaymentRows();
+        }
+
+        function removeMultiPaymentRow(id) { if (multiPayments.length<=2) return; multiPayments=multiPayments.filter(p=>p.id!==id); renderMultiPaymentRows(); }
+
+        function splitPaymentsEqually() {
+            if (!multiPayments.length) return; const total=getCurrentSaleTotal(); const base=Math.floor((total/multiPayments.length)*100)/100; let used=0;
+            multiPayments.forEach((p,i)=>{p.amount=i===multiPayments.length-1?Math.round((total-used)*100)/100:base;used+=p.amount;if(p.method==='dinheiro')p.cashReceived=p.amount;}); renderMultiPaymentRows();
+        }
+
+        function updateMultiPaymentSummary() {
+            const el=document.getElementById('multiPaymentSummary'); if(!el)return; const total=getCurrentSaleTotal(); const distributed=multiPayments.reduce((s,p)=>s+Number(p.amount||0),0); const diff=Math.round((total-distributed)*100)/100;
+            const ok=Math.abs(diff)<=0.01; const msg=ok?'Pagamento fechado corretamente':(diff>0?`Falta distribuir ${Utils.currency(diff)}`:`Excedeu ${Utils.currency(Math.abs(diff))}`);
+            el.innerHTML=`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><div style="padding:10px;background:var(--bg-surface);border-radius:8px"><small style="color:var(--text-muted)">Total</small><strong style="display:block">${Utils.currency(total)}</strong></div><div style="padding:10px;background:var(--bg-surface);border-radius:8px"><small style="color:var(--text-muted)">Distribuído</small><strong style="display:block">${Utils.currency(distributed)}</strong></div><div style="padding:10px;background:${ok?'rgba(16,185,129,.10)':'rgba(245,158,11,.10)'};border-radius:8px"><small style="color:var(--text-muted)">Conferência</small><strong style="display:block;color:${ok?'var(--success)':'var(--warning)'}">${msg}</strong></div></div>`;
+        }
+
+        function normalizeMultiPayments(total, showError=true) {
+            const rows=multiPayments.filter(p=>Number(p.amount||0)>0).map(p=>({...p,amount:Math.round(Number(p.amount||0)*100)/100,installments:Math.max(1,Number(p.installments||1)),cashReceived:Number(p.cashReceived||0)}));
+            if(rows.length<2){if(showError)Toast.warning('Use pelo menos duas formas de pagamento');return null;}
+            const sum=Math.round(rows.reduce((s,p)=>s+p.amount,0)*100)/100;
+            if(Math.abs(sum-total)>0.01){if(showError)Toast.warning(`A divisão precisa fechar em ${Utils.currency(total)}. Atualmente está em ${Utils.currency(sum)}.`);return null;}
+            for(const p of rows){if(p.method==='dinheiro'){if(!p.cashReceived)p.cashReceived=p.amount;if(p.cashReceived+0.001<p.amount){if(showError)Toast.warning('O valor entregue em dinheiro não pode ser menor que a parte paga em dinheiro');return null;}}if(p.method==='fiado'&&!p.dueDate)p.dueDate=defaultSplitDueDate();const fee=calcPaymentFeeFor(p.method,p.amount,p.cardBrand);p.feePercent=fee.pct;p.feeValue=fee.value;p.netAmount=p.amount-fee.value;p.changeValue=p.method==='dinheiro'?Math.max(0,p.cashReceived-p.amount):0;}
+            return rows;
+        }
+
+        function confirmMultiPayment() {
+            const total=getCurrentSaleTotal(); const rows=normalizeMultiPayments(total,true); if(!rows)return; multiPayments=rows; multiPaymentConfirmed=true; document.getElementById('multiPaymentOverlay')?.remove(); updateBrandIndicator(); Toast.success('Pagamento dividido configurado');
+        }
+
+        function buildSalePayments(total) {
+            if(selectedPayment==='multi') return multiPaymentConfirmed ? normalizeMultiPayments(total,false) : null;
+            const fee=calcPaymentFeeFor(selectedPayment,total,selectedCardBrand);
+            return [{method:selectedPayment,amount:total,cardBrand:['credito','debito'].includes(selectedPayment)?(selectedCardBrand||''):'',installments:1,feePercent:fee.pct,feeValue:fee.value,netAmount:total-fee.value,cashReceived:selectedPayment==='dinheiro'?total:0,changeValue:0,dueDate:selectedPayment==='fiado'?defaultSplitDueDate():''}];
+        }
+
+        function showCashFinalizeModal(total, summaryHtml, onConfirm) {
+            document.getElementById('cashFinalizeOverlay')?.remove();
+
+            const overlay = document.createElement('div');
+            overlay.id = 'cashFinalizeOverlay';
+            overlay.className = 'modal-overlay active';
+            overlay.innerHTML = `
+                <div class="modal" style="max-width:460px;width:min(94vw,460px)">
+                    <div class="modal-header">
+                        <h3>Finalizar Venda</h3>
+                        <button class="modal-close" type="button" aria-label="Fechar">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ${summaryHtml}
+                        <div style="margin-top:18px;padding:14px;background:var(--bg-surface);border:1px solid var(--border-color);border-radius:10px;text-align:left">
+                            <label for="cashReceivedFinalize" style="display:block;font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:6px">
+                                Valor recebido em dinheiro
+                            </label>
+                            <div style="position:relative">
+                                <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-weight:700;color:var(--text-muted)">R$</span>
+                                <input id="cashReceivedFinalize" class="form-input" type="number" min="0" step="0.01" inputmode="decimal"
+                                    value="${Number(total).toFixed(2)}"
+                                    style="font-size:22px;font-weight:800;padding-left:42px;height:52px">
+                            </div>
+                            <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--border-color)">
+                                <span style="font-size:13px;color:var(--text-muted)">Troco</span>
+                                <strong id="cashChangeFinalize" style="font-size:22px;color:var(--success)">${Utils.currency(0)}</strong>
+                            </div>
+                            <div id="cashReceivedHint" style="font-size:11px;color:var(--text-muted);margin-top:6px">
+                                Informe quanto o cliente entregou.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" id="cashFinalizeCancel">Cancelar</button>
+                        <button class="btn btn-primary" id="cashFinalizeOk">
+                            <i class="fas fa-check"></i> Confirmar
+                        </button>
+                    </div>
+                </div>`;
+
+            document.body.appendChild(overlay);
+
+            const input = overlay.querySelector('#cashReceivedFinalize');
+            const changeEl = overlay.querySelector('#cashChangeFinalize');
+            const hintEl = overlay.querySelector('#cashReceivedHint');
+            const okBtn = overlay.querySelector('#cashFinalizeOk');
+
+            const readReceived = () => {
+                const value = Number(String(input.value || '').replace(',', '.'));
+                return Number.isFinite(value) ? Math.max(0, value) : 0;
+            };
+
+            const updateChange = () => {
+                const received = readReceived();
+                const diff = Math.round((received - total) * 100) / 100;
+                const enough = diff >= -0.001;
+
+                changeEl.textContent = Utils.currency(Math.max(0, diff));
+                changeEl.style.color = enough ? 'var(--success)' : 'var(--danger)';
+                hintEl.textContent = enough
+                    ? (diff > 0 ? `Devolver ${Utils.currency(diff)} ao cliente.` : 'Valor exato, sem troco.')
+                    : `Faltam ${Utils.currency(Math.abs(diff))}.`;
+                hintEl.style.color = enough ? 'var(--text-muted)' : 'var(--danger)';
+                okBtn.disabled = !enough;
+                okBtn.style.opacity = enough ? '1' : '.55';
+            };
+
+            const close = () => overlay.remove();
+
+            overlay.querySelector('.modal-close').onclick = close;
+            overlay.querySelector('#cashFinalizeCancel').onclick = close;
+            input.addEventListener('input', updateChange);
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' && !okBtn.disabled) okBtn.click();
+            });
+
+            okBtn.onclick = async () => {
+                const received = Math.round(readReceived() * 100) / 100;
+                if (received + 0.001 < total) {
+                    Toast.warning('O valor recebido não pode ser menor que o total da venda');
+                    input.focus();
+                    return;
+                }
+                const change = Math.max(0, Math.round((received - total) * 100) / 100);
+                okBtn.disabled = true;
+                okBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+                close();
+                await onConfirm(received, change);
+            };
+
+            updateChange();
+            setTimeout(() => { input.focus(); input.select(); }, 80);
+        }
+
+
+
+        let paymentFees = {};       // taxas carregadas das configurações
+        let discount = 0;
+        let deliveryFee = 0;
+        let currentFilter = 'all';
+        let activeCashRegister = null;
+        let saleType = 'balcao'; // 'balcao' | 'pickup' | 'delivery'
+
+        // ─── BANDEIRAS ────────────────────────────────────
+        const CARD_BRANDS = [
+            { id:'visa',       name:'Visa' },
+            { id:'mastercard', name:'Mastercard' },
+            { id:'elo',        name:'Elo' },
+            { id:'amex',       name:'American Express' },
+            { id:'hipercard',  name:'Hipercard' },
+            { id:'outras',     name:'Outras' }
+        ];
+        const BRAND_LABEL = { visa:'Visa', mastercard:'Mastercard', elo:'Elo', amex:'Amex', hipercard:'Hipercard', outras:'Outras' };
+
+        // Carrega taxas das configurações + formas de pagamento ativas
+        async function loadPaymentFees() {
+            try {
+                const doc = await db.collection('settings').doc('general').get();
+                if (doc.exists) paymentFees = doc.data() || {};
+                // 39.2 · Configurações › Vendas › "Permitir venda sem estoque": libera o cartão, o carrinho e a baixa (estoque fica negativo)
+                window.DP_VENDA_SEM_ESTOQUE = paymentFees.vendaSemEstoque === true;
+                if (window.DP_VENDA_SEM_ESTOQUE && typeof renderProducts === 'function' && Array.isArray(products) && products.length) renderProducts();
+                applyActivePaymentMethods();
+            } catch(e) { console.warn('Não foi possível carregar taxas:', e.message); }
+        }
+
+        // Mostra apenas as formas de pagamento ativadas em Configurações
+        function applyActivePaymentMethods() {
+            const ativas = Array.isArray(paymentFees.formasPagamentoAtivas)
+                ? paymentFees.formasPagamentoAtivas
+                : ['dinheiro','pix','debito','credito','fiado']; // todas por padrão
+            // "multi" sempre disponível (combinação de múltiplas)
+            document.querySelectorAll('.pay-method').forEach(btn => {
+                const onclick = btn.getAttribute('onclick') || '';
+                const m = onclick.match(/selectPayment\('([^']+)'/);
+                const method = m ? m[1] : null;
+                if (!method || method === 'multi') return;
+                btn.style.display = ativas.includes(method) ? '' : 'none';
+            });
+            // Se a forma atualmente selecionada foi desativada, volta para a primeira ativa
+            if (selectedPayment !== 'multi' && !ativas.includes(selectedPayment)) {
+                const firstActiveBtn = document.querySelector(`.pay-method[onclick*="'${ativas[0]}'"]`);
+                if (firstActiveBtn) {
+                    selectedPayment = ativas[0];
+                    selectedCardBrand = '';
+                    document.querySelectorAll('.pay-method').forEach(b => b.classList.remove('selected'));
+                    firstActiveBtn.classList.add('selected');
+                    updateBrandIndicator();
+                }
+            }
+        }
+
+        loadPaymentFees();
+
+        // ─── TIPO DE VENDA ────────────────────────────────
+        function setSaleType(type, btn) {
+            saleType = type;
+            document.querySelectorAll('.sale-type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const box = document.getElementById('deliveryAddressBox');
+            box.style.display = type === 'delivery' ? 'block' : 'none';
+
+            if (type !== 'delivery') {
+                deliveryFee = 0;
+                document.getElementById('deliveryFeeInput').value = '';
+                updateCartSummary();
+            } else {
+                // 37.9 · Taxa de entrega padrão (Configurações › Vendas) já vem preenchida; dá para mudar
+                const feeInp = document.getElementById('deliveryFeeInput');
+                const feePadrao = parseFloat(String(paymentFees.taxaEntrega ?? '').replace(',', '.')) || 0;
+                if (feeInp && !String(feeInp.value).trim() && feePadrao > 0) { feeInp.value = feePadrao.toFixed(2); updateDeliveryFee(feeInp.value); }
+                // Ao mudar para delivery, preenche endereço do cliente se já estiver selecionado
+                if (selectedCustomerId) {
+                    fillAddressFromCustomer(selectedCustomerId);
+                }
+            }
+        }
+
+        // Preenche endereço do cliente nos campos de delivery
+        function fillAddressFromCustomer(id) {
+            const c = allPdvCustomers.find(x => x.id === id);
+            if (!c) return;
+            const addrField = document.getElementById('deliveryAddress');
+            const refField  = document.getElementById('deliveryRef');
+
+            // Tenta o campo 'address' completo primeiro (salvo pelo saveClient novo)
+            // Depois monta a partir dos campos individuais
+            let fullAddr = c.address || '';
+
+            if (!fullAddr) {
+                const parts = [
+                    c.street || c.rua || '',
+                    c.number || c.numero || '',
+                    c.complement || c.complemento || '',
+                    c.neighborhood || c.bairro || '',
+                    c.city || c.cidade || '',
+                    c.state || c.uf || ''
+                ].filter(Boolean);
+                fullAddr = parts.join(', ');
+            } else {
+                // Complementa com bairro e cidade se não estiverem no address
+                const extra = [c.city || c.cidade || '', c.state || c.uf || ''].filter(Boolean).join('-');
+                if (extra && !fullAddr.includes(c.city||'') && !fullAddr.includes(c.cidade||'')) {
+                    fullAddr += (fullAddr ? ', ' : '') + extra;
+                }
+            }
+
+            if (fullAddr.trim() && addrField) {
+                addrField.value = fullAddr;
+                addrField.style.borderColor = 'var(--success)';
+                setTimeout(() => { addrField.style.borderColor = ''; }, 2500);
+            }
+
+            const ref = c.addressRef || c.referencia || c.reference || c.clientReferencia || '';
+            if (ref && refField) refField.value = ref;
+        }
+
+        function updateDeliveryFee(val) {
+            deliveryFee = parseFloat(val) || 0;
+            updateCartSummary();
+        }
+
+        function updateCartSummary() {
+            const subtotal = cart.reduce((s, i) => s + i.total, 0);
+            const total = (subtotal - discount + deliveryFee) + (window.dpCardSurcharge ? window.dpCardSurcharge(subtotal - discount + deliveryFee) : 0); // 35.32 · taxa repassada ao cliente
+            document.getElementById('cartSubtotal').textContent = Utils.currency(subtotal);
+            document.getElementById('cartDiscount').textContent = '- ' + Utils.currency(discount);
+            document.getElementById('cartTotal').textContent = Utils.currency(total);
+            // Mostra linha de taxa de entrega dinamicamente
+            let feeRow = document.getElementById('cartFeeRow');
+            if (deliveryFee > 0) {
+                if (!feeRow) {
+                    feeRow = document.createElement('div');
+                    feeRow.id = 'cartFeeRow';
+                    feeRow.className = 'cs-row';
+                    feeRow.innerHTML = '<span>Taxa de entrega</span><span class="mono" id="cartFee"></span>';
+                    document.getElementById('cartDiscount').closest('.cs-row').after(feeRow);
+                }
+                document.getElementById('cartFee').textContent = Utils.currency(deliveryFee);
+            } else if (feeRow) {
+                feeRow.remove();
+            }
+        }
+
+        // ─── CLIENTE SELECIONADO ──────────────────────────
+        let selectedCustomerId = null;
+        let selectedCustomerNameVal = 'Consumidor Final';
+        let allPdvCustomers = [];
+        let searchDebounce = null;
+
+        // Carrega clientes do Firebase
+        async function loadPdvCustomers() {
+            try {
+                // Todos os clientes que não foram excluídos nem inativados
+                // (inadimplentes, VIP e clientes antigos sem situação também aparecem).
+                const snap = await db.collection('customers').get();
+                allPdvCustomers = snap.docs.map(d => ({id:d.id,...d.data()}))
+                    .filter(c => !c.deleted && c.status !== 'inactive')
+                    .map(c => ({ ...c, name: c.name || c.nome || c.razaoSocial || 'Cliente sem nome' }))
+                    .sort((a, b) => String(a.name).localeCompare(String(b.name)));
+                window.__pdvCustomersAt = Date.now();
+            } catch(e) { console.warn('Clientes não carregados:', e.message); }
+        }
+
+
+        // ─── VENDEDOR / RESPONSÁVEL PELA VENDA ──────────
+        let selectedSellerId = null;
+        let selectedSellerNameVal = '';
+        let allPdvSellers = [];
+
+        function pdvSellerDisplayName(u) {
+            return String(u?.name || u?.nome || u?.displayName || u?.email || 'Vendedor').trim();
+        }
+
+        function pdvSellerId(u) {
+            return String(u?.uid || u?.id || '').trim();
+        }
+
+        async function loadPdvSellers() {
+            const select = document.getElementById('sellerSelect');
+            if (!select) return;
+            try {
+                const snap = await db.collection('users').get();
+                allPdvSellers = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+                    .filter(u => !u.deleted && (u.status || 'active') === 'active')
+                    .filter(u => ['seller','admin','manager','cashier'].includes(String(u.role || '').toLowerCase()));
+            } catch (e) {
+                console.warn('Vendedores não carregados:', e?.message || e);
+                allPdvSellers = [];
+            }
+
+            const currentId = String(currentUser?.uid || auth.currentUser?.uid || '');
+            const currentName = String(currentUser?.name || auth.currentUser?.displayName || auth.currentUser?.email || 'Operador');
+
+            // Garante que o operador atual continue disponível mesmo se o cadastro dele
+            // ainda não possuir um dos perfis comerciais acima.
+            if (currentId && !allPdvSellers.some(u => pdvSellerId(u) === currentId || String(u.id) === currentId)) {
+                allPdvSellers.unshift({ id: currentId, uid: currentId, name: currentName, role: currentUser?.role || 'operator', status: 'active' });
+            }
+
+            allPdvSellers.sort((a,b) => pdvSellerDisplayName(a).localeCompare(pdvSellerDisplayName(b), 'pt-BR'));
+            select.innerHTML = allPdvSellers.length
+                ? allPdvSellers.map(u => {
+                    const id = pdvSellerId(u) || String(u.id || '');
+                    const roleLabels = { seller:'Vendedor', admin:'Administrador', manager:'Gerente', cashier:'Caixa' };
+                    const role = roleLabels[String(u.role || '').toLowerCase()] || 'Operador';
+                    return `<option value="${id}">${pdvSellerDisplayName(u)} · ${role}</option>`;
+                }).join('')
+                : '<option value="">Operador atual</option>';
+
+            const currentMatch = allPdvSellers.find(u => pdvSellerId(u) === currentId || String(u.id || '') === currentId);
+            const initial = currentMatch || allPdvSellers[0] || null;
+            if (initial) {
+                const id = pdvSellerId(initial) || String(initial.id || '');
+                select.value = id;
+                selectSellerFromDropdown(id);
+            } else {
+                selectedSellerId = currentId;
+                selectedSellerNameVal = currentName;
+            }
+        }
+
+        function selectSellerFromDropdown(id) {
+            const seller = allPdvSellers.find(u => pdvSellerId(u) === String(id) || String(u.id || '') === String(id));
+            if (seller) {
+                selectedSellerId = pdvSellerId(seller) || String(seller.id || '');
+                selectedSellerNameVal = pdvSellerDisplayName(seller);
+                const hint = document.getElementById('sellerCommissionHint');
+                if (hint) {
+                    const type = String(seller.commissionType || 'none');
+                    const value = Number(seller.commissionValue || 0);
+                    if (type === 'percent' && value > 0) {
+                        hint.textContent = `Comissão configurada: ${value.toLocaleString('pt-BR')}% sobre a venda`;
+                        hint.style.display = 'block';
+                    } else if (type === 'fixed' && value > 0) {
+                        hint.textContent = `Comissão configurada: ${Utils.currency(value)} por venda`;
+                        hint.style.display = 'block';
+                    } else {
+                        hint.textContent = '';
+                        hint.style.display = 'none';
+                    }
+                }
+            } else {
+                selectedSellerId = String(currentUser?.uid || auth.currentUser?.uid || '');
+                selectedSellerNameVal = String(currentUser?.name || auth.currentUser?.displayName || 'Operador');
+                const hint = document.getElementById('sellerCommissionHint');
+                if (hint) hint.style.display = 'none';
+            }
+        }
+
+        // ─── MOTOBOYS ─────────────────────────────────────
+        let allMotoboys = [];
+
+        async function loadMotoboys() {
+            try {
+                const snap = await db.collection('motoboys').get();
+                allMotoboys = snap.docs
+                    .map(d => ({id: d.id, ...d.data()}))
+                    .filter(m => !m.deleted && m.status !== 'inactive');
+                renderMotoboySelector();
+            } catch(e) { console.warn('Motoboys não carregados:', e.message); }
+        }
+
+        function renderMotoboySelector() {
+            const sel = document.getElementById('deliveryMotoboy');
+            if (!sel) return;
+
+            if (allMotoboys.length === 0) {
+                sel.innerHTML = '<option value="">Nenhum motoboy cadastrado</option>';
+                return;
+            }
+
+            const options = allMotoboys.map(m =>
+                `<option value="${m.id}" data-name="${m.name||m.nome||''}">${m.name||m.nome||'Motoboy'} ${m.phone||m.telefone?'· '+(m.phone||m.telefone):''}</option>`
+            ).join('');
+
+            // Se só tem 1, seleciona automaticamente e oculta o select
+            if (allMotoboys.length === 1) {
+                sel.innerHTML = options;
+                sel.value = allMotoboys[0].id;
+                // Mostra como badge em vez de select
+                sel.style.display = 'none';
+                let badge = document.getElementById('motoboyAutobadge');
+                if (!badge) {
+                    badge = document.createElement('div');
+                    badge.id = 'motoboyAutobadge';
+                    badge.style.cssText = 'padding:7px 10px;background:var(--accent-muted);border:1px solid var(--accent);border-radius:var(--radius-md);font-size:12px;font-weight:600;color:var(--accent)';
+                    sel.parentNode.insertBefore(badge, sel.nextSibling);
+                }
+                badge.innerHTML = `<i class="fas fa-motorcycle" style="margin-right:5px"></i>${allMotoboys[0].name||allMotoboys[0].nome} <span style="font-size:10px;color:var(--text-muted);font-weight:400">(automático)</span>`;
+            } else {
+                sel.style.display = 'block';
+                const badge = document.getElementById('motoboyAutobadge');
+                if (badge) badge.remove();
+                sel.innerHTML = '<option value="">— Selecionar motoboy —</option>' + options;
+            }
+        }
+
+        function searchCustomers(query) {
+            clearTimeout(searchDebounce);
+            const dropdown = document.getElementById('customerDropdown');
+            const btnNew = document.getElementById('btnNewCustomerPDV');
+
+            if (!query.trim()) {
+                dropdown.style.display = 'none';
+                btnNew.style.display = 'none';
+                return;
+            }
+
+            searchDebounce = setTimeout(async () => {
+                // Recarrega a lista se ela tiver mais de 20 s (clientes cadastrados em outra aba).
+                if (!window.__pdvCustomersAt || Date.now() - window.__pdvCustomersAt > 20000) await loadPdvCustomers();
+                const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+                const q = norm(query.trim()), qd = query.replace(/\D/g, ''), ext = window.DPItens ? DPItens.findCustomers(query) : null; // 38.2 · acha pelo nome do pet ou pela placa
+                const results = allPdvCustomers.filter(c =>
+                    norm(c.name).includes(q) ||
+                    (qd.length >= 3 && !/[a-z]{2}/i.test(query) && [c.phone, c.whatsapp, c.document].some(v => String(v || '').replace(/\D/g, '').includes(qd))) || !!(ext && ext.has(c.id))
+                ).slice(0, 8);
+
+                if (results.length === 0) {
+                    dropdown.style.display = 'block';
+                    dropdown.innerHTML = `<div style="padding:12px 14px;font-size:12px;color:var(--text-muted);text-align:center">
+                        <i class="fas fa-search" style="margin-right:6px"></i>Nenhum cliente encontrado
+                    </div>`;
+                    btnNew.style.display = 'block';
+                } else {
+                    dropdown.style.display = 'block';
+                    dropdown.innerHTML = results.map(c => `
+                        <div onclick="selectCustomerById('${c.id}')"
+                            style="padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--border-color);transition:background .15s"
+                            onmouseover="this.style.background='var(--bg-surface)'" onmouseout="this.style.background=''">
+                            <div style="font-size:13px;font-weight:600;color:var(--text-primary)">${c.name}</div>
+                            <div style="font-size:11px;color:var(--text-muted)">${c.phone||''} ${c.address?'· '+c.city:''}${c.document?' · '+c.document:''}${ext && ext.has(c.id) ? ' · <b style="color:var(--accent)">' + ext.get(c.id) + '</b>' : ''}</div>
+                        </div>
+                    `).join('') + `<div onclick="openQuickClientModal()" style="padding:10px 14px;cursor:pointer;font-size:12px;color:var(--accent);font-weight:600;text-align:center;border-top:1px solid var(--border-color)"
+                        onmouseover="this.style.background='var(--accent-muted)'" onmouseout="this.style.background=''">
+                        <i class="fas fa-user-plus" style="margin-right:4px"></i> Cadastrar novo cliente
+                    </div>`;
+                    btnNew.style.display = 'none';
+                }
+            }, 200);
+        }
+
+        function selectCustomerById(id) {
+            const c = allPdvCustomers.find(x => String(x.id) === String(id)); if (!c) return;
+            selectCustomer(c.id, c.name || c.nome || 'Cliente', c.phone || c.whatsapp || '');
+        }
+
+        function selectCustomer(id, name, phone) {
+            selectedCustomerId = id;
+            selectedCustomerNameVal = name;
+
+            // Mostra badge com nome e telefone
+            const badge = document.getElementById('selectedCustomerBadge');
+            badge.style.display = 'flex';
+            document.getElementById('selectedCustomerName').textContent = name + (phone ? ' · ' + phone : '');
+
+            // Esconde dropdown e limpa busca
+            document.getElementById('customerDropdown').style.display = 'none';
+            document.getElementById('customerSearch').value = '';
+            document.getElementById('btnNewCustomerPDV').style.display = 'none';
+
+            // Preenche endereço se já estiver no modo delivery
+            if (saleType === 'delivery') {
+                fillAddressFromCustomer(id);
+            }
+        }
+
+        function clearCustomer() {
+            selectedCustomerId = null;
+            selectedCustomerNameVal = 'Consumidor Final';
+            const badge = document.getElementById('selectedCustomerBadge');
+            if (badge) badge.style.display = 'flex';
+            const name = document.getElementById('selectedCustomerName');
+            if (name) name.textContent = 'Consumidor Final';
+            document.getElementById('customerSearch').value = '';
+        }
+
+        // Fecha dropdown ao clicar fora
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.cart-customer')) {
+                document.getElementById('customerDropdown').style.display = 'none';
+            }
+        });
+
+        // ─── CADASTRO RÁPIDO DE CLIENTE ───────────────────
+        function openQuickClientModal() {
+            document.getElementById('customerDropdown').style.display = 'none';
+            // Pré-preenche nome se havia texto na busca
+            const searchVal = document.getElementById('customerSearch').value.trim();
+            document.getElementById('qcNome').value = searchVal;
+            document.getElementById('qcTelefone').value = '';
+            document.getElementById('qcWhatsApp').value = '';
+            document.getElementById('qcDoc').value = '';
+            document.getElementById('qcEndereco').value = '';
+            document.getElementById('qcReferencia').value = '';
+            // Máscaras
+            document.getElementById('qcTelefone').oninput = e => e.target.value = Utils.maskPhone(e.target.value);
+            document.getElementById('qcWhatsApp').oninput = e => e.target.value = Utils.maskPhone(e.target.value);
+            document.getElementById('qcDoc').oninput = e => e.target.value = Utils.maskDocument(e.target.value);
+            openModal('modalQuickClient');
+        }
+
+        async function saveQuickClient() {
+            const name = document.getElementById('qcNome').value.trim();
+            if (!name) { Toast.warning('Informe o nome do cliente'); return; }
+            try {
+                const data = {
+                    name,
+                    phone: document.getElementById('qcTelefone').value || '',
+                    whatsapp: document.getElementById('qcWhatsApp').value || '',
+                    document: document.getElementById('qcDoc').value || '',
+                    address: document.getElementById('qcEndereco').value || '',
+                    addressRef: document.getElementById('qcReferencia').value || '',
+                    status: 'active',
+                    source: 'pdv'
+                };
+                const result = await FirestoreService.create('customers', data);
+                // Adiciona ao array local
+                allPdvCustomers.push({id: result.id, ...data});
+                // Seleciona o cliente recém-cadastrado
+                selectCustomer(result.id, name, data.phone);
+                closeModal('modalQuickClient');
+                Toast.success('Cliente cadastrado e selecionado!');
+            } catch(e) { Toast.error('Erro ao cadastrar: ' + (window.dpErroHumano ? dpErroHumano(e) : (e && e.message))); }
+        }
+        function toggleCart() {
+            const cart = document.getElementById('pdvCart');
+            if (cart) cart.classList.toggle('open');
+        }
+
+        function toggleMobileSidebar() {
+            const s = document.getElementById('sidebar'), o = document.getElementById('mobileOverlay');
+            s.classList.toggle('mobile-open'); o?.classList.toggle('active');
+        }
+
+        // ─── LOAD PRODUCTS FROM FIREBASE ──────────────────
+        async function loadProducts() {
+            try {
+                // Simple query without compound index
+                const snap = await db.collection('products').get();
+                products = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+                    .filter(p => !p.deleted)
+                    .sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+                if (products.length === 0) {
+                    /* 35.7: o PDV não cria produtos de exemplo */
+                }
+                renderProducts();
+            } catch (e) {
+                console.error('Erro ao carregar produtos:', e);
+                // If index error, try without orderBy
+                try {
+                    const snap = await db.collection('products').get();
+                    products = snap.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(p => !p.deleted);
+                    if (products.length === 0) /* 35.7: o PDV não cria produtos de exemplo */
+                    renderProducts();
+                } catch (e2) {
+                    console.error('Fallback error:', e2);
+                    Toast.error('Erro ao carregar produtos: ' + (window.dpErroHumano ? dpErroHumano(e2) : (e2 && e2.message)));
+                }
+            }
+        }
+
+        // ─── SEED DEMO PRODUCTS ───────────────────────────
+        async function seedDemoProducts() {
+            const demos = [
+                { name:'Brahma Lata 350ml', code:'PRD-001', category:'Cervejas', salePrice:4.50, costPrice:2.15, currentStock:320, minStock:50, icon:'🍺', imageType:'icon' },
+                { name:'Skol Lata 350ml', code:'PRD-002', category:'Cervejas', salePrice:3.90, costPrice:1.95, currentStock:280, minStock:50, icon:'🍺', imageType:'icon' },
+                { name:'Heineken Long Neck 330ml', code:'PRD-005', category:'Cervejas', salePrice:7.90, costPrice:4.80, currentStock:180, minStock:30, icon:'🍻', imageType:'icon' },
+                { name:'Budweiser 330ml', code:'PRD-006', category:'Cervejas', salePrice:5.50, costPrice:3.20, currentStock:120, minStock:30, icon:'🍺', imageType:'icon' },
+                { name:'Antarctica 600ml', code:'PRD-007', category:'Cervejas', salePrice:8.00, costPrice:4.50, currentStock:150, minStock:40, icon:'🍺', imageType:'icon' },
+                { name:'Coca-Cola 2L', code:'PRD-015', category:'Refrigerantes', salePrice:9.90, costPrice:5.80, currentStock:132, minStock:30, icon:'🥤', imageType:'icon' },
+                { name:'Coca-Cola Lata 350ml', code:'PRD-016', category:'Refrigerantes', salePrice:4.50, costPrice:2.50, currentStock:200, minStock:50, icon:'🥤', imageType:'icon' },
+                { name:'Guaraná Antarctica 2L', code:'PRD-017', category:'Refrigerantes', salePrice:7.50, costPrice:4.00, currentStock:88, minStock:20, icon:'🥤', imageType:'icon' },
+                { name:'Fanta Laranja 2L', code:'PRD-018', category:'Refrigerantes', salePrice:7.00, costPrice:3.80, currentStock:64, minStock:20, icon:'🧃', imageType:'icon' },
+                { name:'Red Bull 250ml', code:'PRD-010', category:'Energéticos', salePrice:12.90, costPrice:6.50, currentStock:98, minStock:24, icon:'⚡', imageType:'icon' },
+                { name:'Monster 473ml', code:'PRD-011', category:'Energéticos', salePrice:9.90, costPrice:5.50, currentStock:56, minStock:15, icon:'⚡', imageType:'icon' },
+                { name:'Água Mineral 500ml', code:'PRD-020', category:'Água', salePrice:2.50, costPrice:0.80, currentStock:500, minStock:100, icon:'💧', imageType:'icon' },
+                { name:'Água Mineral 20L', code:'PRD-021', category:'Água', salePrice:12.00, costPrice:5.00, currentStock:80, minStock:20, icon:'💧', imageType:'icon' },
+                { name:'Gelo 5kg', code:'PRD-030', category:'Gelo', salePrice:8.00, costPrice:4.00, currentStock:58, minStock:20, icon:'🧊', imageType:'icon' },
+                { name:'Gelo 10kg', code:'PRD-031', category:'Gelo', salePrice:14.00, costPrice:7.00, currentStock:30, minStock:10, icon:'🧊', imageType:'icon' },
+                { name:'Vodka Smirnoff 998ml', code:'PRD-040', category:'Destilados', salePrice:34.90, costPrice:22.00, currentStock:42, minStock:10, icon:'🥃', imageType:'icon' },
+                { name:'Whisky Jack Daniels 1L', code:'PRD-041', category:'Destilados', salePrice:169.90, costPrice:110.00, currentStock:18, minStock:5, icon:'🥃', imageType:'icon' },
+                { name:'Gin Tanqueray 750ml', code:'PRD-042', category:'Destilados', salePrice:99.90, costPrice:65.00, currentStock:24, minStock:8, icon:'🍸', imageType:'icon' },
+                { name:'Carvão Vegetal 4kg', code:'PRD-050', category:'Carvão', salePrice:18.00, costPrice:9.00, currentStock:72, minStock:20, icon:'🔥', imageType:'icon' },
+                { name:'Suco Del Valle 1L', code:'PRD-060', category:'Outros', salePrice:6.90, costPrice:3.50, currentStock:48, minStock:12, icon:'🧃', imageType:'icon' },
+            ];
+            const batch = db.batch();
+            for (const p of demos) {
+                const ref = db.collection('products').doc();
+                batch.set(ref, {
+                    ...p, deleted: false, active: true,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    createdBy: auth.currentUser?.uid || 'system'
+                });
+            }
+            await batch.commit();
+            Toast.success('Produtos de demonstração cadastrados!');
+            // Reload
+            const snap = await db.collection('products').get();
+            products = snap.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(p => !p.deleted);
+        }
+
+        // ─── LOAD CATEGORIES FROM FIREBASE ────────────────
+        async function loadCategories() {
+            try {
+                const snap = await db.collection('categories').get();
+                categories = snap.docs.map(d=>({id:d.id,...d.data()})).filter(c=>!c.deleted && c.active!==false).sort((a,b)=>(a.name||'').localeCompare(b.name||''));
+            } catch(e) { console.warn('Sem categorias cadastradas'); }
+
+            // If no categories in Firebase, get unique categories from products
+            if (categories.length === 0 && products.length > 0) {
+                const uniqueCats = [...new Set(products.map(p=>p.category).filter(Boolean))];
+                categories = uniqueCats.map(name => ({ name, icon: getCatIcon(name) }));
+            }
+
+            // Render category buttons
+            const container = document.getElementById('pdvCategories');
+            if (container) {
+                container.innerHTML = '<button class="cat-btn active" onclick="filterCategory(\'all\',this)">Todos</button>' +
+                    categories.map(c => `<button class="cat-btn" onclick="filterCategory('${c.name}',this)">${c.icon||'📦'} ${c.name}</button>`).join('');
+            }
+        }
+
+        function getCatIcon(name) {
+            const map = {'Cervejas':'🍺','Refrigerantes':'🥤','Água':'💧','Gelo':'🧊','Energéticos':'⚡','Destilados':'🥃','Carvão':'🔥','Outros':'📦','Sucos':'🧃','Snacks':'🍿'};
+            return map[name] || '📦';
+        }
+        async function loadCustomers() {
+            // Compatibilidade com rotinas antigas. O PDV atual usa a busca
+            // dinâmica em #customerSearch / allPdvCustomers; não existe mais
+            // o antigo <select id="cartCustomer">.
+            try {
+                const snap = await db.collection('customers').get();
+                customers = snap.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(c => !c.deleted);
+                return customers;
+            } catch (e) {
+                console.warn('Clientes não carregados:', e.message);
+                customers = [];
+                return customers;
+            }
+        }
+
+        // ─── CHECK OPEN CASH REGISTER ─────────────────────
+        async function checkCashRegister() {
+            try {
+                const snap = await db.collection('cash_registers')
+                    .where('status', '==', 'open')
+                    .limit(1).get();
+                if (!snap.empty) {
+                    activeCashRegister = { id: snap.docs[0].id, ...snap.docs[0].data() };
+                }
+            } catch (e) { console.warn('Sem caixa aberto'); }
+        }
+
+        // ─── RENDER PRODUCTS ──────────────────────────────
+        function renderProducts(filter) {
+            if (filter !== undefined) currentFilter = filter;
+            const grid = document.getElementById('productsGrid');
+            const search = document.getElementById('pdvSearch').value.toLowerCase();
+
+            let filtered = window.DPGrade ? DPGrade.pdvList(products) : [...products]; // 38.6 · grade: só o pai, com o total dos tamanhos (grade-v1.js)
+
+            // Filter by category
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(p => (p.category || '') === currentFilter);
+            }
+
+            // Filter by search
+            if (search) {
+                filtered = filtered.filter(p =>
+                    (p.name || '').toLowerCase().includes(search) ||
+                    String(p.code || '').toLowerCase().includes(search) ||
+                    String(p.barcode || '').toLowerCase().includes(search) || !!(window.DPItens && DPItens.prodMatch(p, search)) // 38.2 · aplicação e referência da peça
+                );
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="empty-state" style="padding:40px"><i class="fas fa-search" style="font-size:32px;opacity:0.2"></i><h3 style="font-size:14px;margin-top:12px">Nenhum produto encontrado</h3></div>';
+                return;
+            }
+
+            // 35.54 · Paginação: com muitos produtos desenhar todos os cartões (com foto) travava o PDV.
+            // Mostra 60 por vez; o "Mostrar mais" carrega o próximo bloco (sozinho ao rolar até o fim).
+            const pg = window.DPPager ? DPPager.more('pdv', filtered, { size: 60, sig: currentFilter + '|' + search, render: () => renderProducts(), box: grid }) : { items: filtered, html: '' };
+            grid.innerHTML = pg.items.map(p => {
+                const stock = p.currentStock || 0;
+                const price = (window.dpPrecoVigente ? dpPrecoVigente(p) : 0) || p.salePrice || p.price || 0; // 38.3 · preço promocional que está valendo (validade-v1.js)
+                // Image: supports icon (emoji), imageUrl (link), or imageFile (uploaded path)
+                let imgHtml = '';
+                const hasImg = (p.imageType === 'url' && p.imageUrl) || (p.imageType === 'file' && p.imageFile);
+                const imgSrc = p.imageType === 'url' ? p.imageUrl : p.imageFile;
+                // 37.6 · Sem foto: pacote em traço fino (dp-icons); o emoji escolhido no cadastro continua
+                const fallbackIcon = window.dpProductGlyph ? dpProductGlyph(p.icon) : (p.icon || '📦');
+                if (hasImg) {
+                    imgHtml = `<div class="p-thumb"><img src="${imgSrc}" alt="${p.name}" data-ic="${String(p.icon || '').replace(/["<>]/g, '')}" onerror="window.dpThumbFail?dpThumbFail(this):this.remove()"></div>`;
+                } else {
+                    imgHtml = `<div class="p-thumb"><span>${fallbackIcon}</span></div>`;
+                }
+                return `<div class="product-card" onclick="addToCart('${p.id}')" ${stock <= 0 && !window.DP_VENDA_SEM_ESTOQUE ? 'style="opacity:0.4;pointer-events:none"' : ''}>
+                    ${imgHtml}
+                    <div class="p-info">
+                        <div class="p-name">${p.name}</div>
+                        <div class="p-code">${p.code || ''}</div>
+                        <div class="p-meta-row">
+                            <div class="p-stock ${stock <= (p.minStock || 10) ? 'low' : ''}">
+                                ${stock <= 0 ? 'Sem estoque' : `${stock} un`}
+                            </div>
+                            <div class="p-price">${Utils.currency(price)}</div>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('') + pg.html;
+        }
+
+        // ─── CART FUNCTIONS ───────────────────────────────
+        function addToCart(productId, pkgIndex) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            if (window.DPGrade && DPGrade.pdvPick(product)) return; // 38.6 · grade: tocar no pai abre o seletor de tamanho e cor
+
+            // 38.1 · Leitor no código do fardo/caixa (DUN-14, preco-atacado-v1.js): entra direto na embalagem certa
+            if (typeof pkgIndex === 'number' && pkgIndex > 0 && product.packagings && product.packagings[pkgIndex - 1]) {
+                window._pkgProduct = product; window._pkgOptions = pdvPkgOptions(product);
+                addToCartWithPkg(product, pkgIndex);
+                return;
+            }
+
+            // Se o produto tem embalagens, mostra seletor
+            if (product.packagings && product.packagings.length > 0) {
+                showPackagingSelector(product);
+                return;
+            }
+
+            // 38.4 · Restaurante: adicionais com preço e pizza meio a meio escolhidos antes de entrar no carrinho (adicionais-v1.js, sabores-v1.js)
+            if (window.DPAddons && DPAddons.needs && DPAddons.needs(product)) { DPAddons.choose(product, { products, qty: true }).then(r => { if (r) addToCartWithPkg(product, null, r); }); return; }
+
+            // Produto simples (sem embalagens configuradas)
+            addToCartWithPkg(product, null);
+        }
+
+        function pdvPkgOptions(product) {
+            return [
+                { label: 'Unidade', factor: 1, price: (window.dpPrecoVigente ? dpPrecoVigente(product) : 0) || product.salePrice || 0, icon: 'package' },
+                ...(product.packagings || []).map(p => ({
+                    label: p.label || p.type || 'Embalagem',
+                    factor: p.factor || 1,
+                    // usa salePrice da embalagem, ou preço/un do produto × fator
+                    price: p.salePrice || p.price || ((p.pricePerUnit || product.salePrice) * p.factor),
+                    icon: p.type === 'fardo' ? 'boxes' : p.type === 'pack' ? 'package-2' : p.type === 'kit' ? 'gift' : 'package'
+                }))
+            ];
+        }
+
+        function showPackagingSelector(product) {
+            const existing = document.getElementById('pkgSelectorOverlay');
+            if (existing) existing.remove();
+
+            const pkgOptions = pdvPkgOptions(product);
+
+            const overlay = document.createElement('div');
+            overlay.id = 'pkgSelectorOverlay';
+            overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px';
+            overlay.innerHTML = `
+                <div style="background:var(--bg-card);border-radius:16px;padding:20px;max-width:340px;width:100%;box-shadow:var(--shadow-xl)">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+                        <div>
+                            <div style="font-size:15px;font-weight:700;color:var(--text-heading)">${product.name}</div>
+                            <div style="font-size:12px;color:var(--text-muted)">Escolha a embalagem</div>
+                        </div>
+                        <button onclick="document.getElementById('pkgSelectorOverlay').remove()" 
+                            style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:18px;padding:4px">✕</button>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:8px">
+                        ${pkgOptions.map((opt, i) => {
+                            const stockInPkg = Math.floor((product.currentStock || 0) / opt.factor);
+                            const disabled = stockInPkg <= 0;
+                            return `<button onclick="addToCartWithPkg(window._pkgProduct, ${i});document.getElementById('pkgSelectorOverlay').remove()"
+                                style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);cursor:pointer;transition:all .15s;${disabled?'opacity:.4;pointer-events:none':''}"
+                                onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border-color)'">
+                                <div style="display:flex;align-items:center;gap:10px">
+                                    <span style="display:inline-grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--accent-muted,rgba(99,102,241,.12));color:var(--accent);font-size:20px;flex:none">${window.dpIcon ? dpIcon(opt.icon) : '<i class="fas fa-box"></i>'}</span>
+                                    <div style="text-align:left">
+                                        <div style="font-size:13px;font-weight:600;color:var(--text-heading)">${opt.label}</div>
+                                        <div style="font-size:11px;color:var(--text-muted)">${opt.factor > 1 ? `${opt.factor} unidades` : 'Unidade base'} · Estoque: ${stockInPkg} ${opt.factor>1?'cx':'un'}</div>
+                                    </div>
+                                </div>
+                                <div style="text-align:right">
+                                    <div style="font-size:15px;font-weight:800;color:var(--success)">${Utils.currency(opt.price)}</div>
+                                    ${opt.factor > 1 ? `<div style="font-size:10px;color:var(--text-muted)">${Utils.currency(opt.price/opt.factor)}/un</div>` : ''}
+                                </div>
+                            </button>`;
+                        }).join('')}
+                    </div>
+                </div>`;
+
+            window._pkgProduct = product;
+            window._pkgOptions = pkgOptions;
+            document.body.appendChild(overlay);
+        }
+
+        function addToCartWithPkg(product, pkgIndex, opt) { // 38.4 · opt = adicionais/sabores escolhidos (DPAddons.choose)
+            if (!product) return;
+            const pkgOptions = window._pkgOptions || [{ label:'Unidade', factor:1, price: product.salePrice||0 }];
+            const pkg = pkgIndex !== null ? pkgOptions[pkgIndex] : { label:'Unidade', factor:1, price: (window.dpPrecoVigente ? dpPrecoVigente(product) : 0) || product.salePrice||0, icon:'package' };
+
+            const unitPrice = opt ? opt.unitPrice : pkg.price;
+            const factor    = pkg.factor || 1;  // unidades que saem do estoque
+            const cartKey   = opt ? `${product.id}_op${Date.now().toString(36)}${cart.length}` : `${product.id}_${pkg.label}`; // permite ter UN e CX do mesmo produto (com adicionais: linha própria)
+            const optQty    = opt ? Math.max(1, Number(opt.qty) || 1) : 1;
+
+            const existing = cart.find(c => c._cartKey === cartKey);
+            const stockLeft = (product.currentStock || 0) - cart.filter(c=>c.productId===product.id).reduce((s,c)=>s+(c.quantity*(c._factor||1)),0);
+
+            if (existing) {
+                if (stockLeft < factor && !window.DP_VENDA_SEM_ESTOQUE) { Toast.warning('Estoque insuficiente'); return; }
+                existing.quantity++;
+                existing.total = existing.quantity * existing.unitPrice; // 38.1 · mantém o preço que está na linha (mudado à mão ou de atacado)
+            } else {
+                if (stockLeft < factor && !window.DP_VENDA_SEM_ESTOQUE) { Toast.warning('Produto sem estoque'); return; }
+                cart.push({
+                    _cartKey: cartKey,
+                    _factor: factor,
+                    _pkgLabel: pkg.label !== 'Unidade' ? pkg.label : '',
+                    productId: product.id,
+                    productName: opt ? opt.productName : product.name + (pkg.label !== 'Unidade' ? ` (${pkg.label})` : ''),
+                    productCode: product.code || '',
+                    unitPrice,
+                    originalUnitPrice: unitPrice,
+                    notes: opt ? (opt.notes || '') : '',
+                    costPrice: product.costPrice || 0,
+                    quantity: optQty,
+                    discount: 0,
+                    total: unitPrice * optQty,
+                    ...(opt && window.DPAddons ? DPAddons.cartFields(opt) : {})
+                });
+            }
+            renderCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            renderCart();
+        }
+
+        function updateQuantity(index, delta) {
+            const item = cart[index];
+            const product = products.find(p => p.id === item.productId);
+            const newQty = item.quantity + delta;
+
+            // 38.1 · Conta as unidades de verdade: fardo de 12 = 12 un, somando UN e CX do mesmo produto
+            const unitsAfter = cart.reduce((s, c, i) => s + (c.productId === item.productId ? (i === index ? newQty : c.quantity) * (c._factor || 1) : 0), 0);
+            if (newQty <= 0) {
+                cart.splice(index, 1);
+            } else if (product && delta > 0 && !window.DP_VENDA_SEM_ESTOQUE && unitsAfter > (product.currentStock || 0) + 1e-9) {
+                Toast.warning('Estoque insuficiente');
+                return;
+            } else {
+                item.quantity = newQty;
+                item.total = item.quantity * item.unitPrice;
+            }
+            renderCart();
+        }
+
+        function canChangeCartPrice() {
+            return currentUser?.role === 'admin' || currentUser?.role === 'manager' || currentUser?.permissions?.changePrices === true;
+        }
+
+        async function editCartItem(index) {
+            const item = cart[index];
+            if (!item) return;
+            document.getElementById('cartItemEditOverlay')?.remove();
+            // 39.3 · Sem o cadastro do usuário carregado (sessão expirada, conexão que oscilou), o admin via "Seu perfil não tem
+            // permissão para alterar preços". Agora diz o motivo real e o que fazer.
+            // 39.14.14 · Antes de desistir, lê o cadastro de novo (falhou ao abrir a tela); se ainda falhar, mostra o motivo.
+            if (!currentUser && window.dpGarantirUsuario) await window.dpGarantirUsuario();
+            if (!cart[index]) return;
+            if (!currentUser) { const mot = window.__dpErroUsuario ? ' Motivo: ' + window.__dpErroUsuario : ''; Toast.warning('Não consegui ler o seu cadastro de usuário (sessão expirada ou sem conexão).' + mot + ' Recarregue a página e tente de novo.'); console.warn('PDV: sem o cadastro do usuário', window.__dpErroUsuario || '(sem erro guardado: a leitura não terminou)'); return; }
+            const canPrice = canChangeCartPrice();
+            const overlay = document.createElement('div');
+            overlay.id = 'cartItemEditOverlay';
+            overlay.className = 'modal-overlay active';
+            overlay.innerHTML = `
+                <div class="modal" style="max-width:430px">
+                    <div class="modal-header"><h3><i class="fas fa-pen" style="color:var(--accent);margin-right:7px"></i>Editar item</h3><button class="modal-close" onclick="document.getElementById('cartItemEditOverlay').remove()"><i class="fas fa-times"></i></button></div>
+                    <div class="modal-body">
+                        <div style="font-size:13px;font-weight:700;color:var(--text-heading);margin-bottom:12px">${item.productName}</div>
+                        <div class="form-group">
+                            <label class="form-label">Valor unitário da venda</label>
+                            <input type="number" id="cartEditPrice" class="form-control" min="0.01" step="0.01" value="${Number(item.unitPrice||0).toFixed(2)}" ${canPrice?'':'disabled'}>
+                            ${canPrice ? '<small style="color:var(--text-muted)">Altera somente esta venda. O preço do cadastro do produto não é modificado.</small>' : '<small style="color:var(--warning)">Seu perfil não tem permissão para alterar preços.</small>'}
+                        </div>
+                        <div class="form-group" style="margin-bottom:0">
+                            <label class="form-label">${window.DPTerm?DPTerm('obs_item_label'):'Observação / IMEI / Serial deste item'}</label>
+                            <textarea id="cartEditNotes" class="form-control" rows="3" maxlength="300" placeholder="${window.DPTerm?DPTerm('obs_item_ph'):'Ex.: IMEI 1..., IMEI 2..., Serial..., garantia...'}">${item.notes||''}</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-secondary" onclick="document.getElementById('cartItemEditOverlay').remove()">Cancelar</button><button class="btn btn-primary" onclick="saveCartItemEdit(${index})"><i class="fas fa-check"></i> Salvar</button></div>
+                </div>`;
+            document.body.appendChild(overlay);
+        }
+
+        function saveCartItemEdit(index) {
+            const item = cart[index];
+            if (!item) return;
+            if (canChangeCartPrice()) {
+                const price = Number(String(document.getElementById('cartEditPrice')?.value||'').replace(',','.'));
+                if (!Number.isFinite(price) || price <= 0) { Toast.warning('Informe um valor válido.'); return; }
+                if (!item.originalUnitPrice) item.originalUnitPrice = item.unitPrice;
+                item.unitPrice = Number(price.toFixed(2));
+                item.total = Number((item.quantity * item.unitPrice).toFixed(2));
+            }
+            item.notes = (document.getElementById('cartEditNotes')?.value||'').trim();
+            document.getElementById('cartItemEditOverlay')?.remove();
+            renderCart();
+            Toast.success('Item atualizado nesta venda.');
+        }
+
+        function clearCart() {
+            if (!cart.length) return;
+            Confirm.show('Limpar Carrinho', 'Remover todos os itens?', () => {
+                cart = [];
+                discount = 0;
+                renderCart();
+            });
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cartItems');
+
+            if (!cart.length) {
+                container.innerHTML = `<div class="empty-state" style="padding:32px 16px">
+                    <i class="fas fa-shopping-cart" style="font-size:32px;opacity:0.2"></i>
+                    <h3 style="font-size:14px;margin-top:12px">Carrinho vazio</h3>
+                    <p style="font-size:12px">Clique em um produto para adicionar</p>
+                </div>`;
+            } else {
+                container.innerHTML = cart.map((item, i) => `
+                    <div class="cart-item">
+                        <div class="ci-info">
+                            <div class="ci-name">${item.productName}</div>${window.DPAddons ? DPAddons.cartHtml(item) : ''}
+                            <div class="ci-price" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+                                <span>${Utils.currency(item.unitPrice)} /un</span>
+                                ${item.originalUnitPrice && Math.abs(Number(item.originalUnitPrice)-Number(item.unitPrice)) > 0.001 ? `<span style="font-size:9px;color:var(--warning);text-decoration:line-through">${Utils.currency(item.originalUnitPrice)}</span>` : ''}
+                                <button onclick="editCartItem(${i})" title="${window.DPTerm&&DPTerm.segment()&&DPTerm.segment()!=='celular'?'Editar preço / observação':'Editar preço / IMEI / observação'}" style="border:none;background:transparent;color:var(--accent);cursor:pointer;padding:1px 4px;font-size:10px"><i class="fas fa-pen"></i> Editar</button>
+                            </div>
+                            ${item.notes ? `<div style="font-size:10px;color:var(--text-muted);margin-top:3px;white-space:normal"><i class="fas fa-barcode" style="margin-right:3px"></i>${item.notes}</div>` : ''}
+                        </div>
+                        <div class="ci-qty">
+                            <button onclick="updateQuantity(${i},-1)"><i class="fas fa-minus"></i></button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity(${i},1)"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <div class="ci-total">${Utils.currency(item.total)}</div>
+                        <span class="ci-remove" onclick="removeFromCart(${i})"><i class="fas fa-times"></i></span>
+                    </div>
+                `).join('');
+            }
+
+            // Update totals
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = `${totalItems} ${totalItems === 1 ? 'item' : 'itens'}`;
+            updateCartSummary();
+
+            // Mobile badge
+            const badge = document.getElementById('cartBadge');
+            if (totalItems > 0) { badge.style.display = 'flex'; badge.textContent = totalItems; }
+            else { badge.style.display = 'none'; }
+        }
+
+        // ─── PAYMENT ──────────────────────────────────────
+        function selectPayment(method, btn) {
+            selectedPayment = method;
+            document.querySelectorAll('.pay-method').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+
+            // Reseta a bandeira ao trocar de forma de pagamento
+            selectedCardBrand = '';
+            updateBrandIndicator();
+
+            if (method === 'multi') {
+                updateBrandIndicator();
+                openMultiPaymentModal();
+                return;
+            }
+            // Para crédito/débito, abre o modal de seleção de bandeira
+            if (method === 'credito' || method === 'debito') {
+                openBrandSelector(method);
+            }
+        }
+
+        // Mostra a bandeira escolhida abaixo dos botões (se houver)
+        function updateBrandIndicator() {
+            let el = document.getElementById('brandIndicator');
+            if (!el) {
+                const container = document.querySelector('.payment-methods');
+                if (!container) return;
+                el = document.createElement('div');
+                el.id = 'brandIndicator';
+                el.style.cssText = 'grid-column:1/-1;font-size:12px;color:var(--text-muted);text-align:center;margin-top:6px;display:none';
+                container.parentElement.appendChild(el);
+            }
+            if (selectedPayment === 'multi') {
+                el.style.display = 'block';
+                const parts = multiPayments.filter(p=>Number(p.amount||0)>0).map(p=>`${splitMethodLabel(p.method)} ${Utils.currency(p.amount)}`).join(' + ');
+                el.innerHTML = `<i class="fas fa-layer-group" style="margin-right:4px;color:var(--accent)"></i><strong>Dividido</strong>${parts?' · '+parts:''} <a href="#" onclick="event.preventDefault();openMultiPaymentModal()" style="margin-left:6px;color:var(--accent);text-decoration:none">editar</a>`;
+                return;
+            }
+            if (selectedCardBrand) {
+                el.style.display = 'block';
+                el.innerHTML = `<i class="fas fa-credit-card" style="margin-right:4px;color:var(--accent)"></i>Bandeira: <strong style="color:var(--text-primary)">${BRAND_LABEL[selectedCardBrand]||selectedCardBrand}</strong> <a href="#" onclick="event.preventDefault();openBrandSelector(selectedPayment)" style="margin-left:6px;color:var(--accent);text-decoration:none">trocar</a>`;
+            } else {
+                el.style.display = 'none';
+            }
+        }
+
+        // Modal de seleção de bandeira
+        function openBrandSelector(method) {
+            const isCredit = method === 'credito';
+            const title = isCredit ? 'Bandeira do Cartão de Crédito' : 'Bandeira do Cartão de Débito';
+            // Remove qualquer modal existente
+            document.querySelectorAll('#brandSelectorOverlay').forEach(o => o.remove());
+
+            const overlay = document.createElement('div');
+            overlay.id = 'brandSelectorOverlay';
+            overlay.className = 'modal-overlay active';
+
+            // Mostra a taxa configurada de cada bandeira (apenas para crédito)
+            const brandsHtml = CARD_BRANDS.map(b => {
+                let taxaTxt = '';
+                if (isCredit) {
+                    const key = 'taxaCredito' + b.id.charAt(0).toUpperCase() + b.id.slice(1);
+                    const t = parseFloat(paymentFees[key]) || 0;
+                    taxaTxt = t > 0 ? `<span style="font-size:11px;color:var(--text-muted);margin-left:6px">(${t.toFixed(2).replace('.',',')}%)</span>` : '';
+                }
+                return `<button class="btn" style="padding:14px;border:1px solid var(--border-color);border-radius:10px;text-align:left;background:var(--bg-secondary);font-size:14px;font-weight:600;color:var(--text-primary)" onclick="confirmBrand('${b.id}')">
+                    <i class="fas fa-credit-card" style="color:var(--accent);margin-right:8px"></i>${b.name}${taxaTxt}
+                </button>`;
+            }).join('');
+
+            overlay.innerHTML = `
+                <div class="modal" style="max-width:420px">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-credit-card" style="margin-right:8px;color:var(--accent)"></i>${title}</h3>
+                        <button class="modal-close" onclick="cancelBrandSelector()"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px">Escolha a bandeira do cartão. Caso prefira não informar, clique em "Não informar".</p>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${brandsHtml}</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline" onclick="confirmBrand('')"><i class="fas fa-times-circle"></i> Não informar</button>
+                        <button class="btn btn-secondary" onclick="cancelBrandSelector()">Cancelar</button>
+                    </div>
+                </div>`;
+            document.body.appendChild(overlay);
+        }
+
+        function confirmBrand(brand) {
+            selectedCardBrand = brand || '';
+            const o = document.getElementById('brandSelectorOverlay');
+            if (o) o.remove();
+            updateBrandIndicator();
+        }
+
+        function cancelBrandSelector() {
+            const o = document.getElementById('brandSelectorOverlay');
+            if (o) o.remove();
+            // Mantém a bandeira como vazia se o usuário cancelou
+        }
+
+        // ─── APPLY DISCOUNT ──────────────────────────────
+        function applyDiscount() {
+            const subtotal = cart.reduce((sum, item) => sum + item.total, 0);
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay active';
+            overlay.innerHTML = `
+                <div class="modal" style="max-width:380px">
+                    <div class="modal-header"><h3><i class="fas fa-tag"></i> Aplicar Desconto</h3>
+                        <button class="modal-close" onclick="this.closest('.modal-overlay').remove()"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Tipo de desconto</label>
+                            <select id="discountType" onchange="toggleDiscountType()">
+                                <option value="value">Valor (R$)</option>
+                                <option value="percent">Porcentagem (%)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Valor do desconto</label>
+                            <input type="number" id="discountValue" step="0.01" min="0" placeholder="0,00" value="${discount || ''}">
+                        </div>
+                        <p style="font-size:12px;color:var(--text-muted)">Subtotal: ${Utils.currency(subtotal)}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">Cancelar</button>
+                        <button class="btn btn-primary" onclick="confirmDiscount()">Aplicar</button>
+                    </div>
+                </div>`;
+            document.body.appendChild(overlay);
+            overlay.querySelector('#discountValue').focus();
+        }
+
+        function confirmDiscount() {
+            const type = document.getElementById('discountType').value;
+            const value = parseFloat(document.getElementById('discountValue').value) || 0;
+            const subtotal = cart.reduce((sum, item) => sum + item.total, 0);
+
+            if (type === 'percent') {
+                discount = Math.min(subtotal, (subtotal * value) / 100);
+            } else {
+                discount = Math.min(subtotal, value);
+            }
+
+            document.querySelector('.modal-overlay').remove();
+            renderCart();
+            Toast.success(`Desconto de ${Utils.currency(discount)} aplicado`);
+        }
+
+        function toggleDiscountType() {
+            const type = document.getElementById('discountType')?.value;
+            const inp  = document.getElementById('discountValue');
+            if (!inp) return;
+            inp.placeholder = type === 'percent' ? 'Ex: 10 (%)' : 'Ex: 5,00 (R$)';
+            inp.step = type === 'percent' ? '1' : '0.01';
+            inp.value = '';
+            inp.focus();
+        }
+
+        // ─── FINALIZE SALE (FIREBASE) ─────────────────────
+        async function finalizeSale() {
+            if (!cart.length) { Toast.warning('Adicione produtos ao carrinho'); return; }
+            if (saleType === 'delivery') {
+                const addrField = document.getElementById('deliveryAddress');
+                // Se não tem endereço preenchido e tem cliente, tenta preencher automaticamente
+                if (!addrField.value.trim() && selectedCustomerId) {
+                    fillAddressFromCustomer(selectedCustomerId);
+                }
+                // Se ainda está vazio, bloqueia
+                if (!addrField.value.trim()) {
+                    Toast.warning('Informe o endereço de entrega');
+                    return;
+                }
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + item.total, 0);
+            const total = (subtotal - discount + deliveryFee) + (window.dpCardSurcharge ? window.dpCardSurcharge(subtotal - discount + deliveryFee) : 0); // 35.32 · taxa repassada ao cliente
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const customerName = selectedCustomerNameVal || 'Consumidor Final';
+            const customerId = selectedCustomerId || null;
+            const payments = buildSalePayments(total);
+            if (!payments) {
+                Toast.warning('Confira a divisão do pagamento antes de finalizar');
+                openMultiPaymentModal();
+                return;
+            }
+
+            const payLabel = {
+                dinheiro: 'Dinheiro', pix: 'PIX', credito: 'Cartão Crédito',
+                debito: 'Cartão Débito', fiado: 'Fiado', multi: 'Múltiplo'
+            };
+            const typeLabel = { balcao: '<i class="fas fa-store"></i> Balcão', pickup: '<i class="fas fa-bag-shopping"></i> Retirada', delivery: '<i class="fas fa-truck"></i> Entrega' };
+
+            const totalFee = payments.reduce((sum,p)=>sum+Number(p.feeValue||0),0);
+            const totalNet = payments.reduce((sum,p)=>sum+Number(p.netAmount!==undefined?p.netAmount:p.amount||0),0);
+            const paymentSummaryText = payments.map(p=>{
+                let t = splitMethodLabel(p.method);
+                if ((p.method==='credito'||p.method==='debito') && p.cardBrand) t += ' ' + (BRAND_LABEL[p.cardBrand]||p.cardBrand);
+                if (p.method==='credito' && Number(p.installments||1)>1) t += ' ' + p.installments + 'x';
+                return `${t}: ${Utils.currency(p.amount)}`;
+            }).join(' + ');
+            const feeLine = totalFee > 0 ? `<div style="font-size:12px;color:var(--warning);margin-top:4px">Taxas estimadas: ${Utils.currency(totalFee)} · Líquido ${Utils.currency(totalNet)}</div>` : '';
+            const brandLine = selectedPayment==='multi' ? `<div style="font-size:12px;color:var(--text-muted);margin-top:4px">${paymentSummaryText}</div>` : ((selectedPayment === 'credito' || selectedPayment === 'debito') && selectedCardBrand ? `<div style="font-size:12px;color:var(--text-muted);margin-top:4px">Bandeira: ${BRAND_LABEL[selectedCardBrand]||selectedCardBrand}</div>` : '');
+            const finalizeSummaryHtml = `<div style="text-align:center">
+                    <div style="font-size:32px;font-weight:800;color:var(--success);margin:8px 0">${Utils.currency(total)}</div>
+                    <div style="font-size:13px;color:var(--text-muted)">${totalItems} ${totalItems === 1 ? 'item' : 'itens'} • ${payLabel[selectedPayment]}</div>
+                    <div style="font-size:12px;color:var(--text-muted);margin-top:4px">Cliente: ${customerName}</div>
+                    <div style="font-size:12px;color:var(--text-muted);margin-top:3px">Vendedor: ${selectedSellerNameVal || currentUser?.name || auth.currentUser?.displayName || 'Operador'}</div>
+                    <div style="font-size:12px;color:var(--accent);margin-top:4px">${typeLabel[saleType]}</div>
+                    ${brandLine}
+                    ${feeLine}${window.dpCardSurchargeNote ? window.dpCardSurchargeNote() : ''}
+                    ${discount > 0 ? `<div style="font-size:12px;color:var(--warning);margin-top:4px">Desconto: ${Utils.currency(discount)}</div>` : ''}
+                    ${deliveryFee > 0 ? `<div style="font-size:12px;color:var(--text-muted);margin-top:2px">Taxa entrega: ${Utils.currency(deliveryFee)}</div>` : ''}
+                    ${document.getElementById('saleNotes')?.value?.trim() ? `<div style="font-size:11px;color:var(--text-muted);margin-top:6px">Observações: ${document.getElementById('saleNotes').value.trim()}</div>` : ''}
+                </div>`;
+            const finalizeAction = async () => {
+                    const btnFinalize = document.getElementById('btnFinalize');
+                    if (btnFinalize) { btnFinalize.disabled = true; btnFinalize.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...'; }
+
+                    try {
+                        const address = document.getElementById('deliveryAddress')?.value?.trim() || '';
+                        const addressRef = document.getElementById('deliveryRef')?.value?.trim() || '';
+
+                        // Motoboy selecionado (só para delivery)
+                        let motoboyId = '', motoboyName = '';
+                        if (saleType === 'delivery') {
+                            const motoboySelect = document.getElementById('deliveryMotoboy');
+                            motoboyId = motoboySelect?.value || '';
+                            const selectedOpt = motoboySelect?.selectedOptions?.[0];
+                            motoboyName = selectedOpt?.dataset?.name || selectedOpt?.text?.split('·')[0]?.trim() || '';
+                            // Se tem só 1 motoboy e nenhum selecionado, usa o único
+                            if (!motoboyId && allMotoboys.length === 1) {
+                                motoboyId = allMotoboys[0].id;
+                                motoboyName = allMotoboys[0].name || allMotoboys[0].nome || '';
+                            }
+                        }
+
+                        const saleData = {
+                            items: cart.map(item => ({
+                                productId: item.productId,
+                                productName: item.productName,
+                                productCode: item.productCode,
+                                unitPrice: item.unitPrice,
+                                originalUnitPrice: item.originalUnitPrice || item.unitPrice,
+                                priceChanged: Math.abs(Number(item.originalUnitPrice || item.unitPrice) - Number(item.unitPrice)) > 0.001,
+                                notes: item.notes || '',
+                                ...(window.DPAddons ? DPAddons.saleFields(item) : {}), // 38.4 · adicionais e sabores do item
+                                ...(window.DPSerial ? DPSerial.saleFields(item) : {}), // 38.5 · IMEI/série do aparelho e a garantia (seriais-v1.js)
+                                _factor: item._factor || 1,
+                                costPrice: item.costPrice,
+                                quantity: item.quantity,
+                                discount: item.discount || 0,
+                                total: item.total,
+                                ...(window.DPFiscal ? DPFiscal.of(products.find(p => p.id === item.productId)) : {}) // 37.9 · NCM, CFOP, CSOSN, origem e unidade do produto (nota fiscal)
+                            })),
+                            subtotal,
+                            discount,
+                            deliveryFee,
+                            cardSurcharge: (window.dpCardSurcharge ? window.dpCardSurcharge(subtotal - discount + deliveryFee) : 0),
+                            total,
+                            payments,
+                            paymentMethod: payments.length > 1 ? 'multi' : payments[0].method,
+                            paymentFeePercent: payments.length === 1 ? Number(payments[0].feePercent || 0) : 0,
+                            paymentFeeValue: totalFee,
+                            paymentNetAmount: totalNet,
+                            cardBrand: payments.length === 1 ? (payments[0].cardBrand || '') : '',
+                            customerName,
+                            customerId,
+                            sellerId: selectedSellerId || currentUser?.uid || auth.currentUser?.uid || '',
+                            sellerName: selectedSellerNameVal || currentUser?.name || auth.currentUser?.displayName || 'Operador',
+                            notes: document.getElementById('saleNotes')?.value?.trim() || '',
+                            type: saleType,
+                            // delivery começa como 'new' para aparecer no kanban de Delivery
+                            // balcao e pickup já vão direto para Concluídos
+                            status: saleType === 'delivery' ? (motoboyId ? 'delivering' : 'new') : 'completed',
+                            address: saleType === 'delivery' ? address : '',
+                            addressRef: saleType === 'delivery' ? addressRef : '',
+                            motoboyId: saleType === 'delivery' ? motoboyId : '',
+                            motoboyName: saleType === 'delivery' ? motoboyName : '',
+                            cashRegisterId: activeCashRegister?.id || null,
+                            operatorId: auth.currentUser?.uid,
+                            operatorName: auth.currentUser?.displayName || currentUser?.name || 'Operador',
+                            itemCount: totalItems
+                        };
+
+                        window.__dpVendaGravada = null;
+                        const result = await SalesService.create(saleData);
+                        window.__dpVendaGravada = result; // 39.3 · daqui em diante a venda EXISTE no banco
+
+                        const msg = saleType === 'delivery'
+                            ? `Delivery #V-${String(result.saleNumber).padStart(4,'0')} criado!`
+                            : `Venda #V-${String(result.saleNumber).padStart(4,'0')} realizada!`;
+                        Toast.success(msg);
+
+                        // ─── EMISSÃO FISCAL (NFC-e) ─────────────────
+                        const saleForPrint = { ...saleData, id: result.id, saleNumber: result.saleNumber };
+                        // 39.3 · Nota, via da cozinha e impressão cada uma no seu próprio try: antes um erro aqui virava
+                        // "Erro ao finalizar venda" com o carrinho cheio e a venda JÁ gravada, e o operador finalizava de novo
+                        // (venda duplicada, estoque baixado duas vezes).
+                        try { await handleFiscalEmission(saleForPrint, result.id); }
+                        catch (e) { console.warn('Nota fiscal após a venda:', e); Toast.warning('Venda salva, mas a nota fiscal não saiu: ' + dpErroHumano(e)); }
+
+                        // 38.4 · Via da cozinha (restaurante): sai sozinha, pergunta ou não sai, conforme Configurações › Vendas (cozinha-print-v1.js)
+                        if (window.DPKitchenPrint) { try { await DPKitchenPrint.afterSale(saleForPrint, products); } catch (e) { console.warn('Via da cozinha:', e); } }
+
+                        // Pergunta se quer imprimir (ou imprime auto se configurado)
+                        try { await handlePrintAfterSale(saleForPrint); }
+                        catch (e) { console.warn('Impressão após a venda:', e); Toast.warning('Venda salva, mas o cupom não abriu: ' + dpErroHumano(e)); }
+
+                        dpResetAfterSale();
+                        await loadProducts();
+
+                    } catch (error) {
+                        console.error('Erro na venda:', error);
+                        if (window.__dpVendaGravada) {
+                            // 39.3 · a venda está no banco: limpa o carrinho para NÃO vender duas vezes e diz o que faltou
+                            const n = window.__dpVendaGravada.saleNumber;
+                            Toast.warning('A venda' + (n ? ' #V-' + String(n).padStart(4, '0') : '') + ' FOI salva, mas deu erro depois: ' + dpErroHumano(error));
+                            try { dpResetAfterSale(); } catch (e) { console.warn(e); }
+                            try { await loadProducts(); } catch (e) { console.warn(e); }
+                        } else {
+                            Toast.error('Erro ao finalizar venda: ' + dpErroHumano(error));
+                        }
+                    } finally {
+                        window.__dpVendaGravada = null;
+                        if (btnFinalize) { btnFinalize.disabled = false; btnFinalize.innerHTML = '<i class="fas fa-check-circle"></i> Finalizar'; }
+                    }
+                };
+            // 39.3 · Limpa o PDV depois de uma venda gravada (usado no fluxo normal e quando dá erro DEPOIS da gravação)
+            function dpResetAfterSale() {
+                cart = [];
+                discount = 0;
+                deliveryFee = 0;
+                saleType = 'balcao';
+                selectedCardBrand = '';
+                multiPayments = [];
+                multiPaymentConfirmed = false;
+                updateBrandIndicator();
+                selectedCustomerId = null;
+                selectedCustomerNameVal = 'Consumidor Final';
+                const customerBadge = document.getElementById('selectedCustomerBadge');
+                if (customerBadge) customerBadge.style.display = 'flex';
+                const customerBadgeName = document.getElementById('selectedCustomerName');
+                if (customerBadgeName) customerBadgeName.textContent = 'Consumidor Final';
+                document.querySelectorAll('.sale-type-btn').forEach(b => b.classList.remove('active'));
+                const balcaoBtn = document.querySelector('.sale-type-btn[data-type="balcao"]'); if (balcaoBtn) balcaoBtn.classList.add('active');
+                const addrBox = document.getElementById('deliveryAddressBox'); if (addrBox) addrBox.style.display = 'none';
+                ['deliveryAddress', 'deliveryRef', 'deliveryFeeInput', 'customerSearch'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+                const motSel = document.getElementById('deliveryMotoboy');
+                if (motSel && allMotoboys.length > 1) motSel.selectedIndex = 0;
+                renderCart();
+                const cartEl = document.getElementById('pdvCart'); if (cartEl) cartEl.classList.remove('open');
+            }
+
+            if (selectedPayment === 'dinheiro') {
+                showCashFinalizeModal(total, finalizeSummaryHtml, async (cashReceived, changeValue) => {
+                    payments[0].cashReceived = cashReceived;
+                    payments[0].changeValue = changeValue;
+                    await finalizeAction();
+                });
+            } else {
+                Confirm.show('Finalizar Venda', finalizeSummaryHtml, finalizeAction);
+            }
+        }
+
+        // ─── CATEGORY FILTER ──────────────────────────────
+        function filterCategory(category, btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderProducts(category);
+        }
+
+        // ─── KEYBOARD SHORTCUTS ───────────────────────────
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'F2') { e.preventDefault(); document.getElementById('pdvSearch').focus(); }
+            if (e.key === 'F4') { e.preventDefault(); if (cart.length) applyDiscount(); }
+            if (e.key === 'F9') { e.preventDefault(); finalizeSale(); }
+            if (e.key === 'F12') { e.preventDefault(); clearCart(); }
+        });
+
+        // ─── SEARCH INPUT ─────────────────────────────────
+        document.getElementById('pdvSearch').addEventListener('input', Utils.debounce(() => {
+            renderProducts();
+        }, 250));
+
+        // ─── INIT PDV ─────────────────────────────────────
+        // ─── SISTEMA DE IMPRESSÃO ─────────────────────────────
+        let printConfig = {
+            cabecalho: 'DistribuiPRO',
+            rodape: 'Obrigado pela preferência!',
+            auto: false,
+            largura: 'termica_80', // 39.0 · Configurações › Impressora padrão (58 ou 80 mm)
+            empresa: '',
+            nomeFantasia: '',
+            cnpj: '',
+            telefone: '',
+            whatsapp: '',
+            email: '',
+            endereco: '',
+            logoUrl: ''
+        };
+
+        function getDefaultReceiptLogo() {
+            try { return new URL('assets/brand/distribuipro-mark.svg?v=41.5-logo', window.location.href).href; }
+            catch(e) { return ''; }
+        }
+
+        async function loadPrintConfig() {
+            try {
+                let d = {};
+                const doc = await db.collection('settings').doc('general').get();
+                if (doc.exists) d = doc.data() || {};
+
+                const isDemo = window.DP_IS_DEMO === true; // 39.3 · fonte única (branding.js); antes: pasta "teste" na URL
+                const brand = (window.BrandingManager && typeof BrandingManager.getBrand === 'function')
+                    ? (BrandingManager.getBrand() || {}) : {};
+
+                const brandName = isDemo
+                    ? (brand.companyName || d.nomeFantasia || d.razaoSocial || 'DistribuiPRO')
+                    : (d.nomeFantasia || brand.companyName || d.razaoSocial || 'DistribuiPRO');
+                const customLogo = isDemo
+                    ? (brand.logoUrl || '')
+                    : (d.logoUrl || brand.logoUrl || '');
+
+                printConfig.cabecalho = d.cabecalhoComprovante || brandName;
+                printConfig.rodape    = d.rodapeComprovante || 'Obrigado pela preferência!';
+                printConfig.auto      = d.imprimirAuto === true || d.imprimirAuto === 'true';
+                printConfig.nomeFantasia = brandName;
+                printConfig.empresa   = d.razaoSocial || '';
+                printConfig.cnpj      = d.cnpj || '';
+                printConfig.telefone  = d.telefone || '';
+                printConfig.whatsapp  = d.whatsapp || '';
+                printConfig.email     = d.email || '';
+                const rua = [d.logradouro, d.numero].filter(Boolean).join(', ');
+                const cidadeUf = [d.cidade, d.uf].filter(Boolean).join(' - ');
+                const local = [d.bairro, cidadeUf, d.cep ? ('CEP ' + d.cep) : ''].filter(Boolean).join(' · ');
+                printConfig.endereco  = [rua, local].filter(Boolean).join(' · ');
+                printConfig.logoUrl   = customLogo || getDefaultReceiptLogo();
+                printConfig.largura   = d.impressoraPadrao === 'termica_58' ? 'termica_58' : 'termica_80';
+            } catch(e) {
+                console.warn('Configurações de impressão não carregadas:', e.message);
+                printConfig.logoUrl = getDefaultReceiptLogo();
+            }
+        }
+
+        async function handlePrintAfterSale(sale) {
+            if (printConfig.auto) {
+                // Imprime automaticamente
+                printReceipt(sale);
+            } else {
+                // Pergunta se quer imprimir
+                showPrintPrompt(sale);
+            }
+        }
+
+        // ─── EMISSÃO FISCAL — modo configurável ─────────────────
+        async function handleFiscalEmission(sale, saleId) {
+            // Se NFCeService não estiver carregado ou emissão desabilitada, pula silenciosamente
+            if (!window.NFCeService) return;
+            if (!(await NFCeService.isEnabled())) return;
+            // 39.7 · NFC-e é só de mercadoria: venda só de serviço (ou uso de pacote) não pergunta nem tenta a NFC-e
+            if (NFCeService.temMercadoria && !NFCeService.temMercadoria(sale, await NFCeService.carregarProdutos(sale.items || []))) return;
+
+            const modo = await NFCeService.getModoEmissao();
+
+            if (modo === 'manual') return; // operador decide depois
+
+            if (modo === 'automatico') {
+                await emitirNFCe(sale, saleId);
+                return;
+            }
+
+            // Padrão: pergunta
+            return new Promise(resolve => {
+                askEmitirNota(sale, saleId, resolve);
+            });
+        }
+
+        function askEmitirNota(sale, saleId, done) {
+            // Remove modal anterior se existir
+            document.querySelectorAll('#fiscalAskOverlay').forEach(el => el.remove());
+
+            const overlay = document.createElement('div');
+            overlay.id = 'fiscalAskOverlay';
+            overlay.className = 'modal-overlay active';
+            overlay.innerHTML = `
+                <div class="modal" style="max-width:440px">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-file-invoice" style="margin-right:8px;color:var(--accent)"></i>Emitir nota fiscal?</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px">Deseja emitir NFC-e para esta venda no valor de <strong style="color:var(--text-primary)">${Utils.currency(sale.total)}</strong>?</p>
+                        <div style="display:flex;gap:8px;margin-bottom:8px">
+                            <input type="text" class="form-input" id="fiscalAskCpf" placeholder="CPF/CNPJ na nota (opcional)" maxlength="18" style="flex:1">
+                        </div>
+                        <small style="color:var(--text-muted);font-size:11px"><i class="fas fa-info-circle"></i> Pode deixar em branco para nota sem identificação do consumidor.</small>
+                        <div id="fiscalAskErr" style="display:none;color:var(--danger,#ef4444);font-size:12px;margin-top:6px"></div>
+                    </div>
+                    <div class="modal-footer" style="display:flex;gap:8px;justify-content:flex-end">
+                        <button class="btn btn-outline" id="fiscalAskNo">Sem nota</button>
+                        <button class="btn btn-primary" id="fiscalAskYes"><i class="fas fa-check"></i> Emitir nota</button>
+                    </div>
+                </div>`;
+            document.body.appendChild(overlay);
+
+            overlay.querySelector('#fiscalAskNo').onclick = () => {
+                overlay.remove();
+                done && done();
+            };
+            // 39.7 · CPF/CNPJ do cliente da venda já vem preenchido (o caixa pode apagar) e é conferido antes de enviar
+            const cpfEl = overlay.querySelector('#fiscalAskCpf');
+            try { const cli = sale.customerId ? (customers || []).find(c => c.id === sale.customerId) : null; const d = cli && String(cli.document || cli.cpfCnpj || cli.cpf || cli.cnpj || '').trim(); if (d && !cpfEl.value) cpfEl.value = d; } catch (e) { }
+            cpfEl.addEventListener('input', () => { overlay.querySelector('#fiscalAskErr').style.display = 'none'; });
+            overlay.querySelector('#fiscalAskYes').onclick = async () => {
+                const cpf = cpfEl.value.trim();
+                const u = NFCeService.util;
+                if (cpf && u && !u.docOk(cpf)) {
+                    const err = overlay.querySelector('#fiscalAskErr');
+                    const n = u.docLimpo(cpf).length;
+                    err.textContent = (n === 11 ? 'CPF' : n === 14 ? 'CNPJ' : 'CPF/CNPJ') + ' com número errado. Confira ou deixe em branco.';
+                    err.style.display = 'block'; cpfEl.focus();
+                    return;
+                }
+                sale.customerCpfCnpj = cpf; // vazio = nota sem identificação (mesmo com cliente na venda)
+                overlay.remove();
+                await emitirNFCe(sale, saleId);
+                done && done();
+            };
+        }
+
+        async function emitirNFCe(sale, saleId) {
+            // Toast/loading
+            if (window.Toast && Toast.info) {
+                Toast.info('Emitindo NFC-e na SEFAZ…');
+            }
+
+            const r = await NFCeService.emitir(sale, saleId);
+
+            // 39.7 · Resultado numa janela: o DANFE abre no clique (antes abria sozinho depois da espera e o navegador bloqueava)
+            if (NFCeService.mostrarResultado) { await NFCeService.mostrarResultado(r); if (!r.ok) console.error('[NFCe] resposta:', r); return; }
+            if (r.ok && r.status === 'autorizado') {
+                Toast.success(`✅ NFC-e #${r.numero} autorizada!`);
+            } else if (r.ok && r.status === 'processando') {
+                Toast.warning('NFC-e em processamento na SEFAZ. Verifique em Vendas em alguns instantes.');
+            } else {
+                Toast.error('Erro ao emitir NFC-e: ' + (r.error || 'desconhecido'));
+                console.error('[NFCe] resposta:', r);
+            }
+        }
+
+        function showPrintPrompt(sale) {
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay active';
+            overlay.id = 'printPromptOverlay';
+            overlay.innerHTML = `
+                <div class="modal" style="max-width:340px;text-align:center">
+                    <div class="modal-body" style="padding:28px 24px">
+                        <div style="width:60px;height:60px;border-radius:50%;background:rgba(16,185,129,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+                            <i class="fas fa-receipt" style="font-size:26px;color:#10b981"></i>
+                        </div>
+                        <div style="font-size:17px;font-weight:700;color:var(--text-heading);margin-bottom:8px">Venda #V-${String(sale.saleNumber).padStart(4,'0')} concluída!</div>
+                        <div style="font-size:13px;color:var(--text-muted);margin-bottom:24px">Deseja imprimir o comprovante para o cliente?</div>
+                        <div style="display:flex;gap:10px">
+                            <button class="btn btn-secondary" style="flex:1" onclick="document.getElementById('printPromptOverlay').remove()">
+                                <i class="fas fa-times"></i> Não
+                            </button>
+                            <button class="btn btn-primary" style="flex:2" onclick="printReceipt(currentPrintSale);document.getElementById('printPromptOverlay').remove()">
+                                <i class="fas fa-print"></i> Imprimir Cupom
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            document.body.appendChild(overlay);
+            window.currentPrintSale = sale;
+        }
+
+        function receiptEsc(v) { return String(v ?? '').replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c])); }
+
+        function receiptPaperCss(kind) { const p58 = /58/.test(String(kind || '')); const w = p58 ? '48mm' : '72mm', page = p58 ? '58mm' : '80mm'; return 'html{width:' + page + '!important;max-width:' + page + '!important;margin:0!important;padding:0!important}body{width:' + w + '!important;max-width:' + w + '!important;margin:0 auto!important;padding:1.5mm 0 3mm!important;font-family:Arial,Helvetica,sans-serif!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}body,body *{color:#000!important;font-weight:700!important}.line{border-top:1.5px dashed #000!important}' + (p58 ? 'body{font-size:11px!important}td,div,span{font-size:11px!important;letter-spacing:0!important}.total-row td{font-size:13px!important}.logo{font-size:13px!important}.receipt-logo{max-width:96px!important}' : '') + '@page{size:' + page + ' auto;margin:0}@media print{html{width:' + page + '!important;margin:0!important;padding:0!important}body{width:' + w + '!important;margin:0 auto!important;padding:0 0 3mm!important}}' + (window.DPPapel ? DPPapel.css(kind) : ''); } // 40.49 · + ajuste da impressora desta empresa (papel-v1.js). 39.14.13 · área útil (72/48 mm) no meio do papel (80/58 mm): encostada na esquerda, a TM-T20 cortava uns 4 mm
+        function printReceipt(sale) {
+            const payNames = {
+                dinheiro:'Dinheiro', pix:'PIX', credito:'Cartão Crédito',
+                debito:'Cartão Débito', fiado:'Fiado', multi:'Múltiplo'
+            };
+            const receiptPayments = Array.isArray(sale.payments) && sale.payments.length ? sale.payments : [{method:sale.paymentMethod||'dinheiro',amount:sale.total||0}];
+            const paymentRowsHtml = receiptPayments.map(p => {
+                let label = payNames[p.method] || p.method || 'Pagamento';
+                if ((p.method==='credito'||p.method==='debito') && p.cardBrand) label += ' ' + (BRAND_LABEL[p.cardBrand]||p.cardBrand);
+                if (p.method==='credito' && Number(p.installments||1)>1) label += ' ' + p.installments + 'x';
+                return `<tr><td style="font-size:12px;padding-top:4px">${label}</td><td class="right" style="font-size:12px;padding-top:4px">${Utils.currency(p.amount||0)}</td></tr>${p.method==='dinheiro'&&Number(p.cashReceived||0)>0?`<tr><td style="font-size:11px">Recebido</td><td class="right" style="font-size:11px">${Utils.currency(p.cashReceived)}</td></tr>`:''}${p.method==='dinheiro'&&Number(p.changeValue||0)>0?`<tr><td style="font-size:11px">Troco</td><td class="right" style="font-size:11px;font-weight:700">${Utils.currency(p.changeValue)}</td></tr>`:''}`;
+            }).join('');
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('pt-BR');
+            const timeStr = now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+            const num = String(sale.saleNumber).padStart(4,'0');
+
+            // Linha separadora
+            const line  = '─'.repeat(32);
+            const dline = '═'.repeat(32);
+
+            // Monta os itens
+            const itemsHtml = (sale.items || []).map(item => {
+                const total = Utils.currency(item.total);
+                const pname = window.DPKitchenPrint ? DPKitchenPrint.title(item) : item.productName; // 38.4 · pizza de vários sabores: nome do grupo e os sabores embaixo
+                const nmax = /58/.test(printConfig.largura) ? 16 : 22;
+                const name = pname.length > nmax
+                    ? pname.substring(0, nmax) + '…'
+                    : pname;
+                return `
+                    <tr>
+                        <td style="padding:3px 0;font-size:13px">${name}</td>
+                        <td style="text-align:right;white-space:nowrap;font-size:13px">${item.quantity}x ${Utils.currency(item.unitPrice)}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:right;font-size:13px;font-weight:700;padding-bottom:${item.notes?'2':'6'}px">${total}</td>
+                    </tr>${window.DPKitchenPrint ? DPKitchenPrint.receiptRows(item) : ''}
+                    ${item.notes ? `<tr><td colspan="2" style="font-size:10px;padding-bottom:6px">${window.DPTerm?DPTerm('obs_item_print'):'IMEI/Serial/Obs.'}: ${item.notes}</td></tr>` : ''}`;
+            }).join('');
+
+            // Monta o cupom
+            const html = `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cupom #V-${num}</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 700;
+        /* 17.14 — impressão térmica em negrito */
+        font-size: 13px;
+        width: 302px; /* 80mm ≈ 302px */
+        margin: 0 auto;
+        padding: 8px 4px;
+        color: #000;
+        background: #fff;
+    }
+    body, body * { font-weight: 700 !important; color: #000 !important; }
+    .center { text-align: center; }
+    .right  { text-align: right; }
+    .bold   { font-weight: bold; }
+    .line   { border-top: 1px dashed #000; margin: 6px 0; }
+    .dline  { border-top: 2px solid #000; margin: 6px 0; }
+    .receipt-logo { display:block; max-width:124px; max-height:58px; width:auto; height:auto; object-fit:contain; margin:0 auto 5px; }
+    .receipt-company { line-height:1.25; }
+    .logo   { font-size: 16px; font-weight: bold; letter-spacing: 1px; }
+    .sub    { font-size: 11px; color: #333; margin-top: 2px; }
+    table   { width: 100%; border-collapse: collapse; }
+    td      { vertical-align: top; }
+    .total-row td { font-size: 15px; font-weight: bold; padding-top: 6px; }
+    .footer { font-size: 11px; margin-top: 4px; }
+    @media print {
+        body { width: 100%; padding: 0; }
+        @page { margin: 4mm; size: 80mm auto; }
+    }
+
+        /* 17.0 — proporcao fixa da foto do produto em todas as resolucoes */
+        .product-card .p-thumb {
+            width:100% !important;
+            height:auto !important;
+            min-height:0 !important;
+            max-height:none !important;
+            aspect-ratio:16 / 10 !important;
+            flex:0 0 auto !important;
+        }
+        .product-card .p-thumb img {
+            width:100% !important;
+            height:100% !important;
+            max-width:100% !important;
+            max-height:100% !important;
+            object-fit:contain !important;
+            object-position:center center !important;
+        }
+        ${receiptPaperCss(printConfig.largura)}
+        /* O quadro cresce ou diminui junto com o card, mas nunca muda de formato. */
+        @supports not (aspect-ratio: 16 / 10) {
+            .product-card .p-thumb { height:0 !important; padding-bottom:62.5% !important; position:relative !important; }
+            .product-card .p-thumb img,
+            .product-card .p-thumb > span { position:absolute !important; inset:0 !important; margin:auto !important; }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- CABEÇALHO PERSONALIZADO -->
+<div class="center receipt-company">
+    ${printConfig.logoUrl ? `<img class="receipt-logo" src="${receiptEsc(printConfig.logoUrl)}" alt="Logo da empresa">` : ''}
+    <div class="logo">${receiptEsc(printConfig.cabecalho)}</div>
+    ${printConfig.empresa && printConfig.empresa !== printConfig.cabecalho
+        ? `<div class="sub">${receiptEsc(printConfig.empresa)}</div>` : ''}
+    ${printConfig.cnpj ? `<div class="sub">CNPJ: ${receiptEsc(printConfig.cnpj)}</div>` : ''}
+    ${printConfig.telefone ? `<div class="sub">Tel: ${receiptEsc(printConfig.telefone)}</div>` : ''}
+    ${printConfig.whatsapp && printConfig.whatsapp !== printConfig.telefone ? `<div class="sub">WhatsApp: ${receiptEsc(printConfig.whatsapp)}</div>` : ''}
+    ${printConfig.email ? `<div class="sub">${receiptEsc(printConfig.email)}</div>` : ''}
+    ${printConfig.endereco ? `<div class="sub">${receiptEsc(printConfig.endereco)}</div>` : ''}
+</div>
+
+<div class="dline"></div>
+
+<div class="center bold" style="font-size:12px;letter-spacing:1px">COMPROVANTE DE PAGAMENTO</div>
+<div class="center sub">Venda #V-${num}</div>
+<div class="center sub">${dateStr} às ${timeStr}</div>
+
+<div class="line"></div>
+
+<!-- CLIENTE -->
+<div style="font-size:12px">
+    <span class="bold">Cliente:</span> ${sale.customerName || 'Consumidor Final'}
+</div>
+${sale.address ? `<div style="font-size:11px;margin-top:2px">Endereço: ${sale.address}</div>` : ''}
+
+<div class="line"></div>
+
+<!-- ITENS -->
+<div class="bold" style="font-size:11px;letter-spacing:.5px;margin-bottom:4px">ITENS</div>
+<table>${itemsHtml}</table>
+${sale.notes ? `<div class="line"></div><div style="font-size:11px"><span class="bold">Observações:</span> ${sale.notes}</div>` : ''}
+
+<div class="dline"></div>
+
+<!-- TOTAIS -->
+<table>
+    <tr>
+        <td style="font-size:12px">Subtotal</td>
+        <td class="right" style="font-size:12px">${Utils.currency(sale.subtotal || sale.total)}</td>
+    </tr>
+    ${(sale.discount || 0) > 0 ? `
+    <tr>
+        <td style="font-size:12px">Desconto</td>
+        <td class="right" style="font-size:12px">- ${Utils.currency(sale.discount)}</td>
+    </tr>` : ''}
+    ${(sale.deliveryFee || 0) > 0 ? `
+    <tr>
+        <td style="font-size:12px">Taxa Entrega</td>
+        <td class="right" style="font-size:12px">${Utils.currency(sale.deliveryFee)}</td>
+    </tr>` : ''}
+    ${(sale.cardSurcharge || 0) > 0 ? `<tr><td style="font-size:12px">Taxa do cartão</td><td class="right" style="font-size:12px">${Utils.currency(sale.cardSurcharge)}</td></tr>` : ''}
+    <tr class="total-row">
+        <td>TOTAL</td>
+        <td class="right">${Utils.currency(sale.total)}</td>
+    </tr>
+    ${paymentRowsHtml}
+</table>
+
+${sale.type === 'delivery' ? `
+<div class="line"></div>
+<div style="font-size:12px" class="bold">ENTREGA</div>
+<div style="font-size:11px;margin-top:2px">${sale.address || ''}</div>
+${sale.addressRef ? `<div style="font-size:11px">Ref: ${sale.addressRef}</div>` : ''}
+${sale.motoboyName ? `<div style="font-size:11px">Entregador: ${sale.motoboyName}</div>` : ''}
+${window.DPEntregas ? DPEntregas.receiptHtml(sale) : ''}
+` : ''}
+
+<div class="dline"></div>
+
+<!-- RODAPÉ -->
+<div class="center footer">
+    <div style="font-size:13px;font-weight:bold;margin-bottom:4px">${printConfig.rodape}</div>
+    <div>─────────────────────────</div>
+    <div style="margin-top:4px">Processado por DistribuiPRO ERP</div>
+    <div>${dateStr} ${timeStr}</div>
+</div>
+
+<div style="height:20px"></div>
+</div>\n\n<div style=\"height:20px\"></div>\n\n</body>\n</html>`;
+            // 40.49 · Com "Imprimir automaticamente" o cupom abria uma janela nova depois de gravar a venda (sem clique): o
+            // Chrome bloqueia essa janela e o comprovante não saía (a via da cozinha saía). Agora vai pelo mesmo caminho da via:
+            // no navegador, janela escondida (sem pop-up); no programa do Windows, a janela do cupom, que imprime direto.
+            if (window.DPKitchenPrint && DPKitchenPrint.printHtml) { DPKitchenPrint.printHtml(html); return; }
+            const win = window.open('', '_blank', 'width=380,height=600');
+            if (!win) { Toast.warning('O navegador bloqueou a janela do comprovante. Libere as janelas (pop-ups) deste site e imprima de novo em Pedidos.'); return; }
+            win.document.write(html);
+            win.document.close();
+            // Auto-print após carregar
+            win.onload = function() { win.print(); };
+        }
+
+        async function initPDV() {
+            await loadPrintConfig();
+            await loadProducts();
+            await loadCategories();
+            await loadCustomers();
+            await loadPdvCustomers();
+            await loadPdvSellers();
+            await loadMotoboys();
+            await checkCashRegister();
+            renderCart();
+        }
+
+        // Wait for auth then init
+        auth.onAuthStateChanged(user => {
+            if (user) { initPDV(); }
+            else { window.location.href = 'login.html'; }
+        });
+    </script>
+<script src="assets/js/pdv-leve-v1.js?v=37.4"></script>
+<script src="assets/js/pdv-pro-v1.js?v=39.14.9"></script>
+<script defer src="assets/js/studio-v1.js?v=39.13"></script><script defer src="assets/js/studio-pro-v2.js?v=2.7-rolagem"></script>
+<script src="assets/js/dp-catalog-v1.js?v=35.36"></script>
+<script src="assets/js/pdv-flex-v1.js?v=39.2"></script>
+<script src="assets/js/taxas-parcela-v1.js?v=35.36"></script>
+<script src="assets/js/mesas-v1.js?v=38.4"></script><script src="assets/js/cozinha-print-v1.js?v=40.49"></script><script src="assets/js/sabores-v1.js?v=38.4"></script><script src="assets/js/adicionais-v1.js?v=38.4"></script>
+<script src="assets/js/edicao-v1.js?v=38.0"></script>
+<script src="assets/js/agenda-core-v1.js?v=37.9"></script><script src="assets/js/itens-cliente-v1.js?v=39.14.5-os"></script>
+<script src="assets/js/os-pro-v1.js?v=39.14.5-os"></script>
+<script src="assets/js/crediario-v1.js?v=40.73-firestore"></script>
+<script src="assets/js/venda-a4-v1.js?v=39.0-endereco"></script>
+<script src="assets/js/formas-pagamento-v1.js?v=38.3"></script>
+<script src="assets/js/contas-bancarias-v1.js?v=40.73"></script>
+<script src="assets/js/depositos-v1.js?v=37.1"></script>
+<script src="assets/js/pdv-visual-v1.js?v=37.1"></script>
+<script src="assets/js/pdv-extras-v1.js?v=37.8"></script>
+<script src="assets/js/preco-atacado-v1.js?v=39.14.9"></script>
+<script src="assets/js/vasilhames-v1.js?v=38.1"></script>
+<script src="assets/js/vendas-editar-v1.js?v=38.6"></script><script src="assets/js/trocas-v1.js?v=38.3"></script>
+<script src="assets/js/validade-v1.js?v=39.8-funil"></script>
+<script src="assets/js/seriais-v1.js?v=38.5"></script>
+<script src="assets/js/entregas-pro-v1.js?v=38.4"></script>
+<script src="assets/js/grade-v1.js?v=38.6"></script><script src="assets/js/condicional-v1.js?v=38.6"></script>
+<script src="assets/js/notas-base-v1.js?v=39.10-base"></script>
+<script src="assets/js/notas-provedor-v1.js?v=41.1-dp"></script>
+<script src="assets/js/nota-propria-dp-v1.js?v=41.1"></script>
+</body>
+</html>

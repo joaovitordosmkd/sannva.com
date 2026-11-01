@@ -1,0 +1,17 @@
+{
+  "name": "Shopping Place! Admin",
+  "short_name": "Shopping Place! Admin",
+  "theme_color": "#261C43",
+  "background_color": "#261C43",
+  "display": "fullscreen",
+  "Scope": "https://minhaveznodigital.com/login/index.php",
+  "start_url": "https://minhaveznodigital.com/login/index.php",
+  "icons": [
+    {
+      "src": "https://minhaveznodigital.com/login/img/258x258.png",
+      "sizes": "1080x1080",
+      "type": "image/png"
+    } 
+  ],
+  "splash_pages": null
+}
